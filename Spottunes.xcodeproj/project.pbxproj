@@ -1,0 +1,427 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		7A4CF60BAF12A50A9C836991 /* Pods_Spottunes.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C5A35C681814C640EE9D42AC /* Pods_Spottunes.framework */; };
+		98A0D2871EA27FEB0004966A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98A0D2861EA27FEB0004966A /* AppDelegate.swift */; };
+		98A0D2891EA27FEB0004966A /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98A0D2881EA27FEB0004966A /* ViewController.swift */; };
+		98A0D28C1EA27FEB0004966A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 98A0D28A1EA27FEB0004966A /* Main.storyboard */; };
+		98A0D28E1EA27FEB0004966A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 98A0D28D1EA27FEB0004966A /* Assets.xcassets */; };
+		98A0D2911EA27FEB0004966A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 98A0D28F1EA27FEB0004966A /* LaunchScreen.storyboard */; };
+		98EFBE091EA282790050675D /* SpotifyAudioPlayback.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 98EFBE071EA282790050675D /* SpotifyAudioPlayback.framework */; };
+		98EFBE0A1EA282790050675D /* SpotifyAuthentication.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 98EFBE081EA282790050675D /* SpotifyAuthentication.framework */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		766A9720120B2CA291FD022A /* Pods-Spottunes.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Spottunes.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Spottunes/Pods-Spottunes.debug.xcconfig"; sourceTree = "<group>"; };
+		9600EB3E0DDFD87F47C0ACF7 /* Pods-Spottunes.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Spottunes.release.xcconfig"; path = "Pods/Target Support Files/Pods-Spottunes/Pods-Spottunes.release.xcconfig"; sourceTree = "<group>"; };
+		98A0D2831EA27FEB0004966A /* Spottunes.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Spottunes.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		98A0D2861EA27FEB0004966A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		98A0D2881EA27FEB0004966A /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		98A0D28B1EA27FEB0004966A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		98A0D28D1EA27FEB0004966A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		98A0D2901EA27FEB0004966A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		98A0D2921EA27FEB0004966A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		98EFBE071EA282790050675D /* SpotifyAudioPlayback.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = SpotifyAudioPlayback.framework; sourceTree = "<group>"; };
+		98EFBE081EA282790050675D /* SpotifyAuthentication.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = SpotifyAuthentication.framework; sourceTree = "<group>"; };
+		98EFBE0B1EA282CD0050675D /* Spottunes-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Spottunes-Bridging-Header.h"; sourceTree = "<group>"; };
+		C5A35C681814C640EE9D42AC /* Pods_Spottunes.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Spottunes.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		98A0D2801EA27FEB0004966A /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				7A4CF60BAF12A50A9C836991 /* Pods_Spottunes.framework in Frameworks */,
+				98EFBE0A1EA282790050675D /* SpotifyAuthentication.framework in Frameworks */,
+				98EFBE091EA282790050675D /* SpotifyAudioPlayback.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		98A0D27A1EA27FEA0004966A = {
+			isa = PBXGroup;
+			children = (
+				98A0D2851EA27FEB0004966A /* Spottunes */,
+				98A0D2841EA27FEB0004966A /* Products */,
+				CE5C78EF2F261759DCB6D41F /* Pods */,
+				BADB3D78B37B2B7D8A8FDCE1 /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		98A0D2841EA27FEB0004966A /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				98A0D2831EA27FEB0004966A /* Spottunes.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		98A0D2851EA27FEB0004966A /* Spottunes */ = {
+			isa = PBXGroup;
+			children = (
+				98A0D2861EA27FEB0004966A /* AppDelegate.swift */,
+				98A0D2881EA27FEB0004966A /* ViewController.swift */,
+				98A0D28A1EA27FEB0004966A /* Main.storyboard */,
+				98A0D28D1EA27FEB0004966A /* Assets.xcassets */,
+				98A0D28F1EA27FEB0004966A /* LaunchScreen.storyboard */,
+				98A0D2921EA27FEB0004966A /* Info.plist */,
+				98EFBE0B1EA282CD0050675D /* Spottunes-Bridging-Header.h */,
+			);
+			path = Spottunes;
+			sourceTree = "<group>";
+		};
+		BADB3D78B37B2B7D8A8FDCE1 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				98EFBE071EA282790050675D /* SpotifyAudioPlayback.framework */,
+				98EFBE081EA282790050675D /* SpotifyAuthentication.framework */,
+				C5A35C681814C640EE9D42AC /* Pods_Spottunes.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		CE5C78EF2F261759DCB6D41F /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				766A9720120B2CA291FD022A /* Pods-Spottunes.debug.xcconfig */,
+				9600EB3E0DDFD87F47C0ACF7 /* Pods-Spottunes.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		98A0D2821EA27FEB0004966A /* Spottunes */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 98A0D2951EA27FEB0004966A /* Build configuration list for PBXNativeTarget "Spottunes" */;
+			buildPhases = (
+				ACFD9787710FBC178DD3652D /* [CP] Check Pods Manifest.lock */,
+				98A0D27F1EA27FEB0004966A /* Sources */,
+				98A0D2801EA27FEB0004966A /* Frameworks */,
+				98A0D2811EA27FEB0004966A /* Resources */,
+				1F99182980AEE635D07B2871 /* [CP] Embed Pods Frameworks */,
+				9B6A771A4EB36EC6B03979F5 /* [CP] Copy Pods Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Spottunes;
+			productName = Spottunes;
+			productReference = 98A0D2831EA27FEB0004966A /* Spottunes.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		98A0D27B1EA27FEA0004966A /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 0830;
+				LastUpgradeCheck = 0830;
+				ORGANIZATIONNAME = "___Spottunes___";
+				TargetAttributes = {
+					98A0D2821EA27FEB0004966A = {
+						CreatedOnToolsVersion = 8.3;
+						DevelopmentTeam = 2ATYTS9SNC;
+						LastSwiftMigration = 0830;
+						ProvisioningStyle = Automatic;
+					};
+				};
+			};
+			buildConfigurationList = 98A0D27E1EA27FEA0004966A /* Build configuration list for PBXProject "Spottunes" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 98A0D27A1EA27FEA0004966A;
+			productRefGroup = 98A0D2841EA27FEB0004966A /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				98A0D2821EA27FEB0004966A /* Spottunes */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		98A0D2811EA27FEB0004966A /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				98A0D2911EA27FEB0004966A /* LaunchScreen.storyboard in Resources */,
+				98A0D28E1EA27FEB0004966A /* Assets.xcassets in Resources */,
+				98A0D28C1EA27FEB0004966A /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		1F99182980AEE635D07B2871 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Spottunes/Pods-Spottunes-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		9B6A771A4EB36EC6B03979F5 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Spottunes/Pods-Spottunes-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		ACFD9787710FBC178DD3652D /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		98A0D27F1EA27FEB0004966A /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				98A0D2891EA27FEB0004966A /* ViewController.swift in Sources */,
+				98A0D2871EA27FEB0004966A /* AppDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		98A0D28A1EA27FEB0004966A /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				98A0D28B1EA27FEB0004966A /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		98A0D28F1EA27FEB0004966A /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				98A0D2901EA27FEB0004966A /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		98A0D2931EA27FEB0004966A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		98A0D2941EA27FEB0004966A /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		98A0D2961EA27FEB0004966A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 766A9720120B2CA291FD022A /* Pods-Spottunes.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
+				DEVELOPMENT_TEAM = 2ATYTS9SNC;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
+				INFOPLIST_FILE = Spottunes/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					"-framework",
+					"\"Bolts\"",
+					"-framework",
+					"\"Parse\"",
+					"-ObjC",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.spottunes.Spottunes;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "Spottunes/Spottunes-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 3.0;
+			};
+			name = Debug;
+		};
+		98A0D2971EA27FEB0004966A /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 9600EB3E0DDFD87F47C0ACF7 /* Pods-Spottunes.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
+				DEVELOPMENT_TEAM = 2ATYTS9SNC;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
+				INFOPLIST_FILE = Spottunes/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					"-framework",
+					"\"Bolts\"",
+					"-framework",
+					"\"Parse\"",
+					"-ObjC",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.spottunes.Spottunes;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "Spottunes/Spottunes-Bridging-Header.h";
+				SWIFT_VERSION = 3.0;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		98A0D27E1EA27FEA0004966A /* Build configuration list for PBXProject "Spottunes" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				98A0D2931EA27FEB0004966A /* Debug */,
+				98A0D2941EA27FEB0004966A /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		98A0D2951EA27FEB0004966A /* Build configuration list for PBXNativeTarget "Spottunes" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				98A0D2961EA27FEB0004966A /* Debug */,
+				98A0D2971EA27FEB0004966A /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 98A0D27B1EA27FEA0004966A /* Project object */;
+}
