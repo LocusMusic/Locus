@@ -9,12 +9,25 @@
 /* Begin PBXBuildFile section */
 		7A4CF60BAF12A50A9C836991 /* Pods_Spottunes.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C5A35C681814C640EE9D42AC /* Pods_Spottunes.framework */; };
 		98A0D2871EA27FEB0004966A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98A0D2861EA27FEB0004966A /* AppDelegate.swift */; };
-		98A0D2891EA27FEB0004966A /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98A0D2881EA27FEB0004966A /* ViewController.swift */; };
-		98A0D28C1EA27FEB0004966A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 98A0D28A1EA27FEB0004966A /* Main.storyboard */; };
 		98A0D28E1EA27FEB0004966A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 98A0D28D1EA27FEB0004966A /* Assets.xcassets */; };
 		98A0D2911EA27FEB0004966A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 98A0D28F1EA27FEB0004966A /* LaunchScreen.storyboard */; };
 		98EFBE091EA282790050675D /* SpotifyAudioPlayback.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 98EFBE071EA282790050675D /* SpotifyAudioPlayback.framework */; };
 		98EFBE0A1EA282790050675D /* SpotifyAuthentication.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 98EFBE081EA282790050675D /* SpotifyAuthentication.framework */; };
+		98EFBE121EA292070050675D /* LogInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98EFBE111EA292070050675D /* LogInViewController.swift */; };
+		98EFBE151EA29DCC0050675D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 98EFBE131EA29DCC0050675D /* Main.storyboard */; };
+		98EFBE1A1EA29E350050675D /* StorybordIdentifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98EFBE161EA29E350050675D /* StorybordIdentifier.swift */; };
+		98EFBE1D1EA29E350050675D /* App.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98EFBE191EA29E350050675D /* App.swift */; };
+		98EFBE251EA29F000050675D /* UIViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98EFBE201EA29F000050675D /* UIViewExtension.swift */; };
+		98EFBE261EA29F000050675D /* UIImageExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98EFBE211EA29F000050675D /* UIImageExtension.swift */; };
+		98EFBE271EA29F000050675D /* UIColorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98EFBE221EA29F000050675D /* UIColorExtension.swift */; };
+		98EFBE281EA29F000050675D /* RoundedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98EFBE231EA29F000050675D /* RoundedView.swift */; };
+		98EFBE291EA29F000050675D /* RoundedButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98EFBE241EA29F000050675D /* RoundedButton.swift */; };
+		98EFBE2B1EA2A2E90050675D /* HomeWrapperViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98EFBE2A1EA2A2E90050675D /* HomeWrapperViewController.swift */; };
+		98EFBE311EA2A3CE0050675D /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98EFBE301EA2A3CE0050675D /* MapViewController.swift */; };
+		98EFBE341EA2D8930050675D /* TunesDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98EFBE331EA2D8930050675D /* TunesDetailsViewController.swift */; };
+		98EFBE371EA2E2450050675D /* ListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98EFBE361EA2E2450050675D /* ListTableViewCell.swift */; };
+		98EFBE3C1EA2EE310050675D /* PlayList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98EFBE3B1EA2EE310050675D /* PlayList.swift */; };
+		98EFBE3E1EA341F70050675D /* UIButtonExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98EFBE3D1EA341F70050675D /* UIButtonExtension.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -22,14 +35,27 @@
 		9600EB3E0DDFD87F47C0ACF7 /* Pods-Spottunes.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Spottunes.release.xcconfig"; path = "Pods/Target Support Files/Pods-Spottunes/Pods-Spottunes.release.xcconfig"; sourceTree = "<group>"; };
 		98A0D2831EA27FEB0004966A /* Spottunes.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Spottunes.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		98A0D2861EA27FEB0004966A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		98A0D2881EA27FEB0004966A /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		98A0D28B1EA27FEB0004966A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		98A0D28D1EA27FEB0004966A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		98A0D2901EA27FEB0004966A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		98A0D2921EA27FEB0004966A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		98EFBE071EA282790050675D /* SpotifyAudioPlayback.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = SpotifyAudioPlayback.framework; sourceTree = "<group>"; };
 		98EFBE081EA282790050675D /* SpotifyAuthentication.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = SpotifyAuthentication.framework; sourceTree = "<group>"; };
 		98EFBE0B1EA282CD0050675D /* Spottunes-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Spottunes-Bridging-Header.h"; sourceTree = "<group>"; };
+		98EFBE111EA292070050675D /* LogInViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LogInViewController.swift; sourceTree = "<group>"; };
+		98EFBE141EA29DCC0050675D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		98EFBE161EA29E350050675D /* StorybordIdentifier.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StorybordIdentifier.swift; sourceTree = "<group>"; };
+		98EFBE191EA29E350050675D /* App.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = App.swift; sourceTree = "<group>"; };
+		98EFBE201EA29F000050675D /* UIViewExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIViewExtension.swift; sourceTree = "<group>"; };
+		98EFBE211EA29F000050675D /* UIImageExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIImageExtension.swift; sourceTree = "<group>"; };
+		98EFBE221EA29F000050675D /* UIColorExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIColorExtension.swift; sourceTree = "<group>"; };
+		98EFBE231EA29F000050675D /* RoundedView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoundedView.swift; sourceTree = "<group>"; };
+		98EFBE241EA29F000050675D /* RoundedButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoundedButton.swift; sourceTree = "<group>"; };
+		98EFBE2A1EA2A2E90050675D /* HomeWrapperViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeWrapperViewController.swift; sourceTree = "<group>"; };
+		98EFBE301EA2A3CE0050675D /* MapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
+		98EFBE331EA2D8930050675D /* TunesDetailsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TunesDetailsViewController.swift; sourceTree = "<group>"; };
+		98EFBE361EA2E2450050675D /* ListTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListTableViewCell.swift; sourceTree = "<group>"; };
+		98EFBE3B1EA2EE310050675D /* PlayList.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlayList.swift; sourceTree = "<group>"; };
+		98EFBE3D1EA341F70050675D /* UIButtonExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIButtonExtension.swift; sourceTree = "<group>"; };
 		C5A35C681814C640EE9D42AC /* Pods_Spottunes.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Spottunes.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -69,14 +95,83 @@
 			isa = PBXGroup;
 			children = (
 				98A0D2861EA27FEB0004966A /* AppDelegate.swift */,
-				98A0D2881EA27FEB0004966A /* ViewController.swift */,
-				98A0D28A1EA27FEB0004966A /* Main.storyboard */,
+				98EFBE3A1EA2EE250050675D /* Model */,
+				98EFBE321EA2A4CB0050675D /* Login */,
+				98EFBE2C1EA2A2EC0050675D /* Home */,
+				98EFBE1F1EA29EEE0050675D /* Extension */,
+				98EFBE1E1EA29E390050675D /* Macro */,
+				98EFBE131EA29DCC0050675D /* Main.storyboard */,
 				98A0D28D1EA27FEB0004966A /* Assets.xcassets */,
 				98A0D28F1EA27FEB0004966A /* LaunchScreen.storyboard */,
 				98A0D2921EA27FEB0004966A /* Info.plist */,
 				98EFBE0B1EA282CD0050675D /* Spottunes-Bridging-Header.h */,
 			);
 			path = Spottunes;
+			sourceTree = "<group>";
+		};
+		98EFBE1E1EA29E390050675D /* Macro */ = {
+			isa = PBXGroup;
+			children = (
+				98EFBE161EA29E350050675D /* StorybordIdentifier.swift */,
+				98EFBE191EA29E350050675D /* App.swift */,
+			);
+			name = Macro;
+			sourceTree = "<group>";
+		};
+		98EFBE1F1EA29EEE0050675D /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+				98EFBE201EA29F000050675D /* UIViewExtension.swift */,
+				98EFBE211EA29F000050675D /* UIImageExtension.swift */,
+				98EFBE3D1EA341F70050675D /* UIButtonExtension.swift */,
+				98EFBE221EA29F000050675D /* UIColorExtension.swift */,
+				98EFBE231EA29F000050675D /* RoundedView.swift */,
+				98EFBE241EA29F000050675D /* RoundedButton.swift */,
+			);
+			name = Extension;
+			sourceTree = "<group>";
+		};
+		98EFBE2C1EA2A2EC0050675D /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				98EFBE2A1EA2A2E90050675D /* HomeWrapperViewController.swift */,
+				98EFBE351EA2D8990050675D /* Detail */,
+				98EFBE2D1EA2A3750050675D /* Map */,
+			);
+			name = Home;
+			sourceTree = "<group>";
+		};
+		98EFBE2D1EA2A3750050675D /* Map */ = {
+			isa = PBXGroup;
+			children = (
+				98EFBE301EA2A3CE0050675D /* MapViewController.swift */,
+			);
+			name = Map;
+			sourceTree = "<group>";
+		};
+		98EFBE321EA2A4CB0050675D /* Login */ = {
+			isa = PBXGroup;
+			children = (
+				98EFBE111EA292070050675D /* LogInViewController.swift */,
+			);
+			name = Login;
+			sourceTree = "<group>";
+		};
+		98EFBE351EA2D8990050675D /* Detail */ = {
+			isa = PBXGroup;
+			children = (
+				98EFBE331EA2D8930050675D /* TunesDetailsViewController.swift */,
+				98EFBE361EA2E2450050675D /* ListTableViewCell.swift */,
+			);
+			name = Detail;
+			sourceTree = "<group>";
+		};
+		98EFBE3A1EA2EE250050675D /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				98EFBE3B1EA2EE310050675D /* PlayList.swift */,
+			);
+			name = Model;
 			sourceTree = "<group>";
 		};
 		BADB3D78B37B2B7D8A8FDCE1 /* Frameworks */ = {
@@ -162,9 +257,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				98EFBE151EA29DCC0050675D /* Main.storyboard in Resources */,
 				98A0D2911EA27FEB0004966A /* LaunchScreen.storyboard in Resources */,
 				98A0D28E1EA27FEB0004966A /* Assets.xcassets in Resources */,
-				98A0D28C1EA27FEB0004966A /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -223,28 +318,41 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				98A0D2891EA27FEB0004966A /* ViewController.swift in Sources */,
+				98EFBE311EA2A3CE0050675D /* MapViewController.swift in Sources */,
 				98A0D2871EA27FEB0004966A /* AppDelegate.swift in Sources */,
+				98EFBE121EA292070050675D /* LogInViewController.swift in Sources */,
+				98EFBE261EA29F000050675D /* UIImageExtension.swift in Sources */,
+				98EFBE2B1EA2A2E90050675D /* HomeWrapperViewController.swift in Sources */,
+				98EFBE1D1EA29E350050675D /* App.swift in Sources */,
+				98EFBE291EA29F000050675D /* RoundedButton.swift in Sources */,
+				98EFBE271EA29F000050675D /* UIColorExtension.swift in Sources */,
+				98EFBE251EA29F000050675D /* UIViewExtension.swift in Sources */,
+				98EFBE3C1EA2EE310050675D /* PlayList.swift in Sources */,
+				98EFBE281EA29F000050675D /* RoundedView.swift in Sources */,
+				98EFBE3E1EA341F70050675D /* UIButtonExtension.swift in Sources */,
+				98EFBE341EA2D8930050675D /* TunesDetailsViewController.swift in Sources */,
+				98EFBE371EA2E2450050675D /* ListTableViewCell.swift in Sources */,
+				98EFBE1A1EA29E350050675D /* StorybordIdentifier.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		98A0D28A1EA27FEB0004966A /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				98A0D28B1EA27FEB0004966A /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		98A0D28F1EA27FEB0004966A /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
 				98A0D2901EA27FEB0004966A /* Base */,
 			);
 			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+		98EFBE131EA29DCC0050675D /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				98EFBE141EA29DCC0050675D /* Base */,
+			);
+			name = Main.storyboard;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */

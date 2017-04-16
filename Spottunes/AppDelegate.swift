@@ -13,11 +13,17 @@ import Parse
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
-
+    
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
-        
+        Parse.initialize(
+            with: ParseClientConfiguration(block: { (configuration:ParseMutableClientConfiguration) -> Void in
+                configuration.applicationId = "codepath-week6-instagram"
+                configuration.clientKey = nil  // set to nil assuming you have not set clientKey
+                configuration.server = "https://codepath-instragram.herokuapp.com/parse"
+            })
+        )
         return true
     }
 
