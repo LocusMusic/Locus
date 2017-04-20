@@ -19,9 +19,10 @@ struct App{
     static let mainStoryBoard = UIStoryboard(name: App.mainStoryboadName, bundle: nil)
     static let screenWidth = UIScreen.main.bounds.size.width
     static let screenHeight = UIScreen.main.bounds.size.height
-
+    static let userDefaults = UserDefaults()
     static let mediaMaxLenght: CGFloat = 600
     
+   
     struct Style{
         struct navigationBar{
             static let titleFont = UIFont(name: "HelveticaNeue-Bold", size: 17.0)!

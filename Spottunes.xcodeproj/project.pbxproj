@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		7A4CF60BAF12A50A9C836991 /* Pods_Spottunes.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C5A35C681814C640EE9D42AC /* Pods_Spottunes.framework */; };
+		986F070C1EA86C04003806CA /* InitViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 986F070B1EA86C04003806CA /* InitViewController.swift */; };
+		986F070E1EA87DBC003806CA /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 986F070D1EA87DBC003806CA /* User.swift */; };
+		986F07101EA87FBA003806CA /* SpotifyClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 986F070F1EA87FBA003806CA /* SpotifyClient.swift */; };
 		98A0D2871EA27FEB0004966A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98A0D2861EA27FEB0004966A /* AppDelegate.swift */; };
 		98A0D28E1EA27FEB0004966A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 98A0D28D1EA27FEB0004966A /* Assets.xcassets */; };
 		98A0D2911EA27FEB0004966A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 98A0D28F1EA27FEB0004966A /* LaunchScreen.storyboard */; };
@@ -34,6 +37,9 @@
 /* Begin PBXFileReference section */
 		766A9720120B2CA291FD022A /* Pods-Spottunes.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Spottunes.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Spottunes/Pods-Spottunes.debug.xcconfig"; sourceTree = "<group>"; };
 		9600EB3E0DDFD87F47C0ACF7 /* Pods-Spottunes.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Spottunes.release.xcconfig"; path = "Pods/Target Support Files/Pods-Spottunes/Pods-Spottunes.release.xcconfig"; sourceTree = "<group>"; };
+		986F070B1EA86C04003806CA /* InitViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InitViewController.swift; sourceTree = "<group>"; };
+		986F070D1EA87DBC003806CA /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		986F070F1EA87FBA003806CA /* SpotifyClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpotifyClient.swift; sourceTree = "<group>"; };
 		98A0D2831EA27FEB0004966A /* Spottunes.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Spottunes.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		98A0D2861EA27FEB0004966A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		98A0D28D1EA27FEB0004966A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -97,6 +103,8 @@
 			isa = PBXGroup;
 			children = (
 				98A0D2861EA27FEB0004966A /* AppDelegate.swift */,
+				986F070B1EA86C04003806CA /* InitViewController.swift */,
+				98EFBE191EA29E350050675D /* App.swift */,
 				98EFBE3A1EA2EE250050675D /* Model */,
 				98EFBE321EA2A4CB0050675D /* Login */,
 				98EFBE2C1EA2A2EC0050675D /* Home */,
@@ -115,7 +123,6 @@
 			isa = PBXGroup;
 			children = (
 				98EFBE161EA29E350050675D /* StorybordIdentifier.swift */,
-				98EFBE191EA29E350050675D /* App.swift */,
 			);
 			name = Macro;
 			sourceTree = "<group>";
@@ -172,6 +179,8 @@
 			isa = PBXGroup;
 			children = (
 				98EFBE3B1EA2EE310050675D /* PlayList.swift */,
+				986F070F1EA87FBA003806CA /* SpotifyClient.swift */,
+				986F070D1EA87DBC003806CA /* User.swift */,
 				98EFBE3F1EA3C90D0050675D /* Song.swift */,
 			);
 			name = Model;
@@ -335,7 +344,10 @@
 				98EFBE3E1EA341F70050675D /* UIButtonExtension.swift in Sources */,
 				98EFBE401EA3C90D0050675D /* Song.swift in Sources */,
 				98EFBE341EA2D8930050675D /* TunesDetailsViewController.swift in Sources */,
+				986F070E1EA87DBC003806CA /* User.swift in Sources */,
+				986F07101EA87FBA003806CA /* SpotifyClient.swift in Sources */,
 				98EFBE371EA2E2450050675D /* ListTableViewCell.swift in Sources */,
+				986F070C1EA86C04003806CA /* InitViewController.swift in Sources */,
 				98EFBE1A1EA29E350050675D /* StorybordIdentifier.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

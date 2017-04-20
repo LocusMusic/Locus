@@ -16,16 +16,28 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     var songPlaying: Song?
     
+   
+    
+    
+    var auth: SPTAuth?
+
+    
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+        auth.redirectURL = URL(string: redirectURL)
+        auth.sessionUserDefaultsKey = "current session"
+        
+        
+        self.auth = SpotifyClient.setupAuth()
         Parse.initialize(
-            with: ParseClientConfiguration(block: { (configuration:ParseMutableClientConfiguration) -> Void in
-                configuration.applicationId = "codepath-week6-instagram"
-                configuration.clientKey = nil  // set to nil assuming you have not set clientKey
-                configuration.server = "https://codepath-instragram.herokuapp.com/parse"
+            with: ParseClientConfiguration(block: { (configuration: ParseMutableClientConfiguration) -> Void in
+                configuration.applicationId = "SpotTunes"
+                configuration.clientKey = "SpotTunesIsGucciJKLDFSDJLKJFLAJFKLDSHLJASKLD"
+                configuration.server = "https://spottunes.herokuapp.com/parse"
             })
         )
         return true
+
     }
 
     func applicationWillResignActive(_ application: UIApplication) {
@@ -48,6 +60,28 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func applicationWillTerminate(_ application: UIApplication) {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
+    }
+
+    
+    //Called after returning from fetchRequestToken (user either enters credentials or cancels the operation)
+    func application(_ app: UIApplication, open url: URL, options: [UIApplicationOpenURLOptionsKey : Any] = [:]) -> Bool {
+        print("called from app delegate options")
+        if auth.canHandle(auth.redirectURL) {
+            auth.handleAuthCallback(withTriggeredAuthURL: url, callback: { (error: Error?, session: SPTSession!) in
+                if error != nil {
+                    print("Auth Error!")
+                    return
+                }
+                //Save session information
+                let userDefaults = UserDefaults.standard
+                let sessionData = NSKeyedArchiver.archivedData(withRootObject: session)
+                userDefaults.set(sessionData, forKey: "SpotifySession")
+                userDefaults.synchronize()
+                NotificationCenter.default.post(Notification(name: Notification.Name(rawValue: "loginSuccessful")))
+            })
+            return true
+        }
+        return false
     }
 
 
