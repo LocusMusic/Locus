@@ -17,6 +17,8 @@ struct App{
     
     static let delegate = (UIApplication.shared.delegate as? AppDelegate)
     static let mainStoryBoard = UIStoryboard(name: App.mainStoryboadName, bundle: nil)
+    static let screenWidth = UIScreen.main.bounds.size.width
+    static let screenHeight = UIScreen.main.bounds.size.height
 
     static let mediaMaxLenght: CGFloat = 600
     

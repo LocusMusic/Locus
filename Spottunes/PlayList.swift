@@ -10,7 +10,7 @@ import Foundation
 import Parse
 
 
-let PlayListRecordName = "PlayList"
+let PlayListRecordName = "playlist"
 fileprivate let NameKey = "name"
 fileprivate let CoverURLKey = "cover"
 fileprivate let HitsKey = "hits"
@@ -33,22 +33,34 @@ class PlayList{
     
     var name: String?
     
-    var hits: Int?
+    var hits: Int!{
+        guard let songs = songs else{
+            return 0
+        }
+        return songs.reduce(0, { (results, song) -> Int in
+            return results + song.hits
+        })
+    }
     
     var username: String?
     
     var object: PFObject!
     
+    var songs:[Song]?
+    
+    var songPlaying: Song?
+    
     init(object: PFObject) {
         self.object = object
     }
     
-    init(coverURL: String, name: String, hits: Int, username: String){
+    init(coverURL: String, name: String, username: String){
         self.coverURL = coverURL
         self.name = name
-        self.hits = hits
         self.username = username
     }
+    
+    
     
     
 }

@@ -28,6 +28,7 @@
 		98EFBE371EA2E2450050675D /* ListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98EFBE361EA2E2450050675D /* ListTableViewCell.swift */; };
 		98EFBE3C1EA2EE310050675D /* PlayList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98EFBE3B1EA2EE310050675D /* PlayList.swift */; };
 		98EFBE3E1EA341F70050675D /* UIButtonExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98EFBE3D1EA341F70050675D /* UIButtonExtension.swift */; };
+		98EFBE401EA3C90D0050675D /* Song.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98EFBE3F1EA3C90D0050675D /* Song.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -56,6 +57,7 @@
 		98EFBE361EA2E2450050675D /* ListTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListTableViewCell.swift; sourceTree = "<group>"; };
 		98EFBE3B1EA2EE310050675D /* PlayList.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlayList.swift; sourceTree = "<group>"; };
 		98EFBE3D1EA341F70050675D /* UIButtonExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIButtonExtension.swift; sourceTree = "<group>"; };
+		98EFBE3F1EA3C90D0050675D /* Song.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Song.swift; sourceTree = "<group>"; };
 		C5A35C681814C640EE9D42AC /* Pods_Spottunes.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Spottunes.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -170,6 +172,7 @@
 			isa = PBXGroup;
 			children = (
 				98EFBE3B1EA2EE310050675D /* PlayList.swift */,
+				98EFBE3F1EA3C90D0050675D /* Song.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -330,6 +333,7 @@
 				98EFBE3C1EA2EE310050675D /* PlayList.swift in Sources */,
 				98EFBE281EA29F000050675D /* RoundedView.swift in Sources */,
 				98EFBE3E1EA341F70050675D /* UIButtonExtension.swift in Sources */,
+				98EFBE401EA3C90D0050675D /* Song.swift in Sources */,
 				98EFBE341EA2D8930050675D /* TunesDetailsViewController.swift in Sources */,
 				98EFBE371EA2E2450050675D /* ListTableViewCell.swift in Sources */,
 				98EFBE1A1EA29E350050675D /* StorybordIdentifier.swift in Sources */,
