@@ -8,18 +8,26 @@
 
 import UIKit
 
+
+fileprivate let tunesDetailSgueIden = "TunesDetailSgueIden"
+
 protocol HomeWrapperViewControllerDelegate: class{
     func statusBarShouldUpdate(statusBarAnimation:UIStatusBarAnimation, prefersStatusBarHidden: Bool )
+    
 }
 
 class HomeWrapperViewController: UIViewController {
 
-    @IBOutlet weak var mapContainerView: UIView!
+    @IBOutlet weak var TunesDetailContainerView: UIView!
+    
+    var tunesDetailVC: TunesDetailsViewController?{
+        didSet{
+            print("tunes detail set")
+        }
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        
     }
 
     override func didReceiveMemoryWarning() {
@@ -27,18 +35,25 @@ class HomeWrapperViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-    
-    
-    
-    
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+        if let iden = segue.identifier{
+            switch iden {
+            case tunesDetailSgueIden:
+                if let tunesDetailVC = segue.destination as? TunesDetailsViewController{
+                    self.tunesDetailVC = tunesDetailVC
+                }
+            default:
+                break
+            }
+        }
     }
-    */
 
+
+
+}
+
+extension HomeWrapperViewController: InitViewControllerDelegate{
+    func homeInit() {
+        self.tunesDetailVC?.initPlayer()
+    }
 }

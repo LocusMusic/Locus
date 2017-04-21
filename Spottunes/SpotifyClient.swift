@@ -196,6 +196,7 @@ class SpotifyClient{
                     if let session = session{
                         //save the new session
                         saveSession(session: session)
+                        print("renew session")
                         completionHandler(session)
                     }
                 })
@@ -240,9 +241,11 @@ class SpotifyClient{
     
     private class func get(url: URL,  completionHander: @escaping (_ responseDict: [String: Any]?) -> Void){
         guard auth.session != nil else{
+            print("session is nil")
             return
         }
         guard auth.session.isValid() else{
+            print("auth session is not valid")
             return
         }
         

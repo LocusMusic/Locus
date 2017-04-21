@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12117" systemVersion="16D32" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="kQM-Ct-I5a">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12117" systemVersion="16D32" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="28N-RU-fl1">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -70,31 +70,23 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gep-Me-hWQ" userLabel="MapContainerView">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                            </containerView>
                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qFr-t1-YMo">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                 <connections>
-                                    <segue destination="kQM-Ct-I5a" kind="embed" id="9bM-rW-HaW"/>
+                                    <segue destination="kQM-Ct-I5a" kind="embed" identifier="TunesDetailSgueIden" id="9bM-rW-HaW"/>
                                 </connections>
                             </containerView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="iDs-Oy-aY2" firstAttribute="top" secondItem="gep-Me-hWQ" secondAttribute="bottom" id="7nc-cA-SL5"/>
                             <constraint firstItem="iDs-Oy-aY2" firstAttribute="top" secondItem="qFr-t1-YMo" secondAttribute="bottom" id="CbK-Va-oRY"/>
                             <constraint firstItem="qFr-t1-YMo" firstAttribute="top" secondItem="Zue-VZ-Zm6" secondAttribute="bottom" id="EGy-oM-OFc"/>
                             <constraint firstAttribute="trailing" secondItem="qFr-t1-YMo" secondAttribute="trailing" id="ROB-HF-1bK"/>
-                            <constraint firstItem="gep-Me-hWQ" firstAttribute="top" secondItem="YPu-DZ-jzO" secondAttribute="top" id="Tko-Pd-osx"/>
                             <constraint firstItem="qFr-t1-YMo" firstAttribute="leading" secondItem="YPu-DZ-jzO" secondAttribute="leading" id="UMd-pZ-vk1"/>
-                            <constraint firstItem="gep-Me-hWQ" firstAttribute="leading" secondItem="YPu-DZ-jzO" secondAttribute="leading" id="WSx-0d-jgT"/>
-                            <constraint firstAttribute="trailing" secondItem="gep-Me-hWQ" secondAttribute="trailing" id="dNg-JL-I5u"/>
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="mapContainerView" destination="gep-Me-hWQ" id="lDN-nD-pZu"/>
+                        <outlet property="TunesDetailContainerView" destination="qFr-t1-YMo" id="qMZ-EP-sxo"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bwS-Pu-ZeE" userLabel="First Responder" sceneMemberID="firstResponder"/>

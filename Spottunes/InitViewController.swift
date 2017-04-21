@@ -11,6 +11,10 @@ import UIKit
 fileprivate let loginEmbedSegueIden = "LoginEmbedSegue"
 fileprivate let homeEmbedSegueIden = "HomeWrapperEmbedSegue"
 
+protocol InitViewControllerDelegate: class {
+    func homeInit()
+}
+
 class InitViewController: UIViewController {
 
     
@@ -24,9 +28,15 @@ class InitViewController: UIViewController {
             self.loginViewController?.delegate = self
         }
     }
-    var homeWrapperViewController: HomeWrapperViewController?
+    var homeWrapperViewController: HomeWrapperViewController?{
+        didSet{
+            self.delegate = homeWrapperViewController
+        }
+    }
     
     var statusBarShouldHideen = true
+    
+    weak var delegate: InitViewControllerDelegate?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -79,6 +89,7 @@ extension InitViewController: LogInViewControllerDelegate{
         //bring home to the front
         self.setNeedsStatusBarAppearanceUpdate()
         print("finished after logining")
+        self.delegate?.homeInit()
         self.view.bringSubview(toFront: self.homeContainerView)
     }
 }
