@@ -21,28 +21,33 @@ class InitViewController: UIViewController {
     //embed view controller
     var loginViewController: LogInViewController?{
         didSet{
-            print(loginViewController)
+            self.loginViewController?.delegate = self
         }
     }
-    var homeWrapperViewController: HomeWrapperViewController?{
-        didSet{
-            print(homeWrapperViewController)
-        }
-    }
+    var homeWrapperViewController: HomeWrapperViewController?
     
+    var statusBarShouldHideen = true
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        if SpotifyClient.session != nil {
-            print("session exsited")
-            
-        } else {
-            print("GO TO LOGIN PAGE")
-            //TODO Go to login page
+        SpotifyClient.updateSession { (session) in
+            if session != nil{
+                self.statusBarShouldHideen = false
+                print("session exsited")
+                self.setNeedsStatusBarAppearanceUpdate()
+                self.view.bringSubview(toFront: self.homeContainerView)
+            }else{
+                print("GO TO LOGIN PAGE")
+                self.statusBarShouldHideen = true
+            }
+            self.setNeedsStatusBarAppearanceUpdate()
         }
-        // Do any additional setup after loading the view.
     }
 
+    override var prefersStatusBarHidden: Bool{
+        return self.statusBarShouldHideen
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -67,4 +72,13 @@ class InitViewController: UIViewController {
     }
     
     
+}
+
+extension InitViewController: LogInViewControllerDelegate{
+    func finishedLogin() {
+        //bring home to the front
+        self.setNeedsStatusBarAppearanceUpdate()
+        print("finished after logining")
+        self.view.bringSubview(toFront: self.homeContainerView)
+    }
 }

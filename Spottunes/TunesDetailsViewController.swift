@@ -10,8 +10,8 @@ import UIKit
 import Parse
 
 fileprivate let resueIden = "ListsCell"
-fileprivate  let playerViewSizeHeightFraction: CGFloat = 0.96
-
+fileprivate let playerViewSizeHeightFraction: CGFloat = 0.96
+fileprivate let detailPlayerBackgroundMaxAlpha: CGFloat = 0.6
 
 class TunesDetailsViewController: UIViewController {
 
@@ -22,7 +22,7 @@ class TunesDetailsViewController: UIViewController {
             self.tableView.estimatedRowHeight = self.tableView.rowHeight
             self.tableView.rowHeight = UITableViewAutomaticDimension
             self.tableView.backgroundColor = UIColor.clear
-            let edge = UIEdgeInsets(top: self.headerOriginHeight, left: 0, bottom: 44, right: 0)
+            let edge = UIEdgeInsets(top: self.headerOriginHeight - 20, left: 0, bottom: 44, right: 0)
             self.tableView.contentInset = edge
         }
     }
@@ -130,13 +130,18 @@ class TunesDetailsViewController: UIViewController {
     private let playerViewHeight = 0.9 * UIScreen.main.bounds.size.height
     
     
+    //player for playign music
+    lazy var streamController: SPTAudioStreamingController = SPTAudioStreamingController.sharedInstance()
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        //init the player
+        self.initPlayer()
+        
+        //update the UI
         self.playerViewCenterYConstraint.constant = UIScreen.main.bounds.size.height - self.playerMinView.frame.size.height - (1 - playerViewSizeHeightFraction) *  UIScreen.main.bounds.size.height / 2
         self.playerViewOriginalCenterY = self.playerViewCenterYConstraint.constant
-        print(self.playerViewOriginalCenterY)
-        
         self.navigationController?.isNavigationBarHidden = true
 
         //playerList 1
@@ -233,30 +238,26 @@ class TunesDetailsViewController: UIViewController {
             beginCenter = self.playerView.center
         case .changed:
             if  !self.isPlayerViewDetailRevealed {
-                print("top")
                 self.playerViewCenterYConstraint.constant =  min(max(self.playerViewMarginTop, self.playerViewOriginalCenterY + translationY), self.playerViewOriginalCenterY)
                 let fadeOutAlpha = max(0, 1 + translationY / 100)
                 self.playerMinView.alpha = fadeOutAlpha
                 self.progressTrack.alpha = fadeOutAlpha
                 self.overlayView.isHidden = false
                 self.playerDetailView.alpha = max(1, self.playerViewMarginTop / self.playerViewCenterYConstraint.constant * 1.2) //speed up the process
-                self.overlayView.alpha =  min(0.6, self.playerViewMarginTop / self.playerViewCenterYConstraint.constant)
+                self.overlayView.alpha =  min(detailPlayerBackgroundMaxAlpha, self.playerViewMarginTop / self.playerViewCenterYConstraint.constant)
             }else{
-                print("bottom")
-
                  self.playerViewCenterYConstraint.constant = max(self.playerViewMarginTop, beginCenter.y + translationY)
-                
+//                print( self.playerViewCenterYConstraint.constant)
 //                let fadeInAlpha = self.playerViewCenterYConstraint.constant / self.playerViewOriginalCenterY
-                
-//                print(fadeInAlpha)
 //                self.playerMinView.alpha = fadeInAlpha
 //                self.progressTrack.alpha = fadeInAlpha
 //                self.playerDetailView.alpha = 1 - fadeInAlpha
-//                self.overlayView.alpha = max(0.6, min(0, 1 - fadeInAlpha))
+//                self.overlayView.alpha = max(0, max(0.6, 1 - fadeInAlpha))
             }
         case .ended:
             if  !self.isPlayerViewDetailRevealed {
                 var destinationAlpha: CGFloat = 0
+                var playerViewAlpha: CGFloat = 0
                 var shouldPlayerMaximize = true
                 if self.playerViewOriginalCenterY - self.playerViewCenterYConstraint.constant < 80 {
                     self.playerViewCenterYConstraint.constant =  self.playerViewOriginalCenterY
@@ -264,12 +265,14 @@ class TunesDetailsViewController: UIViewController {
                     destinationAlpha = 1
                 }else{
                     self.playerViewCenterYConstraint.constant = self.playerViewMarginTop
+                    playerViewAlpha = detailPlayerBackgroundMaxAlpha
                 }
                 UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 0.5, initialSpringVelocity: 1, options: .curveEaseInOut, animations: {
                     self.view.layoutIfNeeded()
                     self.playerMinView.alpha = destinationAlpha
                     self.progressTrack.alpha = destinationAlpha
                     self.playerDetailView.alpha = 1 - destinationAlpha
+                    self.overlayView.alpha = playerViewAlpha
                 }, completion: {
                     finished in
                     if finished{
@@ -380,5 +383,55 @@ extension TunesDetailsViewController: UITableViewDelegate, UITableViewDataSource
         cell.item = self.topLists[indexPath.row]
         return cell
     }
-
 }
+
+
+extension TunesDetailsViewController: SPTAudioStreamingPlaybackDelegate, SPTAudioStreamingDelegate {
+    func initPlayer(){
+        SpotifyClient.fetchCurrentUserPlayList { (dict) in
+            print(dict)
+        }
+    }
+    
+    
+    //    func initPlayer() {
+//        self.streamController.playbackDelegate = self
+//        self.streamController.delegate = self
+//        do{
+//            try streamController.start(withClientId:  SpotifyClient.auth.clientID)
+//            let currentSession = SpotifyClient.session
+//            if currentSession != nil && currentSession!.isValid(){
+//                print("session is valid ...")
+//                self.streamController.login(withAccessToken: currentSession?.accessToken)
+//            }else{
+//                SpotifyClient.auth.renewSession(currentSession, callback: { (error, session) in
+//                    if let session = session{
+//                        print("renewing session...")
+//                        SpotifyClient.session = session
+//                        //login after retrieving new access token
+//                        self.streamController.login(withAccessToken: session.accessToken)
+//                    }else if let error = error{
+//                        print(error.localizedDescription)
+//                    }
+//                })
+//            }
+//        }catch{
+//            print("can't start streaming view controller")
+//        }
+//    }
+    
+    
+    func audioStreamingDidLogin(_ audioStreaming: SPTAudioStreamingController!) {
+        // after a user authenticates a session, the SPTAudioStreamingController is then initialized and this method called
+//        print("logged in")
+//        self.streamController.playSpotifyURI("spotify:track:58s6EuEYJdlb0kO7awm3Vp", startingWith: 0, startingWithPosition: 0, callback: { (error) in
+//            if (error != nil) {
+//                print("playing!")
+//            }
+//        })
+        
+        
+        
+    }
+}
+

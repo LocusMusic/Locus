@@ -35,31 +35,10 @@ struct App{
     struct LocalNotification{
         struct Name{
             static let mapShouldReveal = Notification.Name("mapShouldReveal")
+            static let onLoginSuccessful = Notification.Name("loginSuccessful")
+
             static let keyboardDidShow = Notification.Name.UIKeyboardDidShow
             static let keyboardWillHide = Notification.Name.UIKeyboardWillHide
-            
-//            static let statusBarShouldUpdateNotificationName = Notification.Name("StatusBarShouldUpdateNotification")
-//            static let statusBarStyleKey = Notification.Name("statusBarStyleKey")
-//            
-//            
-//            static let colorPaletteActivatedNotificationName = Notification.Name("colorPaletteActivatedNotificationName")
-//            static let colorPaletteDeActivatedNotificationName = Notification.Name("colorPaletteDeActivatedNotificationName")
-//            
-//            
-//            static let statusBarShouldHideNotificationName = Notification.Name("statusBarShouldHideNotification")
-//            static let statusBarShouldHideKey = "ShouldHide"
-//            
-//            static let finishedPostingNotificationName = Notification.Name("FinishedPostingNotification")
-//            
-            //            //            static let presentHomeForLoggedIn = Notification.Name("presentHomeForLoggedIn")
-            //            static let needsLogin = Notification.Name("needsLoginNotification")
-            //            static let didPostNotificationName = Notification.Name("didPostNotification")
-            //            static let postKey = Notification.Name("post")
-            //            
-
-//
-//            static let userLogoutNotificationName = Notification.Name("userLogoutNotification")
-
         }
     }
 
@@ -78,6 +57,14 @@ struct App{
 //        NotificationCenter.default.post(notification)
 //    }
 //    
+    
+    static func postLocalNotification(withName name: Notification.Name){
+        let notification = Notification(name: name)
+        NotificationCenter.default.post(notification)
+        
+    }
+
+    
 }
 
 

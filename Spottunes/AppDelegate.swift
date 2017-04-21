@@ -15,20 +15,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
     
     var songPlaying: Song?
-    
-   
-    
-    
-    var auth: SPTAuth?
 
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
-        auth.redirectURL = URL(string: redirectURL)
-        auth.sessionUserDefaultsKey = "current session"
-        
-        
-        self.auth = SpotifyClient.setupAuth()
+        SpotifyClient.authInit()
         Parse.initialize(
             with: ParseClientConfiguration(block: { (configuration: ParseMutableClientConfiguration) -> Void in
                 configuration.applicationId = "SpotTunes"
@@ -65,23 +56,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     //Called after returning from fetchRequestToken (user either enters credentials or cancels the operation)
     func application(_ app: UIApplication, open url: URL, options: [UIApplicationOpenURLOptionsKey : Any] = [:]) -> Bool {
-        print("called from app delegate options")
-        if auth.canHandle(auth.redirectURL) {
-            auth.handleAuthCallback(withTriggeredAuthURL: url, callback: { (error: Error?, session: SPTSession!) in
-                if error != nil {
-                    print("Auth Error!")
-                    return
-                }
-                //Save session information
-                let userDefaults = UserDefaults.standard
-                let sessionData = NSKeyedArchiver.archivedData(withRootObject: session)
-                userDefaults.set(sessionData, forKey: "SpotifySession")
-                userDefaults.synchronize()
-                NotificationCenter.default.post(Notification(name: Notification.Name(rawValue: "loginSuccessful")))
-            })
-            return true
-        }
-        return false
+        return SpotifyClient.fetchTokenHandler(withURL: url)
     }
 
 
