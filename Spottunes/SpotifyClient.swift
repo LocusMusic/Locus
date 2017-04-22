@@ -13,21 +13,25 @@ fileprivate let clientID = "998109b54614480c81c056df333702a2"
 fileprivate let clientSecret = "a4ac3e985ccb45f999b19fdfea0875f3"
 fileprivate let tokenSwapURL = URL(string: "https://arcane-mesa-76444.herokuapp.com/swap")
 fileprivate let tokenRefreshURL = URL(string:"https://arcane-mesa-76444.herokuapp.com/refresh")
+
 fileprivate let redirectURL = URL(string: "spottunes://returnAfterLogin")
 fileprivate let fetchTokenEndPoint = "https://accounts.spotify.com/api/token"
 fileprivate let currentUserPlayListEndPoint = "https://api.spotify.com/v1/me/playlists"
+fileprivate let currentUserProfileEndPoint = "https://api.spotify.com/v1/me"
 
-struct Http{
+struct Http {
     struct Method{
         static let get = "GET"
         static let post = "POST"
     }
 }
 
-class SpotifyClient{
+class SpotifyClient {
+    
     static var auth = SPTAuth()
+    
     static let spotifySessionkey = "SpotifySession"
-
+    
     static var encodedBase64ClientId: String {
         let data = clientID.data(using: String.Encoding.utf8)
         let base64 = data!.base64EncodedString()
@@ -46,96 +50,15 @@ class SpotifyClient{
         return encodedBase64ClientId + ":" + encodedBase64ClientSecret
     }
     
-    var spotifyId: String?{
+    var spotifyId: String? {
         return self.dictionary?[idKey] as? String
     }
+    
     var dictionary: [String: Any]?
+    
     init(dictionary: [String: Any]) {
         self.dictionary = dictionary
     }
-    
-    
-    //needs to fix
-    class func fetchAccessTokenIfNeeded(){
-        if let session = auth.session, session.isValid(){
-            guard let url = URL(string: fetchTokenEndPoint) else {
-                print("Error: cannot create URL")
-                return
-            }
-            
-            var urlRequest = URLRequest(url: url)
-            urlRequest.httpMethod = "POST"
-            urlRequest.addValue("application/json", forHTTPHeaderField: "Content-Type")
-            
-            //urlRequest.httpBody
-            let postString = "grant_type=refresh_token&refresh_token=\(session.encryptedRefreshToken)"
-            urlRequest.httpBody = postString.data(using: .utf8)
-            
-            //header
-            urlRequest.addValue("Basic: \(encodedBase64ClientIdAndSecret)", forHTTPHeaderField: "Authorization")
-            
-            // set up the session
-            let config = URLSessionConfiguration.default
-            let session = URLSession(configuration: config)
-            session.dataTask(with: urlRequest, completionHandler: { (data, response, error) in
-                print(data)
-                print(response)
-                print(error)
-            }).resume()
-        }
-    }
-    
-    
-    class func doesSessionExist() {
-        if let sessionObj:AnyObject = App.userDefaults.object(forKey: "SpotifySession") as AnyObject? {
-            print("sptify session here")
-            let sessionDataObj = sessionObj as! Data
-            let persistentSession = NSKeyedUnarchiver.unarchiveObject(with: sessionDataObj) as! SPTSession
-            guard let token = persistentSession.accessToken else{
-                return
-            }
-            
-            print("Bearer \(token)")
-            let todoEndpoint: String = "https://api.spotify.com/v1/me"
-            guard let url = URL(string: todoEndpoint) else {
-                print("Error: cannot create URL")
-                return
-            }
-            
-            var urlRequest = URLRequest(url: url)
-            urlRequest.httpMethod = "GET"
-            
-            urlRequest.addValue("Bearer \(token)", forHTTPHeaderField: "Authorization")
-            urlRequest.addValue("application/json", forHTTPHeaderField: "Content-Type")
-            
-            // set up the session
-            let config = URLSessionConfiguration.default
-            let session = URLSession(configuration: config)
-            session.dataTask(with: urlRequest, completionHandler: { (data, response, error) in
-                if let data = data{
-                    if let jsonObject = try? JSONSerialization.jsonObject(with: data, options: []) {
-                        if let dataDict = jsonObject as? [String: Any]{
-                            let spotifyClient = SpotifyClient(dictionary: dataDict)
-                            guard let id = spotifyClient.spotifyId else{
-                                return
-                            }
-                            User.doesExist(spotifyId: id, completionHandler: { (doesExisted) in
-                                if !doesExisted{
-                                    User.register(spotifyId: id)
-                                }else{
-                                    print("existed")
-                                }
-                            })
-                        }
-                    }
-                }
-            }).resume()
-            
-        }
-    }
-    //end needs to fix
-    
-    
     
     class func authInit(){
         self.auth.clientID = clientID
@@ -147,7 +70,7 @@ class SpotifyClient{
         self.auth.session = getSession()
     }
     
-    class func fetchTokenHandler(withURL url: URL) -> Bool {
+    class func fetchAccessTokenHandler(withURL url: URL) -> Bool {
         let auth = SpotifyClient.auth
         if auth.canHandle(auth.redirectURL) {
             auth.handleAuthCallback(withTriggeredAuthURL: url, callback: { (error: Error?, session: SPTSession!) in
@@ -164,23 +87,21 @@ class SpotifyClient{
         return false
     }
     
-    //save the session to the user defualt
-    class func saveSession(session: SPTSession){
+    //save the session to the user defaults
+    class func saveSession(session: SPTSession) {
         let userDefaults = UserDefaults.standard
         let sessionData = NSKeyedArchiver.archivedData(withRootObject: session)
         userDefaults.set(sessionData, forKey: SpotifyClient.spotifySessionkey)
         userDefaults.synchronize()
     }
     
-    
-    class func getSession() -> SPTSession?{
+    class func getSession() -> SPTSession? {
         if let sessionObj : AnyObject = App.userDefaults.object(forKey: spotifySessionkey) as AnyObject? {
             let sessionDataObj = sessionObj as! Data
             return NSKeyedUnarchiver.unarchiveObject(with: sessionDataObj) as? SPTSession
         }
         return nil
     }
-    
     
     //update the session, if it's invalid, the function will renew the session
     class func updateSession(completionHandler: @escaping (_ session: SPTSession?) -> Void){
@@ -200,46 +121,50 @@ class SpotifyClient{
                         completionHandler(session)
                     }
                 })
-            }else{
+            } else {
                 completionHandler(currentSesison)
             }
-        }else{
+        } else {
             print("no session object")
             completionHandler(nil)
         }
     }
     
-    
-    
-    //the perfrom task will check whether the current session is valid or not, 
+    //the perform task will check whether the current session is valid or not,
     //if it's not, then it's going to renew the session and perform the task
-    //NOTE: when performing a get or post web api request, use perfrom task and wrap 
-    //the corresponding task. This perfromTask will try to fetch a valid session token is 
+    //NOTE: when performing a get or post web api request, use perfrom task and wrap
+    //the corresponding task. This perfromTask will try to fetch a valid session token is
     //availabe
-    class func performTask(task: @escaping ()->Void){
+    class func performTask(task: @escaping ()->Void) {
         updateSession { (session) in
             if let currentSession = session, currentSession.isValid(){
                 print("session is valid")
                 task()
-            }else{
+            } else {
                 print("session not available")
             }
         }
     }
     
-    
-    class func fetchCurrentUserPlayList(_ completionHander: @escaping (_ responseDict: [String: Any]?) -> Void){
-        guard let endPoint = URL(string: currentUserPlayListEndPoint) else{
-            return
-        }
+    class func fetchCurrentUserPlayList(_ completionHandler: @escaping (_ responseDict: [String: Any]?) -> Void) {
+        guard let endPoint = URL(string: currentUserPlayListEndPoint) else { return }
         performTask {
-            get(url: endPoint, completionHander: { (dataDict) in
-                completionHander(dataDict)
+            get(url: endPoint, completionHandler: { (dataDict) in
+                completionHandler(dataDict)
             })
         }
     }
     
-    private class func get(url: URL,  completionHander: @escaping (_ responseDict: [String: Any]?) -> Void){
+    class func fetchUserProfile(_ completionHandler: @escaping (_ responseDict: [String: Any]?) -> Void) {
+        guard let endPoint = URL(string: currentUserProfileEndPoint) else { return }
+        performTask {
+            get(url: endPoint, completionHandler: { (dataDict) in
+                completionHandler(dataDict)
+            })
+        }
+    }
+    
+    private class func get(url: URL,  completionHandler: @escaping (_ responseDict: [String: Any]?) -> Void){
         guard auth.session != nil else{
             print("session is nil")
             return
@@ -258,22 +183,22 @@ class SpotifyClient{
         let config = URLSessionConfiguration.default
         let urlSession = URLSession(configuration: config)
         urlSession.dataTask(with: urlRequest, completionHandler: { (data, response, error) in
-            if let data = data{
+            
+            if let data = data {
                 if let jsonObject = try? JSONSerialization.jsonObject(with: data, options: []) {
                     print(jsonObject)
-                    if let dataDict = jsonObject as? [String: Any]{
+                    if let dataDict = jsonObject as? [String: Any] {
                         print(dataDict)
-                        completionHander(dataDict)
-                    }else{
-                        completionHander(nil)
+                        completionHandler(dataDict)
+                    } else {
+                        completionHandler(nil)
                     }
-                }else{
-                    completionHander(nil)
+                } else {
+                    completionHandler(nil)
                 }
-            }else{
-                completionHander(nil)
+            } else {
+                completionHandler(nil)
             }
         }).resume()
     }
-    
 }
