@@ -56,7 +56,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     //Called after returning from fetchRequestToken (user either enters credentials or cancels the operation)
     func application(_ app: UIApplication, open url: URL, options: [UIApplicationOpenURLOptionsKey : Any] = [:]) -> Bool {
-        return SpotifyClient.fetchTokenHandler(withURL: url)
+        return SpotifyClient.fetchAccessTokenHandler(withURL: url)
     }
 
 

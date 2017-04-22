@@ -61,7 +61,6 @@
         <!--Home Wrapper View Controller-->
         <scene sceneID="ibN-kd-vpG">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Tnt-PR-flR" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <viewController id="PWp-UR-CGt" customClass="HomeWrapperViewController" customModule="Spottunes" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="14z-3a-NSu"/>
@@ -90,6 +89,7 @@
                         <outlet property="TunesDetailContainerView" destination="kf0-uJ-EPT" id="2Ez-XU-VoI"/>
                     </connections>
                 </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Tnt-PR-flR" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-1279.2" y="1871.5142428785609"/>
         </scene>
@@ -609,22 +609,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="KmR-ru-tvl" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="456.80000000000001" y="2292.5037481259374"/>
-        </scene>
-        <!--Navigation Controller-->
-        <scene sceneID="Gkp-lA-duD">
-            <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" navigationBarHidden="YES" id="zev-t5-bbj" sceneMemberID="viewController">
-                    <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="lcE-wQ-RC9">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </navigationBar>
-                    <nil name="viewControllers"/>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="HW3-PV-LWx" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-1538" y="3006"/>
+            <point key="canvasLocation" x="-503" y="1872"/>
         </scene>
     </scenes>
     <resources>
