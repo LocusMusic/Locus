@@ -611,6 +611,24 @@
             </objects>
             <point key="canvasLocation" x="-503" y="1872"/>
         </scene>
+        <!--View Controller-->
+        <scene sceneID="W9w-6f-EHK">
+            <objects>
+                <viewController id="Wh8-1q-EpE" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="dOb-0X-UyK"/>
+                        <viewControllerLayoutGuide type="bottom" id="8Rz-a4-us3"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="HxR-HN-GH1">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="SaR-P2-fGD" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1279" y="2842"/>
+        </scene>
     </scenes>
     <resources>
         <image name="Play-Icon-darker" width="60" height="60"/>
