@@ -26,13 +26,13 @@
                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zik-HX-9WH">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                 <connections>
-                                    <segue destination="A6M-wf-AAc" kind="embed" identifier="HomeWrapperEmbedSegue" id="NY4-S8-sfJ"/>
+                                    <segue destination="PWp-UR-CGt" kind="embed" identifier="HomeWrapperEmbedSegue" id="QMk-r4-YGB"/>
                                 </connections>
                             </containerView>
                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="daz-DW-mZE">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                 <connections>
-                                    <segue destination="F3b-6k-IZZ" kind="embed" identifier="LoginEmbedSegue" id="bYg-gO-cUg"/>
+                                    <segue destination="F3b-6k-IZZ" kind="embed" identifier="LoginEmbedSegue" id="4lV-FJ-NRR"/>
                                 </connections>
                             </containerView>
                         </subviews>
@@ -59,39 +59,39 @@
             <point key="canvasLocation" x="-1690.4000000000001" y="1069.1154422788607"/>
         </scene>
         <!--Home Wrapper View Controller-->
-        <scene sceneID="3ed-fc-ux3">
+        <scene sceneID="ibN-kd-vpG">
             <objects>
-                <viewController storyboardIdentifier="HomeWrapperViewController" id="A6M-wf-AAc" customClass="HomeWrapperViewController" customModule="Spottunes" customModuleProvider="target" sceneMemberID="viewController">
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Tnt-PR-flR" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <viewController id="PWp-UR-CGt" customClass="HomeWrapperViewController" customModule="Spottunes" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="Zue-VZ-Zm6"/>
-                        <viewControllerLayoutGuide type="bottom" id="iDs-Oy-aY2"/>
+                        <viewControllerLayoutGuide type="top" id="14z-3a-NSu"/>
+                        <viewControllerLayoutGuide type="bottom" id="KKo-no-caa"/>
                     </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="YPu-DZ-jzO">
+                    <view key="view" contentMode="scaleToFill" id="9vN-MS-o5z">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qFr-t1-YMo">
+                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kf0-uJ-EPT">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                 <connections>
-                                    <segue destination="kQM-Ct-I5a" kind="embed" identifier="TunesDetailSgueIden" id="9bM-rW-HaW"/>
+                                    <segue destination="kQM-Ct-I5a" kind="embed" identifier="TunesDetailSgueIden" id="zcx-ik-cwb"/>
                                 </connections>
                             </containerView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="iDs-Oy-aY2" firstAttribute="top" secondItem="qFr-t1-YMo" secondAttribute="bottom" id="CbK-Va-oRY"/>
-                            <constraint firstItem="qFr-t1-YMo" firstAttribute="top" secondItem="Zue-VZ-Zm6" secondAttribute="bottom" id="EGy-oM-OFc"/>
-                            <constraint firstAttribute="trailing" secondItem="qFr-t1-YMo" secondAttribute="trailing" id="ROB-HF-1bK"/>
-                            <constraint firstItem="qFr-t1-YMo" firstAttribute="leading" secondItem="YPu-DZ-jzO" secondAttribute="leading" id="UMd-pZ-vk1"/>
+                            <constraint firstItem="kf0-uJ-EPT" firstAttribute="leading" secondItem="9vN-MS-o5z" secondAttribute="leading" id="acZ-WY-TV8"/>
+                            <constraint firstAttribute="trailing" secondItem="kf0-uJ-EPT" secondAttribute="trailing" id="pxH-mO-nc9"/>
+                            <constraint firstItem="kf0-uJ-EPT" firstAttribute="top" secondItem="9vN-MS-o5z" secondAttribute="top" id="z6G-xj-RIq"/>
+                            <constraint firstItem="KKo-no-caa" firstAttribute="top" secondItem="kf0-uJ-EPT" secondAttribute="bottom" id="zmx-op-b9O"/>
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="TunesDetailContainerView" destination="qFr-t1-YMo" id="qMZ-EP-sxo"/>
+                        <outlet property="TunesDetailContainerView" destination="kf0-uJ-EPT" id="2Ez-XU-VoI"/>
                     </connections>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="bwS-Pu-ZeE" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-503" y="1471"/>
+            <point key="canvasLocation" x="-1279.2" y="1871.5142428785609"/>
         </scene>
         <!--Log In View Controller-->
         <scene sceneID="BLY-HU-2XE">
@@ -143,14 +143,19 @@
                                                             <action selector="loginTapped:" destination="F3b-6k-IZZ" eventType="touchUpInside" id="PcR-Jx-bq2"/>
                                                         </connections>
                                                     </button>
+                                                    <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="white" translatesAutoresizingMaskIntoConstraints="NO" id="NV5-Gm-4VD">
+                                                        <rect key="frame" x="127" y="9.5" width="20" height="20"/>
+                                                    </activityIndicatorView>
                                                 </subviews>
                                                 <constraints>
                                                     <constraint firstItem="T1L-yY-h2t" firstAttribute="top" secondItem="GFL-Os-JN1" secondAttribute="top" id="5AV-YO-No4"/>
                                                     <constraint firstItem="GFL-Os-JN1" firstAttribute="top" secondItem="hgp-Ab-YJM" secondAttribute="top" id="7Xc-xa-LO2"/>
+                                                    <constraint firstItem="NV5-Gm-4VD" firstAttribute="centerX" secondItem="T1L-yY-h2t" secondAttribute="centerX" id="9qP-jc-bIE"/>
                                                     <constraint firstAttribute="bottom" secondItem="GFL-Os-JN1" secondAttribute="bottom" id="MBZ-5D-6Ic"/>
                                                     <constraint firstAttribute="trailing" secondItem="GFL-Os-JN1" secondAttribute="trailing" id="WlJ-KO-1Vc"/>
                                                     <constraint firstItem="T1L-yY-h2t" firstAttribute="width" secondItem="GFL-Os-JN1" secondAttribute="width" id="bZ9-f2-pAC"/>
                                                     <constraint firstItem="GFL-Os-JN1" firstAttribute="leading" secondItem="hgp-Ab-YJM" secondAttribute="leading" id="h0s-B3-4Ap"/>
+                                                    <constraint firstItem="NV5-Gm-4VD" firstAttribute="centerY" secondItem="T1L-yY-h2t" secondAttribute="centerY" id="kgX-oG-Heo"/>
                                                     <constraint firstItem="T1L-yY-h2t" firstAttribute="leading" secondItem="GFL-Os-JN1" secondAttribute="leading" id="lav-20-Vzm"/>
                                                     <constraint firstAttribute="height" constant="40" id="xDW-9Q-2zI"/>
                                                     <constraint firstItem="T1L-yY-h2t" firstAttribute="height" secondItem="GFL-Os-JN1" secondAttribute="height" id="yB2-6e-VKZ"/>
@@ -186,6 +191,7 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="loadingActivityIndicator" destination="NV5-Gm-4VD" id="gT8-qN-lgb"/>
                         <outlet property="loginBtn" destination="T1L-yY-h2t" id="18Z-Fa-o8V"/>
                         <outlet property="scrollView" destination="FBP-Ja-tw6" id="K5v-U6-dPA"/>
                     </connections>
@@ -618,7 +624,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="HW3-PV-LWx" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-334" y="2372"/>
+            <point key="canvasLocation" x="-1538" y="3006"/>
         </scene>
     </scenes>
     <resources>

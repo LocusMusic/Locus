@@ -73,7 +73,7 @@ class TunesDetailsViewController: UIViewController {
     @IBOutlet weak var navigationBar: UINavigationBar!{
         didSet{
             self.navigationBar.barTintColor = UIColor.white
-            self.navigationBar.titleTextAttributes = App.Style.navigationBar.titleTextAttribute
+            self.navigationBar.titleTextAttributes = App.Style.NavigationBar.titleTextAttribute
         }
     }
     

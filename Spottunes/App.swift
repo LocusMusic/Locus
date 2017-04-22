@@ -24,11 +24,16 @@ struct App{
     
    
     struct Style{
-        struct navigationBar{
+        struct NavigationBar{
             static let titleFont = UIFont(name: "HelveticaNeue-Bold", size: 17.0)!
             static let barTintColor = UIColor.white
             static let isTranslucent = false
             static let titleTextAttribute = [NSForegroundColorAttributeName: UIColor.black]
+        }
+        
+        struct LoginBtn{
+            static let activeTitle = "Login with Spotify"
+            static let deactiveTitle = ""
         }
     }
     
@@ -63,7 +68,8 @@ struct App{
         NotificationCenter.default.post(notification)
         
     }
-
+    
+    
     
 }
 

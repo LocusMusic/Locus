@@ -34,7 +34,17 @@ class InitViewController: UIViewController {
         }
     }
     
-    var statusBarShouldHideen = true
+    var statusBarShouldHideen = true{
+        didSet{
+            self.setNeedsStatusBarAppearanceUpdate()
+        }
+    }
+    var statusBarStyle: UIStatusBarStyle = .lightContent{
+        didSet{
+            self.setNeedsStatusBarAppearanceUpdate()
+        }
+    }
+    
     
     weak var delegate: InitViewControllerDelegate?
     
@@ -42,9 +52,9 @@ class InitViewController: UIViewController {
         super.viewDidLoad()
         SpotifyClient.updateSession { (session) in
             if session != nil{
-                self.statusBarShouldHideen = false
                 print("session exsited")
-                self.setNeedsStatusBarAppearanceUpdate()
+                self.statusBarShouldHideen = false
+                self.statusBarStyle = .lightContent
                 self.view.bringSubview(toFront: self.homeContainerView)
             }else{
                 print("GO TO LOGIN PAGE")
@@ -56,6 +66,10 @@ class InitViewController: UIViewController {
 
     override var prefersStatusBarHidden: Bool{
         return self.statusBarShouldHideen
+    }
+    
+    override var preferredStatusBarStyle: UIStatusBarStyle{
+        return self.statusBarStyle
     }
     
     override func didReceiveMemoryWarning() {
@@ -87,8 +101,8 @@ class InitViewController: UIViewController {
 extension InitViewController: LogInViewControllerDelegate{
     func finishedLogin() {
         //bring home to the front
-        self.setNeedsStatusBarAppearanceUpdate()
-        print("finished after logining")
+        self.statusBarShouldHideen = false
+        self.statusBarStyle = .lightContent
         self.delegate?.homeInit()
         self.view.bringSubview(toFront: self.homeContainerView)
     }

@@ -12,6 +12,7 @@ extension URLRequest{
     mutating func addTokenValue(token: String){
         self.addValue("Bearer \(token)", forHTTPHeaderField: "Authorization")
     }
+    
     mutating func addJsonContentType(){
         self.addValue("application/json", forHTTPHeaderField: "Content-Type")
     }

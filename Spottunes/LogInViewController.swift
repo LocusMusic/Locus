@@ -35,8 +35,19 @@ class LogInViewController: UIViewController {
     }
     
     
-    @IBOutlet weak var loginBtn: UIButton!
+    @IBOutlet weak var loginBtn: UIButton!{
+        didSet{
+            self.loginBtn.setTitle(App.Style.LoginBtn.activeTitle, for: .normal)
+        }
+    }
     
+    
+    @IBOutlet weak var loadingActivityIndicator: UIActivityIndicatorView!{
+        didSet{
+            self.loadingActivityIndicator.isHidden = true
+            self.loadingActivityIndicator.hidesWhenStopped = true
+        }
+    }
     
     weak var delegate: LogInViewControllerDelegate?
    
@@ -44,20 +55,20 @@ class LogInViewController: UIViewController {
     
     @IBAction func loginTapped(_ sender: UIButton) {
         //login with spotify
-        UIApplication.shared.openURL(SpotifyClient.auth.spotifyWebAuthenticationURL())
+        sender.isEnabled = false
+        guard let autheticateURL = SpotifyClient.auth.spotifyWebAuthenticationURL() else{
+            return
+        }
+        self.startActivityIndicatorLoading()
+        UIApplication.shared.open(autheticateURL, options: [:], completionHandler: nil)
     }
-    
-
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        
         self.gradientLayer.frame = self.view.bounds
         self.view.layer.insertSublayer(self.gradientLayer, at: 0)
         self.gradiendStart(fromColor: self.fromColor, toColor: self.toColor)
-        
         //set up
         NotificationCenter.default.addObserver(self, selector: #selector(LogInViewController.onLoginSuccessful), name: App.LocalNotification.Name.onLoginSuccessful, object: nil)
         
@@ -69,14 +80,11 @@ class LogInViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-    func login(username: String, password: String){
-        PFUser.logInWithUsername(inBackground: username, password: password) { (user, error) in
-            //segeu to home
-            if user != nil{
-                self.delegate?.finishedLogin()
-            }
-        }
+    
+    override var prefersStatusBarHidden: Bool{
+        return true
     }
+
     
     func gradiendStart(fromColor: [CGColor], toColor: [CGColor] ){
         self.gradientLayer.colors = toColor
@@ -88,8 +96,17 @@ class LogInViewController: UIViewController {
         self.gradientLayer.add(animation, forKey: "animateGradient")
     }
     
-    override var prefersStatusBarHidden: Bool{
-        return true
+    
+    func startActivityIndicatorLoading(){
+        self.loadingActivityIndicator.isHidden = false
+        self.loadingActivityIndicator.startAnimating()
+        self.loginBtn.setTitle(App.Style.LoginBtn.deactiveTitle, for: .normal)
+    }
+    
+    
+    func stopActivityIndicatorLoading(){
+        self.loadingActivityIndicator.stopAnimating()
+        self.loginBtn.setTitle(App.Style.LoginBtn.activeTitle, for: .normal)
     }
     
     func onLoginSuccessful(){
