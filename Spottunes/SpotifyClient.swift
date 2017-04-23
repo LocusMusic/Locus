@@ -78,8 +78,13 @@ class SpotifyClient {
                     print("Auth Error! \(error.localizedDescription)")
                     return
                 }
-                //Save session information
                 saveSession(session: session)
+                User.doesExist(spotifyId: session.canonicalUsername, completionHandler: { (exist) in
+                    if !exist {
+                        print("User with spotifyId \(session.canonicalUsername) doesn't exist")
+                        User.register(spotifyId: session.canonicalUsername)
+                    }
+                })
                 App.postLocalNotification(withName: App.LocalNotification.Name.onLoginSuccessful)
             })
             return true
