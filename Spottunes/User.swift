@@ -8,34 +8,36 @@
 
 import Parse
 
-fileprivate  let spotifyIdKey = "spotifyId"
-let className = "_User"
+fileprivate let spotifyIdKey = "spotifyId"
+fileprivate let className = "User"
 
-class User: PFObject{
-    var spotifyId:String?{
+class User: PFObject {
+    
+    var spotifyId : String? {
         return self[spotifyIdKey] as? String
     }
-    class func register(spotifyId: String){
-        let user = PFObject(className: "User")
+    
+    //Create a user and save it to Parse
+    class func register(spotifyId: String) {
+        let user = PFObject(className: className)
         user[spotifyIdKey] = spotifyId
         user.saveInBackground { (succeed, error) in
             print(succeed)
         }
-        
     }
     
-    class func doesExist(spotifyId: String, completionHandler: @escaping (_ exitsed: Bool) -> Void ){
+    //Check if the current session user exists in Parse
+    class func doesExist(spotifyId: String, completionHandler: @escaping (_ exists: Bool) -> Void ) {
         let query = PFQuery(className: className)
-        query.whereKeyExists(spotifyIdKey)
+        query.whereKey(spotifyIdKey, equalTo: spotifyId)
         query.findObjectsInBackground { (response, error) in
-            
-            if let objects = response,  objects.count > 0 {
+            if let objects = response, objects.count > 0 {
+                print("USER EXISTS")
                 completionHandler(true)
-            }else{
+            } else {
+                print("USER DOESNT EXIST")
                 completionHandler(false)
             }
         }
-        
     }
-    
 }
