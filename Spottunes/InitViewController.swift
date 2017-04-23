@@ -17,7 +17,6 @@ protocol InitViewControllerDelegate: class {
 
 class InitViewController: UIViewController {
 
-    
     //container view
     @IBOutlet weak var loginContainerView: UIView!
     @IBOutlet weak var homeContainerView: UIView!
@@ -34,7 +33,7 @@ class InitViewController: UIViewController {
         }
     }
     
-    var statusBarShouldHideen = true{
+    var statusBarShouldHidden = true{
         didSet{
             self.setNeedsStatusBarAppearanceUpdate()
         }
@@ -49,23 +48,24 @@ class InitViewController: UIViewController {
     weak var delegate: InitViewControllerDelegate?
     
     override func viewDidLoad() {
+        print("InitViewController")
         super.viewDidLoad()
         SpotifyClient.updateSession { (session) in
-            if session != nil{
-                print("session exsited")
-                self.statusBarShouldHideen = false
+            if session != nil {
+                print("SESSION EXISTS")
+                self.statusBarShouldHidden = false
                 self.statusBarStyle = .lightContent
                 self.view.bringSubview(toFront: self.homeContainerView)
-            }else{
+            } else {
                 print("GO TO LOGIN PAGE")
-                self.statusBarShouldHideen = true
+                self.statusBarShouldHidden = true
             }
             self.setNeedsStatusBarAppearanceUpdate()
         }
     }
 
     override var prefersStatusBarHidden: Bool{
-        return self.statusBarShouldHideen
+        return self.statusBarShouldHidden
     }
     
     override var preferredStatusBarStyle: UIStatusBarStyle{
@@ -95,13 +95,13 @@ class InitViewController: UIViewController {
         }
     }
     
-    
 }
 
-extension InitViewController: LogInViewControllerDelegate{
+extension InitViewController: LogInViewControllerDelegate {
     func finishedLogin() {
+        
         //bring home to the front
-        self.statusBarShouldHideen = false
+        self.statusBarShouldHidden = false
         self.statusBarStyle = .lightContent
         self.delegate?.homeInit()
         self.view.bringSubview(toFront: self.homeContainerView)
