@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12117" systemVersion="16D32" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12084"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="SpotThumbnailReuseIden" id="gTV-IL-0wX" customClass="SpotThumbnailCollectionViewCell" customModule="Spottunes" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="151" height="200"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                <rect key="frame" x="0.0" y="0.0" width="151" height="200"/>
+                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                <subviews>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="I3g-bL-BLP">
+                        <rect key="frame" x="0.0" y="0.0" width="151" height="151"/>
+                        <constraints>
+                            <constraint firstAttribute="width" secondItem="I3g-bL-BLP" secondAttribute="height" multiplier="1:1" id="9wg-2W-98T"/>
+                        </constraints>
+                    </imageView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="GEISEL" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IjW-KC-tiM">
+                        <rect key="frame" x="0.0" y="159" width="151" height="20.5"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="20" id="GwD-yg-iSb"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" name="Avenir-Heavy" family="Avenir" pointSize="15"/>
+                        <color key="textColor" red="0.1973162722" green="0.2002126625" blue="0.20890183330000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+            </view>
+            <constraints>
+                <constraint firstItem="IjW-KC-tiM" firstAttribute="top" secondItem="I3g-bL-BLP" secondAttribute="bottom" constant="8" symbolic="YES" id="QJB-cv-v5T"/>
+                <constraint firstItem="I3g-bL-BLP" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="dZ1-qg-IB7"/>
+                <constraint firstAttribute="trailing" secondItem="I3g-bL-BLP" secondAttribute="trailing" id="faM-Sl-CLn"/>
+                <constraint firstItem="IjW-KC-tiM" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="rDA-f4-HWk"/>
+                <constraint firstItem="I3g-bL-BLP" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="uYk-Mu-UaJ"/>
+                <constraint firstAttribute="trailing" secondItem="IjW-KC-tiM" secondAttribute="trailing" id="xZb-tc-jQk"/>
+            </constraints>
+            <size key="customSize" width="151" height="200"/>
+            <connections>
+                <outlet property="spotNameLabel" destination="IjW-KC-tiM" id="oIr-2H-E1V"/>
+                <outlet property="thumbImageView" destination="I3g-bL-BLP" id="gEl-2X-QWU"/>
+            </connections>
+            <point key="canvasLocation" x="99.5" y="194"/>
+        </collectionViewCell>
+    </objects>
+</document>

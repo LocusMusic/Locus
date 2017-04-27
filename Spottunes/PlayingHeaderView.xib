@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12117" systemVersion="16D32" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12084"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="PlayingHeaderView" customModule="Spottunes" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="335" height="261"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nsd-Sa-0Fv">
+                    <rect key="frame" x="0.0" y="0.0" width="335" height="261"/>
+                    <subviews>
+                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="images-1" translatesAutoresizingMaskIntoConstraints="NO" id="VcI-1x-E9d">
+                            <rect key="frame" x="16" y="90.5" width="80" height="80"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="80" id="Mn7-O6-i7g"/>
+                                <constraint firstAttribute="width" constant="80" id="rt5-UI-0TZ"/>
+                            </constraints>
+                        </imageView>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Geisel" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LFh-Z8-3d5">
+                            <rect key="frame" x="104" y="90.5" width="49.5" height="23.5"/>
+                            <fontDescription key="fontDescription" name="Avenir-Heavy" family="Avenir" pointSize="17"/>
+                            <nil key="textColor"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                    </subviews>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstItem="VcI-1x-E9d" firstAttribute="leading" secondItem="nsd-Sa-0Fv" secondAttribute="leading" constant="16" id="6IY-1n-yZG"/>
+                        <constraint firstItem="LFh-Z8-3d5" firstAttribute="leading" secondItem="VcI-1x-E9d" secondAttribute="trailing" constant="8" id="G3e-LH-1Op"/>
+                        <constraint firstItem="VcI-1x-E9d" firstAttribute="centerY" secondItem="nsd-Sa-0Fv" secondAttribute="centerY" id="iyr-Wt-S1I"/>
+                        <constraint firstItem="LFh-Z8-3d5" firstAttribute="top" secondItem="VcI-1x-E9d" secondAttribute="top" id="t81-CM-bih"/>
+                    </constraints>
+                </view>
+            </subviews>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstAttribute="trailing" secondItem="nsd-Sa-0Fv" secondAttribute="trailing" id="08V-gj-xeP"/>
+                <constraint firstItem="nsd-Sa-0Fv" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="Nk9-cr-zOS"/>
+                <constraint firstItem="nsd-Sa-0Fv" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="l9y-pX-W5a"/>
+                <constraint firstAttribute="bottom" secondItem="nsd-Sa-0Fv" secondAttribute="bottom" id="rUW-0v-U2z"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <point key="canvasLocation" x="13.5" y="-148.5"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="images-1" width="300" height="300"/>
+    </resources>
+</document>

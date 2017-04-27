@@ -37,7 +37,7 @@ class LogInViewController: UIViewController {
     
     @IBOutlet weak var loginBtn: UIButton!{
         didSet{
-            self.loginBtn.setTitle(App.Style.LoginBtn.activeTitle, for: .normal)
+            self.loginBtn.imageView?.contentMode = .scaleAspectFit
         }
     }
     
@@ -100,12 +100,14 @@ class LogInViewController: UIViewController {
     func startActivityIndicatorLoading(){
         self.loadingActivityIndicator.isHidden = false
         self.loadingActivityIndicator.startAnimating()
-        self.loginBtn.setTitle(App.Style.LoginBtn.deactiveTitle, for: .normal)
+        self.loginBtn.setImage(nil, for: .normal)
     }
     
     
     func stopActivityIndicatorLoading(){
         self.loadingActivityIndicator.stopAnimating()
+        self.loginBtn.imageView?.isHidden = false
+        self.loginBtn.setImage(#imageLiteral(resourceName: "login-with-spotify"), for: .normal)
         self.loginBtn.setTitle(App.Style.LoginBtn.activeTitle, for: .normal)
     }
     
