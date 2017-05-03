@@ -70,12 +70,18 @@
 		98EFBE281EA29F000050675D /* RoundedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98EFBE231EA29F000050675D /* RoundedView.swift */; };
 		98EFBE291EA29F000050675D /* RoundedButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98EFBE241EA29F000050675D /* RoundedButton.swift */; };
 		98EFBE2B1EA2A2E90050675D /* HomeWrapperViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98EFBE2A1EA2A2E90050675D /* HomeWrapperViewController.swift */; };
-		98EFBE311EA2A3CE0050675D /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98EFBE301EA2A3CE0050675D /* MapViewController.swift */; };
 		98EFBE341EA2D8930050675D /* TunesDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98EFBE331EA2D8930050675D /* TunesDetailsViewController.swift */; };
 		98EFBE371EA2E2450050675D /* ListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98EFBE361EA2E2450050675D /* ListTableViewCell.swift */; };
 		98EFBE3C1EA2EE310050675D /* Playlist.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98EFBE3B1EA2EE310050675D /* Playlist.swift */; };
 		98EFBE3E1EA341F70050675D /* UIButtonExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98EFBE3D1EA341F70050675D /* UIButtonExtension.swift */; };
 		98EFBE401EA3C90D0050675D /* Song.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98EFBE3F1EA3C90D0050675D /* Song.swift */; };
+		B743E9831EBA694E00A0CCD3 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B743E9811EBA694E00A0CCD3 /* MapViewController.swift */; };
+		B743E9841EBA694E00A0CCD3 /* MapViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B743E9821EBA694E00A0CCD3 /* MapViewController.xib */; };
+		B743E98B1EBA6A8300A0CCD3 /* LocationSearchTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B743E9871EBA6A8300A0CCD3 /* LocationSearchTableViewController.swift */; };
+		B743E98C1EBA6A8300A0CCD3 /* LocationSearchTableViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B743E9881EBA6A8300A0CCD3 /* LocationSearchTableViewController.xib */; };
+		B743E98D1EBA6A8300A0CCD3 /* LocationSearchTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B743E9891EBA6A8300A0CCD3 /* LocationSearchTableViewCell.swift */; };
+		B743E98E1EBA6A8300A0CCD3 /* LocationSearchTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B743E98A1EBA6A8300A0CCD3 /* LocationSearchTableViewCell.xib */; };
+		B743E9911EBA6AEA00A0CCD3 /* MKMapViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = B743E9901EBA6AEA00A0CCD3 /* MKMapViewExtension.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -146,12 +152,18 @@
 		98EFBE231EA29F000050675D /* RoundedView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoundedView.swift; sourceTree = "<group>"; };
 		98EFBE241EA29F000050675D /* RoundedButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoundedButton.swift; sourceTree = "<group>"; };
 		98EFBE2A1EA2A2E90050675D /* HomeWrapperViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeWrapperViewController.swift; sourceTree = "<group>"; };
-		98EFBE301EA2A3CE0050675D /* MapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 		98EFBE331EA2D8930050675D /* TunesDetailsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TunesDetailsViewController.swift; sourceTree = "<group>"; };
 		98EFBE361EA2E2450050675D /* ListTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListTableViewCell.swift; sourceTree = "<group>"; };
 		98EFBE3B1EA2EE310050675D /* Playlist.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Playlist.swift; sourceTree = "<group>"; };
 		98EFBE3D1EA341F70050675D /* UIButtonExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIButtonExtension.swift; sourceTree = "<group>"; };
 		98EFBE3F1EA3C90D0050675D /* Song.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Song.swift; sourceTree = "<group>"; };
+		B743E9811EBA694E00A0CCD3 /* MapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
+		B743E9821EBA694E00A0CCD3 /* MapViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MapViewController.xib; sourceTree = "<group>"; };
+		B743E9871EBA6A8300A0CCD3 /* LocationSearchTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationSearchTableViewController.swift; sourceTree = "<group>"; };
+		B743E9881EBA6A8300A0CCD3 /* LocationSearchTableViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LocationSearchTableViewController.xib; sourceTree = "<group>"; };
+		B743E9891EBA6A8300A0CCD3 /* LocationSearchTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationSearchTableViewCell.swift; sourceTree = "<group>"; };
+		B743E98A1EBA6A8300A0CCD3 /* LocationSearchTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LocationSearchTableViewCell.xib; sourceTree = "<group>"; };
+		B743E9901EBA6AEA00A0CCD3 /* MKMapViewExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MKMapViewExtension.swift; sourceTree = "<group>"; };
 		C5A35C681814C640EE9D42AC /* Pods_Spottunes.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Spottunes.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -334,6 +346,8 @@
 				98EFBE191EA29E350050675D /* App.swift */,
 				986F070B1EA86C04003806CA /* InitViewController.swift */,
 				98EFBE131EA29DCC0050675D /* Main.storyboard */,
+				B743E9801EBA68A600A0CCD3 /* MapView */,
+				B743E98F1EBA6A8C00A0CCD3 /* SearchView */,
 				9892EED91EAB42EC00AD44B7 /* Client */,
 				98EFBE3A1EA2EE250050675D /* Model */,
 				988E41771EB99D460083A08A /* Select from Playlist */,
@@ -409,6 +423,7 @@
 		98EFBE1F1EA29EEE0050675D /* Extension */ = {
 			isa = PBXGroup;
 			children = (
+				B743E9901EBA6AEA00A0CCD3 /* MKMapViewExtension.swift */,
 				98EFBE201EA29F000050675D /* UIViewExtension.swift */,
 				9833CB031EB1B457009997E9 /* UITableViewExtension.swift */,
 				9892EED71EA9AA7F00AD44B7 /* URLRequest.swift */,
@@ -426,17 +441,8 @@
 			isa = PBXGroup;
 			children = (
 				98EFBE2A1EA2A2E90050675D /* HomeWrapperViewController.swift */,
-				98EFBE2D1EA2A3750050675D /* Map */,
 			);
 			name = Home;
-			sourceTree = "<group>";
-		};
-		98EFBE2D1EA2A3750050675D /* Map */ = {
-			isa = PBXGroup;
-			children = (
-				98EFBE301EA2A3CE0050675D /* MapViewController.swift */,
-			);
-			name = Map;
 			sourceTree = "<group>";
 		};
 		98EFBE321EA2A4CB0050675D /* Login */ = {
@@ -468,6 +474,26 @@
 				98EFBE3F1EA3C90D0050675D /* Song.swift */,
 			);
 			name = Model;
+			sourceTree = "<group>";
+		};
+		B743E9801EBA68A600A0CCD3 /* MapView */ = {
+			isa = PBXGroup;
+			children = (
+				B743E9811EBA694E00A0CCD3 /* MapViewController.swift */,
+				B743E9821EBA694E00A0CCD3 /* MapViewController.xib */,
+			);
+			name = MapView;
+			sourceTree = "<group>";
+		};
+		B743E98F1EBA6A8C00A0CCD3 /* SearchView */ = {
+			isa = PBXGroup;
+			children = (
+				B743E9871EBA6A8300A0CCD3 /* LocationSearchTableViewController.swift */,
+				B743E9881EBA6A8300A0CCD3 /* LocationSearchTableViewController.xib */,
+				B743E9891EBA6A8300A0CCD3 /* LocationSearchTableViewCell.swift */,
+				B743E98A1EBA6A8300A0CCD3 /* LocationSearchTableViewCell.xib */,
+			);
+			name = SearchView;
 			sourceTree = "<group>";
 		};
 		BADB3D78B37B2B7D8A8FDCE1 /* Frameworks */ = {
@@ -556,8 +582,10 @@
 				981A6D451EB054AF0045E2FD /* CollectionHeaderReusableView.xib in Resources */,
 				981A6D3F1EB04D270045E2FD /* SpotThumbnailCollectionViewCell.xib in Resources */,
 				98588CC71EB55CE80035C355 /* ProfileHeaderCollectionViewCell.xib in Resources */,
+				B743E9841EBA694E00A0CCD3 /* MapViewController.xib in Resources */,
 				9833CB081EB1F289009997E9 /* PlayingTableViewCell.xib in Resources */,
 				98EFBE151EA29DCC0050675D /* Main.storyboard in Resources */,
+				B743E98E1EBA6A8300A0CCD3 /* LocationSearchTableViewCell.xib in Resources */,
 				98E5EB9E1EAD886F00B0D3D6 /* OnboardingView.xib in Resources */,
 				98A0D2911EA27FEB0004966A /* LaunchScreen.storyboard in Resources */,
 				981A6D4B1EB071BC0045E2FD /* SmartGenreCollectionViewCell.xib in Resources */,
@@ -567,6 +595,7 @@
 				98588CCF1EB5647D0035C355 /* PlaylistCollectionViewCell.xib in Resources */,
 				98DD95301EB5235F007973D6 /* ListenerTableViewCell.xib in Resources */,
 				98588CBB1EB555950035C355 /* NavigationHeaderView.xib in Resources */,
+				B743E98C1EBA6A8300A0CCD3 /* LocationSearchTableViewController.xib in Resources */,
 				981A6D311EB021B80045E2FD /* RecommendationSpotCollectionViewCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -626,8 +655,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B743E98B1EBA6A8300A0CCD3 /* LocationSearchTableViewController.swift in Sources */,
 				981A6D4A1EB071BC0045E2FD /* SmartGenreCollectionViewCell.swift in Sources */,
-				98EFBE311EA2A3CE0050675D /* MapViewController.swift in Sources */,
 				98A0D2871EA27FEB0004966A /* AppDelegate.swift in Sources */,
 				9892EEDB1EAB42FA00AD44B7 /* FoursquareClient.swift in Sources */,
 				9833CB071EB1F289009997E9 /* PlayingTableViewCell.swift in Sources */,
@@ -643,9 +672,11 @@
 				98DD952B1EB5102B007973D6 /* ListenerViewController.swift in Sources */,
 				988E41741EB8708D0083A08A /* UIImageViewExtension.swift in Sources */,
 				981A6D301EB021B80045E2FD /* RecommendationSpotCollectionViewCell.swift in Sources */,
+				B743E9831EBA694E00A0CCD3 /* MapViewController.swift in Sources */,
 				98EFBE291EA29F000050675D /* RoundedButton.swift in Sources */,
 				983578431EAD116600E12751 /* GradientBackgroundAnimatedViewController.swift in Sources */,
 				981A6D441EB054AF0045E2FD /* CollectionHeaderReusableView.swift in Sources */,
+				B743E98D1EBA6A8300A0CCD3 /* LocationSearchTableViewCell.swift in Sources */,
 				981A6D361EB048260045E2FD /* OverviewViewController.swift in Sources */,
 				98EFBE271EA29F000050675D /* UIColorExtension.swift in Sources */,
 				98E5EBA01EAD88E800B0D3D6 /* OnboardingView.swift in Sources */,
@@ -669,6 +700,7 @@
 				986F07101EA87FBA003806CA /* SpotifyClient.swift in Sources */,
 				988E417B1EB99D990083A08A /* PlaylistTableViewCell.swift in Sources */,
 				98588CD21EB6A81E0035C355 /* PlayView.swift in Sources */,
+				B743E9911EBA6AEA00A0CCD3 /* MKMapViewExtension.swift in Sources */,
 				98EFBE371EA2E2450050675D /* ListTableViewCell.swift in Sources */,
 				986F070C1EA86C04003806CA /* InitViewController.swift in Sources */,
 				98EFBE1A1EA29E350050675D /* StorybordIdentifier.swift in Sources */,

@@ -16,6 +16,7 @@ struct App{
     static let themeColor = UIColor(red: 23 / 255.0, green: 131 / 255.0, blue: 198 / 255.0, alpha: 1)
     static let bannerAspectRatio: CGFloat = 3.0
     static let delegate = (UIApplication.shared.delegate as? AppDelegate)
+    static let currentLocation = delegate?.locationManager.location
     static let mainStoryBoard = UIStoryboard(name: App.mainStoryboadName, bundle: nil)
     static let screenWidth = UIScreen.main.bounds.size.width
     static let screenHeight = UIScreen.main.bounds.size.height

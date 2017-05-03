@@ -16,7 +16,7 @@ class CreateSpotViewController: UIViewController {
     @IBOutlet weak var createSpotButton: UIButton!
     @IBOutlet weak var selectedLocationLabel: UILabel!
     
-    let FourSq = FoursquareClient.sharedInstance
+    let FourSq = FoursquareClient.shared
     var recommendedPlaces : [Location] = []
     var selectedLocation : Location?
     

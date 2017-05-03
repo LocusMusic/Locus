@@ -8,6 +8,7 @@
 
 import UIKit
 import Parse
+import CoreLocation
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -15,11 +16,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
     
     var songPlaying: Song?
+    var locationManager : CLLocationManager!
 
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         
         // Override point for customization after application launch.
+       
+        configureLocation()
         
         TuneSpot.registerSubclass()
 
@@ -66,6 +70,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func configureParse() {
         Playlist.registerSubclass()
+    }
+    
+    func configureLocation() {
+        locationManager = CLLocationManager()
+        locationManager.startUpdatingLocation()
     }
 
 
