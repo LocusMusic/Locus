@@ -1,5 +1,4 @@
 //
-//  Playlist.swift
 //  Spottunes
 //
 //  Created by Xie kesong on 4/15/17.
@@ -78,47 +77,9 @@ class Playlist: PFObject {
         }
         return nil
     }
-    
-    
-    
-    
-    
-//    static let className = "Playlist"
-//    var spotify_id: Int?
-//    
-//    var coverURL: String?
-//    
-//    var name: String?
-//    
-//    var hits: Int!{
-//        guard let songs = songs else{
-//            return 0
-//        }
-//        return songs.reduce(0, { (results, song) -> Int in
-//            return results + song.hits
-//        })
-//    }
-//    
-//    var username: String?
-//    
-//    var object: PFObject!
-//    
-//    var songs:[Song]?
-//    
-//    var songPlaying: Song?
-//    
-//    init(object: PFObject) {
-//        self.object = object
-//    }
-//    
-//    init(coverURL: String, name: String, username: String){
-//        self.coverURL = coverURL
-//        self.name = name
-//        self.username = username
-//    }
-    
 }
 
+    
 extension Playlist: PFSubclassing {
     static func parseClassName() -> String {
         return "Playlist"

@@ -390,8 +390,17 @@ extension TunesDetailsViewController: UITableViewDelegate, UITableViewDataSource
 
 extension TunesDetailsViewController: SPTAudioStreamingPlaybackDelegate, SPTAudioStreamingDelegate {
     func initPlayer(){
-        SpotifyClient.fetchCurrentUserPlayList { (dict) in
+        SpotifyClient.fetchUserProfile { (dict) in
+            print("UserProfile")
+            print("-----------------")
             print(dict)
+            print("-----------------")
+        }
+        SpotifyClient.fetchCurrentUserPlayList { (dict) in
+            print("UserPlayList")
+            print("-----------------")
+            print(dict)
+            print("-----------------")
         }
     }
     

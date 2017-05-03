@@ -16,9 +16,26 @@ protocol InitViewControllerDelegate: class {
 }
 
 class InitViewController: UIViewController {
-
     
-    var statusBarShouldHideen = true{
+    var statusBarShouldHideen = true
+
+    //container view
+    @IBOutlet weak var loginContainerView: UIView!
+    @IBOutlet weak var homeContainerView: UIView!
+    
+    //embed view controller
+    var loginViewController: LogInViewController?{
+        didSet{
+            self.loginViewController?.delegate = self
+        }
+    }
+    var homeWrapperViewController: HomeWrapperViewController?{
+        didSet{
+            self.delegate = homeWrapperViewController
+        }
+    }
+    
+    var statusBarShouldHidden = true{
         didSet{
             self.setNeedsStatusBarAppearanceUpdate()
         }
@@ -36,44 +53,19 @@ class InitViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         SpotifyClient.updateSession { (session) in
+
             if session != nil{
                 print("session exsited")
                 SpotifyClient.fetchCurrentUserPlayList({ (playlists) in
                     if let playlists = playlists{
-                        playlists.first?.savePlaylist()
+//                        playlists.first?.savePlaylist()
                     }else{
                         print("play list is empty")
                     }
                 })
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-//                self.statusBarShouldHideen = false
-//                self.statusBarStyle = .default
-//                self.view.bringSubview(toFront: self.homeContainerView)
-               // self.setNeedsStatusBarAppearanceUpdate()
-            }else{
                 print("GO TO LOGIN PAGE")
-                self.statusBarShouldHideen = true
+                self.statusBarShouldHidden = true
             }
-//            self.setNeedsStatusBarAppearanceUpdate()
         }
     }
 
@@ -89,15 +81,15 @@ class InitViewController: UIViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
 
     
 }
 
-extension InitViewController: LogInViewControllerDelegate{
+extension InitViewController: LogInViewControllerDelegate {
     func finishedLogin() {
+        
         //bring home to the front
-        self.statusBarShouldHideen = false
+        self.statusBarShouldHidden = false
         self.statusBarStyle = .lightContent
         self.delegate?.homeInit()
 //        self.view.bringSubview(toFront: self.homeContainerView)

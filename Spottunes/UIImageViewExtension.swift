@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import AFNetworking
 
 extension UIImageView{
     func setColorOfImage(color: UIColor){
@@ -14,6 +15,10 @@ extension UIImageView{
             self.image = self.image!.withRenderingMode(.alwaysTemplate)
             self.tintColor = color
         }
-
     }
+    
+    func loadImageWithURL(_ url: URL){
+        self.setImageWith(url)
+    }
+    
 }
