@@ -27,6 +27,14 @@ class Location: NSObject {
         return CLLocationCoordinate2DMake(CLLat!, CLLng!)
     }
     
+    var lat : CLLocationDegrees {
+        return location?["lat"] as! CLLocationDegrees
+    }
+    
+    var lng : CLLocationDegrees {
+        return location?["lng"] as! CLLocationDegrees
+    }
+    
     // example: Furman St
     var address: String? {
         return location?["address"] as? String
