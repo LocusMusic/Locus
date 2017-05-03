@@ -23,7 +23,7 @@ class Song{
     
     var author: String?
     
-    unowned var playList: PlayList
+    var Playlist: Playlist
     
     var hits: Int!
     
@@ -33,10 +33,10 @@ class Song{
 //        self.object = object
 //    }
     
-    init(name: String, author: String, playList: PlayList, hits: Int){
+    init(name: String, author: String, Playlist: Playlist, hits: Int){
         self.name = name
         self.author = author
-        self.playList = playList
+        self.Playlist = Playlist
         self.hits = hits
     }
     

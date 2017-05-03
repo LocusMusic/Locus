@@ -33,6 +33,8 @@ class TunesDetailsViewController: UIViewController {
     
     @IBOutlet weak var headerViewTopConstraint: NSLayoutConstraint!
     
+    
+    
     @IBOutlet weak var playerView: UIView!{
         didSet{
             let pan = UIPanGestureRecognizer(target: self, action: #selector(playerViewPanning(_:)))
@@ -103,7 +105,7 @@ class TunesDetailsViewController: UIViewController {
     @IBOutlet weak var playingSongAuthorLabel: UILabel!
     
     var playerViewOriginalHeight: CGFloat!
-    var currentPlayingList: PlayList?
+    var currentPlayingList: Playlist?
     
     //defines the hidden or minimized position of the playerview
     var playerViewOriginalCenterY: CGFloat!
@@ -112,7 +114,7 @@ class TunesDetailsViewController: UIViewController {
     var playerViewOpenOriginalCenterY: CGFloat!
     
     
-    var topLists = [PlayList](){
+    var topLists = [Playlist](){
         didSet{
             self.tableView.reloadData()
         }
@@ -144,54 +146,54 @@ class TunesDetailsViewController: UIViewController {
         self.playerViewOriginalCenterY = self.playerViewCenterYConstraint.constant
         self.navigationController?.isNavigationBarHidden = true
 
-        //playerList 1
-        let playList_1 = PlayList(coverURL: "images-1", name: "EI Ten Eleven", username: "kesongxie")
-        let song_1 = Song(name: "My only swerving", author: "EI Ten Eleven", playList: playList_1, hits: 142)
-        let song_2 = Song(name: "Fan shave", author: "EI Ten Eleven", playList: playList_1, hits: 64)
-
-        let song_3 = Song(name: "Transitions", author: "EI Ten Eleven", playList: playList_1, hits: 36)
-        playList_1.songs = [song_1, song_2, song_3]
-        
-        
-        //playerList 2
-        let playList_2 = PlayList(coverURL: "images-2", name: "Superior Focus Tunes", username: "leow")
-        let song_4 = Song(name: "Logic of a dream", author: "Explosion in the Sky", playList: playList_2, hits: 100)
-
-        let song_5 = Song(name: "Sway, Sway", author: "Heinali", playList: playList_2, hits: 22)
-        playList_2.songs = [song_4, song_5]
-        
-        
-        //playerList 3
-        let playList_3 = PlayList(coverURL: "images-3", name: "Radio Music Station", username: "edison")
-        let song_6 = Song(name: "Logic of a dream", author: "Explosion in the Sky", playList: playList_3, hits: 126)
-        
-        let song_7 = Song(name: "Sway, Sway", author: "Heinali", playList: playList_3, hits: 44)
-        playList_3.songs = [song_6, song_7]
-        
-        //playerList 4
-        let playList_4 = PlayList(coverURL: "images-4", name: "Nothing Was The Same", username: "edison")
-        let song_8 = Song(name: "Logic of a dream", author: "Explosion in the Sky", playList: playList_4, hits: 44)
-        let song_9 = Song(name: "Sway, Sway", author: "Heinali", playList: playList_4, hits: 36)
-        playList_4.songs = [song_8, song_9]
-
-        //playerList 5
-        let playList_5 = PlayList(coverURL: "images-5", name: "Answer With An Album Cover", username: "leow")
-        let song_10 = Song(name: "Logic of a dream", author: "Explosion in the Sky", playList: playList_5, hits: 14)
-        let song_11 = Song(name: "Sway, Sway", author: "Heinali", playList: playList_5, hits: 39)
-        playList_5.songs = [song_10, song_11]
-
-        
-        App.delegate?.songPlaying = song_1
-        playList_1.songPlaying = App.delegate?.songPlaying
-        self.currentPlayingList = playList_1
-        
-        
-        self.topLists = [playList_1, playList_2, playList_3, playList_4, playList_5, playList_1, playList_2, playList_3, playList_4, playList_5]
-        
-        let sortedList = self.topLists.sorted { (list_1, list_2) -> Bool in
-            return list_1.hits > list_2.hits
-        }
-        self.topLists = sortedList
+//        //playerList 1
+//        let playList_1 = Playlist(coverURL: "images-1", name: "EI Ten Eleven", username: "kesongxie")
+//        let song_1 = Song(name: "My only swerving", author: "EI Ten Eleven", Playlist: playList_1, hits: 142)
+//        let song_2 = Song(name: "Fan shave", author: "EI Ten Eleven", Playlist: playList_1, hits: 64)
+//
+//        let song_3 = Song(name: "Transitions", author: "EI Ten Eleven", Playlist: playList_1, hits: 36)
+//        playList_1.songs = [song_1, song_2, song_3]
+//        
+//        
+//        //playerList 2
+//        let playList_2 = Playlist(coverURL: "images-2", name: "Superior Focus Tunes", username: "leow")
+//        let song_4 = Song(name: "Logic of a dream", author: "Explosion in the Sky", Playlist: playList_2, hits: 100)
+//
+//        let song_5 = Song(name: "Sway, Sway", author: "Heinali", Playlist: playList_2, hits: 22)
+//        playList_2.songs = [song_4, song_5]
+//        
+//        
+//        //playerList 3
+//        let playList_3 = Playlist(coverURL: "images-3", name: "Radio Music Station", username: "edison")
+//        let song_6 = Song(name: "Logic of a dream", author: "Explosion in the Sky", Playlist: playList_3, hits: 126)
+//        
+//        let song_7 = Song(name: "Sway, Sway", author: "Heinali", Playlist: playList_3, hits: 44)
+//        playList_3.songs = [song_6, song_7]
+//        
+//        //playerList 4
+//        let playList_4 = Playlist(coverURL: "images-4", name: "Nothing Was The Same", username: "edison")
+//        let song_8 = Song(name: "Logic of a dream", author: "Explosion in the Sky", Playlist: playList_4, hits: 44)
+//        let song_9 = Song(name: "Sway, Sway", author: "Heinali", Playlist: playList_4, hits: 36)
+//        playList_4.songs = [song_8, song_9]
+//
+//        //playerList 5
+//        let playList_5 = Playlist(coverURL: "images-5", name: "Answer With An Album Cover", username: "leow")
+//        let song_10 = Song(name: "Logic of a dream", author: "Explosion in the Sky", Playlist: playList_5, hits: 14)
+//        let song_11 = Song(name: "Sway, Sway", author: "Heinali", Playlist: playList_5, hits: 39)
+//        playList_5.songs = [song_10, song_11]
+//
+//        
+//        App.delegate?.songPlaying = song_1
+//        playList_1.songPlaying = App.delegate?.songPlaying
+//        self.currentPlayingList = playList_1
+//        
+//        
+//        self.topLists = [playList_1, playList_2, playList_3, playList_4, playList_5, playList_1, playList_2, playList_3, playList_4, playList_5]
+//        
+//        let sortedList = self.topLists.sorted { (list_1, list_2) -> Bool in
+//            return list_1.hits > list_2.hits
+//        }
+//        self.topLists = sortedList
         
         self.updatePlayerView()
     }

@@ -32,13 +32,13 @@ class OnboardingViewController: GradientBackgroundAnimatedViewController {
         
 //        let recommendedSpotView = RecommendedSpotView.instanceFromNib()
 //        onboardDiscoverView.scrollView.contentSize = CGSize(width: App.screenWidth, height: App.screenHeight * 2)
-//        
 //
+
 //        recommendedSpotView.frame.origin = CGPoint(x: 0, y: App.screenHeight)
 //        recommendedSpotView.backgroundColor = UIColor.white
 //        print(recommendedSpotView.frame)
 //        onboardDiscoverView.scrollView.addSubview(recommendedSpotView)
-        
+//        
         
         
         

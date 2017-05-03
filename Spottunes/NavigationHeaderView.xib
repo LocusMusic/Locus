@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12117" systemVersion="16D32" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12084"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="NavigationHeaderView" customModule="Spottunes" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="123"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="12o-Ml-iU2">
+                    <rect key="frame" x="10" y="0.0" width="355" height="44"/>
+                    <subviews>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="132 LISTENERS" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="J54-KB-tyq">
+                            <rect key="frame" x="116" y="10.5" width="123.5" height="23.5"/>
+                            <fontDescription key="fontDescription" name="Avenir-Heavy" family="Avenir" pointSize="17"/>
+                            <nil key="textColor"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7rO-cS-4Pj">
+                            <rect key="frame" x="0.0" y="10" width="24" height="24"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="24" id="aEB-gk-9ZT"/>
+                                <constraint firstAttribute="height" constant="24" id="toS-OM-DOM"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="17"/>
+                            <state key="normal" image="back-icon"/>
+                            <connections>
+                                <action selector="backBtnTapped:" destination="iN0-l3-epB" eventType="touchDown" id="fvM-Xz-5tw"/>
+                            </connections>
+                        </button>
+                    </subviews>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstItem="7rO-cS-4Pj" firstAttribute="centerY" secondItem="12o-Ml-iU2" secondAttribute="centerY" id="4q5-bo-GjZ"/>
+                        <constraint firstItem="J54-KB-tyq" firstAttribute="centerY" secondItem="12o-Ml-iU2" secondAttribute="centerY" id="fwp-sT-Xbe"/>
+                        <constraint firstItem="7rO-cS-4Pj" firstAttribute="leading" secondItem="12o-Ml-iU2" secondAttribute="leading" id="gAM-DD-cgE"/>
+                        <constraint firstAttribute="height" constant="44" id="jqm-3l-PqH"/>
+                        <constraint firstItem="J54-KB-tyq" firstAttribute="centerX" secondItem="12o-Ml-iU2" secondAttribute="centerX" id="nTP-Z8-m0s"/>
+                    </constraints>
+                </view>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vlX-Lk-qB9" userLabel="Sparator View">
+                    <rect key="frame" x="10" y="44" width="355" height="1"/>
+                    <color key="backgroundColor" red="0.1960784314" green="0.20000000000000001" blue="0.20784313730000001" alpha="0.089999999999999997" colorSpace="custom" customColorSpace="sRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="1" id="thJ-eU-Vvv"/>
+                    </constraints>
+                </view>
+            </subviews>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstAttribute="trailing" secondItem="12o-Ml-iU2" secondAttribute="trailing" constant="10" id="4dk-xP-3De"/>
+                <constraint firstItem="vlX-Lk-qB9" firstAttribute="trailing" secondItem="12o-Ml-iU2" secondAttribute="trailing" id="Vg1-Md-Sjo"/>
+                <constraint firstItem="vlX-Lk-qB9" firstAttribute="leading" secondItem="12o-Ml-iU2" secondAttribute="leading" id="XHv-lu-dAz"/>
+                <constraint firstItem="vlX-Lk-qB9" firstAttribute="top" secondItem="12o-Ml-iU2" secondAttribute="bottom" id="c8F-d8-c6b"/>
+                <constraint firstItem="12o-Ml-iU2" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="sao-IT-HaN"/>
+                <constraint firstItem="12o-Ml-iU2" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="10" id="yGq-6h-4JE"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <connections>
+                <outlet property="backBtn" destination="7rO-cS-4Pj" id="agC-d4-cEs"/>
+                <outlet property="titleLabel" destination="J54-KB-tyq" id="67b-CJ-sDl"/>
+            </connections>
+            <point key="canvasLocation" x="48.5" y="-217.5"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="back-icon" width="30" height="30"/>
+    </resources>
+</document>

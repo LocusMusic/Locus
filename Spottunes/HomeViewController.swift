@@ -9,6 +9,7 @@
 import UIKit
 
 fileprivate let collectionViewReuseIden = "HomePagingCell"
+fileprivate let playingEmbedSegueIden="PlayingEmbedSegueIden"
 
 enum PageType{
     case overview
@@ -30,38 +31,51 @@ class HomeViewController: UIViewController {
             }
         }
     }
-    @IBOutlet weak var scrollView: UIScrollView!{
-        didSet{
-            self.scrollView.showsHorizontalScrollIndicator = false
-            self.scrollView.alwaysBounceHorizontal = true
-            self.scrollView.isPagingEnabled = true
-        }
-    }
 
-    @IBOutlet weak var secondPageCenterConstraint: NSLayoutConstraint!
     
     @IBOutlet weak var homeHeaderView: UIView!
 
-    var searchBarTextField: UITextField!
+    @IBOutlet weak var overviewBtn: UIButton!
     
+    @IBAction func overviewBtnTapped(_ sender: UIButton) {
+        self.setOverViewBtnActive()
+        sender.animateBounceView()
+        let notification = Notification(name: App.LocalNotification.Name.homeOverviewShouldBecomeActive)
+        NotificationCenter.default.post(notification)
+    }
+    
+    @IBAction func playingBtnTapped(_ sender: UIButton) {
+        self.setPlayingViewBtnActive()
+        sender.animateBounceView()
+        let notification = Notification(name: App.LocalNotification.Name.homePlayingShouldBecomeActive)
+        NotificationCenter.default.post(notification)
+    }
+    
+    @IBOutlet weak var playingBtn: UIButton!
     
     //tab model
     var pages: [PageType] = [.overview, .playing]
     
-   
+    var currentPlayingQueue: [Song]?
+    
+    var homeEmbedPageVC: HomeEmbedPageViewController?
+    
+    var searchBarTextField: UITextField!
+
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        SpotifyClient.fetchCurrentUserPlayList { (playlists) in
+            print(playlists)
+        }
     }
-
+    
+    
     override func viewDidLayoutSubviews()
     {
         super.viewDidLayoutSubviews()
-        // customize the search bar
         self.adjustSearchBarAppearance()
-        let tabBarHeight = self.tabBarController?.tabBar.frame.size.height ?? 0
-        let scrollViewHeight = App.screenHeight - self.homeHeaderView.frame.size.height - tabBarHeight
-        self.scrollView.contentSize = CGSize(width: CGFloat(self.pages.count) * App.screenWidth, height: scrollViewHeight)
-        self.secondPageCenterConstraint.constant = App.screenWidth
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -73,6 +87,7 @@ class HomeViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
+    
     func adjustSearchBarAppearance(){
         self.searchBarTextField.tintColor = App.grayColor
         self.searchBarTextField.layer.cornerRadius = self.searchBarTextField.frame.size.height / 2
@@ -80,7 +95,32 @@ class HomeViewController: UIViewController {
         let font = UIFont(name: "Avenir-Book", size:15.0)
         self.searchBarTextField.font = font
     }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let iden = segue.identifier{
+            switch iden{
+            case App.SegueIden.embedPageVCIden:
+                if let homeEmbedPageVC = segue.destination as? HomeEmbedPageViewController{
+                    homeEmbedPageVC.customDelegate = self
+                    self.homeEmbedPageVC = homeEmbedPageVC
+                }
+            default:
+                break
+            }
+        }
+    }
+    
+    func setOverViewBtnActive(){
+        self.overviewBtn.setTitleColor(App.Style.SliderMenue.activeColor, for: .normal)
+        self.playingBtn.setTitleColor(App.Style.SliderMenue.deactiveColor, for: .normal)
+    }
+    func setPlayingViewBtnActive(){
+        self.overviewBtn.setTitleColor(App.Style.SliderMenue.deactiveColor, for: .normal)
+        self.playingBtn.setTitleColor(App.Style.SliderMenue.activeColor, for: .normal)
+    }
 }
+
+
 
 extension HomeViewController: UISearchBarDelegate{
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
@@ -100,5 +140,18 @@ extension HomeViewController: UISearchBarDelegate{
         searchBar.resignFirstResponder()
     }
     
+}
+
+
+extension HomeViewController: HomeEmbedPageViewControllerDelegate{
+    func willTransitionToPage(viewController: UIViewController, pageIndex: Int) {
+        if pageIndex == 0 {
+            self.setOverViewBtnActive()
+        }else{
+            //swipe to palying view controller
+            self.setPlayingViewBtnActive()
+        }
+
+    }
 }
 

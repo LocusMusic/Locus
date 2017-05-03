@@ -27,8 +27,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 configuration.server = "https://spottunes.herokuapp.com/parse"
             })
         )
+        self.configureParse()
         return true
-
     }
 
     func applicationWillResignActive(_ application: UIApplication) {
@@ -57,6 +57,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     //Called after returning from fetchRequestToken (user either enters credentials or cancels the operation)
     func application(_ app: UIApplication, open url: URL, options: [UIApplicationOpenURLOptionsKey : Any] = [:]) -> Bool {
         return SpotifyClient.fetchAccessTokenHandler(withURL: url)
+    }
+    
+    func configureParse() {
+        Playlist.registerSubclass()
     }
 
 

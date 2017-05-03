@@ -11,14 +11,8 @@ import UIKit
 fileprivate let recommendedSpotReuseIden = "RecommendedSpotReuseIden"
 fileprivate let recommendedSpotNibName = "RecommendationSpotCollectionViewCell"
 
-fileprivate let collectionHeaderReusableViewIden = "CollectionHeaderReusableView"
-fileprivate let CollectionHeaderReusableViewNibName = "CollectionHeaderReusableView"
-
 fileprivate let smartGenreReuseIden = "SmartGenreReuseIden"
 fileprivate let smartGenreNibName = "SmartGenreCollectionViewCell"
-
-fileprivate let smartGenreReusableReuseIden = "RecommendationSpotCollectionReusableView"
-fileprivate let smartGenreReusableNibName = "RecommendationSpotCollectionReusableView"
 
 fileprivate struct CollectionViewUI{
     static let UIEdgeSpace: CGFloat = 16.0
@@ -34,7 +28,7 @@ class OverviewViewController: UIViewController {
             self.collectionView.delegate = self
             self.collectionView.dataSource = self
             
-            self.collectionView.contentInset = UIEdgeInsetsMake(0, 0, 16, 0)
+            self.collectionView.contentInset = UIEdgeInsetsMake(0, 0, 44, 0)
             
             //register for recommendation spot cell and reuse
             self.collectionView.register(UINib(nibName: recommendedSpotNibName, bundle: nil), forCellWithReuseIdentifier: recommendedSpotReuseIden)
@@ -49,6 +43,7 @@ class OverviewViewController: UIViewController {
     var spot: [Spot]?
     
     var genre: [Genre]?
+    
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -111,7 +106,7 @@ extension OverviewViewController: UICollectionViewDelegate, UICollectionViewData
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
-        return CGSize(width: App.screenWidth, height: 52.0)
+        return CGSize(width: App.screenWidth, height: 54.0)
     }
     
 }
@@ -122,7 +117,7 @@ extension OverviewViewController: UICollectionViewDelegateFlowLayout{
             return CGSize(width:App.screenWidth, height: 128)
         }else{
             let length = (self.view.frame.size.width - 2 * CollectionViewUI.UIEdgeSpace - CollectionViewUI.MinmumInteritemSpace) / 2 ;
-            return CGSize(width: length, height: length + 28)
+            return CGSize(width: length, height: length + 38)
         }
     }
 

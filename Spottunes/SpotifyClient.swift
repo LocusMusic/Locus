@@ -26,6 +26,13 @@ struct Http {
     }
 }
 
+struct ResponseKey{
+    struct CurrentUserPlaylist{
+        static let ItemsKey = "items"
+    }
+}
+
+
 class SpotifyClient {
     
     static var auth = SPTAuth()
@@ -113,6 +120,7 @@ class SpotifyClient {
         if let sessionObj : AnyObject = App.userDefaults.object(forKey: spotifySessionkey) as AnyObject? {
             let sessionDataObj = sessionObj as! Data
             guard let currentSesison = NSKeyedUnarchiver.unarchiveObject(with: sessionDataObj) as? SPTSession else{
+                print("current session not in defualt")
                 completionHandler(nil)
                 return
             }
@@ -151,11 +159,22 @@ class SpotifyClient {
         }
     }
     
-    class func fetchCurrentUserPlayList(_ completionHandler: @escaping (_ responseDict: [String: Any]?) -> Void) {
+    class func fetchCurrentUserPlayList(_ completionHandler: @escaping (_ responseDict: [Playlist]?) -> Void) {
         guard let endPoint = URL(string: currentUserPlayListEndPoint) else { return }
         performTask {
-            get(url: endPoint, completionHandler: { (dataDict) in
-                completionHandler(dataDict)
+            get(url: endPoint, completionHandler: { (responseDict) in
+                guard let responseDict = responseDict else{
+                    completionHandler(nil)
+                    return
+                }
+                guard let playlistDicts = responseDict[ResponseKey.CurrentUserPlaylist.ItemsKey] as? [[String: Any]] else{
+                    completionHandler(nil)
+                    return
+                }
+                let playlists = playlistDicts.map({ (playlistDict) -> Playlist in
+                    return Playlist(dict: playlistDict)
+                })
+                completionHandler(playlists)
             })
         }
     }
