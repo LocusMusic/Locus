@@ -12,6 +12,7 @@ import UIKit
 struct App{
     static let mainStoryboadName = "Main"
     static let grayColor = UIColor(hexString: "#8C8E94")
+    static let backColor = UIColor(hexString: "#323335")
     static let themeColor = UIColor(red: 23 / 255.0, green: 131 / 255.0, blue: 198 / 255.0, alpha: 1)
     static let bannerAspectRatio: CGFloat = 3.0
     static let delegate = (UIApplication.shared.delegate as? AppDelegate)
@@ -58,6 +59,15 @@ struct App{
                 static let actionBtnTitle = "Turn on Location"
             }
         }
+        
+        struct SliderMenue{
+            static let activeColor = UIColor(hexString: "#323335")
+            static let deactiveColor = App.grayColor
+        }
+        
+        struct MinPlayerView{
+            static let height: CGFloat = 48
+        }
 
     }
     
@@ -67,6 +77,9 @@ struct App{
             static let onLoginSuccessful = Notification.Name("loginSuccessful")
             static let keyboardDidShow = Notification.Name.UIKeyboardDidShow
             static let keyboardWillHide = Notification.Name.UIKeyboardWillHide
+            static let homeOverviewShouldBecomeActive = Notification.Name("homeOverviewShouldBecomeActive")
+            static let homePlayingShouldBecomeActive = Notification.Name("homePlayingShouldBecomeActive")
+            static let playViewShouldShow = Notification.Name("playViewShouldShow")
         }
     }
     
@@ -75,6 +88,15 @@ struct App{
         NotificationCenter.default.post(notification)
     }
     
+    struct StoryboardIden{
+        static let overviewViewController = "OverviewViewController"
+        static let playingViewController = "PlayingViewController"
+        static let listenerViewController = "ListenerViewController"  
+    }
+    
+    struct SegueIden{
+        static let embedPageVCIden = "EmbedPageVCIden"
+    }
     
     
 }

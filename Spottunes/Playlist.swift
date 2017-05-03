@@ -1,5 +1,4 @@
 //
-//  PlayList.swift
 //  Spottunes
 //
 //  Created by Xie kesong on 4/15/17.
@@ -10,57 +9,79 @@ import Foundation
 import Parse
 
 
-let PlayListRecordName = "playlist"
+//the value is the same as the actual key for Spotify
+fileprivate let IdKey = "id"
+fileprivate let ImagesKey = "images"
 fileprivate let NameKey = "name"
-fileprivate let CoverURLKey = "cover"
-fileprivate let HitsKey = "hits"
 
 
-class PlayList{
-//    var coverURL: String?{
-//        return self.object[CoverURLKey] as? String
-//    }
-//    
-//    var name: String?{
-//        return self.object[NameKey] as? String
-//    }
-//    
-//    var hits: Int?{
-//        return self.object[HitsKey] as? Int
-//    }
+enum CoverSize{
+    case large
+    case medium
+    case small
+}
+
+class Playlist: PFObject {
     
-    var coverURL: String?
+    var owner: User?
     
-    var name: String?
+    var spot: Spot?
     
-    var hits: Int!{
-        guard let songs = songs else{
-            return 0
+    var spotifyId: String?{
+        return self.dict[IdKey] as? String
+    }
+    
+    private var images: [Image]?{
+        guard let imagesDict = self.dict[ImagesKey] as? [[String: Any]] else{
+            return nil
         }
-        return songs.reduce(0, { (results, song) -> Int in
-            return results + song.hits
-        })
+        let images = imagesDict.map { (imageDict) -> Image in
+            return Image(dict: imageDict)
+        }
+        return images
     }
     
-    var username: String?
-    
-    var object: PFObject!
-    
-    var songs:[Song]?
-    
-    var songPlaying: Song?
-    
-    init(object: PFObject) {
-        self.object = object
+    var name: String?{
+        return self.dict[NameKey] as? String
     }
     
-    init(coverURL: String, name: String, username: String){
-        self.coverURL = coverURL
-        self.name = name
-        self.username = username
+    //the spotify representation
+    var dict: [String: Any]!
+    
+    init(dict: [String: Any]) {
+        super.init()
+        self.dict = dict
     }
     
+    func savePlaylist(){
+        if let id = self.spotifyId{
+            self[IdKey] = id
+            self.saveInBackground { (succeed, error) in
+                print("saved \(succeed)")
+            }
+        }else{
+            print("id is nil")
+        }
+    }
     
+    func getCoverImage(withSize size: CoverSize) -> Image?{
+        if let coverImages = self.images, coverImages.count == 3{
+            switch size{
+            case .large:
+               return coverImages[0]
+            case .medium:
+                return coverImages[1]
+            case .small:
+                return coverImages[2]
+            }
+        }
+        return nil
+    }
+}
+
     
-    
+extension Playlist: PFSubclassing {
+    static func parseClassName() -> String {
+        return "Playlist"
+    }
 }

@@ -22,21 +22,21 @@ class ListTableViewCell: UITableViewCell {
     @IBOutlet weak var authorLabel: UILabel!
     @IBOutlet weak var listenerLabel: UILabel!
     
-    var item: PlayList?{
+    var item: Playlist?{
         didSet{
-            if let coverURL = self.item?.coverURL{
-                self.coverImageView.image = UIImage(named: coverURL)
-            }
-            if let name = self.item?.name{
-                self.nameLabel.text = name
-            }
-            if let username = self.item?.username{
-                self.authorLabel.text = username
-
-            }
-            if let listenrsCount = self.item?.hits{
-                self.listenerLabel.text = "· \(listenrsCount) listeners"
-            }
+//            if let coverURL = self.item?.coverURL{
+//                self.coverImageView.image = UIImage(named: coverURL)
+//            }
+//            if let name = self.item?.name{
+//                self.nameLabel.text = name
+//            }
+//            if let username = self.item?.username{
+//                self.authorLabel.text = username
+//
+//            }
+//            if let listenrsCount = self.item?.hits{
+//                self.listenerLabel.text = "· \(listenrsCount) listeners"
+//            }
         }
     }
     

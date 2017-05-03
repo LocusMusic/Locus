@@ -8,6 +8,9 @@
 
 import UIKit
 
+let collectionHeaderReusableViewIden = "CollectionHeaderReusableView"
+let CollectionHeaderReusableViewNibName = "CollectionHeaderReusableView"
+
 class CollectionHeaderReusableView: UICollectionReusableView {
     @IBOutlet weak var headerLabel: UILabel!
 

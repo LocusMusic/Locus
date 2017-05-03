@@ -9,34 +9,71 @@
 import UIKit
 
 class GlobalTabBarController: UITabBarController {
-
+    lazy var playView: PlayView = PlayView.instanceFromNib()
+    
+    
+    var tabBarOriginalY: CGFloat = 0
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.tabBar.tintColor = App.Style.TabBar.tintColor
         self.tabBar.barTintColor = App.Style.TabBar.barTintColor
         self.tabBar.isTranslucent = App.Style.TabBar.isTranslucent
+        
         UISearchBar.appearance().setImage(#imageLiteral(resourceName: "search-icon"), for: .search, state: .normal)
+        
+        self.tabBar.layer.borderWidth = 0.50
+        self.tabBar.layer.borderColor = App.grayColor.cgColor.copy(alpha: 0.3)
+        self.tabBar.clipsToBounds = true
+        self.tabBarOriginalY = self.tabBar.frame.origin.y
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(self.playViewShouldShow(_:)), name: App.LocalNotification.Name.playViewShouldShow, object: nil)
+        
+                
+        self.playView.frame = CGRect(x: 0, y: App.screenHeight, width: App.screenWidth, height: App.screenHeight)
+        self.playView.delegate = self
+        self.view.addSubview(playView)
+        self.view.bringSubview(toFront: self.tabBar)
+//        SpotifyClient.fetchUserProfile { (dictionary) in
+//            print(dictionary)
+//        }
     }
-
+    
+    func playViewShouldShow(_ notification: Notification){
+        if self.playView.state == .hidden{
+            let destinationOriginY = App.screenHeight - 2 * App.Style.MinPlayerView.height
+            UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 0.8, initialSpringVelocity: 6, options: .curveEaseInOut, animations: {
+                self.playView.frame.origin.y = destinationOriginY
+            }, completion: { (finished) in
+                if finished{
+                    self.playView.state = .minimized
+                }
+            })
+        }
+    }
+    
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
     
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
+}
 
+
+
+extension GlobalTabBarController: PlayViewDelegate{
+    func panning(playView: PlayView, delta: CGFloat) {
+        self.tabBar.frame.origin.y = self.tabBarOriginalY + (1 - delta) * self.tabBar.frame.size.height
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    func playViewBecomeMaximized(playView: PlayView) {
+        self.tabBar.frame.origin.y =  self.tabBarOriginalY +  self.tabBar.frame.size.height
     }
-    */
+    
+    func playViewBecomeMinimized(playView: PlayView) {
+        self.tabBar.frame.origin.y =  self.tabBarOriginalY
+    }
 
+    
 }

@@ -11,12 +11,13 @@ import UIKit
 class GradientBackgroundAnimatedViewController: UIViewController {
     lazy var gradientLayer = CAGradientLayer()
     
-    let fromColor = [
+    let toColor = [
         UIColor(hexString: "#7D0E73").cgColor,
         UIColor(hexString: "#A2136B").cgColor,
+        
         ]
     
-    let toColor = [
+    let fromColor = [
         UIColor(hexString: "#175D9A").cgColor,
         UIColor(hexString: "#0E497D").cgColor
     ]
@@ -46,21 +47,11 @@ class GradientBackgroundAnimatedViewController: UIViewController {
         animation.fromValue = fromColor
         animation.toValue = toColor
         animation.delegate = self
-        animation.duration = 10
+        animation.duration = 20
         self.gradientLayer.add(animation, forKey: "animateGradient")
     }
     
-    
 
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }
 

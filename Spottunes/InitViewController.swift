@@ -16,6 +16,8 @@ protocol InitViewControllerDelegate: class {
 }
 
 class InitViewController: UIViewController {
+    
+    var statusBarShouldHideen = true
 
     //container view
     @IBOutlet weak var loginContainerView: UIView!
@@ -47,25 +49,28 @@ class InitViewController: UIViewController {
     
     weak var delegate: InitViewControllerDelegate?
     
+    
     override func viewDidLoad() {
-        print("InitViewController")
         super.viewDidLoad()
         SpotifyClient.updateSession { (session) in
-            if session != nil {
-                print("SESSION EXISTS")
-                self.statusBarShouldHidden = false
-                self.statusBarStyle = .lightContent
-                self.view.bringSubview(toFront: self.homeContainerView)
-            } else {
+
+            if session != nil{
+                print("session exsited")
+                SpotifyClient.fetchCurrentUserPlayList({ (playlists) in
+                    if let playlists = playlists{
+//                        playlists.first?.savePlaylist()
+                    }else{
+                        print("play list is empty")
+                    }
+                })
                 print("GO TO LOGIN PAGE")
                 self.statusBarShouldHidden = true
             }
-            self.setNeedsStatusBarAppearanceUpdate()
         }
     }
 
     override var prefersStatusBarHidden: Bool{
-        return self.statusBarShouldHidden
+        return true
     }
     
     override var preferredStatusBarStyle: UIStatusBarStyle{
@@ -76,24 +81,7 @@ class InitViewController: UIViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
 
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if let iden = segue.identifier{
-            switch iden {
-            case loginEmbedSegueIden:
-                if let loginVC = segue.destination as? LogInViewController{
-                self.loginViewController = loginVC
-                }
-            case homeEmbedSegueIden:
-                if let homeWrapperVC = segue.destination as? HomeWrapperViewController{
-                    self.homeWrapperViewController = homeWrapperVC
-                }
-            default:
-                break
-            }
-        }
-    }
     
 }
 
@@ -104,6 +92,6 @@ extension InitViewController: LogInViewControllerDelegate {
         self.statusBarShouldHidden = false
         self.statusBarStyle = .lightContent
         self.delegate?.homeInit()
-        self.view.bringSubview(toFront: self.homeContainerView)
+//        self.view.bringSubview(toFront: self.homeContainerView)
     }
 }
