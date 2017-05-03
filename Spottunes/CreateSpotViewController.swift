@@ -2,27 +2,18 @@
 //  CreateSpotViewController.swift
 //  Spottunes
 //
-//  Created by Xie kesong on 4/22/17.
+//  Created by Leo Wong on 4/26/17.
 //  Copyright © 2017 ___Spottunes___. All rights reserved.
 //
 
 import UIKit
-import CoreLocation
 
+class CreateSpotViewController: UIViewController {
 
-class CreateSpotViewController: GradientBackgroundAnimatedViewController {
-    var locations : [Location]?
-    var isFetchingLocation = false
-    lazy var locationManager =  CLLocationManager()
-    
-   
-   
-    
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.locationManager.requestWhenInUseAuthorization()
-        self.locationManager.delegate = self
-        print(UIScreen.main.bounds)
+
+        // Do any additional setup after loading the view.
     }
 
     override func didReceiveMemoryWarning() {
@@ -30,43 +21,15 @@ class CreateSpotViewController: GradientBackgroundAnimatedViewController {
         // Dispose of any resources that can be recreated.
     }
     
-    
-    override var prefersStatusBarHidden: Bool{
-        return true
-    }
-    
-        
-}
 
-extension CreateSpotViewController: CLLocationManagerDelegate{
-    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        if let currentLocationCoordinate = locations.first?.coordinate{
-            if !self.isFetchingLocation{
-                FoursquareClient.sharedInstance.getRecommendedPlaces(ll: currentLocationCoordinate) { (locations: [Location]) in
-                    self.locations = locations
-                    for location in locations{
-                        print(location.name!)
-                    }
-                }
-            }
-        }
+    /*
+    // MARK: - Navigation
+
+    // In a storyboard-based application, you will often want to do a little preparation before navigation
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        // Get the new view controller using segue.destinationViewController.
+        // Pass the selected object to the new view controller.
     }
-    
-    func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
-        print(error.localizedDescription)
-    }
-    
-    func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
-        switch status{
-        case .authorizedWhenInUse:
-            self.locationManager.requestLocation()
-            print("requesting location")
-        case .denied:
-            print("please allow location service")
-        default:
-            break
-        }
-    }
-    
-    
+    */
+
 }

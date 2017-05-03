@@ -4,3 +4,5 @@
 
 #import <SpotifyAudioPlayback/SpotifyAudioPlayback.h>
 #import <SpotifyAuthentication/SpotifyAuthentication.h>
+#import <Parse/PFObject+Subclass.h>
+
