@@ -8,9 +8,7 @@
 
 import UIKit
 
-fileprivate let collectionViewReuseIden = "HomePagingCell"
-fileprivate let playingEmbedSegueIden = "PlayingEmbedSegueIden"
-
+//fileprivate let collectionViewReuseIden = "HomePagingCell"
 
 enum SearchPageType {
     case songs
@@ -54,6 +52,7 @@ class SearchViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        print("VIEW DID LOAD")
     }
     
     override func viewDidLayoutSubviews() {
@@ -134,16 +133,19 @@ class SearchViewController: UIViewController {
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if let iden = segue.identifier{
-            switch iden{
-            case App.SegueIden.embedPageVCIden:
-                if let searchEmbedPageVC = segue.destination as? SearchEmbedViewController {
-                    searchEmbedPageVC.customDelegate = self
-                    self.searchEmbedPageVC = searchEmbedPageVC
+        print("PREPARE CALLED")
+        if let iden = segue.identifier {
+            switch iden {
+                case App.SegueIden.embedSearchPageVCIden:
+                    if let searchEmbedPageVC = segue.destination as? SearchEmbedViewController {
+    //                    searchEmbedPageVC.customDelegate = self
+    //                    self.searchEmbedPageVC = searchEmbedPageVC
+                        self.searchBar.delegate = searchEmbedPageVC
+                        print("SET THE SEARCH BAR DELEGATE TO EMBEDDED SEARCH PAGE VC")
+                    }
+                default:
+                    break
                 }
-            default:
-                break
-            }
         }
     }
 }

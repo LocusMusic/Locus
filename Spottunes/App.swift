@@ -23,7 +23,7 @@ struct App{
     static let screenHeight = UIScreen.main.bounds.size.height
     static let userDefaults = UserDefaults()
     static let mediaMaxLenght: CGFloat = 600
-    
+
 
     
     struct Style{
@@ -82,6 +82,10 @@ struct App{
             static let keyboardWillHide = Notification.Name.UIKeyboardWillHide
             static let homeOverviewShouldBecomeActive = Notification.Name("homeOverviewShouldBecomeActive")
             static let homePlayingShouldBecomeActive = Notification.Name("homePlayingShouldBecomeActive")
+            static let searchSongShouldBecomeActive = Notification.Name("searchSongShouldBecomeActive")
+            static let searchArtistsShouldBecomeActive = Notification.Name("searchArtistsShouldBecomeActive")
+            static let searchPlaylistsShouldBecomeActive = Notification.Name("searchPlaylistsShouldBecomeActive")
+            static let searchSpotsShouldBecomeActive = Notification.Name("searchSpotsShouldBecomeActive")
         }
         
         struct PlayViewShouldShow{
@@ -103,6 +107,7 @@ struct App{
     
     struct SegueIden{
         static let embedPageVCIden = "EmbedPageVCIden"
+        static let embedSearchPageVCIden = "EmbedSearchPageVCIden"
     }
 }
 

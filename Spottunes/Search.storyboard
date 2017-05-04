@@ -134,6 +134,9 @@
                             </view>
                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3Dh-et-Xxx">
                                 <rect key="frame" x="0.0" y="125" width="375" height="542"/>
+                                <connections>
+                                    <segue destination="YpR-yC-tiI" kind="embed" identifier="EmbedSearchPageVCIden" id="agP-n5-TtK"/>
+                                </connections>
                             </containerView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -155,7 +158,6 @@
                         <outlet property="searchBar" destination="HZY-nS-34O" id="Zd4-9O-o55"/>
                         <outlet property="songsButton" destination="Fmj-m4-4Yp" id="dny-MJ-NJd"/>
                         <outlet property="spotsButton" destination="cZO-a0-EKU" id="r0g-2L-HqR"/>
-                        <segue destination="YpR-yC-tiI" kind="show" identifier="toSearchEmbed" id="mA8-js-Zan"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fvX-wC-tgb" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -170,10 +172,10 @@
             </objects>
             <point key="canvasLocation" x="138" y="117"/>
         </scene>
-        <!--View Controller-->
+        <!--Search Results View Controller-->
         <scene sceneID="aR7-jj-jwQ">
             <objects>
-                <viewController id="Dor-PC-s2c" sceneMemberID="viewController">
+                <viewController id="Dor-PC-s2c" customClass="SearchResultsViewController" customModule="Spottunes" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="mg4-lu-IRH"/>
                         <viewControllerLayoutGuide type="bottom" id="JXp-6N-EH9"/>

@@ -117,3 +117,7 @@ class SearchEmbedViewController: UIPageViewController, UIPageViewControllerDeleg
     */
 
 }
+
+extension SearchEmbedViewController: UISearchBarDelegate {
+    
+}
