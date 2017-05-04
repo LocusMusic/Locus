@@ -14,14 +14,15 @@ fileprivate let CLIENT_SECRET = "FIHIW2HW0ZJBU0ODD2YNWWA1UJPENZSJ24TLP2G3VQGDPPW
 
 class FoursquareClient: NSObject {
     
-    static let sharedInstance = FoursquareClient()
+    static let shared = FoursquareClient()
     let exploreBaseURL = "https://api.foursquare.com/v2/venues/explore?"
+    let searchBaseURL = "https://api.foursquare.com/v2/venues/search?"
     let clientString = "client_id=\(CLIENT_ID)&client_secret=\(CLIENT_SECRET)"
     
-    let limit = 30
+    let limit = 10
     var offset = 0
     
-    func getRecommendedPlaces(ll: CLLocationCoordinate2D, success: @escaping ([Location]) -> ()){
+    func fetchRecommendedPlaces(ll: CLLocationCoordinate2D, success: @escaping ([Location]) -> ()){
         let ll_string = "&ll=\(ll.latitude),\(ll.longitude)"
         let date_string = "&v="+getCurDateString()
         let limit_offset = "&limit=\(limit)&offset=\(offset)"
@@ -34,8 +35,8 @@ class FoursquareClient: NSObject {
             if let data = maybeData {
                 if let responseDictionary = try! JSONSerialization.jsonObject(with: data, options: []) as? NSDictionary {
                     let groups = (responseDictionary["response"] as! NSDictionary)["groups"] as? [NSDictionary]
-                    let items = self.getItemsByType(type: "Recommended Places", groups: groups!)
-                    let locations = Location.locationsWithArray(items: items)
+                    let venues = self.getVenuesByType(type: "Recommended Places", groups: groups!)
+                    let locations = Location.locationsWithArray(venues: venues)
                     //print(locations)
                     success(locations)
                     self.offset += self.limit
@@ -45,9 +46,46 @@ class FoursquareClient: NSObject {
         task.resume()
     }
     
-    func getMoreRecommendedPlaces(ll: CLLocationCoordinate2D, success: @escaping ([Location]) -> ()){
-        getRecommendedPlaces(ll: ll, success: success)
+    func fetchMoreRecommendedPlaces(ll: CLLocationCoordinate2D, success: @escaping ([Location]) -> ()){
+        fetchRecommendedPlaces(ll: ll, success: success)
     }
+    
+    func searchNearByLocation(query: String, success: @escaping ([Location])->()){
+        
+        
+        if let ll = App.currentLocation?.coordinate {
+            fetchSearchPlacesResult(query, ll: ll, success: success)
+            //fetchSearchPlacesResult(searchBar.text!, ll, success: ([Location]) -> ())
+        }
+        else{
+            print("searchNearByLocation failed.")
+        }
+    }
+    
+    func fetchSearchPlacesResult(_ query: String, ll: CLLocationCoordinate2D, success: @escaping ([Location]) -> ()){
+        let ll_string = "&ll=\(ll.latitude),\(ll.longitude)"
+        let date_string = "&v="+getCurDateString()
+        //let limit_offset = "&limit=\(limit)&offset=\(offset)"
+        let query_string = "&query=\(query)".addingPercentEncoding(withAllowedCharacters: CharacterSet.urlQueryAllowed)
+        let url_string = searchBaseURL+clientString+ll_string+date_string+query_string! //+limit_offset
+        let url = URL(string: url_string)!
+        let request = URLRequest(url: url)
+        
+        let session = URLSession(configuration: URLSessionConfiguration.default, delegate: nil, delegateQueue: OperationQueue.main)
+        let task = session.dataTask(with: request, completionHandler: { (maybeData, response, error) in
+            if let data = maybeData {
+                if let responseDictionary = try! JSONSerialization.jsonObject(with: data, options: []) as? NSDictionary {
+                    let venues = responseDictionary.value(forKeyPath: "response.venues") as? [NSDictionary]
+                    let locations = Location.locationsWithArray(venues: venues!)
+                    //print(locations)
+                    success(locations)
+                    //self.offset += self.limit
+                }
+            }
+        });
+        task.resume()
+    }
+    
     
     private func getCurDateString() -> String{
         let formatter = DateFormatter()
@@ -55,11 +93,11 @@ class FoursquareClient: NSObject {
         return formatter.string(from: Date())
     }
     
-    private func getItemsByType(type: String, groups: [NSDictionary]) -> [NSDictionary]{
+    private func getVenuesByType(type: String, groups: [NSDictionary]) -> [NSDictionary]{
         for group in groups{
             let group_type = group["type"] as? String
             if group_type == type {
-                return group["items"] as! [NSDictionary]
+                return group.value(forKeyPath: "items.venue") as! [NSDictionary]
             }
         }
         return []

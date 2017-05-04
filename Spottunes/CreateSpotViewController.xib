@@ -1,12 +1,19 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11134" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12120" systemVersion="16E195" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11106"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12088"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
-        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="CreateSpotViewController" customModuleProvider="target">
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="CreateSpotViewController" customModule="Spottunes" customModuleProvider="target">
             <connections>
+                <outlet property="createSpotButton" destination="A8z-d0-xfa" id="oa9-uv-ml0"/>
+                <outlet property="selectedLocationLabel" destination="TXh-uV-Fdj" id="71N-vN-MTt"/>
+                <outlet property="tableView" destination="zno-Bd-lVZ" id="pTt-un-wrv"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -14,7 +21,59 @@
         <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
             <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="100" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="zno-Bd-lVZ">
+                    <rect key="frame" x="0.0" y="20" width="375" height="489"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="375" id="dhD-O0-vfZ"/>
+                    </constraints>
+                </tableView>
+                <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" selectionStyle="default" indentationWidth="10" translatesAutoresizingMaskIntoConstraints="NO" id="Jhs-Lm-I6z">
+                    <rect key="frame" x="0.0" y="66" width="375" height="44"/>
+                    <autoresizingMask key="autoresizingMask"/>
+                    <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Jhs-Lm-I6z" id="iGE-gn-7EO">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </tableViewCellContentView>
+                </tableViewCell>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="A8z-d0-xfa">
+                    <rect key="frame" x="146" y="617" width="82" height="30"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="82" id="klo-k2-N2b"/>
+                    </constraints>
+                    <state key="normal" title="Create Spot"/>
+                    <connections>
+                        <action selector="createSpotTapped:" destination="-1" eventType="touchUpInside" id="sDU-iB-1d0"/>
+                    </connections>
+                </button>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TXh-uV-Fdj">
+                    <rect key="frame" x="118" y="574" width="42" height="21"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Selected:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="unb-hH-JH1">
+                    <rect key="frame" x="16" y="573" width="72" height="21"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+            </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="TXh-uV-Fdj" firstAttribute="top" secondItem="zno-Bd-lVZ" secondAttribute="bottom" constant="65" id="18k-9Q-Cfj"/>
+                <constraint firstAttribute="trailing" secondItem="zno-Bd-lVZ" secondAttribute="trailing" id="Ai9-z4-Vyt"/>
+                <constraint firstItem="unb-hH-JH1" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="16" id="ChT-Ub-ZZk"/>
+                <constraint firstItem="zno-Bd-lVZ" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="JCO-eI-cWu"/>
+                <constraint firstItem="zno-Bd-lVZ" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="20" id="OKh-jc-fI2"/>
+                <constraint firstItem="A8z-d0-xfa" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="146" id="Ugb-d5-MmA"/>
+                <constraint firstAttribute="bottom" secondItem="A8z-d0-xfa" secondAttribute="bottom" constant="20" id="b5k-56-XKB"/>
+                <constraint firstAttribute="bottom" secondItem="zno-Bd-lVZ" secondAttribute="bottom" constant="158" id="btc-dD-JtQ"/>
+                <constraint firstItem="unb-hH-JH1" firstAttribute="top" secondItem="zno-Bd-lVZ" secondAttribute="bottom" constant="64" id="d7A-Z0-kcL"/>
+                <constraint firstItem="TXh-uV-Fdj" firstAttribute="leading" secondItem="unb-hH-JH1" secondAttribute="trailing" constant="30" id="pUZ-mJ-MAM"/>
+            </constraints>
+            <point key="canvasLocation" x="33.5" y="54.5"/>
         </view>
     </objects>
 </document>
