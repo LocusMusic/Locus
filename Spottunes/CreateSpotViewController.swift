@@ -37,7 +37,7 @@ class CreateSpotViewController: UIViewController {
         // UCSD Location
         let currentLocation = CLLocationCoordinate2DMake(CLLocationDegrees(exactly: 32.877741)!, CLLocationDegrees(exactly: -117.234327)!)
         
-        FourSq.getRecommendedPlaces(ll: currentLocation, success: { (locations: [Location]) in
+        FourSq.fetchRecommendedPlaces(ll: currentLocation, success: { (locations: [Location]) in
             self.recommendedPlaces = locations
             for location in locations {
                 print(location.name!)
@@ -54,7 +54,7 @@ class CreateSpotViewController: UIViewController {
     
     func getNearbyLocations() {
         let userGeoPoint = PFGeoPoint(latitude: 32.877741, longitude: -117.234327)
-        var query = PFQuery(className:"TuneSpot")
+        let query = PFQuery(className:"TuneSpot")
         query.whereKey("location", nearGeoPoint:userGeoPoint, withinMiles: 5)
         query.limit = 10
         do {

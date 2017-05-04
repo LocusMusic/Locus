@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		284331D41EBAB7A90061C68C /* TuneSpot.swift in Sources */ = {isa = PBXBuildFile; fileRef = 284331D31EBAB7A90061C68C /* TuneSpot.swift */; };
+		284331D61EBAB7DF0061C68C /* CreateSpotViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 284331D51EBAB7DF0061C68C /* CreateSpotViewController.xib */; };
 		7A4CF60BAF12A50A9C836991 /* Pods_Spottunes.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C5A35C681814C640EE9D42AC /* Pods_Spottunes.framework */; };
 		981A6D301EB021B80045E2FD /* RecommendationSpotCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 981A6D2E1EB021B80045E2FD /* RecommendationSpotCollectionViewCell.swift */; };
 		981A6D311EB021B80045E2FD /* RecommendationSpotCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 981A6D2F1EB021B80045E2FD /* RecommendationSpotCollectionViewCell.xib */; };
@@ -85,6 +87,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		284331D31EBAB7A90061C68C /* TuneSpot.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TuneSpot.swift; sourceTree = "<group>"; };
+		284331D51EBAB7DF0061C68C /* CreateSpotViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CreateSpotViewController.xib; sourceTree = "<group>"; };
 		766A9720120B2CA291FD022A /* Pods-Spottunes.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Spottunes.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Spottunes/Pods-Spottunes.debug.xcconfig"; sourceTree = "<group>"; };
 		9600EB3E0DDFD87F47C0ACF7 /* Pods-Spottunes.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Spottunes.release.xcconfig"; path = "Pods/Target Support Files/Pods-Spottunes/Pods-Spottunes.release.xcconfig"; sourceTree = "<group>"; };
 		981A6D2E1EB021B80045E2FD /* RecommendationSpotCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecommendationSpotCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -181,6 +185,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		284331D71EBAB7E70061C68C /* CreateSpotView */ = {
+			isa = PBXGroup;
+			children = (
+				284331D51EBAB7DF0061C68C /* CreateSpotViewController.xib */,
+				9892EEDD1EAB437C00AD44B7 /* CreateSpotViewController.swift */,
+			);
+			name = CreateSpotView;
+			sourceTree = "<group>";
+		};
 		981A6D321EB03AA40045E2FD /* RecommendedCellView */ = {
 			isa = PBXGroup;
 			children = (
@@ -312,10 +325,10 @@
 		9892EEDC1EAB433E00AD44B7 /* Introduction Scenes */ = {
 			isa = PBXGroup;
 			children = (
+				284331D71EBAB7E70061C68C /* CreateSpotView */,
 				98E5EBA11EAE63E300B0D3D6 /* OnboardingView */,
 				98E5EBA61EAE647700B0D3D6 /* RecommendedSpotView */,
 				98E5EB9B1EAD85AB00B0D3D6 /* OnboardingViewController.swift */,
-				9892EEDD1EAB437C00AD44B7 /* CreateSpotViewController.swift */,
 			);
 			name = "Introduction Scenes";
 			sourceTree = "<group>";
@@ -465,6 +478,7 @@
 		98EFBE3A1EA2EE250050675D /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				284331D31EBAB7A90061C68C /* TuneSpot.swift */,
 				9892EEDF1EAB43AF00AD44B7 /* Location.swift */,
 				981A6D381EB04C0F0045E2FD /* Spot.swift */,
 				981A6D4C1EB073EF0045E2FD /* Genre.swift */,
@@ -581,6 +595,7 @@
 			files = (
 				981A6D451EB054AF0045E2FD /* CollectionHeaderReusableView.xib in Resources */,
 				981A6D3F1EB04D270045E2FD /* SpotThumbnailCollectionViewCell.xib in Resources */,
+				284331D61EBAB7DF0061C68C /* CreateSpotViewController.xib in Resources */,
 				98588CC71EB55CE80035C355 /* ProfileHeaderCollectionViewCell.xib in Resources */,
 				B743E9841EBA694E00A0CCD3 /* MapViewController.xib in Resources */,
 				9833CB081EB1F289009997E9 /* PlayingTableViewCell.xib in Resources */,
@@ -672,6 +687,7 @@
 				98DD952B1EB5102B007973D6 /* ListenerViewController.swift in Sources */,
 				988E41741EB8708D0083A08A /* UIImageViewExtension.swift in Sources */,
 				981A6D301EB021B80045E2FD /* RecommendationSpotCollectionViewCell.swift in Sources */,
+				284331D41EBAB7A90061C68C /* TuneSpot.swift in Sources */,
 				B743E9831EBA694E00A0CCD3 /* MapViewController.swift in Sources */,
 				98EFBE291EA29F000050675D /* RoundedButton.swift in Sources */,
 				983578431EAD116600E12751 /* GradientBackgroundAnimatedViewController.swift in Sources */,
