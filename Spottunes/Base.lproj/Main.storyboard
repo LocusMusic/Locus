@@ -22,13 +22,41 @@
                     <view key="view" contentMode="scaleToFill" id="kWW-qj-Vhw">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="oCC-go-Srm" userLabel="Home Container View">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <connections>
+                                    <segue destination="npl-uG-z3F" kind="embed" identifier="HomeWrapperEmbedSegue" id="xFb-Ij-Kmo"/>
+                                </connections>
+                            </containerView>
+                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="sDl-qa-9Rj" userLabel="Login Container View">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <connections>
+                                    <segue destination="F3b-6k-IZZ" kind="embed" identifier="LoginEmbedSegue" id="7LI-9A-19g"/>
+                                </connections>
+                            </containerView>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="sDl-qa-9Rj" firstAttribute="top" secondItem="kWW-qj-Vhw" secondAttribute="top" id="OlN-qu-1xI"/>
+                            <constraint firstItem="sDl-qa-9Rj" firstAttribute="leading" secondItem="kWW-qj-Vhw" secondAttribute="leading" id="Wpa-x1-9TW"/>
+                            <constraint firstItem="9RN-oe-RXp" firstAttribute="top" secondItem="oCC-go-Srm" secondAttribute="bottom" id="clT-lT-7jr"/>
+                            <constraint firstItem="oCC-go-Srm" firstAttribute="top" secondItem="kWW-qj-Vhw" secondAttribute="top" id="hAX-TE-Zxv"/>
+                            <constraint firstItem="oCC-go-Srm" firstAttribute="leading" secondItem="kWW-qj-Vhw" secondAttribute="leading" id="hsV-9c-d4l"/>
+                            <constraint firstAttribute="trailing" secondItem="sDl-qa-9Rj" secondAttribute="trailing" id="o2m-mf-948"/>
+                            <constraint firstAttribute="trailing" secondItem="oCC-go-Srm" secondAttribute="trailing" id="wOI-Dk-QUs"/>
+                            <constraint firstItem="9RN-oe-RXp" firstAttribute="top" secondItem="sDl-qa-9Rj" secondAttribute="bottom" id="wVe-La-R3q"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="C8G-Dl-96V"/>
+                    <connections>
+                        <outlet property="homeContainerView" destination="oCC-go-Srm" id="AF9-yJ-9c7"/>
+                        <outlet property="loginContainerView" destination="sDl-qa-9Rj" id="1YP-dQ-JIZ"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="RQF-x4-cog" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1335" y="3307"/>
+            <point key="canvasLocation" x="-1335.2" y="3306.2968515742132"/>
         </scene>
         <!--Home Wrapper View Controller-->
         <scene sceneID="ibN-kd-vpG">
@@ -781,14 +809,14 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Jj5-Oc-n5K">
-                                <rect key="frame" x="0.0" y="20" width="375" height="45"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="45"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="45" id="SSB-JV-Q5N"/>
                                 </constraints>
                             </view>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="AUy-Uk-B9t">
-                                <rect key="frame" x="0.0" y="65" width="375" height="553"/>
+                                <rect key="frame" x="0.0" y="45" width="375" height="573"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="Hz2-Ev-K2w">
                                     <size key="itemSize" width="50" height="50"/>
@@ -982,7 +1010,7 @@
                                                 <constraint firstItem="QUw-84-GtC" firstAttribute="top" secondItem="yyY-Tg-k8K" secondAttribute="top" constant="16" id="2cL-jq-50r"/>
                                                 <constraint firstAttribute="trailing" secondItem="RGB-ee-p3s" secondAttribute="trailing" constant="16" id="DLG-no-yN2"/>
                                                 <constraint firstItem="RGB-ee-p3s" firstAttribute="leading" secondItem="QUw-84-GtC" secondAttribute="trailing" constant="8" id="I3B-7i-2NW"/>
-                                                <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="btS-xu-XEe" secondAttribute="bottom" constant="205" id="M0B-9x-Sld"/>
+                                                <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="btS-xu-XEe" secondAttribute="bottom" constant="16" id="M0B-9x-Sld"/>
                                                 <constraint firstItem="QUw-84-GtC" firstAttribute="leading" secondItem="yyY-Tg-k8K" secondAttribute="leading" constant="16" id="Ntd-6t-ywX"/>
                                                 <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="QUw-84-GtC" secondAttribute="bottom" constant="16" id="a0h-8m-L8m"/>
                                                 <constraint firstItem="RGB-ee-p3s" firstAttribute="top" secondItem="QUw-84-GtC" secondAttribute="top" id="h7L-iA-9Ca"/>

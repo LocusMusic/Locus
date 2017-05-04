@@ -21,20 +21,20 @@ class PlayingTableViewCell: UITableViewCell {
 
     @IBOutlet weak var artistNameLabel: UILabel!
     
-    var song: Song!{
+    var track: Track!{
         didSet{
-            if let name = self.song.name{
+            if let name = self.track.name{
                 self.songNameLabel.text = name
             }
             
-            if let authorName = self.song.author{
+            if let authorName = self.track.artists?.first?.name{
                 self.artistNameLabel.text = authorName
             }
-
-            let Playlist = self.song.Playlist
-//            if let thumbnailURL = Playlist.coverURL{
-//                self.thumbnailImageView.image = UIImage(named: thumbnailURL)
-//            }
+            if let coverImage = self.track.getCoverImage(withSize: .small){
+                if let coverURL = coverImage.url{
+                    self.thumbnailImageView.loadImageWithURL(coverURL)
+                }
+            }
         }
     }
     

@@ -17,15 +17,23 @@ class SelectionFromPlaylistViewController: UIViewController {
         didSet{
             self.tableView.delegate = self
             self.tableView.dataSource = self
+            self.tableView.estimatedRowHeight = self.tableView.rowHeight
+            self.tableView.rowHeight = UITableViewAutomaticDimension
         }
     }
     
-    var playlists: [Playlist]?
+    var playlists: [Playlist]?{
+        didSet{
+            DispatchQueue.main.async {
+                self.tableView.reloadData()
+            }
+        }
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
+
     }
 
     override func didReceiveMemoryWarning() {
@@ -48,7 +56,7 @@ extension SelectionFromPlaylistViewController: UITableViewDelegate, UITableViewD
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: reuseIden, for: indexPath) as! PlaylistTableViewCell
-        
+        cell.playlist = self.playlists![indexPath.row]
         return cell
     }
 }

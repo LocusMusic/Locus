@@ -27,19 +27,27 @@ class GlobalTabBarController: UITabBarController {
         self.tabBar.clipsToBounds = true
         self.tabBarOriginalY = self.tabBar.frame.origin.y
         
-        NotificationCenter.default.addObserver(self, selector: #selector(self.playViewShouldShow(_:)), name: App.LocalNotification.Name.playViewShouldShow, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(self.playViewShouldShow(_:)), name: App.LocalNotification.PlayViewShouldShow.name, object: nil)
         
-                
         self.playView.frame = CGRect(x: 0, y: App.screenHeight, width: App.screenWidth, height: App.screenHeight)
         self.playView.delegate = self
         self.view.addSubview(playView)
         self.view.bringSubview(toFront: self.tabBar)
-//        SpotifyClient.fetchUserProfile { (dictionary) in
-//            print(dictionary)
-//        }
     }
     
     func playViewShouldShow(_ notification: Notification){
+        guard let trackList = notification.userInfo?[App.LocalNotification.PlayViewShouldShow.tracksKey] as? [Track] else{
+            return
+        }
+
+        guard let activeTrackIndex = notification.userInfo?[App.LocalNotification.PlayViewShouldShow.activeTrackIndex] as? Int else{
+            return
+        }
+        
+        self.playView.trackList = trackList
+        self.playView.activeTrackIndex = activeTrackIndex
+        self.playView.updateTracksState()
+        
         if self.playView.state == .hidden{
             let destinationOriginY = App.screenHeight - 2 * App.Style.MinPlayerView.height
             UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 0.8, initialSpringVelocity: 6, options: .curveEaseInOut, animations: {

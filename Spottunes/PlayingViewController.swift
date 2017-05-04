@@ -41,9 +41,11 @@ class PlayingViewController: UIViewController {
     
     @IBOutlet weak var headerView: UIView!
     
-    var currentPlayingQueue: [Song]?{
+    var trackList: [Track]?{
         didSet{
-            self.tableView?.reloadData()
+            DispatchQueue.main.async {
+                self.tableView?.reloadData()
+            }
         }
     }
     
@@ -56,36 +58,22 @@ class PlayingViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        //current playing queue
-        //playerList 1
-//        let playList_1 = Playlist(coverURL: "images-1", name: "EI Ten Eleven", username: "kesongxie")
-//        let song_1 = Song(name: "My only swerving", author: "EI Ten Eleven", Playlist: playList_1, hits: 142)
-//        playList_1.songs = [song_1]
-//        
-//        
-//        //playerList 2
-//        let playList_2 = Playlist(coverURL: "images-2", name: "Superior Focus Tunes", username: "leow")
-//        let song_4 = Song(name: "Logic of a dream", author: "Explosion in the Sky", Playlist: playList_2, hits: 100)
-//        playList_2.songs = [song_4]
-//        
-//        
-//        //playerList 3
-//        let playList_3 = Playlist(coverURL: "images-3", name: "Radio Music Station", username: "edison")
-//        
-//        let song_7 = Song(name: "Breath and start", author: "Heinali", Playlist: playList_3, hits: 44)
-//        playList_3.songs = [song_7]
-//        
-//        //playerList 4
-//        let playList_4 = Playlist(coverURL: "images-4", name: "Nothing Was The Same", username: "edison")
-//        let song_9 = Song(name: "Ninth wake", author: "Trifonic", Playlist: playList_4, hits: 36)
-//        playList_4.songs = [song_9]
-//        
-//        //playerList 5
-//        let playList_5 = Playlist(coverURL: "images-5", name: "Answer With An Album Cover", username: "leow")
-//        let song_11 = Song(name: "Colors in stearo", author: "Com Truise", Playlist: playList_5, hits: 39)
-//        playList_5.songs = [song_11]
-        
-        self.currentPlayingQueue = []
+        SpotifyClient.fetchCurrentUserPlayList { (playlists) in
+            if let playlists =  playlists{
+                if let playlist = playlists.first{
+                    if let href = playlist.tracks?.href{
+                        SpotifyClient.getTracksInPlaylist(tracksHref: href, completionHandler: { (trackList) in
+                            if let trackList = trackList{
+                                self.trackList = trackList
+                            }else{
+                                print("track list is nil")
+                            }
+                        })
+                    }
+                }
+            }
+        }
+            
     }
     
     override func viewDidLayoutSubviews() {
@@ -110,17 +98,21 @@ extension PlayingViewController: UITableViewDelegate, UITableViewDataSource{
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return  self.currentPlayingQueue?.count ?? 0
+        return  self.trackList?.count ?? 0
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: reuseIden, for: indexPath) as! PlayingTableViewCell
-        cell.song = self.currentPlayingQueue?[indexPath.row]
+        cell.track = self.trackList?[indexPath.row]
         return cell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        App.postLocalNotification(withName: App.LocalNotification.Name.playViewShouldShow)
+        let userInfo: [String: Any] = [
+                App.LocalNotification.PlayViewShouldShow.tracksKey: self.trackList!,
+                App.LocalNotification.PlayViewShouldShow.activeTrackIndex: indexPath.row
+        ]
+        App.postLocalNotification(withName: App.LocalNotification.PlayViewShouldShow.name, object: self, userInfo: userInfo)
     }
 }
 

@@ -21,11 +21,10 @@ class ListenerViewController: UIViewController {
         }
     }
     
-    
-    
     override func viewDidLoad() {
         super.viewDidLoad()
     }
+    
     
     @IBOutlet weak var tableView: UITableView!{
         didSet{

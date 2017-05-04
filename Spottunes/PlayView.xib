@@ -56,6 +56,9 @@
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="E2Z-tO-Z2f">
                                     <rect key="frame" x="157" y="466" width="60" height="60"/>
                                     <state key="normal" image="Play-Icon-darker"/>
+                                    <connections>
+                                        <action selector="playToggle:" destination="iN0-l3-epB" eventType="touchDown" id="py6-9j-Ydi"/>
+                                    </connections>
                                 </button>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hhb-d4-Z7e">
                                     <rect key="frame" x="254" y="476.5" width="40" height="40"/>
@@ -64,6 +67,9 @@
                                         <constraint firstAttribute="height" constant="40" id="JgM-TQ-AW8"/>
                                     </constraints>
                                     <state key="normal" image="next-icon"/>
+                                    <connections>
+                                        <action selector="nextBtnTapped:" destination="iN0-l3-epB" eventType="touchDown" id="RMa-BN-yRj"/>
+                                    </connections>
                                 </button>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QnU-St-3mw">
                                     <rect key="frame" x="75" y="476.5" width="40" height="40"/>
@@ -72,6 +78,9 @@
                                         <constraint firstAttribute="width" constant="40" id="RyT-A6-qa5"/>
                                     </constraints>
                                     <state key="normal" image="prev-icon"/>
+                                    <connections>
+                                        <action selector="prevBtnTapped:" destination="iN0-l3-epB" eventType="touchUpInside" id="ySy-vr-MFj"/>
+                                    </connections>
                                 </button>
                             </subviews>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -130,6 +139,9 @@
                                         <constraint firstAttribute="height" constant="30" id="Z5y-Ux-Xb7"/>
                                     </constraints>
                                     <state key="normal" image="play-icon"/>
+                                    <connections>
+                                        <action selector="playToggle:" destination="iN0-l3-epB" eventType="touchUpInside" id="jGo-Um-fMk"/>
+                                    </connections>
                                 </button>
                             </subviews>
                             <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.80000000000000004" colorSpace="calibratedRGB"/>
@@ -176,8 +188,14 @@
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <connections>
+                <outlet property="authorNameLabel" destination="4ds-wq-Rv9" id="LDf-ZJ-5mf"/>
+                <outlet property="minAuthorNameLabel" destination="5FV-qt-FH8" id="xSf-se-Fcc"/>
+                <outlet property="minPlayBtn" destination="tOZ-UP-YIW" id="EXh-kM-unZ"/>
                 <outlet property="minPlayerView" destination="4pk-Xk-e1n" id="vcv-bN-wsi"/>
+                <outlet property="minTrackNameLabel" destination="1a5-bg-wG5" id="H8C-mP-Sj2"/>
+                <outlet property="playBtn" destination="E2Z-tO-Z2f" id="2vw-KK-yot"/>
                 <outlet property="thumbnailImageView" destination="f9a-fp-Vod" id="8TE-yv-CMV"/>
+                <outlet property="trackNameLabel" destination="QZN-Oc-eIz" id="z1g-gB-dqk"/>
             </connections>
         </view>
     </objects>

@@ -20,6 +20,7 @@
                 <subviews>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="76Y-Bq-jpg">
                         <rect key="frame" x="16" y="8" width="48" height="48"/>
+                        <color key="backgroundColor" red="0.1960784314" green="0.20000000000000001" blue="0.20784313730000001" alpha="0.40000000000000002" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="48" id="VCn-zQ-at1"/>
                             <constraint firstAttribute="height" constant="48" id="yOh-k6-yOm"/>
@@ -60,6 +61,7 @@
                 </subviews>
                 <constraints>
                     <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="hSQ-Fx-Mqp" secondAttribute="bottom" constant="8" id="Gvz-Vx-H5o"/>
+                    <constraint firstItem="WEV-rc-Cj8" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="DQA-hX-eAx" secondAttribute="trailing" constant="16" id="I4i-k0-2Gs"/>
                     <constraint firstItem="hSQ-Fx-Mqp" firstAttribute="leading" secondItem="DQA-hX-eAx" secondAttribute="leading" id="KuF-PV-mvG"/>
                     <constraint firstItem="WEV-rc-Cj8" firstAttribute="centerY" secondItem="DQA-hX-eAx" secondAttribute="centerY" id="PdE-Pp-QcU"/>
                     <constraint firstAttribute="trailing" secondItem="hSQ-Fx-Mqp" secondAttribute="trailing" constant="16" id="RJl-Wg-5It"/>

@@ -30,8 +30,8 @@ class Image{
         return self.dict[WidthKey] as! Int
     }
     
-    var url: String!{
-        return self.dict[URLKey] as! String
+    var url: URL?{
+        return URL(string: self.dict[URLKey] as! String)
     }
     
     init(dict: [String: Any]) {

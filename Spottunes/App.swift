@@ -13,6 +13,7 @@ struct App{
     static let mainStoryboadName = "Main"
     static let grayColor = UIColor(hexString: "#8C8E94")
     static let backColor = UIColor(hexString: "#323335")
+//    static let currentLocation = App.delegate?.locationManager.startUpdate()
     static let themeColor = UIColor(red: 23 / 255.0, green: 131 / 255.0, blue: 198 / 255.0, alpha: 1)
     static let bannerAspectRatio: CGFloat = 3.0
     static let delegate = (UIApplication.shared.delegate as? AppDelegate)
@@ -22,7 +23,8 @@ struct App{
     static let userDefaults = UserDefaults()
     static let mediaMaxLenght: CGFloat = 600
     
-   
+
+    
     struct Style{
         struct NavigationBar{
             static let titleFont = UIFont(name: "HelveticaNeue-Bold", size: 17.0)!
@@ -79,13 +81,17 @@ struct App{
             static let keyboardWillHide = Notification.Name.UIKeyboardWillHide
             static let homeOverviewShouldBecomeActive = Notification.Name("homeOverviewShouldBecomeActive")
             static let homePlayingShouldBecomeActive = Notification.Name("homePlayingShouldBecomeActive")
-            static let playViewShouldShow = Notification.Name("playViewShouldShow")
+        }
+        
+        struct PlayViewShouldShow{
+            static let name = Notification.Name("playViewShouldShow")
+            static let tracksKey = "tracks" //tracks key for the user info dictionary
+            static let activeTrackIndex = "trackIndex" // active track key for ther user info dictionary
         }
     }
     
-    static func postLocalNotification(withName name: Notification.Name){
-        let notification = Notification(name: name)
-        NotificationCenter.default.post(notification)
+    static func postLocalNotification(withName name: Notification.Name, object: Any? = nil, userInfo: [String: Any]? = nil){
+        NotificationCenter.default.post(name: name, object: object, userInfo: userInfo)
     }
     
     struct StoryboardIden{
@@ -97,9 +103,12 @@ struct App{
     struct SegueIden{
         static let embedPageVCIden = "EmbedPageVCIden"
     }
-    
-    
 }
 
+enum CoverSize{
+    case large
+    case medium
+    case small
+}
 
 

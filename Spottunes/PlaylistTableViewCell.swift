@@ -20,9 +20,13 @@ class PlaylistTableViewCell: UITableViewCell {
     
     var playlist: Playlist!{
         didSet{
+            self.coverImageView.image = nil
             if let coverImage = self.playlist.getCoverImage(withSize: .small){
-                
+                if let coverURL = coverImage.url{
+                    self.coverImageView.loadImageWithURL(coverURL)
+                }
             }
+            self.playlistNameLabel.text = self.playlist.name
         }
     }
     

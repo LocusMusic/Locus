@@ -36,16 +36,121 @@ class PlayView: UIView {
     
     @IBOutlet weak var minPlayerView: UIView!
     
+    @IBOutlet weak var trackNameLabel: UILabel!
+    @IBOutlet weak var authorNameLabel: UILabel!
+    
+    
+    @IBOutlet weak var minTrackNameLabel: UILabel!
+    @IBOutlet weak var minAuthorNameLabel: UILabel!
+
     var delegate: PlayViewDelegate?
-    var Playlist: Playlist!
     var state: PlayViewUIState = .hidden
     var delta: CGFloat = 0
     var originalCenter: CGPoint!
 
     var minimizedCenter:CGPoint!
     var maximizedCenter:CGPoint!
+    
+    
+    var trackList: [Track]?
+    var activeTrackIndex: Int?
+    var currentPlayingState = false{
+        didSet{
+            if currentPlayingState{
+                self.playBtn.imageBtnActivateWithColor(color: App.backColor, usingImage: #imageLiteral(resourceName: "playing-icon"), withBounceAnimation: true)
+                self.minPlayBtn.imageBtnActivateWithColor(color: App.backColor, usingImage: #imageLiteral(resourceName: "playing-icon"), withBounceAnimation: true)
+            }else{
+                self.playBtn.imageBtnActivateWithColor(color: App.grayColor, usingImage: #imageLiteral(resourceName: "play-icon"), withBounceAnimation: true)
+                self.minPlayBtn.imageBtnActivateWithColor(color: App.grayColor, usingImage: #imageLiteral(resourceName: "play-icon"), withBounceAnimation: true)
+
+
+            }
+        }
+    }
+    @IBOutlet weak var playBtn: UIButton!
+    
+    @IBOutlet weak var minPlayBtn: UIButton!
+    
+    lazy var streamController: SPTAudioStreamingController = SPTAudioStreamingController.sharedInstance()
+
+    @IBAction func playToggle(_ sender: UIButton) {
+        sender.animateBounceView()
+        
+        
+        
+        self.streamController.setIsPlaying(!self.currentPlayingState) { (error) in
+            if let error = error{
+                print(error.localizedDescription)
+            }else{
+                self.currentPlayingState = !self.currentPlayingState
+            }
+            
+        }
+    }
+    
+    @IBAction func nextBtnTapped(_ sender: UIButton) {
+        sender.animateBounceView()
+        guard let totalTracks = self.trackList?.count else{
+            return
+        }
+        guard let currentActiveIndex = self.activeTrackIndex else{
+            return
+        }
+        
+        if currentActiveIndex == totalTracks - 1{
+            return
+        }
+        
+        
+        self.activeTrackIndex = currentActiveIndex + 1
+        self.updateTracksState()
+    }
+    
+    
+    @IBAction func prevBtnTapped(_ sender: UIButton) {
+        sender.animateBounceView()
+        guard let currentActiveIndex = self.activeTrackIndex else{
+            return
+        }
+        
+        if currentActiveIndex < 1{
+            return
+        }
+        
+        
+        self.activeTrackIndex = currentActiveIndex - 1
+        self.updateTracksState()
+    }
 
     
+    
+    
+    
+    func updateTracksState(){
+        guard let activeTrackIndex = self.activeTrackIndex else{
+            return
+        }
+        guard let trackList = self.trackList else{
+            return
+        }
+            
+        self.thumbnailImageView.image = nil
+        if let image = trackList[activeTrackIndex] .getCoverImage(withSize: .large) {
+            if let url = image.url{
+                self.thumbnailImageView.loadImageWithURL(url)
+            }
+        }
+        if let authorName = trackList[activeTrackIndex].artists?.first?.name{
+            self.authorNameLabel.text = authorName
+            self.minAuthorNameLabel.text = authorName
+        }
+        if let trackName = trackList[activeTrackIndex].name{
+            self.trackNameLabel.text = trackName
+            self.minTrackNameLabel.text = trackName
+        }
+        self.playActiveTrack()
+    }
+
     
     class func instanceFromNib() -> PlayView {
         let playView = UINib(nibName: xibName, bundle: nil).instantiate(withOwner: nil, options: nil)[0] as! PlayView
@@ -53,8 +158,11 @@ class PlayView: UIView {
         let pan = UIPanGestureRecognizer(target: playView, action: #selector(playViewPanning(_:)))
         playView.addGestureRecognizer(pan)
         playView.isUserInteractionEnabled = true
+        playView.initPlayer()
+        //login
         return playView
     }
+    
     
     
     func playViewPanning(_ gesture: UIPanGestureRecognizer){
@@ -148,7 +256,55 @@ class PlayView: UIView {
         }
     }
     
-    
-    
-    
+    func playActiveTrack(){
+        guard let activeTrackIndex = self.activeTrackIndex else{
+            return
+        }
+        
+        guard let activeTrack = self.trackList?[activeTrackIndex] else{
+            return
+        }
+        
+        guard let activeTrackURI = activeTrack.uri else{
+            return
+        }
+        
+        self.streamController.playSpotifyURI(activeTrackURI, startingWith: 0, startingWithPosition: 0, callback: { (error) in
+            if let error = error {
+                print(error.localizedDescription)
+            }else{
+                self.currentPlayingState = true
+
+            }
+        })
+    }
 }
+
+extension PlayView: SPTAudioStreamingPlaybackDelegate, SPTAudioStreamingDelegate {
+    func initPlayer() {
+        self.streamController.playbackDelegate = self
+        self.streamController.delegate = self
+        do{
+            try streamController.start(withClientId:  SpotifyClient.auth.clientID)
+            let currentSession = SpotifyClient.auth.session
+            if currentSession != nil && currentSession!.isValid(){
+                print("session is valid ...")
+                self.streamController.login(withAccessToken: currentSession?.accessToken)
+            }else{
+                SpotifyClient.auth.renewSession(currentSession, callback: { (error, session) in
+                    if let session = session{
+                        print("renewing session...")
+                        //login after retrieving new access token
+                        self.streamController.login(withAccessToken: session.accessToken)
+                    }else if let error = error{
+                        print(error.localizedDescription)
+                    }
+                })
+            }
+        }catch{
+            print("can't start streaming view controller")
+        }
+    }
+}
+
+

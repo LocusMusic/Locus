@@ -19,6 +19,8 @@ fileprivate let fetchTokenEndPoint = "https://accounts.spotify.com/api/token"
 fileprivate let currentUserPlayListEndPoint = "https://api.spotify.com/v1/me/playlists"
 fileprivate let currentUserProfileEndPoint = "https://api.spotify.com/v1/me"
 
+
+
 struct Http {
     struct Method{
         static let get = "GET"
@@ -131,6 +133,8 @@ class SpotifyClient {
                         //save the new session
                         saveSession(session: session)
                         print("renew session")
+                        auth.session = session
+                        print("auth after renewing \( auth.session.isValid())")
                         completionHandler(session)
                     }
                 })
@@ -188,6 +192,32 @@ class SpotifyClient {
         }
     }
     
+    
+    //get tracks in playlists
+    class func getTracksInPlaylist(tracksHref: String,  completionHandler: @escaping (_ responseDict: [Track]?) -> Void){
+        guard let endPoint = URL(string: tracksHref) else{
+            print("end point onvalid")
+            completionHandler(nil)
+            return
+        }
+        performTask {
+            get(url: endPoint, completionHandler: { (dataDict) in
+                guard let dataDict = dataDict else{
+                    completionHandler(nil)
+                    return
+                }
+                let tracks = Tracks(dict: dataDict)
+                guard let trackList = tracks.trackList else{
+                    completionHandler(nil)
+                    return
+                }
+                completionHandler(trackList)
+            })
+        }
+    }
+    
+    
+    
     private class func get(url: URL,  completionHandler: @escaping (_ responseDict: [String: Any]?) -> Void){
         guard auth.session != nil else{
             print("session is nil")
@@ -207,12 +237,9 @@ class SpotifyClient {
         let config = URLSessionConfiguration.default
         let urlSession = URLSession(configuration: config)
         urlSession.dataTask(with: urlRequest, completionHandler: { (data, response, error) in
-            
             if let data = data {
                 if let jsonObject = try? JSONSerialization.jsonObject(with: data, options: []) {
-                    print(jsonObject)
                     if let dataDict = jsonObject as? [String: Any] {
-                        print(dataDict)
                         completionHandler(dataDict)
                     } else {
                         completionHandler(nil)

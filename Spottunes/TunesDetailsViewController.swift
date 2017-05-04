@@ -145,55 +145,6 @@ class TunesDetailsViewController: UIViewController {
         self.playerViewCenterYConstraint.constant = UIScreen.main.bounds.size.height - self.playerMinView.frame.size.height - (1 - playerViewSizeHeightFraction) *  UIScreen.main.bounds.size.height / 2
         self.playerViewOriginalCenterY = self.playerViewCenterYConstraint.constant
         self.navigationController?.isNavigationBarHidden = true
-
-//        //playerList 1
-//        let playList_1 = Playlist(coverURL: "images-1", name: "EI Ten Eleven", username: "kesongxie")
-//        let song_1 = Song(name: "My only swerving", author: "EI Ten Eleven", Playlist: playList_1, hits: 142)
-//        let song_2 = Song(name: "Fan shave", author: "EI Ten Eleven", Playlist: playList_1, hits: 64)
-//
-//        let song_3 = Song(name: "Transitions", author: "EI Ten Eleven", Playlist: playList_1, hits: 36)
-//        playList_1.songs = [song_1, song_2, song_3]
-//        
-//        
-//        //playerList 2
-//        let playList_2 = Playlist(coverURL: "images-2", name: "Superior Focus Tunes", username: "leow")
-//        let song_4 = Song(name: "Logic of a dream", author: "Explosion in the Sky", Playlist: playList_2, hits: 100)
-//
-//        let song_5 = Song(name: "Sway, Sway", author: "Heinali", Playlist: playList_2, hits: 22)
-//        playList_2.songs = [song_4, song_5]
-//        
-//        
-//        //playerList 3
-//        let playList_3 = Playlist(coverURL: "images-3", name: "Radio Music Station", username: "edison")
-//        let song_6 = Song(name: "Logic of a dream", author: "Explosion in the Sky", Playlist: playList_3, hits: 126)
-//        
-//        let song_7 = Song(name: "Sway, Sway", author: "Heinali", Playlist: playList_3, hits: 44)
-//        playList_3.songs = [song_6, song_7]
-//        
-//        //playerList 4
-//        let playList_4 = Playlist(coverURL: "images-4", name: "Nothing Was The Same", username: "edison")
-//        let song_8 = Song(name: "Logic of a dream", author: "Explosion in the Sky", Playlist: playList_4, hits: 44)
-//        let song_9 = Song(name: "Sway, Sway", author: "Heinali", Playlist: playList_4, hits: 36)
-//        playList_4.songs = [song_8, song_9]
-//
-//        //playerList 5
-//        let playList_5 = Playlist(coverURL: "images-5", name: "Answer With An Album Cover", username: "leow")
-//        let song_10 = Song(name: "Logic of a dream", author: "Explosion in the Sky", Playlist: playList_5, hits: 14)
-//        let song_11 = Song(name: "Sway, Sway", author: "Heinali", Playlist: playList_5, hits: 39)
-//        playList_5.songs = [song_10, song_11]
-//
-//        
-//        App.delegate?.songPlaying = song_1
-//        playList_1.songPlaying = App.delegate?.songPlaying
-//        self.currentPlayingList = playList_1
-//        
-//        
-//        self.topLists = [playList_1, playList_2, playList_3, playList_4, playList_5, playList_1, playList_2, playList_3, playList_4, playList_5]
-//        
-//        let sortedList = self.topLists.sorted { (list_1, list_2) -> Bool in
-//            return list_1.hits > list_2.hits
-//        }
-//        self.topLists = sortedList
         
         self.updatePlayerView()
     }
@@ -355,8 +306,8 @@ class TunesDetailsViewController: UIViewController {
 
     
     func updatePlayerView(){
-        self.playingSongNameLabel.text = App.delegate?.songPlaying?.name
-        self.playingSongAuthorLabel.text = App.delegate?.songPlaying?.author
+//        self.playingSongNameLabel.text = App.delegate?.songPlaying?.name
+//        self.playingSongAuthorLabel.text = App.delegate?.songPlaying?.author
     }
 
     /*
@@ -389,57 +340,41 @@ extension TunesDetailsViewController: UITableViewDelegate, UITableViewDataSource
 
 
 extension TunesDetailsViewController: SPTAudioStreamingPlaybackDelegate, SPTAudioStreamingDelegate {
-    func initPlayer(){
-        SpotifyClient.fetchUserProfile { (dict) in
-            print("UserProfile")
-            print("-----------------")
-            print(dict)
-            print("-----------------")
-        }
-        SpotifyClient.fetchCurrentUserPlayList { (dict) in
-            print("UserPlayList")
-            print("-----------------")
-            print(dict)
-            print("-----------------")
+      
+    func initPlayer() {
+        self.streamController.playbackDelegate = self
+        self.streamController.delegate = self
+        do{
+            try streamController.start(withClientId:  SpotifyClient.auth.clientID)
+            let currentSession = SpotifyClient.auth.session
+            if currentSession != nil && currentSession!.isValid(){
+                print("session is valid ...")
+                self.streamController.login(withAccessToken: currentSession?.accessToken)
+            }else{
+                SpotifyClient.auth.renewSession(currentSession, callback: { (error, session) in
+                    if let session = session{
+                        print("renewing session...")
+                        //login after retrieving new access token
+                        self.streamController.login(withAccessToken: session.accessToken)
+                    }else if let error = error{
+                        print(error.localizedDescription)
+                    }
+                })
+            }
+        }catch{
+            print("can't start streaming view controller")
         }
     }
-    
-    
-    //    func initPlayer() {
-//        self.streamController.playbackDelegate = self
-//        self.streamController.delegate = self
-//        do{
-//            try streamController.start(withClientId:  SpotifyClient.auth.clientID)
-//            let currentSession = SpotifyClient.session
-//            if currentSession != nil && currentSession!.isValid(){
-//                print("session is valid ...")
-//                self.streamController.login(withAccessToken: currentSession?.accessToken)
-//            }else{
-//                SpotifyClient.auth.renewSession(currentSession, callback: { (error, session) in
-//                    if let session = session{
-//                        print("renewing session...")
-//                        SpotifyClient.session = session
-//                        //login after retrieving new access token
-//                        self.streamController.login(withAccessToken: session.accessToken)
-//                    }else if let error = error{
-//                        print(error.localizedDescription)
-//                    }
-//                })
-//            }
-//        }catch{
-//            print("can't start streaming view controller")
-//        }
-//    }
-    
+
     
     func audioStreamingDidLogin(_ audioStreaming: SPTAudioStreamingController!) {
         // after a user authenticates a session, the SPTAudioStreamingController is then initialized and this method called
-//        print("logged in")
-//        self.streamController.playSpotifyURI("spotify:track:58s6EuEYJdlb0kO7awm3Vp", startingWith: 0, startingWithPosition: 0, callback: { (error) in
-//            if (error != nil) {
-//                print("playing!")
-//            }
-//        })
+        print("logged in")
+        self.streamController.playSpotifyURI("spotify:track:58s6EuEYJdlb0kO7awm3Vp", startingWith: 0, startingWithPosition: 0, callback: { (error) in
+            if (error != nil) {
+                print("playing!")
+            }
+        })
         
         
         

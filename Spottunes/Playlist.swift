@@ -13,13 +13,8 @@ import Parse
 fileprivate let IdKey = "id"
 fileprivate let ImagesKey = "images"
 fileprivate let NameKey = "name"
-
-
-enum CoverSize{
-    case large
-    case medium
-    case small
-}
+fileprivate let OwnerKey = "owner"
+fileprivate let TracksKey = "tracks"
 
 class Playlist: PFObject {
     
@@ -27,8 +22,8 @@ class Playlist: PFObject {
     
     var spot: Spot?
     
-    var spotifyId: String?{
-        return self.dict[IdKey] as? String
+    var spotifyId: String!{
+        return self.dict[IdKey] as! String
     }
     
     private var images: [Image]?{
@@ -43,6 +38,13 @@ class Playlist: PFObject {
     
     var name: String?{
         return self.dict[NameKey] as? String
+    }
+    
+    var tracks: Tracks?{
+        guard let tracksDict = self.dict[TracksKey] as? [String: Any] else{
+            return nil
+        }
+        return Tracks(dict: tracksDict)
     }
     
     //the spotify representation
@@ -65,18 +67,14 @@ class Playlist: PFObject {
     }
     
     func getCoverImage(withSize size: CoverSize) -> Image?{
-        if let coverImages = self.images, coverImages.count == 3{
-            switch size{
-            case .large:
-               return coverImages[0]
-            case .medium:
-                return coverImages[1]
-            case .small:
-                return coverImages[2]
-            }
+        if let coverImage = self.images?[size.hashValue] {
+            return coverImage
+        }else{
+            return self.images?.first
         }
-        return nil
     }
+    
+    
 }
 
     

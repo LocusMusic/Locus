@@ -10,13 +10,13 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Spottunes/TunesDetailsViewController.swift"
-            timestampString = "515287731.97521"
+            timestampString = "515539219.263293"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "420"
-            endingLineNumber = "420"
-            landmarkName = "TunesDetailsViewController"
-            landmarkType = "4">
+            startingLineNumber = "356"
+            endingLineNumber = "356"
+            landmarkName = "initPlayer()"
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -58,11 +58,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Spottunes/SpotifyClient.swift"
-            timestampString = "515479944.50673"
+            timestampString = "515543131.280925"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "160"
-            endingLineNumber = "160"
+            startingLineNumber = "164"
+            endingLineNumber = "164"
             landmarkName = "performTask(task:)"
             landmarkType = "7">
          </BreakpointContent>

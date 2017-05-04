@@ -56,7 +56,6 @@ class HomeViewController: UIViewController {
     //tab model
     var pages: [PageType] = [.overview, .playing]
     
-    var currentPlayingQueue: [Song]?
     
     var homeEmbedPageVC: HomeEmbedPageViewController?
     
@@ -65,10 +64,6 @@ class HomeViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        SpotifyClient.fetchCurrentUserPlayList { (playlists) in
-            print(playlists)
-        }
     }
     
     

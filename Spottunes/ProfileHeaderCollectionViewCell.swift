@@ -45,7 +45,7 @@ class ProfileHeaderCollectionViewCell: UICollectionViewCell {
     @IBAction func playBtnTapped(_ sender: UIButton) {
         sender.animateBounceView()
         //pass additional songs as the key value for dispalying music
-        App.postLocalNotification(withName: App.LocalNotification.Name.playViewShouldShow)
+        App.postLocalNotification(withName: App.LocalNotification.PlayViewShouldShow.name)
     }
     
     
