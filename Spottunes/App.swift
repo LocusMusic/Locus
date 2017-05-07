@@ -92,6 +92,10 @@ struct App{
             static let keyboardWillHide = Notification.Name.UIKeyboardWillHide
             static let homeOverviewShouldBecomeActive = Notification.Name("homeOverviewShouldBecomeActive")
             static let homePlayingShouldBecomeActive = Notification.Name("homePlayingShouldBecomeActive")
+            static let searchSongShouldBecomeActive = Notification.Name("searchSongShouldBecomeActive")
+            static let searchArtistsShouldBecomeActive = Notification.Name("searchArtistsShouldBecomeActive")
+            static let searchPlaylistsShouldBecomeActive = Notification.Name("searchPlaylistsShouldBecomeActive")
+            static let searchSpotsShouldBecomeActive = Notification.Name("searchSpotsShouldBecomeActive")
         }
         
         struct PlayViewShouldShow{
@@ -124,6 +128,7 @@ struct App{
         static let globalWrapperEmbedSegueIden = "GlobalWrapperEmbedSegueIden"
         static let LoginEmbedSegueIden = "LoginEmbedSegueIden"
         static let selectFromPlaylistEmbedSegueIden = "SelectFromPlaylistEmbedSegueIden"
+        static let embedSearchPageVCIden = "EmbedSearchPageVCIden"
     }
 }
 
