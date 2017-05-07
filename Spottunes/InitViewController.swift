@@ -8,8 +8,6 @@
 
 import UIKit
 
-fileprivate let loginEmbedSegueIden = "LoginEmbedSegue"
-fileprivate let homeEmbedSegueIden = "HomeWrapperEmbedSegue"
 
 protocol InitViewControllerDelegate: class {
     func homeInit()
@@ -29,9 +27,9 @@ class InitViewController: UIViewController {
             self.loginViewController?.delegate = self
         }
     }
-    var homeWrapperViewController: HomeWrapperViewController?{
+    var globalWrapperViewController: GlobalWrapperViewController?{
         didSet{
-            self.delegate = homeWrapperViewController
+            self.delegate = globalWrapperViewController
         }
     }
     
@@ -83,30 +81,28 @@ class InitViewController: UIViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let iden = segue.identifier{
             switch iden {
-            case loginEmbedSegueIden:
+            case App.SegueIden.LoginEmbedSegueIden:
                 if let loginVC = segue.destination as? LogInViewController{
                     self.loginViewController = loginVC
                 }
-            case homeEmbedSegueIden:
-                if let homeWrapperVC = segue.destination as? HomeWrapperViewController{
-                    self.homeWrapperViewController = homeWrapperVC
+            case App.SegueIden.globalWrapperEmbedSegueIden:
+                if let globalWrapperVC = segue.destination as? GlobalWrapperViewController{
+                    self.globalWrapperViewController = globalWrapperVC
                 }
             default:
                 break
             }
         }
     }
-    
 
     
 }
 
 extension InitViewController: LogInViewControllerDelegate {
     func finishedLogin() {
-        
         //bring home to the front
         self.statusBarShouldHidden = false
-        self.statusBarStyle = .lightContent
+        self.statusBarStyle = .default
         self.delegate?.homeInit()
         self.view.bringSubview(toFront: self.homeContainerView)
     }

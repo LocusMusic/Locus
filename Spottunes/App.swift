@@ -13,7 +13,6 @@ struct App{
     static let mainStoryboadName = "Main"
     static let grayColor = UIColor(hexString: "#8C8E94")
     static let backColor = UIColor(hexString: "#323335")
-//    static let currentLocation = App.delegate?.locationManager.startUpdate()
     static let themeColor = UIColor(red: 23 / 255.0, green: 131 / 255.0, blue: 198 / 255.0, alpha: 1)
     static let bannerAspectRatio: CGFloat = 3.0
     static let delegate = (UIApplication.shared.delegate as? AppDelegate)
@@ -24,21 +23,24 @@ struct App{
     static let userDefaults = UserDefaults()
     static let mediaMaxLenght: CGFloat = 600
     
-
-    
     struct Style{
+        struct Color{
+            static let heartActiveColor = UIColor(hexString: "#B70C1F")
+        }
+        
         struct NavigationBar{
             static let titleFont = UIFont(name: "HelveticaNeue-Bold", size: 17.0)!
             static let barTintColor = UIColor.white
             static let isTranslucent = false
-            static let titleTextAttribute = [NSForegroundColorAttributeName: UIColor.black]
+            static let titleTextAttribute = [NSForegroundColorAttributeName: App.backColor]
+            static let clipsToBounds = true
         }
         
         struct TabBar{
             static let tintColor = App.grayColor
             static let barTintColor = UIColor.white
             static let isTranslucent = false
-            static let titleTextAttribute = [NSForegroundColorAttributeName: UIColor.black]
+            static let titleTextAttribute = [NSForegroundColorAttributeName: App.backColor]
 
         }
         
@@ -71,6 +73,14 @@ struct App{
         struct MinPlayerView{
             static let height: CGFloat = 48
         }
+        
+        struct PlaylistSelection{
+            static let spotThumbnailWidth = App.screenWidth / 3.2
+        }
+        
+        struct AddMusicConatainerView{
+            static let minimizedCornerRadius: CGFloat = 8.0
+        }
 
     }
     
@@ -89,6 +99,12 @@ struct App{
             static let tracksKey = "tracks" //tracks key for the user info dictionary
             static let activeTrackIndex = "trackIndex" // active track key for ther user info dictionary
         }
+        
+        struct UpdatePlaylistPickerAfterSpotSelected{
+             static let name = Notification.Name("updatePlaylistPickerAfterSpotSelected")
+            static let spotKey = "spot" //tracks key for the user info dictionary
+
+        }
     }
     
     static func postLocalNotification(withName name: Notification.Name, object: Any? = nil, userInfo: [String: Any]? = nil){
@@ -103,6 +119,11 @@ struct App{
     
     struct SegueIden{
         static let embedPageVCIden = "EmbedPageVCIden"
+        static let addMusicEmbedSegueIden = "AddMusicEmbedSegueIden"
+        static let globalTabBarEmbedSegueIden = "GlobalTabBarEmbedSegueIden"
+        static let globalWrapperEmbedSegueIden = "GlobalWrapperEmbedSegueIden"
+        static let LoginEmbedSegueIden = "LoginEmbedSegueIden"
+        static let selectFromPlaylistEmbedSegueIden = "SelectFromPlaylistEmbedSegueIden"
     }
 }
 

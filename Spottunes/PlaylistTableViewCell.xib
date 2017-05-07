@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12117" systemVersion="16D32" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12084"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="PlaylistTableViewCell" rowHeight="134" id="P30-EL-ceu" customClass="PlaylistTableViewCell" customModule="Spottunes" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="391" height="134"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="P30-EL-ceu" id="faz-iz-CKb">
+                <rect key="frame" x="0.0" y="0.0" width="391" height="133.5"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="CZc-3L-JS7">
+                        <rect key="frame" x="16" y="8" width="48" height="48"/>
+                        <color key="backgroundColor" red="0.1960784314" green="0.20000000000000001" blue="0.20784313730000001" alpha="0.40000000000000002" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="48" id="JBC-ic-SA8"/>
+                            <constraint firstAttribute="height" constant="48" id="p5K-MH-NV9"/>
+                        </constraints>
+                    </imageView>
+                    <button hidden="YES" opaque="NO" alpha="0.80000000000000004" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MlF-hp-SdI">
+                        <rect key="frame" x="351" y="21.5" width="20" height="20"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="20" id="2W9-oi-sds"/>
+                            <constraint firstAttribute="width" constant="20" id="x6x-Z6-oaB"/>
+                        </constraints>
+                        <state key="normal" image="next-arrow-icon"/>
+                    </button>
+                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="Ucs-Yn-lkG">
+                        <rect key="frame" x="72" y="8" width="98.5" height="46.5"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Playlist Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ie5-Ui-49n">
+                                <rect key="frame" x="0.0" y="0.0" width="98.5" height="22"/>
+                                <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="16"/>
+                                <color key="textColor" red="0.1960784314" green="0.20000000000000001" blue="0.20784313730000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" text="Songs count" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="koq-MK-kLt">
+                                <rect key="frame" x="0.0" y="26" width="98.5" height="20.5"/>
+                                <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="15"/>
+                                <color key="textColor" red="0.1960784314" green="0.20000000000000001" blue="0.20784313730000001" alpha="0.80000000000000004" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                    </stackView>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ge7-1t-0TW" userLabel="Sparator View">
+                        <rect key="frame" x="72" y="66.5" width="303" height="1"/>
+                        <color key="backgroundColor" red="0.1960784314" green="0.20000000000000001" blue="0.20784313730000001" alpha="0.059999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="1" id="jLb-Ln-TTW"/>
+                        </constraints>
+                    </view>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="CZc-3L-JS7" firstAttribute="leading" secondItem="faz-iz-CKb" secondAttribute="leading" constant="16" id="13O-Y1-2pH"/>
+                    <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="Ge7-1t-0TW" secondAttribute="bottom" constant="8" id="BNU-wb-NZS"/>
+                    <constraint firstAttribute="trailing" secondItem="MlF-hp-SdI" secondAttribute="trailing" constant="20" id="YZw-kO-s9f"/>
+                    <constraint firstItem="Ge7-1t-0TW" firstAttribute="top" secondItem="Ucs-Yn-lkG" secondAttribute="bottom" constant="12" id="Zwe-pB-3GS"/>
+                    <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="CZc-3L-JS7" secondAttribute="bottom" constant="8" id="cMq-Es-m7X"/>
+                    <constraint firstItem="CZc-3L-JS7" firstAttribute="top" secondItem="faz-iz-CKb" secondAttribute="top" constant="8" id="eag-vp-zWo"/>
+                    <constraint firstItem="Ucs-Yn-lkG" firstAttribute="top" secondItem="CZc-3L-JS7" secondAttribute="top" id="iFg-R3-knx"/>
+                    <constraint firstItem="MlF-hp-SdI" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="Ucs-Yn-lkG" secondAttribute="trailing" constant="16" id="kPT-xH-aSk"/>
+                    <constraint firstAttribute="trailing" secondItem="Ge7-1t-0TW" secondAttribute="trailing" constant="16" id="l8h-Yp-ZvH"/>
+                    <constraint firstItem="MlF-hp-SdI" firstAttribute="centerY" secondItem="Ucs-Yn-lkG" secondAttribute="centerY" id="lOo-3X-FMg"/>
+                    <constraint firstItem="Ge7-1t-0TW" firstAttribute="leading" secondItem="Ucs-Yn-lkG" secondAttribute="leading" id="uEh-jb-722"/>
+                    <constraint firstItem="Ucs-Yn-lkG" firstAttribute="leading" secondItem="CZc-3L-JS7" secondAttribute="trailing" constant="8" id="v0y-Li-jAe"/>
+                </constraints>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="coverImageView" destination="CZc-3L-JS7" id="mGj-cX-M6a"/>
+                <outlet property="numberOfSongsLabel" destination="koq-MK-kLt" id="5In-m3-zjk"/>
+                <outlet property="playlistNameLabel" destination="Ie5-Ui-49n" id="9A5-rb-MQt"/>
+            </connections>
+            <point key="canvasLocation" x="38.5" y="-115"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <image name="next-arrow-icon" width="60" height="60"/>
+    </resources>
+</document>

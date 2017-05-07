@@ -47,13 +47,6 @@ class HomeWrapperViewController: UIViewController {
             }
         }
     }
-
-
-
 }
 
-extension HomeWrapperViewController: InitViewControllerDelegate{
-    func homeInit() {
-        self.tunesDetailVC?.initPlayer()
-    }
-}
+

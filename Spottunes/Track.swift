@@ -35,6 +35,9 @@ fileprivate let TrackKey = "track"
 fileprivate let AlbumKey = "album"
 fileprivate let ArtistsKey = "artists"
 fileprivate let ImagesKey = "images"
+fileprivate let DurationKey = "duration_ms"
+
+
 
 
 
@@ -55,6 +58,11 @@ class Track{
         return Album(dict: albumDict)
     }
     
+    var duration: TimeInterval{
+        let milliSeconds =  self.dict[DurationKey] as! TimeInterval
+        return milliSeconds / 1000
+    }
+    
     var artists: [Artist]?{
         guard let artistsDict = self.dict[ArtistsKey] as? [[String: Any]] else{
             return nil
@@ -65,6 +73,8 @@ class Track{
         return artists
     }
 
+    
+    
     func getCoverImage(withSize size: CoverSize) -> Image?{
         return self.album?.getCoverImage(withSize: size)
         

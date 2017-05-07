@@ -139,7 +139,6 @@ class TunesDetailsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         //init the player
-        self.initPlayer()
         
         //update the UI
         self.playerViewCenterYConstraint.constant = UIScreen.main.bounds.size.height - self.playerMinView.frame.size.height - (1 - playerViewSizeHeightFraction) *  UIScreen.main.bounds.size.height / 2
@@ -338,46 +337,4 @@ extension TunesDetailsViewController: UITableViewDelegate, UITableViewDataSource
     }
 }
 
-
-extension TunesDetailsViewController: SPTAudioStreamingPlaybackDelegate, SPTAudioStreamingDelegate {
-      
-    func initPlayer() {
-        self.streamController.playbackDelegate = self
-        self.streamController.delegate = self
-        do{
-            try streamController.start(withClientId:  SpotifyClient.auth.clientID)
-            let currentSession = SpotifyClient.auth.session
-            if currentSession != nil && currentSession!.isValid(){
-                print("session is valid ...")
-                self.streamController.login(withAccessToken: currentSession?.accessToken)
-            }else{
-                SpotifyClient.auth.renewSession(currentSession, callback: { (error, session) in
-                    if let session = session{
-                        print("renewing session...")
-                        //login after retrieving new access token
-                        self.streamController.login(withAccessToken: session.accessToken)
-                    }else if let error = error{
-                        print(error.localizedDescription)
-                    }
-                })
-            }
-        }catch{
-            print("can't start streaming view controller")
-        }
-    }
-
-    
-    func audioStreamingDidLogin(_ audioStreaming: SPTAudioStreamingController!) {
-        // after a user authenticates a session, the SPTAudioStreamingController is then initialized and this method called
-        print("logged in")
-        self.streamController.playSpotifyURI("spotify:track:58s6EuEYJdlb0kO7awm3Vp", startingWith: 0, startingWithPosition: 0, callback: { (error) in
-            if (error != nil) {
-                print("playing!")
-            }
-        })
-        
-        
-        
-    }
-}
 

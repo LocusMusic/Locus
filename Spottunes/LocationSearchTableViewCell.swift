@@ -20,7 +20,6 @@ class LocationSearchTableViewCell: UITableViewCell {
             addressLabel.text = location.address
         }
     }
-    
 
     override func awakeFromNib() {
         super.awakeFromNib()

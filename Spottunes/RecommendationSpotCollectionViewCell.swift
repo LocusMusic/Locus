@@ -23,7 +23,7 @@ class RecommendationSpotCollectionViewCell: UICollectionViewCell {
         }
     }
     
-    var spot: [Spot]?
+    var spot: [TuneSpot]?
     
     
     override func awakeFromNib() {

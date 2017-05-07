@@ -30,6 +30,7 @@ class PlayingTableViewCell: UITableViewCell {
             if let authorName = self.track.artists?.first?.name{
                 self.artistNameLabel.text = authorName
             }
+            self.thumbnailImageView.image = nil
             if let coverImage = self.track.getCoverImage(withSize: .small){
                 if let coverURL = coverImage.url{
                     self.thumbnailImageView.loadImageWithURL(coverURL)

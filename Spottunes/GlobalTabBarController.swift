@@ -8,14 +8,20 @@
 
 import UIKit
 
+protocol CustomGlobalTabBarControllerDelegate : class {
+    func addMusicTapped()
+}
+
 class GlobalTabBarController: UITabBarController {
     lazy var playView: PlayView = PlayView.instanceFromNib()
     
-    
     var tabBarOriginalY: CGFloat = 0
+    
+    weak var customDelegate: CustomGlobalTabBarControllerDelegate?
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.delegate = self
         self.tabBar.tintColor = App.Style.TabBar.tintColor
         self.tabBar.barTintColor = App.Style.TabBar.barTintColor
         self.tabBar.isTranslucent = App.Style.TabBar.isTranslucent
@@ -66,6 +72,7 @@ class GlobalTabBarController: UITabBarController {
         // Dispose of any resources that can be recreated.
     }
     
+
 }
 
 
@@ -82,6 +89,17 @@ extension GlobalTabBarController: PlayViewDelegate{
     func playViewBecomeMinimized(playView: PlayView) {
         self.tabBar.frame.origin.y =  self.tabBarOriginalY
     }
-
-    
 }
+
+extension GlobalTabBarController: UITabBarControllerDelegate{
+    func tabBarController(_ tabBarController: UITabBarController, shouldSelect viewController: UIViewController) -> Bool {
+        if self.viewControllers?.index(of: viewController) == 1{
+            //bring up the picker view
+            self.customDelegate?.addMusicTapped()
+            return false
+        }
+        return true
+    }
+}
+
+

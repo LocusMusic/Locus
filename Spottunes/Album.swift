@@ -107,6 +107,10 @@ class Album {
     
     
     func getCoverImage(withSize size: CoverSize) -> Image?{
+        let imagesCount = self.images?.count ?? 0
+        guard imagesCount - 1 >= size.hashValue else{
+            return nil
+        }
         if let coverImage = self.images?[size.hashValue] {
             return coverImage
         }else{

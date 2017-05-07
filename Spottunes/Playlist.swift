@@ -47,6 +47,10 @@ class Playlist: PFObject {
         return Tracks(dict: tracksDict)
     }
     
+    var trackCount: Int?{
+        return self.tracks?.total ?? 0
+    }
+    
     //the spotify representation
     var dict: [String: Any]!
     
@@ -67,11 +71,18 @@ class Playlist: PFObject {
     }
     
     func getCoverImage(withSize size: CoverSize) -> Image?{
-        if let coverImage = self.images?[size.hashValue] {
-            return coverImage
-        }else{
-            return self.images?.first
-        }
+//        print("\(name):\(self.images) ")
+//        let imagesCount = self.images?.count ?? 0
+//        guard imagesCount - 1 >= size.hashValue else{
+//            return nil
+//        }
+//        if let coverImage = self.images?[size.hashValue] {
+//            return coverImage
+//        }else{
+//        }
+        
+        return self.images?.first
+
     }
     
     
