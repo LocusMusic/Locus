@@ -35,9 +35,6 @@ class GlobalWrapperViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-//        TuneSpot.getNearByTuneSpots { (spots) in
-//            self.addMusicVC?.spots = spots
-//        }
     }
 
     
@@ -58,7 +55,7 @@ class GlobalWrapperViewController: UIViewController {
             switch iden{
             case App.SegueIden.addMusicEmbedSegueIden:
                 if let addMusicVC = segue.destination as? AddMusicViewController{
-                   // addMusicVC.delegate = self
+                    addMusicVC.delegate = self
                     self.addMusicVC = addMusicVC
                 }
             case App.SegueIden.globalTabBarEmbedSegueIden:
@@ -72,7 +69,7 @@ class GlobalWrapperViewController: UIViewController {
         }
     }
     
-    func closeAddMusicBox(playlistPickerContainerView: UIView? = nil){
+    func closeAddMusicBox(){
         //dismiss the add music box
         UIView.animate(withDuration: 0.3, delay: 0, options: .curveEaseInOut, animations: {
             self.addMusicConatainerView.frame = self.addMusicConatinerViewOriginalFrame
@@ -83,7 +80,6 @@ class GlobalWrapperViewController: UIViewController {
                 self.addMusicConatainerView.layer.cornerRadius = App.Style.AddMusicConatainerView.minimizedCornerRadius
                 self.overlayView.isHidden = true
                 self.addMusicConatainerView.isHidden = true
-                playlistPickerContainerView?.isHidden = true
             }
         })
     }
@@ -95,7 +91,7 @@ class GlobalWrapperViewController: UIViewController {
         self.overlayView.alpha = 0
         let zoomOutTransform = CGAffineTransform(scaleX: 0.96, y: 0.96)
         UIView.animate(withDuration: 0.3, delay: 0, options: .curveEaseInOut, animations: {
-            self.addMusicConatainerView.frame = CGRect(x: 0, y: App.screenHeight - 330, width: App.screenWidth, height: App.screenHeight)
+            self.addMusicConatainerView.frame = CGRect(x: 0, y: App.screenHeight - 190, width: App.screenWidth, height:190)
             self.overlayView.alpha = 0.8
             self.tabBarContainerView.transform = zoomOutTransform
         }, completion: {
@@ -132,6 +128,10 @@ extension GlobalWrapperViewController: AddMusicViewControllerDelegate{
             self.addMusicConatainerView.layer.cornerRadius = 0
         }, completion: nil)
     }
+    
+    func addMusicBoxShouldClose() {
+        self.closeAddMusicBox()
+    }
 }
 
 extension GlobalWrapperViewController: CustomGlobalTabBarControllerDelegate{
@@ -139,9 +139,7 @@ extension GlobalWrapperViewController: CustomGlobalTabBarControllerDelegate{
         self.openAddMusicBox()
     }
     
-    func closeBtnTapped(playlistPickerContainerView: UIView) {
-        self.closeAddMusicBox(playlistPickerContainerView: playlistPickerContainerView)
-    }
+   
     
 }
 

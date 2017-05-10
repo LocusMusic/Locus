@@ -15,26 +15,39 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
     
-    var locationManager : CLLocationManager!
+    var currentUser: User?
+    
+//    var locationManager : CLLocationManager!
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
-        
-        // Override point for customization after application launch.
-       
-        configureLocation()
-        
-        TuneSpot.registerSubclass()
-
-        SpotifyClient.authInit()
+//        
+//        Parse.enableLocalDatastore()
+//        if Parse.isLocalDatastoreEnabled(){
+//            print("enabled")
+//        }else{
+//            print("not enabled")
+//        }
         
         Parse.initialize(
             with: ParseClientConfiguration(block: { (configuration: ParseMutableClientConfiguration) -> Void in
+                
                 configuration.applicationId = "SpotTunes"
                 configuration.clientKey = "SpotTunesIsGucciJKLDFSDJLKJFLAJFKLDSHLJASKLD"
                 configuration.server = "https://spottunes.herokuapp.com/parse"
+                configuration.isLocalDatastoreEnabled = true
             })
         )
         self.configureParse()
+        
+        // Override point for customization after application launch.
+       // configureLocation()
+        SpotifyClient.authInit()
+        //enable the local storag
+
+       
+
+        
+
         return true
     }
 
@@ -67,14 +80,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     func configureParse() {
+        TuneSpot.registerSubclass()
         Playlist.registerSubclass()
         User.registerSubclass()
+        
     }
     
-    func configureLocation() {
-        self.locationManager = CLLocationManager()
-        self.locationManager.startUpdatingLocation()
-    }
+//    func configureLocation() {
+//        self.locationManager = CLLocationManager()
+//        self.locationManager.startUpdatingLocation()
+//    }
 
 
 }

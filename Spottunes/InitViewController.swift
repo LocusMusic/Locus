@@ -53,10 +53,14 @@ class InitViewController: UIViewController {
         
         SpotifyClient.updateSession { (session) in
             if session != nil{
-                print("session exsited")
-                self.statusBarShouldHidden = false
-                self.statusBarStyle = .default
-                self.view.bringSubview(toFront: self.homeContainerView)
+                User.getCurrentUser(completionHandler: { (user) in
+                    if let user = user{
+                        App.delegate?.currentUser = user
+                        self.statusBarShouldHidden = false
+                        self.statusBarStyle = .default
+                        self.view.bringSubview(toFront: self.homeContainerView)
+                    }
+                })
             }else{
                 print("GO TO LOGIN PAGE")
                 self.statusBarShouldHidden = true

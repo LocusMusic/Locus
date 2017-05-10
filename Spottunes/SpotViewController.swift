@@ -97,11 +97,11 @@ class SpotViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
        
-        let user_1 = User(name: "Kesong Xie", avatorURL: "profile")
-        let user_2 = User(name: "Edison Huang", avatorURL: "sunset")
-        self.listeners = [user_1, user_2]
+//        let user_1 = User(name: "Kesong Xie", avatorURL: "profile")
+//        let user_2 = User(name: "Edison Huang", avatorURL: "sunset")
+//        self.listeners = [user_1, user_2]
         
-        
+
         SpotifyClient.fetchCurrentUserPlayList { (playlists) in
             if let playlists =  playlists{
                 if let playlist = playlists.first{

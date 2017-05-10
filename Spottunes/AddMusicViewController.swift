@@ -18,15 +18,36 @@ protocol AddMusicViewControllerDelegate : class {
     func keyboardDidShow(keyboardSize: CGSize)
     func keyboardWillHide()
     func didSelectSpot(spot: TuneSpot)
-    func closeBtnTapped(playlistPickerContainerView: UIView)
+    func addMusicBoxShouldClose()
 }
 
 class AddMusicViewController: UIViewController {
     
+    
+    @IBOutlet weak var navigationBar: UINavigationBar!{
+        didSet{
+            self.navigationBar.updateNavigationBarAppearance()
+            let titleFont = UIFont(name: "Avenir-Medium", size: 17.0)!
+            self.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: App.grayColor, NSFontAttributeName: titleFont]
+            
+        }
+    }
+    
+    weak var delegate: AddMusicViewControllerDelegate?
 
+    @IBAction func crossIconTapped(_ sender: UIBarButtonItem) {
+        self.delegate?.addMusicBoxShouldClose()
+    }
+
+    @IBAction func createBtnTapped(_ sender: UIButton) {
+        self.delegate?.addMusicBoxShouldClose()
+        self.performSegue(withIdentifier: App.SegueIden.selectSpotSegue, sender: nil)
+    }
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        print(App.delegate?.currentUser)
        
     }
 

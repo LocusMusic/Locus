@@ -21,6 +21,9 @@ class GlobalTabBarController: UITabBarController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        print("current user form tabbar ")
+        print(User.currentUser)
+        
         self.tabBar.unselectedItemTintColor = App.grayColor
         self.delegate = self
         self.tabBar.tintColor = App.Style.TabBar.tintColor

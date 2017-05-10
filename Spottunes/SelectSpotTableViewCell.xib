@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12117" systemVersion="16D32" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12084"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" rowHeight="124" id="KGk-i7-Jjw" userLabel="SelectSpotTableViewCell" customClass="SelectSpotTableViewCell" customModule="Spottunes" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="353" height="124"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="353" height="123.5"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="location-icon" translatesAutoresizingMaskIntoConstraints="NO" id="njt-pV-ivq">
+                        <rect key="frame" x="16" y="16" width="48" height="48"/>
+                        <color key="backgroundColor" red="0.1960784314" green="0.20000000000000001" blue="0.20784313730000001" alpha="0.40000000000000002" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="48" id="Jf3-XG-StX"/>
+                            <constraint firstAttribute="width" constant="48" id="dK1-oG-uEk"/>
+                        </constraints>
+                    </imageView>
+                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="YmD-tU-Pnr">
+                        <rect key="frame" x="78" y="16" width="259" height="46.5"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Spot name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nw3-iO-vRv">
+                                <rect key="frame" x="0.0" y="0.0" width="259" height="22"/>
+                                <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="16"/>
+                                <color key="textColor" red="0.1960784314" green="0.20000000000000001" blue="0.20784313730000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Address" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zgY-eh-vSH">
+                                <rect key="frame" x="0.0" y="26" width="259" height="20.5"/>
+                                <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="15"/>
+                                <color key="textColor" red="0.1960784314" green="0.20000000000000001" blue="0.20784313730000001" alpha="0.80000000000000004" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                    </stackView>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="r3R-5O-dRs" userLabel="Sparator View">
+                        <rect key="frame" x="78" y="70.5" width="275" height="1"/>
+                        <color key="backgroundColor" red="0.1960784314" green="0.20000000000000001" blue="0.20784313730000001" alpha="0.059999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="1" id="FhD-0u-FfU"/>
+                        </constraints>
+                    </view>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="r3R-5O-dRs" firstAttribute="top" secondItem="YmD-tU-Pnr" secondAttribute="bottom" constant="8" id="HkQ-GF-2lR"/>
+                    <constraint firstAttribute="trailing" secondItem="YmD-tU-Pnr" secondAttribute="trailing" constant="16" id="R0m-Kh-iXJ"/>
+                    <constraint firstItem="njt-pV-ivq" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="16" id="W6B-Yh-G5f"/>
+                    <constraint firstItem="njt-pV-ivq" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="16" id="XfX-Jf-k7g"/>
+                    <constraint firstAttribute="trailing" secondItem="r3R-5O-dRs" secondAttribute="trailing" id="dd0-BD-b7S"/>
+                    <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="njt-pV-ivq" secondAttribute="bottom" constant="16" id="kNa-4W-9AG"/>
+                    <constraint firstItem="YmD-tU-Pnr" firstAttribute="top" secondItem="njt-pV-ivq" secondAttribute="top" id="nqo-wf-Nqm"/>
+                    <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="YmD-tU-Pnr" secondAttribute="bottom" constant="16" id="uhD-M8-nZ8"/>
+                    <constraint firstItem="r3R-5O-dRs" firstAttribute="leading" secondItem="YmD-tU-Pnr" secondAttribute="leading" id="xYj-cU-XV9"/>
+                    <constraint firstItem="YmD-tU-Pnr" firstAttribute="leading" secondItem="njt-pV-ivq" secondAttribute="trailing" constant="14" id="yZ2-Ce-9Vg"/>
+                </constraints>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="addressLabel" destination="zgY-eh-vSH" id="3Ru-EX-Hrc"/>
+                <outlet property="locationImageView" destination="njt-pV-ivq" id="0Gj-i9-A6D"/>
+                <outlet property="spotNameLabel" destination="nw3-iO-vRv" id="u6d-HC-M0l"/>
+            </connections>
+            <point key="canvasLocation" x="50.5" y="94"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <image name="location-icon" width="100" height="100"/>
+    </resources>
+</document>

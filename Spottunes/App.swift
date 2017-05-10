@@ -16,7 +16,7 @@ struct App{
     static let themeColor = UIColor(red: 23 / 255.0, green: 131 / 255.0, blue: 198 / 255.0, alpha: 1)
     static let bannerAspectRatio: CGFloat = 3.0
     static let delegate = (UIApplication.shared.delegate as? AppDelegate)
-    static let currentLocation = delegate?.locationManager.location
+//    static let currentLocation = delegate?.locationManager.location
     static let mainStoryBoard = UIStoryboard(name: App.mainStoryboadName, bundle: nil)
     static let screenWidth = UIScreen.main.bounds.size.width
     static let screenHeight = UIScreen.main.bounds.size.height
@@ -29,7 +29,7 @@ struct App{
         }
         
         struct NavigationBar{
-            static let titleFont = UIFont(name: "HelveticaNeue-Bold", size: 17.0)!
+            static let titleFont = UIFont(name: "Avenir-Heavy", size: 17.0)!
             static let barTintColor = UIColor.white
             static let isTranslucent = false
             static let titleTextAttribute = [NSForegroundColorAttributeName: App.backColor]
@@ -79,6 +79,10 @@ struct App{
         
         struct AddMusicConatainerView{
             static let minimizedCornerRadius: CGFloat = 8.0
+        }
+        
+        struct TableView{
+            static let contentInset = UIEdgeInsetsMake(8, 0, 0, 0)
         }
 
     }
@@ -135,6 +139,15 @@ struct App{
         static let LoginEmbedSegueIden = "LoginEmbedSegueIden"
         static let selectFromPlaylistEmbedSegueIden = "SelectFromPlaylistEmbedSegueIden"
         static let embedSearchPageVCIden = "EmbedSearchPageVCIden"
+        static let selectPlayListSegue = "SelectPlayListSegue"
+        static let selectSpotSegue = "SelectSpotSegue"
+        static let selectSongsSegue = "SelectSongsSegue"
+    }
+    
+    struct PostInfoKey{
+        static let spot = "spot"
+        static let user = "user"
+        static let playlist = "playlistId"
     }
     
     static func postStatusBarShouldUpdateNotification(style : UIStatusBarStyle){
@@ -145,7 +158,6 @@ struct App{
     static func setStatusBarStyle(style : UIStatusBarStyle){
         let info = [App.LocalNotification.StatusBarStyleUpdate.styleKey : style]
         App.postLocalNotification(withName: App.LocalNotification.StatusBarStyleUpdate.name, object: self, userInfo: info)
-
     }
 
 }

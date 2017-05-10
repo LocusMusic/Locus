@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Parse
 import CoreLocation
 
 fileprivate let CLIENT_ID = "1KQIXCE5TKJEOJW5MYZY25NZNTCRT2LHOYGL4YP2QCZWSDNF"
@@ -51,14 +52,13 @@ class FoursquareClient: NSObject {
     }
     
     func searchNearByLocation(query: String, success: @escaping ([Location])->()){
-        
-        
-        if let ll = App.currentLocation?.coordinate {
-            fetchSearchPlacesResult(query, ll: ll, success: success)
-            //fetchSearchPlacesResult(searchBar.text!, ll, success: ([Location]) -> ())
-        }
-        else{
-            print("searchNearByLocation failed.")
+        PFGeoPoint.geoPointForCurrentLocation { (point, error) in
+            if let geoPoint = point{
+                let coordinate = CLLocationCoordinate2D(latitude: geoPoint.latitude, longitude: geoPoint.longitude)
+                self.fetchSearchPlacesResult(query, ll: coordinate, success: success)
+            }else{
+                print("search nearby failed")
+            }
         }
     }
     
