@@ -29,17 +29,18 @@ class GlobalWrapperViewController: UIViewController {
     
     var addMusicConatinerViewOriginalFrame: CGRect!
     
-    var addMusicOpenOriginalY: CGFloat!
+    var addMusicOpenOriginalY: CGFloat = 0
     
     var addMusicVC: AddMusicViewController?
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        TuneSpot.getNearByTuneSpots { (spots) in
-            self.addMusicVC?.spots = spots
-        }
+//        TuneSpot.getNearByTuneSpots { (spots) in
+//            self.addMusicVC?.spots = spots
+//        }
     }
 
+    
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
@@ -57,7 +58,7 @@ class GlobalWrapperViewController: UIViewController {
             switch iden{
             case App.SegueIden.addMusicEmbedSegueIden:
                 if let addMusicVC = segue.destination as? AddMusicViewController{
-                    addMusicVC.delegate = self
+                   // addMusicVC.delegate = self
                     self.addMusicVC = addMusicVC
                 }
             case App.SegueIden.globalTabBarEmbedSegueIden:
@@ -94,7 +95,7 @@ class GlobalWrapperViewController: UIViewController {
         self.overlayView.alpha = 0
         let zoomOutTransform = CGAffineTransform(scaleX: 0.96, y: 0.96)
         UIView.animate(withDuration: 0.3, delay: 0, options: .curveEaseInOut, animations: {
-            self.addMusicConatainerView.frame = CGRect(x: 0, y: App.screenHeight - 320, width: App.screenWidth, height: App.screenHeight)
+            self.addMusicConatainerView.frame = CGRect(x: 0, y: App.screenHeight - 330, width: App.screenWidth, height: App.screenHeight)
             self.overlayView.alpha = 0.8
             self.tabBarContainerView.transform = zoomOutTransform
         }, completion: {
@@ -103,10 +104,7 @@ class GlobalWrapperViewController: UIViewController {
                 self.addMusicOpenOriginalY = self.addMusicConatainerView.frame.origin.y
             }
         })
-
     }
-    
-
 }
 
 

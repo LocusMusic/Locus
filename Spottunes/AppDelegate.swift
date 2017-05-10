@@ -68,6 +68,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func configureParse() {
         Playlist.registerSubclass()
+        User.registerSubclass()
     }
     
     func configureLocation() {

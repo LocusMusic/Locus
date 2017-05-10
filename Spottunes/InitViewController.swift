@@ -49,6 +49,8 @@ class InitViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        NotificationCenter.default.addObserver(self, selector: #selector(statusBarShouldUpdate(_:)), name: App.LocalNotification.StatusBarStyleUpdate.name, object: nil)
+        
         SpotifyClient.updateSession { (session) in
             if session != nil{
                 print("session exsited")
@@ -92,6 +94,13 @@ class InitViewController: UIViewController {
             default:
                 break
             }
+        }
+    }
+    
+    func statusBarShouldUpdate(_ notification: Notification){
+        if let statusBarStyle = notification.userInfo?[App.LocalNotification.StatusBarStyleUpdate.styleKey] as? UIStatusBarStyle{
+            self.statusBarStyle = statusBarStyle
+            self.setNeedsStatusBarAppearanceUpdate()
         }
     }
 

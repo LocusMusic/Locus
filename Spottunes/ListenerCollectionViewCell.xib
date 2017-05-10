@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12117" systemVersion="16D32" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12084"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="ListenerCollectionViewCell" id="gTV-IL-0wX" customClass="ListenerCollectionViewCell" customModule="Spottunes" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="392" height="100"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                <rect key="frame" x="0.0" y="0.0" width="392" height="100"/>
+                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                <subviews>
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="profile" translatesAutoresizingMaskIntoConstraints="NO" id="KHG-eb-7wD">
+                        <rect key="frame" x="9" y="12" width="48" height="48"/>
+                        <color key="backgroundColor" red="0.1960784314" green="0.20000000000000001" blue="0.20784313730000001" alpha="0.40000000000000002" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="48" id="01f-0E-yaJ"/>
+                            <constraint firstAttribute="height" constant="48" id="n8K-c7-8cc"/>
+                        </constraints>
+                    </imageView>
+                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="2" translatesAutoresizingMaskIntoConstraints="NO" id="qjd-Wi-KKr">
+                        <rect key="frame" x="66" y="12" width="306" height="46"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Kesong Xie" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TM7-oC-PG7">
+                                <rect key="frame" x="0.0" y="0.0" width="306" height="22"/>
+                                <fontDescription key="fontDescription" name="Avenir-Heavy" family="Avenir" pointSize="16"/>
+                                <color key="textColor" red="0.1960784314" green="0.20000000000000001" blue="0.20784313730000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <stackView opaque="NO" contentMode="scaleToFill" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="qeI-Or-dRD">
+                                <rect key="frame" x="0.0" y="24" width="306" height="22"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="1000" verticalHuggingPriority="251" text="U2" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YIe-eR-boj">
+                                        <rect key="frame" x="0.0" y="0.0" width="20.5" height="22"/>
+                                        <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="16"/>
+                                        <color key="textColor" red="0.1960784314" green="0.20000000000000001" blue="0.20784313730000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="750" verticalHuggingPriority="251" text="·" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KTG-2T-m0x">
+                                        <rect key="frame" x="24.5" y="0.0" width="4.5" height="22"/>
+                                        <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="16"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="With or without you" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4g1-yI-zfL">
+                                        <rect key="frame" x="33" y="0.0" width="273" height="22"/>
+                                        <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="15"/>
+                                        <color key="textColor" red="0.1960784314" green="0.20000000000000001" blue="0.20784313730000001" alpha="0.80000000000000004" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                            </stackView>
+                        </subviews>
+                    </stackView>
+                </subviews>
+            </view>
+            <constraints>
+                <constraint firstItem="KHG-eb-7wD" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="12" id="0GW-Ee-EOj"/>
+                <constraint firstAttribute="trailing" secondItem="qjd-Wi-KKr" secondAttribute="trailing" constant="20" id="KAh-sF-SY7"/>
+                <constraint firstItem="qjd-Wi-KKr" firstAttribute="leading" secondItem="KHG-eb-7wD" secondAttribute="trailing" constant="9" id="P77-XZ-ai4"/>
+                <constraint firstItem="KHG-eb-7wD" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="9" id="VqN-DH-TPP"/>
+                <constraint firstItem="qjd-Wi-KKr" firstAttribute="top" secondItem="KHG-eb-7wD" secondAttribute="top" id="Zqo-tT-Luv"/>
+            </constraints>
+            <size key="customSize" width="392" height="100"/>
+            <connections>
+                <outlet property="authorNameLabel" destination="YIe-eR-boj" id="poO-lD-Pgi"/>
+                <outlet property="nameLabel" destination="TM7-oC-PG7" id="g3d-JS-4bt"/>
+                <outlet property="profileImageView" destination="KHG-eb-7wD" id="Re5-tJ-Fhn"/>
+                <outlet property="songNameLabel" destination="4g1-yI-zfL" id="Kx6-Ux-Jge"/>
+            </connections>
+            <point key="canvasLocation" x="205" y="79"/>
+        </collectionViewCell>
+    </objects>
+    <resources>
+        <image name="profile" width="927" height="1251"/>
+    </resources>
+</document>

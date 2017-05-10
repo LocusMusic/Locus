@@ -13,20 +13,20 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="SmartGenreReuseIden" id="gTV-IL-0wX" userLabel="SmartGenreCollectionViewCell" customClass="SmartGenreCollectionViewCell" customModule="Spottunes" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="136" height="246"/>
+            <rect key="frame" x="0.0" y="0.0" width="126" height="186"/>
             <autoresizingMask key="autoresizingMask"/>
             <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                <rect key="frame" x="0.0" y="0.0" width="136" height="246"/>
+                <rect key="frame" x="0.0" y="0.0" width="126" height="186"/>
                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 <subviews>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="0Bk-K1-XW7">
-                        <rect key="frame" x="0.0" y="0.0" width="136" height="136"/>
+                        <rect key="frame" x="0.0" y="0.0" width="126" height="126"/>
                         <constraints>
                             <constraint firstAttribute="width" secondItem="0Bk-K1-XW7" secondAttribute="height" multiplier="1:1" id="EBw-uV-RhL"/>
                         </constraints>
                     </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="MOOD" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fXv-L9-cwO">
-                        <rect key="frame" x="0.0" y="144" width="136" height="20.5"/>
+                        <rect key="frame" x="0.0" y="134" width="126" height="20.5"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="20" id="gIf-mY-kY1"/>
                         </constraints>
@@ -44,12 +44,12 @@
                 <constraint firstItem="fXv-L9-cwO" firstAttribute="trailing" secondItem="0Bk-K1-XW7" secondAttribute="trailing" id="Yov-1Q-hPE"/>
                 <constraint firstItem="fXv-L9-cwO" firstAttribute="top" secondItem="0Bk-K1-XW7" secondAttribute="bottom" constant="8" symbolic="YES" id="tGt-ir-xSG"/>
             </constraints>
-            <size key="customSize" width="136" height="246"/>
+            <size key="customSize" width="126" height="186"/>
             <connections>
                 <outlet property="genreNameLabel" destination="fXv-L9-cwO" id="mZE-Vv-luz"/>
                 <outlet property="thumbnailImageView" destination="0Bk-K1-XW7" id="wgU-aT-bMV"/>
             </connections>
-            <point key="canvasLocation" x="92" y="217"/>
+            <point key="canvasLocation" x="87" y="187"/>
         </collectionViewCell>
     </objects>
 </document>

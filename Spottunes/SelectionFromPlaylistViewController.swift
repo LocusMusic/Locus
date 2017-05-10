@@ -57,7 +57,7 @@ class SelectionFromPlaylistViewController: UIViewController {
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
-        self.spotThumbnailWidthConstraint.constant = App.Style.PlaylistSelection.spotThumbnailWidth
+//        self.spotThumbnailWidthConstraint.constant = App.Style.PlaylistSelection.spotThumbnailWidth
         self.tableView.setAndLayoutTableHeaderView(header: self.headerView)
     }
 

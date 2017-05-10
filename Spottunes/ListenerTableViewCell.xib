@@ -18,33 +18,33 @@
                 <rect key="frame" x="0.0" y="0.0" width="325" height="101.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="images-1" translatesAutoresizingMaskIntoConstraints="NO" id="gOA-co-3dB">
-                        <rect key="frame" x="16" y="16" width="48" height="48"/>
-                        <color key="backgroundColor" red="0.90196078430000004" green="0.90196078430000004" blue="0.90196078430000004" alpha="1" colorSpace="calibratedRGB"/>
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="profile" translatesAutoresizingMaskIntoConstraints="NO" id="gOA-co-3dB">
+                        <rect key="frame" x="16" y="16" width="60" height="60"/>
+                        <color key="backgroundColor" red="0.1960784314" green="0.20000000000000001" blue="0.20784313730000001" alpha="0.40000000000000002" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstAttribute="height" constant="48" id="ayd-ba-gzL"/>
-                            <constraint firstAttribute="width" constant="48" id="iFM-Pd-9Fo"/>
+                            <constraint firstAttribute="height" constant="60" id="ayd-ba-gzL"/>
+                            <constraint firstAttribute="width" constant="60" id="iFM-Pd-9Fo"/>
                         </constraints>
                     </imageView>
                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="sq9-r2-1OK">
-                        <rect key="frame" x="72" y="16" width="233" height="45.5"/>
+                        <rect key="frame" x="84" y="16" width="221" height="48"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="kesongxie" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4sE-2S-4N7">
-                                <rect key="frame" x="0.0" y="0.0" width="233" height="22"/>
-                                <fontDescription key="fontDescription" name="Avenir-Heavy" family="Avenir" pointSize="16"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Kesong Xie" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4sE-2S-4N7">
+                                <rect key="frame" x="0.0" y="0.0" width="221" height="23.5"/>
+                                <fontDescription key="fontDescription" name="Avenir-Heavy" family="Avenir" pointSize="17"/>
                                 <color key="textColor" red="0.1960784314" green="0.20000000000000001" blue="0.20784313730000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="U2 · With or without you" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="snI-OE-KCh">
-                                <rect key="frame" x="0.0" y="26" width="233" height="19.5"/>
-                                <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="14"/>
+                                <rect key="frame" x="0.0" y="27.5" width="221" height="20.5"/>
+                                <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="15"/>
                                 <color key="textColor" red="0.1960784314" green="0.20000000000000001" blue="0.20784313730000001" alpha="0.80000000000000004" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
                     </stackView>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wcX-5w-eMg" userLabel="Sparator View">
-                        <rect key="frame" x="72" y="73.5" width="233" height="1"/>
+                        <rect key="frame" x="84" y="78" width="221" height="1"/>
                         <color key="backgroundColor" red="0.1960784314" green="0.20000000000000001" blue="0.20784313730000001" alpha="0.059999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="1" id="3gE-Z5-MZ5"/>
@@ -53,7 +53,7 @@
                 </subviews>
                 <constraints>
                     <constraint firstAttribute="trailing" secondItem="sq9-r2-1OK" secondAttribute="trailing" constant="20" id="4qa-KJ-eQw"/>
-                    <constraint firstItem="wcX-5w-eMg" firstAttribute="top" secondItem="sq9-r2-1OK" secondAttribute="bottom" constant="12" id="Aah-Va-R2L"/>
+                    <constraint firstItem="wcX-5w-eMg" firstAttribute="top" secondItem="sq9-r2-1OK" secondAttribute="bottom" constant="14" id="Aah-Va-R2L"/>
                     <constraint firstItem="gOA-co-3dB" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="16" id="CNP-dF-5Z2"/>
                     <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="wcX-5w-eMg" secondAttribute="bottom" constant="16" id="JVT-4Y-Dwm"/>
                     <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="gOA-co-3dB" secondAttribute="bottom" constant="16" id="N3e-Ug-6wM"/>
@@ -73,6 +73,6 @@
         </tableViewCell>
     </objects>
     <resources>
-        <image name="images-1" width="300" height="300"/>
+        <image name="profile" width="927" height="1251"/>
     </resources>
 </document>

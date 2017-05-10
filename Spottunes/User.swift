@@ -17,6 +17,16 @@ class User: PFObject {
         return self[spotifyIdKey] as? String
     }
     
+    var name: String?
+    
+    var avatorURL: String?
+    
+    init(name: String, avatorURL: String) {
+        super.init()
+        self.name = name
+        self.avatorURL = avatorURL
+    }
+    
     //Create a user and save it to Parse
     class func register(spotifyId: String) {
         let user = PFObject(className: className)
@@ -39,5 +49,11 @@ class User: PFObject {
                 completionHandler(false)
             }
         }
+    }
+}
+
+extension User: PFSubclassing {
+    static func parseClassName() -> String {
+        return className
     }
 }

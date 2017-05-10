@@ -21,6 +21,7 @@ class GlobalTabBarController: UITabBarController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.tabBar.unselectedItemTintColor = App.grayColor
         self.delegate = self
         self.tabBar.tintColor = App.Style.TabBar.tintColor
         self.tabBar.barTintColor = App.Style.TabBar.barTintColor
@@ -93,7 +94,13 @@ extension GlobalTabBarController: PlayViewDelegate{
 
 extension GlobalTabBarController: UITabBarControllerDelegate{
     func tabBarController(_ tabBarController: UITabBarController, shouldSelect viewController: UIViewController) -> Bool {
-        if self.viewControllers?.index(of: viewController) == 1{
+        if self.viewControllers?.index(of: viewController) == 0{
+             //home
+            App.setStatusBarStyle(style: .default)
+        }
+
+        
+        if self.viewControllers?.index(of: viewController) == 2{
             //bring up the picker view
             self.customDelegate?.addMusicTapped()
             return false

@@ -37,11 +37,10 @@ struct App{
         }
         
         struct TabBar{
-            static let tintColor = App.grayColor
+            static let tintColor = App.backColor
             static let barTintColor = UIColor.white
             static let isTranslucent = false
             static let titleTextAttribute = [NSForegroundColorAttributeName: App.backColor]
-
         }
         
         struct LoginBtn{
@@ -84,6 +83,8 @@ struct App{
 
     }
     
+    
+    
     struct LocalNotification{
         struct Name{
             static let mapShouldReveal = Notification.Name("mapShouldReveal")
@@ -105,10 +106,15 @@ struct App{
         }
         
         struct UpdatePlaylistPickerAfterSpotSelected{
-             static let name = Notification.Name("updatePlaylistPickerAfterSpotSelected")
+            static let name = Notification.Name("updatePlaylistPickerAfterSpotSelected")
             static let spotKey = "spot" //tracks key for the user info dictionary
-
         }
+        
+        struct StatusBarStyleUpdate{
+            static let name = Notification.Name("StatusBarStyleUpdate")
+            static let styleKey = "style" //tracks key for the user info dictionary
+        }
+        
     }
     
     static func postLocalNotification(withName name: Notification.Name, object: Any? = nil, userInfo: [String: Any]? = nil){
@@ -130,6 +136,18 @@ struct App{
         static let selectFromPlaylistEmbedSegueIden = "SelectFromPlaylistEmbedSegueIden"
         static let embedSearchPageVCIden = "EmbedSearchPageVCIden"
     }
+    
+    static func postStatusBarShouldUpdateNotification(style : UIStatusBarStyle){
+        let userInfo = [App.LocalNotification.StatusBarStyleUpdate.styleKey: style]
+        App.postLocalNotification(withName: App.LocalNotification.StatusBarStyleUpdate.name, object: nil, userInfo: userInfo)
+    }
+    
+    static func setStatusBarStyle(style : UIStatusBarStyle){
+        let info = [App.LocalNotification.StatusBarStyleUpdate.styleKey : style]
+        App.postLocalNotification(withName: App.LocalNotification.StatusBarStyleUpdate.name, object: self, userInfo: info)
+
+    }
+
 }
 
 enum CoverSize{
