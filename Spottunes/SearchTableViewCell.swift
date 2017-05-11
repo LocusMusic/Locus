@@ -21,6 +21,20 @@ class SearchTableViewCell: UITableViewCell {
     
     @IBOutlet weak var subtitleLabel: UILabel!
     
+    var data: Any! {
+        didSet {
+            if let songs = self.data as? Track {
+                print(songs)
+            } else if let artists = self.data as? Artist {
+                print(artists)
+            } else if let playlists = self.data as? Playlist {
+                print(playlists)
+            } else if let spots = self.data as? TuneSpot {
+                print(spots)
+            }
+        }
+    }
+    
     var track: Track!{
         didSet{
             if let name = self.track.name{
