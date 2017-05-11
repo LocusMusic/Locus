@@ -7,6 +7,15 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		28974A881EC422CC0037704A /* SearchEmbedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28974A7F1EC422CC0037704A /* SearchEmbedViewController.swift */; };
+		28974A891EC422CC0037704A /* SearchResultsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28974A801EC422CC0037704A /* SearchResultsViewController.swift */; };
+		28974A8A1EC422CC0037704A /* SongsSearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28974A811EC422CC0037704A /* SongsSearchViewController.swift */; };
+		28974A8B1EC422CC0037704A /* SearchTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28974A821EC422CC0037704A /* SearchTableViewCell.swift */; };
+		28974A8C1EC422CC0037704A /* Search.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 28974A831EC422CC0037704A /* Search.storyboard */; };
+		28974A8D1EC422CC0037704A /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28974A841EC422CC0037704A /* SearchViewController.swift */; };
+		28974A8E1EC422CC0037704A /* ArtistsSearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28974A851EC422CC0037704A /* ArtistsSearchViewController.swift */; };
+		28974A8F1EC422CC0037704A /* SpotsSearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28974A861EC422CC0037704A /* SpotsSearchViewController.swift */; };
+		28974A901EC422CC0037704A /* PlaylistsSearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28974A871EC422CC0037704A /* PlaylistsSearchViewController.swift */; };
 		7A4CF60BAF12A50A9C836991 /* Pods_Spottunes.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C5A35C681814C640EE9D42AC /* Pods_Spottunes.framework */; };
 		981A6D301EB021B80045E2FD /* RecommendationSpotCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 981A6D2E1EB021B80045E2FD /* RecommendationSpotCollectionViewCell.swift */; };
 		981A6D311EB021B80045E2FD /* RecommendationSpotCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 981A6D2F1EB021B80045E2FD /* RecommendationSpotCollectionViewCell.xib */; };
@@ -113,6 +122,15 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		28974A7F1EC422CC0037704A /* SearchEmbedViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchEmbedViewController.swift; sourceTree = "<group>"; };
+		28974A801EC422CC0037704A /* SearchResultsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchResultsViewController.swift; sourceTree = "<group>"; };
+		28974A811EC422CC0037704A /* SongsSearchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SongsSearchViewController.swift; sourceTree = "<group>"; };
+		28974A821EC422CC0037704A /* SearchTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchTableViewCell.swift; sourceTree = "<group>"; };
+		28974A831EC422CC0037704A /* Search.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Search.storyboard; sourceTree = "<group>"; };
+		28974A841EC422CC0037704A /* SearchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
+		28974A851EC422CC0037704A /* ArtistsSearchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ArtistsSearchViewController.swift; sourceTree = "<group>"; };
+		28974A861EC422CC0037704A /* SpotsSearchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpotsSearchViewController.swift; sourceTree = "<group>"; };
+		28974A871EC422CC0037704A /* PlaylistsSearchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlaylistsSearchViewController.swift; sourceTree = "<group>"; };
 		766A9720120B2CA291FD022A /* Pods-Spottunes.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Spottunes.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Spottunes/Pods-Spottunes.debug.xcconfig"; sourceTree = "<group>"; };
 		9600EB3E0DDFD87F47C0ACF7 /* Pods-Spottunes.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Spottunes.release.xcconfig"; path = "Pods/Target Support Files/Pods-Spottunes/Pods-Spottunes.release.xcconfig"; sourceTree = "<group>"; };
 		981A6D2E1EB021B80045E2FD /* RecommendationSpotCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecommendationSpotCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -237,6 +255,28 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		28974A931EC423CF0037704A /* LocationSearchView */ = {
+			isa = PBXGroup;
+			children = (
+				9891C4531EBABC5700F4B440 /* LocationSearchTableViewCell.swift */,
+				9891C4541EBABC5700F4B440 /* LocationSearchTableViewCell.xib */,
+				9891C4551EBABC5700F4B440 /* LocationSearchTableViewController.swift */,
+				9891C4561EBABC5700F4B440 /* LocationSearchTableViewController.xib */,
+			);
+			name = LocationSearchView;
+			sourceTree = "<group>";
+		};
+		28974A941EC423DE0037704A /* SearchTabs */ = {
+			isa = PBXGroup;
+			children = (
+				28974A811EC422CC0037704A /* SongsSearchViewController.swift */,
+				28974A851EC422CC0037704A /* ArtistsSearchViewController.swift */,
+				28974A861EC422CC0037704A /* SpotsSearchViewController.swift */,
+				28974A871EC422CC0037704A /* PlaylistsSearchViewController.swift */,
+			);
+			name = SearchTabs;
+			sourceTree = "<group>";
+		};
 		981A6D321EB03AA40045E2FD /* RecommendedCellView */ = {
 			isa = PBXGroup;
 			children = (
@@ -409,10 +449,12 @@
 		9891C4521EBABC4700F4B440 /* SearchView */ = {
 			isa = PBXGroup;
 			children = (
-				9891C4531EBABC5700F4B440 /* LocationSearchTableViewCell.swift */,
-				9891C4541EBABC5700F4B440 /* LocationSearchTableViewCell.xib */,
-				9891C4551EBABC5700F4B440 /* LocationSearchTableViewController.swift */,
-				9891C4561EBABC5700F4B440 /* LocationSearchTableViewController.xib */,
+				28974A941EC423DE0037704A /* SearchTabs */,
+				28974A7F1EC422CC0037704A /* SearchEmbedViewController.swift */,
+				28974A801EC422CC0037704A /* SearchResultsViewController.swift */,
+				28974A821EC422CC0037704A /* SearchTableViewCell.swift */,
+				28974A841EC422CC0037704A /* SearchViewController.swift */,
+				28974A831EC422CC0037704A /* Search.storyboard */,
 			);
 			name = SearchView;
 			sourceTree = "<group>";
@@ -479,6 +521,7 @@
 		98A0D2851EA27FEB0004966A /* Spottunes */ = {
 			isa = PBXGroup;
 			children = (
+				28974A931EC423CF0037704A /* LocationSearchView */,
 				983578421EAD116600E12751 /* GradientBackgroundAnimatedViewController.swift */,
 				98A0D2861EA27FEB0004966A /* AppDelegate.swift */,
 				98EFBE191EA29E350050675D /* App.swift */,
@@ -725,6 +768,7 @@
 				98A0D2911EA27FEB0004966A /* LaunchScreen.storyboard in Resources */,
 				981A6D4B1EB071BC0045E2FD /* SmartGenreCollectionViewCell.xib in Resources */,
 				98E5EBA31EAE641100B0D3D6 /* RecommendedSpotView.xib in Resources */,
+				28974A8C1EC422CC0037704A /* Search.storyboard in Resources */,
 				98A0D28E1EA27FEB0004966A /* Assets.xcassets in Resources */,
 				985230721EBFCC7600523D1D /* OnlineListenersTableViewCell.xib in Resources */,
 				98588CD41EB6A82A0035C355 /* PlayView.xib in Resources */,
@@ -794,6 +838,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				981A6D4A1EB071BC0045E2FD /* SmartGenreCollectionViewCell.swift in Sources */,
+				28974A891EC422CC0037704A /* SearchResultsViewController.swift in Sources */,
 				98A0D2871EA27FEB0004966A /* AppDelegate.swift in Sources */,
 				9892EEDB1EAB42FA00AD44B7 /* FoursquareClient.swift in Sources */,
 				9891C4591EBABC5700F4B440 /* LocationSearchTableViewController.swift in Sources */,
@@ -807,6 +852,8 @@
 				98E5EBA81EAFBE0B00B0D3D6 /* GlobalTabBarController.swift in Sources */,
 				98EFBE261EA29F000050675D /* UIImageExtension.swift in Sources */,
 				98EFBE2B1EA2A2E90050675D /* HomeWrapperViewController.swift in Sources */,
+				28974A881EC422CC0037704A /* SearchEmbedViewController.swift in Sources */,
+				28974A901EC422CC0037704A /* PlaylistsSearchViewController.swift in Sources */,
 				9892EEDE1EAB437C00AD44B7 /* CreateSpotViewController.swift in Sources */,
 				98EFBE1D1EA29E350050675D /* App.swift in Sources */,
 				9833CB041EB1B457009997E9 /* UITableViewExtension.swift in Sources */,
@@ -820,6 +867,8 @@
 				983578431EAD116600E12751 /* GradientBackgroundAnimatedViewController.swift in Sources */,
 				981A6D441EB054AF0045E2FD /* CollectionHeaderReusableView.swift in Sources */,
 				981A6D361EB048260045E2FD /* OverviewViewController.swift in Sources */,
+				28974A8B1EC422CC0037704A /* SearchTableViewCell.swift in Sources */,
+				28974A8D1EC422CC0037704A /* SearchViewController.swift in Sources */,
 				98EFBE271EA29F000050675D /* UIColorExtension.swift in Sources */,
 				98E5EBA01EAD88E800B0D3D6 /* OnboardingView.swift in Sources */,
 				98F528D51EBA88DA000D9BE3 /* Album.swift in Sources */,
@@ -855,12 +904,15 @@
 				986F070E1EA87DBC003806CA /* User.swift in Sources */,
 				984C6D8F1EC2A76100824113 /* SelectSpotTableViewCell.swift in Sources */,
 				986F07101EA87FBA003806CA /* SpotifyClient.swift in Sources */,
+				28974A8F1EC422CC0037704A /* SpotsSearchViewController.swift in Sources */,
 				988E417B1EB99D990083A08A /* PlaylistTableViewCell_backup.swift in Sources */,
+				28974A8E1EC422CC0037704A /* ArtistsSearchViewController.swift in Sources */,
 				98588CD21EB6A81E0035C355 /* PlayView.swift in Sources */,
 				98F528D11EBA6596000D9BE3 /* Tracks.swift in Sources */,
 				98EFBE371EA2E2450050675D /* ListTableViewCell.swift in Sources */,
 				986F070C1EA86C04003806CA /* InitViewController.swift in Sources */,
 				98EFBE1A1EA29E350050675D /* StorybordIdentifier.swift in Sources */,
+				28974A8A1EC422CC0037704A /* SongsSearchViewController.swift in Sources */,
 				988E41791EB99D700083A08A /* SelectionFromPlaylistViewController.swift in Sources */,
 				9892EED81EA9AA7F00AD44B7 /* URLRequest.swift in Sources */,
 				9891C4691EBADB9800F4B440 /* Helper.swift in Sources */,
