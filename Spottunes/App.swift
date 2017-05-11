@@ -11,6 +11,7 @@ import UIKit
 
 struct App{
     static let mainStoryboadName = "Main"
+    static let searchStoryboardName = "Search"
     static let grayColor = UIColor(hexString: "#8C8E94")
     static let backColor = UIColor(hexString: "#323335")
 //    static let currentLocation = App.delegate?.locationManager.startUpdate()
@@ -18,13 +19,13 @@ struct App{
     static let bannerAspectRatio: CGFloat = 3.0
     static let delegate = (UIApplication.shared.delegate as? AppDelegate)
     static let currentLocation = delegate?.locationManager.location
+    
     static let mainStoryBoard = UIStoryboard(name: App.mainStoryboadName, bundle: nil)
+    static let searchStoryBoard = UIStoryboard(name: App.searchStoryboardName, bundle: nil)
     static let screenWidth = UIScreen.main.bounds.size.width
     static let screenHeight = UIScreen.main.bounds.size.height
     static let userDefaults = UserDefaults()
     static let mediaMaxLenght: CGFloat = 600
-
-
     
     struct Style{
         struct NavigationBar{
@@ -99,13 +100,20 @@ struct App{
         NotificationCenter.default.post(name: name, object: object, userInfo: userInfo)
     }
     
-    struct StoryboardIden{
+    struct StoryboardIden {
         static let overviewViewController = "OverviewViewController"
         static let playingViewController = "PlayingViewController"
-        static let listenerViewController = "ListenerViewController"  
+        static let listenerViewController = "ListenerViewController"
     }
     
-    struct SegueIden{
+    struct SearchStoryboardIden {
+        static let songsSearchViewController = "SongsSearchViewController"
+        static let artistsSearchViewController = "ArtistsSearchViewController"
+        static let spotsSearchViewController = "SpotsSearchViewController"
+        static let playlistsSearchViewController = "PlaylistsSearchViewController"
+    }
+    
+    struct SegueIden {
         static let embedPageVCIden = "EmbedPageVCIden"
         static let embedSearchPageVCIden = "EmbedSearchPageVCIden"
     }

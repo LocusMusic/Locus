@@ -11,11 +11,18 @@ import UIKit
 class SearchEmbedViewController: UIPageViewController, UIPageViewControllerDelegate, UIPageViewControllerDataSource {
     
     lazy var childControllers: [UIViewController] = {
-        let overViewVC = App.mainStoryBoard.instantiateViewController(withIdentifier: App.StoryboardIden.overviewViewController)
         
-        let playingVC = App.mainStoryBoard.instantiateViewController(withIdentifier: App.StoryboardIden.playingViewController)
+        let songsVC = App.searchStoryBoard.instantiateViewController(withIdentifier:App.SearchStoryboardIden.songsSearchViewController)
+        let artistsVC = App.searchStoryBoard.instantiateViewController(withIdentifier:App.SearchStoryboardIden.artistsSearchViewController)
+        let spotsVC = App.searchStoryBoard.instantiateViewController(withIdentifier:App.SearchStoryboardIden.spotsSearchViewController)
+        let playlistsVC = App.searchStoryBoard.instantiateViewController(withIdentifier:App.SearchStoryboardIden.playlistsSearchViewController)
         
-        return [overViewVC, playingVC]
+        return [songsVC, artistsVC, spotsVC, playlistsVC]
+        
+//        let overViewVC = App.mainStoryBoard.instantiateViewController(withIdentifier: App.StoryboardIden.overviewViewController)
+//        let playingVC = App.mainStoryBoard.instantiateViewController(withIdentifier: App.StoryboardIden.playingViewController)
+//        return [overViewVC, playingVC]
+        
     }()
     
     weak var customDelegate: HomeEmbedPageViewControllerDelegate?
@@ -109,7 +116,7 @@ class SearchEmbedViewController: UIPageViewController, UIPageViewControllerDeleg
     /*
     // MARK: - Navigation
 
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
+    // In a storyboard-based adpplication, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         // Get the new view controller using segue.destinationViewController.
         // Pass the selected object to the new view controller.
@@ -119,5 +126,29 @@ class SearchEmbedViewController: UIPageViewController, UIPageViewControllerDeleg
 }
 
 extension SearchEmbedViewController: UISearchBarDelegate {
+    
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        print("Search Bar Text Changed")
+        
+        //Make spotify API Call
+        //What am i searching for: artists, playlists, etc.
+//        if self.viewControllers?[0] is SongsSearchViewController{
+//    
+//        } else if {
+//            
+//        }
+        if let vc = self.viewControllers?[0] as? SongsSearchViewController{
+        
+        }
+        //} else if let vc1 = self.//
+//            vc1.data = spotifyResultDict
+        //Spotify API [songs,artists]
+        
+        print(self.viewControllers?[0])
+        
+        //Get current tab using self.viewControllers
+        
+    }
+    
     
 }
