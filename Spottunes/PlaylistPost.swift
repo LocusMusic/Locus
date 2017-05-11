@@ -24,10 +24,21 @@ class PlaylistPost: PFObject {
     func share(type: Int? = 0, result: @escaping PFBooleanResultBlock){
         //check whether the spot existed or not
         //save spot first if not
-        
         guard let spot = self.spot else{
             return
         }
+        
+        if let existed = spot.isSpotExisted, existed{
+            //no need to create
+        }else{
+            //need to create a new spot first before adding a post
+            //check whether existed
+            
+            
+        }
+
+        
+        
         
         guard let user = self.user else{
             return

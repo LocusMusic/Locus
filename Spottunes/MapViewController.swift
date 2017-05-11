@@ -111,14 +111,14 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
     
     @IBAction func onTapTestButton(_ sender: UIButton) {
         
-        sender.tintColor = UIColor.green
-        
-        FoursquareClient.shared.fetchRecommendedPlaces(ll: MapViewController.currentLocation!) { (locations: [Location]) in
-            for location in locations{
-                self.mapView.addLocation(location)
-            }
-            self.mapView.showAnnotations(self.mapView.annotations, animated: true)
-        }
+//        sender.tintColor = UIColor.green
+//        
+//        FoursquareClient.shared.fetchRecommendedPlaces(ll: MapViewController.currentLocation!) { (locations: [Location]) in
+//            for location in locations{
+//                self.mapView.addLocation(location)
+//            }
+//            self.mapView.showAnnotations(self.mapView.annotations, animated: true)
+//        }
         
     }
     

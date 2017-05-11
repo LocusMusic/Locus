@@ -44,6 +44,7 @@ class SelectSongsViewController: UIViewController {
         }
         let playlistPost = PlaylistPost(user: currentUser, spot: spot, playlistId: playlist.spotifyId)
         
+        
         self.dismiss(animated: true, completion: nil)
     }
     

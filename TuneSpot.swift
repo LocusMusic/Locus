@@ -20,15 +20,26 @@ class TuneSpot : PFObject, PFSubclassing {
         return self[NameKey] as? String
     }
     
-    var location: PFGeoPoint? {
+    var geoPoint: PFGeoPoint? {
         return self[LocationKey] as? PFGeoPoint
     }
     
+    var isSpotExisted: Bool?
     
-    func saveTuneSpot(name: String, long: CLLocationDegrees, lat: CLLocationDegrees) {
-        self[NameKey] = name
-        self[LocationKey] = PFGeoPoint(latitude: lat, longitude: long)
-        self.saveInBackground()
+    override init(){
+        super.init()
+    }
+    
+    init(name: String, location: PFGeoPoint) {
+        super.init()
+    }
+    
+
+    class func saveTuneSpot(name: String, long: CLLocationDegrees, lat: CLLocationDegrees, completionHandler: @escaping PFBooleanResultBlock) {
+        let spot = TuneSpot()
+        spot[NameKey] = name
+        spot[LocationKey] = PFGeoPoint(latitude: lat, longitude: long)
+        spot.saveInBackground(block: completionHandler)
     }
     
     static func parseClassName() -> String {
@@ -36,13 +47,28 @@ class TuneSpot : PFObject, PFSubclassing {
     }
     
     static func getNearByTuneSpots(completionHandler: @escaping ([TuneSpot]?) -> Void){
+       
+        
         PFGeoPoint.geoPointForCurrentLocation { (point, error) in
             if let point = point{
+                
+                //fetch from Foursquare api
+                FoursquareClient.fetchRecommendedPlaces(geoPoint: point, success: { (locations) in
+                    
+                    
+                    
+                })
+
+                //fetch from parse db
                 let searchQuery = PFQuery(className: ClassName)
                 searchQuery.whereKey(LocationKey, nearGeoPoint: point, withinMiles: searchNearbyRadiusMiles)
                 searchQuery.findObjectsInBackground { (objects, error) in
                     if let objects = objects{
-                        if let spots = objects as? [TuneSpot]{
+                        if var spots = objects as? [TuneSpot]{
+                            spots = spots.map({ (spot) -> TuneSpot in
+                                spot.isSpotExisted = true
+                                return spot
+                            })
                             completionHandler(spots)
                         }else{
                             completionHandler(nil)

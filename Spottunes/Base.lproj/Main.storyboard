@@ -1512,7 +1512,7 @@
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" navigationBarHidden="YES" id="ZWg-ON-FVg" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="" image="home-icon" id="CGz-I5-ZfE">
-                        <inset key="imageInsets" minX="0.0" minY="7" maxX="0.0" maxY="-10"/>
+                        <inset key="imageInsets" minX="0.0" minY="7" maxX="0.0" maxY="-7"/>
                     </tabBarItem>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="ytT-d4-NV9">

@@ -49,6 +49,11 @@ class InitViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        TuneSpot.getNearByTuneSpots { (spot) in
+            print("spot here")
+        }
+        
+        
         NotificationCenter.default.addObserver(self, selector: #selector(statusBarShouldUpdate(_:)), name: App.LocalNotification.StatusBarStyleUpdate.name, object: nil)
         
         SpotifyClient.updateSession { (session) in
