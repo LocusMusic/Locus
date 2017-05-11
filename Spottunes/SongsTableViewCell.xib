@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12117" systemVersion="16D32" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12084"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="SongsTableViewCell" rowHeight="112" id="LYQ-IZ-pae" userLabel="SongsTableViewCell" customClass="SongsTableViewCell" customModule="Spottunes" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="378" height="112"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="LYQ-IZ-pae" id="XqN-Oo-0yv">
+                <rect key="frame" x="0.0" y="0.0" width="378" height="111.5"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="eiQ-wV-15g">
+                        <rect key="frame" x="16" y="8" width="48" height="48"/>
+                        <color key="backgroundColor" red="0.1960784314" green="0.20000000000000001" blue="0.20784313730000001" alpha="0.40000000000000002" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="48" id="90j-H6-C9f"/>
+                            <constraint firstAttribute="height" constant="48" id="Ezf-nU-IxK"/>
+                        </constraints>
+                    </imageView>
+                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="n6l-Fn-iAe">
+                        <rect key="frame" x="72" y="8" width="290" height="46.5"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Song Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JiG-wy-DKw">
+                                <rect key="frame" x="0.0" y="0.0" width="290" height="22"/>
+                                <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="16"/>
+                                <color key="textColor" red="0.1960784314" green="0.20000000000000001" blue="0.20784313730000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Airtist Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="14Y-cO-YE8">
+                                <rect key="frame" x="0.0" y="26" width="290" height="20.5"/>
+                                <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="15"/>
+                                <color key="textColor" red="0.1960784314" green="0.20000000000000001" blue="0.20784313730000001" alpha="0.80000000000000004" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                    </stackView>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qg0-Lg-SQL" userLabel="Sparator View">
+                        <rect key="frame" x="72" y="66.5" width="306" height="1"/>
+                        <color key="backgroundColor" red="0.1960784314" green="0.20000000000000001" blue="0.20784313730000001" alpha="0.059999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="1" id="awq-wi-OkQ"/>
+                        </constraints>
+                    </view>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="qg0-Lg-SQL" firstAttribute="top" secondItem="n6l-Fn-iAe" secondAttribute="bottom" constant="12" id="1XP-Qx-NUg"/>
+                    <constraint firstItem="eiQ-wV-15g" firstAttribute="top" secondItem="XqN-Oo-0yv" secondAttribute="top" constant="8" id="6mw-TU-3rC"/>
+                    <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="qg0-Lg-SQL" secondAttribute="bottom" constant="8" id="AB9-m8-rtN"/>
+                    <constraint firstItem="n6l-Fn-iAe" firstAttribute="leading" secondItem="eiQ-wV-15g" secondAttribute="trailing" constant="8" id="Td6-Oh-b5f"/>
+                    <constraint firstItem="n6l-Fn-iAe" firstAttribute="top" secondItem="eiQ-wV-15g" secondAttribute="top" id="cDb-GM-R7G"/>
+                    <constraint firstAttribute="trailing" secondItem="n6l-Fn-iAe" secondAttribute="trailing" constant="16" id="ddj-RU-IeG"/>
+                    <constraint firstItem="qg0-Lg-SQL" firstAttribute="leading" secondItem="n6l-Fn-iAe" secondAttribute="leading" id="kdj-OL-i7r"/>
+                    <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="eiQ-wV-15g" secondAttribute="bottom" id="nqJ-TP-zNr"/>
+                    <constraint firstItem="eiQ-wV-15g" firstAttribute="leading" secondItem="XqN-Oo-0yv" secondAttribute="leading" constant="16" id="rWB-KR-w8l"/>
+                    <constraint firstAttribute="trailing" secondItem="qg0-Lg-SQL" secondAttribute="trailing" id="zqC-Zm-QbQ"/>
+                </constraints>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="artistNameLabel" destination="14Y-cO-YE8" id="zwv-xw-Hsm"/>
+                <outlet property="songNameLabel" destination="JiG-wy-DKw" id="tPz-bt-h3B"/>
+                <outlet property="thumbnailImageView" destination="eiQ-wV-15g" id="jlN-kr-cQ0"/>
+            </connections>
+            <point key="canvasLocation" x="50" y="27"/>
+        </tableViewCell>
+    </objects>
+</document>

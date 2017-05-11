@@ -14,7 +14,9 @@ class ListenerTableViewCell: UITableViewCell {
         didSet{
             self.profileImageView.layer.cornerRadius = self.profileImageView.frame.size.width / 2
             self.profileImageView.clipsToBounds = true
+            
         }
+        
     }
     
     @IBOutlet weak var usernameLebel: UILabel!

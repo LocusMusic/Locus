@@ -10,6 +10,8 @@ import UIKit
 import Parse
 import CoreLocation
 
+
+/*
 class CreateSpotViewController: UIViewController {
 
     @IBOutlet weak var tableView: UITableView!
@@ -37,7 +39,7 @@ class CreateSpotViewController: UIViewController {
         // UCSD Location
         let currentLocation = CLLocationCoordinate2DMake(CLLocationDegrees(exactly: 32.877741)!, CLLocationDegrees(exactly: -117.234327)!)
         
-        FourSq.fetchRecommendedPlaces(ll: currentLocation, success: { (locations: [Location]) in
+        FoursquareClient.fetchRecommendedPlaces(ll: currentLocation, success: { (locations: [Location]) in
             self.recommendedPlaces = locations
             for location in locations {
                 print(location.name!)
@@ -103,4 +105,4 @@ extension CreateSpotViewController: UITableViewDataSource, UITableViewDelegate {
         self.selectedLocation = self.recommendedPlaces[indexPath.row]
     }
 
-}
+}*/

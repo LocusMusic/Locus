@@ -88,13 +88,53 @@ class SpotifyClient {
                     return
                 }
                 saveSession(session: session)
-                User.doesExist(spotifyId: session.canonicalUsername, completionHandler: { (exist) in
-                    if !exist {
-                        print("User with spotifyId \(session.canonicalUsername) doesn't exist")
-                        User.register(spotifyId: session.canonicalUsername)
+                User.fetchUserByUsername(username: session.canonicalUsername, completionHandler: { (user) in
+                    if let user = user{
+                        //user existed
+                        print("user eixsted")
+                        user.saveCurrentUserToDisk(completionHandler: { (succeed, error) in
+                            if succeed{
+                                print("saved user to disk")
+                                User.getCurrentUser(completionHandler: { (user) in
+                                    //make sure ther user is in the disk
+                                    if let user = user{
+                                        App.delegate?.currentUser = user
+                                        App.postLocalNotification(withName: App.LocalNotification.Name.onLoginSuccessful)
+                                    }
+                                })
+                            }else{
+                                print("failed to save user to disk")
+                            }
+                        })
+                    }else{
+                        print("user not existed")
+                        //user not existed
                     }
                 })
-                App.postLocalNotification(withName: App.LocalNotification.Name.onLoginSuccessful)
+                
+                
+                
+                
+                
+                
+                
+//                User.doesExist(spotifyId: session.canonicalUsername, completionHandler: { (exist) in
+//                    if !exist {
+//                        print("User with spotifyId \(session.canonicalUsername) doesn't exist")
+//                        User.register(spotifyId: session.canonicalUsername, completionHandler: { (succeed, error) in
+//                            if succeed{
+//                                //save user to disk
+//                                
+//                                App.postLocalNotification(withName: App.LocalNotification.Name.onLoginSuccessful)
+//                            }else{
+//                                print("failed to register")
+//                            }
+//                        })
+//                    }else{
+//                        //save user to disk
+//                        App.postLocalNotification(withName: App.LocalNotification.Name.onLoginSuccessful)
+//                    }
+//                })
             })
             return true
         }
@@ -191,6 +231,31 @@ class SpotifyClient {
             })
         }
     }
+    
+    class func getTracksInPlaylist(playlist: Playlist, completionHandler: @escaping (_ responseDict: [Track]?) -> Void ){
+        if let tracksHref = playlist.tracks?.href{
+            guard let endPoint = URL(string: tracksHref) else{
+                print("end point onvalid")
+                completionHandler(nil)
+                return
+            }
+            performTask {
+                get(url: endPoint, completionHandler: { (dataDict) in
+                    guard let dataDict = dataDict else{
+                        completionHandler(nil)
+                        return
+                    }
+                    let tracks = Tracks(dict: dataDict)
+                    guard let trackList = tracks.trackList else{
+                        completionHandler(nil)
+                        return
+                    }
+                    completionHandler(trackList)
+                })
+            }
+        }
+    }
+    
     
     
     //get tracks in playlists

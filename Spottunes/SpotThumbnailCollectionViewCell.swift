@@ -19,12 +19,12 @@ class SpotThumbnailCollectionViewCell: UICollectionViewCell {
     
     @IBOutlet weak var spotNameLabel: UILabel!
     
-    var spot: Spot!{
+    var spot: TuneSpot!{
         didSet{
-            self.thumbImageView.image = nil
-            if let thumbURL = spot.thumbnailURL{
-                self.thumbImageView.image = UIImage(named: thumbURL)
-            }
+//            self.thumbImageView.image = nil
+//            if let thumbURL = spot.thumbnailURL{
+//                self.thumbImageView.image = UIImage(named: thumbURL)
+//            }
             if let spotName = spot.name{
                 self.spotNameLabel.text = spotName
             }

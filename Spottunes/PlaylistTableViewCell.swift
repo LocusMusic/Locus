@@ -2,22 +2,27 @@
 //  PlaylistTableViewCell.swift
 //  Spottunes
 //
-//  Created by Xie kesong on 5/2/17.
+//  Created by Xie kesong on 5/4/17.
 //  Copyright © 2017 ___Spottunes___. All rights reserved.
 //
 
 import UIKit
 
-
 class PlaylistTableViewCell: UITableViewCell {
 
-    @IBOutlet weak var coverImageView: UIImageView!
+    @IBOutlet weak var coverImageView: UIImageView!{
+        didSet{
+            self.coverImageView.layer.cornerRadius = 4.0
+            self.coverImageView.clipsToBounds = true
+        }
+    }
+    
     
     @IBOutlet weak var playlistNameLabel: UILabel!
-    
+
     @IBOutlet weak var numberOfSongsLabel: UILabel!
 
-    
+
     var playlist: Playlist!{
         didSet{
             self.coverImageView.image = nil
@@ -26,10 +31,13 @@ class PlaylistTableViewCell: UITableViewCell {
                     self.coverImageView.loadImageWithURL(coverURL)
                 }
             }
+            if let trackCount = self.playlist.trackCount{
+                self.numberOfSongsLabel.text = "\(trackCount) Song" + ((trackCount > 1) ? "s" : "")
+            }
             self.playlistNameLabel.text = self.playlist.name
         }
     }
-    
+
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

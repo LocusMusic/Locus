@@ -10,7 +10,7 @@ import Foundation
 
 
 fileprivate let HrefKey = "href"
-fileprivate let TotalKey = "url"
+fileprivate let TotalKey = "total"
 fileprivate let ItemsKey = "items"
 fileprivate let TrackKey = "track"
 

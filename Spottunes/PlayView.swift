@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import AVFoundation
 
 
 fileprivate let xibName = "PlayView"
@@ -39,7 +40,6 @@ class PlayView: UIView {
     @IBOutlet weak var trackNameLabel: UILabel!
     @IBOutlet weak var authorNameLabel: UILabel!
     
-    
     @IBOutlet weak var minTrackNameLabel: UILabel!
     @IBOutlet weak var minAuthorNameLabel: UILabel!
 
@@ -52,8 +52,23 @@ class PlayView: UIView {
     var maximizedCenter:CGPoint!
     
     
-    var trackList: [Track]?
-    var activeTrackIndex: Int?
+    var trackList: [Track]!
+    var activeTrackIndex: Int!
+    
+    @IBAction func sliderDragging(_ sender: UISlider) {
+        
+        
+        let position = TimeInterval(sender.value) * self.trackList[activeTrackIndex].duration //seconds
+        self.currentTimeLabel.text = formatTimeInterval(timeInterval: position)
+
+        self.streamController.seek(to: position) { (error) in
+            if let error = error{
+                print("error dragging \(error.localizedDescription)")
+            }
+        }
+    }
+    
+    
     var currentPlayingState = false{
         didSet{
             if currentPlayingState{
@@ -62,22 +77,33 @@ class PlayView: UIView {
             }else{
                 self.playBtn.imageBtnActivateWithColor(color: App.grayColor, usingImage: #imageLiteral(resourceName: "play-icon"), withBounceAnimation: true)
                 self.minPlayBtn.imageBtnActivateWithColor(color: App.grayColor, usingImage: #imageLiteral(resourceName: "play-icon"), withBounceAnimation: true)
-
-
             }
         }
     }
+    
+    @IBOutlet weak var sliderControl: UISlider!{
+        didSet{
+            self.sliderControl.isContinuous = false
+        }
+    }
+    
     @IBOutlet weak var playBtn: UIButton!
     
     @IBOutlet weak var minPlayBtn: UIButton!
     
+    @IBOutlet weak var currentTimeLabel: UILabel!
+    
+    @IBOutlet weak var endingTimeLabel: UILabel!
+    
     lazy var streamController: SPTAudioStreamingController = SPTAudioStreamingController.sharedInstance()
+    
+    
+    @IBAction func favorBtnTapped(_ sender: UIButton) {
+        sender.imageBtnActivateWithColor(color: App.Style.Color.heartActiveColor)
+    }
 
     @IBAction func playToggle(_ sender: UIButton) {
         sender.animateBounceView()
-        
-        
-        
         self.streamController.setIsPlaying(!self.currentPlayingState) { (error) in
             if let error = error{
                 print(error.localizedDescription)
@@ -90,6 +116,10 @@ class PlayView: UIView {
     
     @IBAction func nextBtnTapped(_ sender: UIButton) {
         sender.animateBounceView()
+        self.playNextTrack()
+    }
+    
+    func playNextTrack(){
         guard let totalTracks = self.trackList?.count else{
             return
         }
@@ -104,6 +134,7 @@ class PlayView: UIView {
         
         self.activeTrackIndex = currentActiveIndex + 1
         self.updateTracksState()
+
     }
     
     
@@ -117,30 +148,21 @@ class PlayView: UIView {
             return
         }
         
-        
         self.activeTrackIndex = currentActiveIndex - 1
         self.updateTracksState()
     }
+    
+    
+    
 
-    
-    
-    
-    
     func updateTracksState(){
-        guard let activeTrackIndex = self.activeTrackIndex else{
-            return
-        }
-        guard let trackList = self.trackList else{
-            return
-        }
-            
         self.thumbnailImageView.image = nil
         if let image = trackList[activeTrackIndex] .getCoverImage(withSize: .large) {
             if let url = image.url{
                 self.thumbnailImageView.loadImageWithURL(url)
             }
         }
-        if let authorName = trackList[activeTrackIndex].artists?.first?.name{
+        if let authorName = self.trackList[self.activeTrackIndex].artists?.first?.name{
             self.authorNameLabel.text = authorName
             self.minAuthorNameLabel.text = authorName
         }
@@ -148,10 +170,16 @@ class PlayView: UIView {
             self.trackNameLabel.text = trackName
             self.minTrackNameLabel.text = trackName
         }
+        self.endingTimeLabel.text =  formatTimeInterval(timeInterval: self.trackList[activeTrackIndex].duration)
         self.playActiveTrack()
+        let audioSession = AVAudioSession.sharedInstance()
+        do{
+            try audioSession.setCategory(AVAudioSessionCategoryPlayback)
+        }catch{
+            print("can't play in the background")
+        }
     }
 
-    
     class func instanceFromNib() -> PlayView {
         let playView = UINib(nibName: xibName, bundle: nil).instantiate(withOwner: nil, options: nil)[0] as! PlayView
         //add pan gesture
@@ -181,7 +209,7 @@ class PlayView: UIView {
                 self.center.y = newCenterY
                 self.delegate?.panning(playView: self, delta: self.delta)
             case .ended:
-                if self.delta < 0.9{
+                if self.delta < 0.8{
                     //set to open position
                     self.delegate?.playViewBecomeMaximized(playView: self)
                     UIView.animate(withDuration: 0.3, delay: 0, usingSpringWithDamping: 0.8, initialSpringVelocity: 6, options: .curveEaseInOut, animations: {
@@ -195,7 +223,7 @@ class PlayView: UIView {
                     })
                 }else{
                     self.delegate?.playViewBecomeMinimized(playView: self)
-                    UIView.animate(withDuration: 0.3, delay: 0, usingSpringWithDamping: 0.6, initialSpringVelocity: 6, options: .curveEaseInOut, animations: {
+                    UIView.animate(withDuration: 0.3, delay: 0, usingSpringWithDamping: 0.8, initialSpringVelocity: 6, options: .curveEaseInOut, animations: {
                         self.center.y = self.originalCenter.y
                         self.minPlayerView.alpha = 1
                     }, completion: {
@@ -216,13 +244,14 @@ class PlayView: UIView {
                 self.maximizedCenter = self.center
                 self.originalCenter = self.center
             case .changed:
-                let newCenterY = self.originalCenter.y + translation.y
+                let newCenterY = max(self.maximizedCenter.y, self.originalCenter.y + translation.y)
                 self.delta = 1 - abs((newCenterY - destinationCenterY)) / (destinationCenterY - self.originalCenter.y) //maps from 0 to 1 //change
                 self.minPlayerView.alpha = self.delta
                 self.center.y = newCenterY
                 self.delegate?.panning(playView: self, delta: self.delta)
             case .ended:
-                if self.delta > 0.9{
+                print(self.delta)
+                if self.delta < 0.2{
                     //set to open position
                     self.delegate?.playViewBecomeMaximized(playView: self)
 
@@ -257,15 +286,7 @@ class PlayView: UIView {
     }
     
     func playActiveTrack(){
-        guard let activeTrackIndex = self.activeTrackIndex else{
-            return
-        }
-        
-        guard let activeTrack = self.trackList?[activeTrackIndex] else{
-            return
-        }
-        
-        guard let activeTrackURI = activeTrack.uri else{
+        guard let activeTrackURI = self.trackList[activeTrackIndex].uri else{
             return
         }
         
@@ -277,6 +298,11 @@ class PlayView: UIView {
 
             }
         })
+    }
+    
+    func audioStreaming(_ audioStreaming: SPTAudioStreamingController!, didStopPlayingTrack trackUri: String!) {
+        //go to the next song in the play queue
+        self.playNextTrack()
     }
 }
 
@@ -304,6 +330,13 @@ extension PlayView: SPTAudioStreamingPlaybackDelegate, SPTAudioStreamingDelegate
         }catch{
             print("can't start streaming view controller")
         }
+    }
+    
+    func audioStreaming(_ audioStreaming: SPTAudioStreamingController!, didChangePosition position: TimeInterval) {
+        self.currentTimeLabel.text = formatTimeInterval(timeInterval: position)
+        let percentage = position / self.trackList[activeTrackIndex].duration
+        self.sliderControl.value = Float(percentage)
+        
     }
 }
 

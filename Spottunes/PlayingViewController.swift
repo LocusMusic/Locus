@@ -31,6 +31,7 @@ class PlayingViewController: UIViewController {
 //            self.shuffleBtn.imageBtnActivateWithColor(color: color)
         }
     }
+    @IBOutlet weak var activityIndicatorView: UIActivityIndicatorView!
       
     @IBOutlet weak var thumbnailImageView: UIImageView!{
         didSet{
@@ -41,10 +42,13 @@ class PlayingViewController: UIViewController {
     
     @IBOutlet weak var headerView: UIView!
     
+    
+    
     var trackList: [Track]?{
         didSet{
             DispatchQueue.main.async {
                 self.tableView?.reloadData()
+                self.activityIndicatorView.stopAnimating()
             }
         }
     }
@@ -79,11 +83,6 @@ class PlayingViewController: UIViewController {
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         self.tableView.setAndLayoutTableHeaderView(header: self.headerView)
-    }
-    
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        
     }
 
     override func didReceiveMemoryWarning() {
