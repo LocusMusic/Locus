@@ -22,24 +22,24 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bF7-ia-v05">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="125"/>
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="125"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="Ufz-2F-Ikv">
-                                        <rect key="frame" x="10" y="30" width="355" height="95"/>
+                                        <rect key="frame" x="10" y="30" width="580" height="95"/>
                                         <subviews>
                                             <searchBar contentMode="redraw" searchBarStyle="minimal" translatesAutoresizingMaskIntoConstraints="NO" id="HZY-nS-34O">
-                                                <rect key="frame" x="0.0" y="0.0" width="355" height="44"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="580" height="44"/>
                                                 <color key="barTintColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <textInputTraits key="textInputTraits"/>
                                             </searchBar>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="buj-fL-T4L">
-                                                <rect key="frame" x="0.0" y="54" width="355" height="30"/>
+                                                <rect key="frame" x="0.0" y="54" width="580" height="30"/>
                                                 <subviews>
                                                     <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" alwaysBounceHorizontal="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Uk5-a2-pgt">
-                                                        <rect key="frame" x="-10" y="0.0" width="355" height="30"/>
+                                                        <rect key="frame" x="-10" y="0.0" width="580" height="30"/>
                                                         <subviews>
                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="W1e-iL-Vgl">
-                                                                <rect key="frame" x="0.0" y="0.0" width="355" height="30"/>
+                                                                <rect key="frame" x="0.0" y="0.0" width="580" height="30"/>
                                                                 <subviews>
                                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Fmj-m4-4Yp">
                                                                         <rect key="frame" x="16" y="-3" width="54" height="33"/>
@@ -115,7 +115,7 @@
                                                 </constraints>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="eVf-gG-Wbr" userLabel="Sparator View">
-                                                <rect key="frame" x="0.0" y="94" width="355" height="1"/>
+                                                <rect key="frame" x="0.0" y="94" width="580" height="1"/>
                                                 <color key="backgroundColor" red="0.1960784314" green="0.20000000000000001" blue="0.20784313730000001" alpha="0.089999999999999997" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="1" id="wI6-tp-zy0"/>
@@ -133,7 +133,7 @@
                                 </constraints>
                             </view>
                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3Dh-et-Xxx">
-                                <rect key="frame" x="0.0" y="125" width="375" height="542"/>
+                                <rect key="frame" x="0.0" y="125" width="600" height="475"/>
                                 <connections>
                                     <segue destination="YpR-yC-tiI" kind="embed" identifier="EmbedSearchPageVCIden" id="agP-n5-TtK"/>
                                 </connections>
@@ -195,7 +195,107 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Nff-4V-jKt" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="136.80000000000001" y="883.80809595202402"/>
+            <point key="canvasLocation" x="-1524" y="877"/>
+        </scene>
+        <!--Songs Search View Controller-->
+        <scene sceneID="G6Z-Q5-Qdv">
+            <objects>
+                <viewController storyboardIdentifier="SongsSearchViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="4uE-SJ-rte" customClass="SongsSearchViewController" customModule="Spottunes" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="jUf-Aw-C4W"/>
+                        <viewControllerLayoutGuide type="bottom" id="Zq2-RM-Rwg"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="SH7-vn-VRk">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="1mq-5d-K6h">
+                                <rect key="frame" x="0.0" y="20" width="375" height="647"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="fOW-QQ-2oO" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-850.39999999999998" y="876.61169415292363"/>
+        </scene>
+        <!--Artists Search View Controller-->
+        <scene sceneID="snT-Sr-bQL">
+            <objects>
+                <viewController storyboardIdentifier="ArtistsSearchViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="MYd-RK-fi9" customClass="ArtistsSearchViewController" customModule="Spottunes" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="CLa-aR-SWC"/>
+                        <viewControllerLayoutGuide type="bottom" id="FYT-RJ-4Pk"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Xlb-TN-Fvn">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="dOL-9x-ESM">
+                                <rect key="frame" x="0.0" y="20" width="375" height="647"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="xjz-ck-qE6" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-127" y="877"/>
+        </scene>
+        <!--Spots Search View Controller-->
+        <scene sceneID="wYu-8D-c2M">
+            <objects>
+                <viewController storyboardIdentifier="SpotsSearchViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="mVZ-em-30S" customClass="SpotsSearchViewController" customModule="Spottunes" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="c90-OA-gmC"/>
+                        <viewControllerLayoutGuide type="bottom" id="ew1-3s-Jtp"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="eYW-mP-07N">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="uWa-Xf-LTm">
+                                <rect key="frame" x="0.0" y="20" width="375" height="647"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Pwr-UM-Tfk" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="591" y="877"/>
+        </scene>
+        <!--Playlists Search View Controller-->
+        <scene sceneID="naE-Lj-MZ7">
+            <objects>
+                <viewController storyboardIdentifier="PlaylistsSearchViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="b0v-0c-VPJ" customClass="PlaylistsSearchViewController" customModule="Spottunes" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="IXG-xw-hh0"/>
+                        <viewControllerLayoutGuide type="bottom" id="7Yj-H9-AWq"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Kp8-fV-Q48">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="hdD-Dq-a58">
+                                <rect key="frame" x="0.0" y="20" width="375" height="647"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="0ET-qF-yHb" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1392.8" y="876.61169415292363"/>
         </scene>
     </scenes>
 </document>
