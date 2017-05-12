@@ -15,19 +15,23 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
     
-    var currentUser: User?
+    var currentUser: User?{
+        didSet{
+            if let count = self.currentUser?.recentlyVisitedSpot?.count, count > 0{
+                print(count)
+                App.postLocalNotification(withName: App.LocalNotification.Name.recentlyVisitedShouldUpdate)
+            }
+        }
+    }
     
-//    var locationManager : CLLocationManager!
-
+    var popularTuneSpot: [TuneSpot]?{
+        didSet{
+            //post notification for updates
+            App.postLocalNotification(withName: App.LocalNotification.Name.popularSpotShouldUpdate)
+        }
+    }
+    
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
-//        
-//        Parse.enableLocalDatastore()
-//        if Parse.isLocalDatastoreEnabled(){
-//            print("enabled")
-//        }else{
-//            print("not enabled")
-//        }
-        
         Parse.initialize(
             with: ParseClientConfiguration(block: { (configuration: ParseMutableClientConfiguration) -> Void in
                 
@@ -38,16 +42,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             })
         )
         self.configureParse()
-        
-        // Override point for customization after application launch.
-       // configureLocation()
         SpotifyClient.authInit()
-        //enable the local storag
-
-       
-
-        
-
         return true
     }
 
@@ -83,14 +78,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         TuneSpot.registerSubclass()
         Playlist.registerSubclass()
         User.registerSubclass()
-        
     }
-    
-//    func configureLocation() {
-//        self.locationManager = CLLocationManager()
-//        self.locationManager.startUpdatingLocation()
-//    }
-
 
 }
 

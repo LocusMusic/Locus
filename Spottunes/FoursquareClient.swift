@@ -16,7 +16,7 @@ fileprivate let exploreBaseURL = "https://api.foursquare.com/v2/venues/explore?"
 fileprivate let searchBaseURL = "https://api.foursquare.com/v2/venues/search?"
 fileprivate let clientString = "client_id=\(CLIENT_ID)&client_secret=\(CLIENT_SECRET)"
 
-fileprivate let limit = 10
+fileprivate let limit = 50
 fileprivate var offset = 0
 
 
@@ -24,11 +24,8 @@ class FoursquareClient: NSObject {
     
     static let shared = FoursquareClient()
     
-    class func fetchRecommendedPlaces(geoPoint: PFGeoPoint, offset: Int = 0, limit: Int = 10, success: @escaping ([Location]) -> ()){
-        
-        
-        
-        
+    class func fetchRecommendedPlaces(geoPoint: PFGeoPoint, offset: Int = 0, limit: Int = limit, success: @escaping ([TuneSpot]) -> ()){
+    
         let ll_string = "&ll=\(geoPoint.latitude),\(geoPoint.longitude)"
         let date_string = "&v=" + FoursquareClient.getCurDateString()
         let limit_offset = "&limit=\(limit)&offset=\(offset)"
@@ -43,18 +40,20 @@ class FoursquareClient: NSObject {
                     let groups = (responseDictionary["response"] as! NSDictionary)["groups"] as? [NSDictionary]
                     let venues = FoursquareClient.getVenuesByType(type: "Recommended Places", groups: groups!)
                     let locations = Location.locationsWithArray(venues: venues)
-                    //print(locations)
-                    success(locations)
-//                    self.offset += self.limit
+                    let tuneSpots = locations.map({ (location) -> TuneSpot in
+                       return TuneSpot(location: location)
+                    })
+                    success(tuneSpots)
+                    
                 }
             }
         });
         task.resume()
     }
     
-    class func fetchMoreRecommendedPlaces(geoPoint: PFGeoPoint, success: @escaping ([Location]) -> ()){
-        FoursquareClient.fetchRecommendedPlaces(geoPoint: geoPoint, success: success)
-    }
+//    class func fetchMoreRecommendedPlaces(geoPoint: PFGeoPoint, success: @escaping ([Location]) -> ()){
+//        FoursquareClient.fetchRecommendedPlaces(geoPoint: geoPoint, success: success)
+//    }
     
     func searchNearByLocation(query: String, success: @escaping ([Location])->()){
         PFGeoPoint.geoPointForCurrentLocation { (point, error) in

@@ -26,26 +26,26 @@
                             <constraint firstAttribute="width" secondItem="I3g-bL-BLP" secondAttribute="height" multiplier="1:1" id="9wg-2W-98T"/>
                         </constraints>
                     </imageView>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="GEISEL" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IjW-KC-tiM">
-                        <rect key="frame" x="0.0" y="159" width="151" height="16.5"/>
-                        <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="12"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="GEISEL" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IjW-KC-tiM">
+                        <rect key="frame" x="0.0" y="159" width="135" height="18"/>
+                        <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="13"/>
                         <color key="textColor" red="0.1973162722" green="0.2002126625" blue="0.20890183330000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
                 </subviews>
             </view>
             <constraints>
+                <constraint firstAttribute="trailing" secondItem="IjW-KC-tiM" secondAttribute="trailing" constant="16" id="P9D-mp-92o"/>
                 <constraint firstItem="IjW-KC-tiM" firstAttribute="top" secondItem="I3g-bL-BLP" secondAttribute="bottom" constant="8" symbolic="YES" id="QJB-cv-v5T"/>
                 <constraint firstItem="I3g-bL-BLP" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="dZ1-qg-IB7"/>
                 <constraint firstAttribute="trailing" secondItem="I3g-bL-BLP" secondAttribute="trailing" id="faM-Sl-CLn"/>
                 <constraint firstItem="IjW-KC-tiM" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="rDA-f4-HWk"/>
                 <constraint firstItem="I3g-bL-BLP" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="uYk-Mu-UaJ"/>
-                <constraint firstAttribute="trailing" secondItem="IjW-KC-tiM" secondAttribute="trailing" id="xZb-tc-jQk"/>
             </constraints>
             <size key="customSize" width="151" height="221"/>
             <connections>
-                <outlet property="spotNameLabel" destination="IjW-KC-tiM" id="oIr-2H-E1V"/>
-                <outlet property="thumbImageView" destination="I3g-bL-BLP" id="gEl-2X-QWU"/>
+                <outlet property="nameLabel" destination="IjW-KC-tiM" id="7Ri-Fy-v1b"/>
+                <outlet property="thumbnailImageView" destination="I3g-bL-BLP" id="MLS-Ax-VWk"/>
             </connections>
             <point key="canvasLocation" x="99.5" y="204.5"/>
         </collectionViewCell>

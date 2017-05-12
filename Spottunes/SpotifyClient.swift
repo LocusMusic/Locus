@@ -19,6 +19,7 @@ fileprivate let fetchTokenEndPoint = "https://accounts.spotify.com/api/token"
 fileprivate let currentUserPlayListEndPoint = "https://api.spotify.com/v1/me/playlists"
 fileprivate let currentUserProfileEndPoint = "https://api.spotify.com/v1/me"
 
+//GET https://api.spotify.com/v1/users/{user_id}/playlists/{playlist_id}
 
 
 struct Http {
@@ -231,6 +232,11 @@ class SpotifyClient {
             })
         }
     }
+    
+    class func getPlaylistById(id: String,completionHandler: @escaping (_ responseDict: [Playlist]?) -> Void  ){
+        
+    }
+    
     
     class func getTracksInPlaylist(playlist: Playlist, completionHandler: @escaping (_ responseDict: [Track]?) -> Void ){
         if let tracksHref = playlist.tracks?.href{

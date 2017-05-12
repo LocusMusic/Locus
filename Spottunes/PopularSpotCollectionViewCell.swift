@@ -1,14 +1,14 @@
 //
-//  SpotThumbnailCollectionViewCell.swift
+//  PopularSpotCollectionViewCell.swift
 //  Spottunes
 //
-//  Created by Xie kesong on 4/25/17.
+//  Created by Xie kesong on 5/11/17.
 //  Copyright © 2017 ___Spottunes___. All rights reserved.
 //
 
 import UIKit
 
-class SpotThumbnailCollectionViewCell: UICollectionViewCell {
+class PopularSpotCollectionViewCell: UICollectionViewCell {
 
     @IBOutlet weak var thumbnailImageView: UIImageView!{
         didSet{
@@ -30,6 +30,10 @@ class SpotThumbnailCollectionViewCell: UICollectionViewCell {
             }
         }
     }
+    
+    
+    
+    
     
     override func awakeFromNib() {
         super.awakeFromNib()

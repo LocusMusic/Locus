@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12117" systemVersion="16D32" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12084"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="PopularSpotCollectionViewCellIden" id="5dd-Fu-Wdz" userLabel="SmartGenreCollectionViewCell" customClass="PopularSpotCollectionViewCell" customModule="Spottunes" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="126" height="186"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                <rect key="frame" x="0.0" y="0.0" width="126" height="186"/>
+                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                <subviews>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="j04-Hj-kXi">
+                        <rect key="frame" x="0.0" y="0.0" width="126" height="126"/>
+                        <constraints>
+                            <constraint firstAttribute="width" secondItem="j04-Hj-kXi" secondAttribute="height" multiplier="1:1" id="aAf-6B-kFz"/>
+                        </constraints>
+                    </imageView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="d2o-Ad-ECe">
+                        <rect key="frame" x="0.0" y="134" width="106" height="19.5"/>
+                        <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="14"/>
+                        <color key="textColor" red="0.19607843137254902" green="0.2002126625" blue="0.20890183330000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+            </view>
+            <constraints>
+                <constraint firstItem="j04-Hj-kXi" firstAttribute="leading" secondItem="5dd-Fu-Wdz" secondAttribute="leading" id="1hv-ok-1ac"/>
+                <constraint firstItem="d2o-Ad-ECe" firstAttribute="leading" secondItem="5dd-Fu-Wdz" secondAttribute="leading" id="Ohx-j1-Lx8"/>
+                <constraint firstAttribute="trailing" secondItem="j04-Hj-kXi" secondAttribute="trailing" id="SoG-Oj-nOX"/>
+                <constraint firstItem="d2o-Ad-ECe" firstAttribute="top" secondItem="j04-Hj-kXi" secondAttribute="bottom" constant="8" symbolic="YES" id="Ysu-Ag-iK7"/>
+                <constraint firstAttribute="trailing" secondItem="d2o-Ad-ECe" secondAttribute="trailing" constant="20" id="tfa-rC-wM9"/>
+                <constraint firstItem="j04-Hj-kXi" firstAttribute="top" secondItem="5dd-Fu-Wdz" secondAttribute="top" id="yzw-xT-UrY"/>
+            </constraints>
+            <size key="customSize" width="126" height="186"/>
+            <connections>
+                <outlet property="nameLabel" destination="d2o-Ad-ECe" id="tce-lf-aYY"/>
+                <outlet property="thumbnailImageView" destination="j04-Hj-kXi" id="XBC-Wa-Czg"/>
+            </connections>
+            <point key="canvasLocation" x="87" y="187"/>
+        </collectionViewCell>
+    </objects>
+</document>

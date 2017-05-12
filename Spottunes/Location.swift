@@ -9,7 +9,7 @@
 import UIKit
 import CoreLocation
 
-class Location: NSObject, CLLocationManagerDelegate {
+class Location {
     var venue: NSDictionary?
     var name: String?
     
@@ -20,7 +20,7 @@ class Location: NSObject, CLLocationManagerDelegate {
     }
     
     // example: (lat: 40.69957, lng: -73.99793)
-    var latLng : CLLocationCoordinate2D? {
+    var latLng : CLLocationCoordinate2D! {
         let lat = venue?.value(forKeyPath: "location.lat") as! NSNumber
         let lng = venue?.value(forKeyPath: "location.lng") as! NSNumber
         let CLLat = CLLocationDegrees(lat)
@@ -28,12 +28,19 @@ class Location: NSObject, CLLocationManagerDelegate {
         return CLLocationCoordinate2DMake(CLLat, CLLng)
     }
     
-    var lat: CLLocationDegrees? {
-        return latLng?.latitude
+    var lat: CLLocationDegrees! {
+        return latLng.latitude
     }
     
-    var lng: CLLocationDegrees? {
-        return latLng?.longitude
+    var lng: CLLocationDegrees! {
+        return latLng.longitude
+    }
+    
+    var formatAddress: String?{
+        if let formatComponent = venue?.value(forKeyPath: "location.formattedAddress") as? [String] {
+            return formatComponent[0]
+        }
+        return nil
     }
     
     // example: Furman St

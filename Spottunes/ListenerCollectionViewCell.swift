@@ -26,12 +26,12 @@ class ListenerCollectionViewCell: UICollectionViewCell {
     
     var listener: User?{
         didSet{
-            if let url = listener?.avatorURL{
-                self.profileImageView.image = UIImage(named: url)
-            }
-            if let name = listener?.name{
-                self.nameLabel.text = name
-            }
+//            if let url = listener?.avatorURL{
+//                self.profileImageView.image = UIImage(named: url)
+//            }
+//            if let name = listener?.name{
+//                self.nameLabel.text = name
+//            }
         }
     }
     

@@ -8,11 +8,15 @@
 
 import UIKit
 
-fileprivate let recommendedSpotReuseIden = "RecommendedSpotReuseIden"
-fileprivate let recommendedSpotNibName = "RecommendationSpotCollectionViewCell"
+fileprivate let recentlyVisitedSpotReuseIden = "RecentlyVisitedCollectionViewCell"
+fileprivate let recentlyVisitedSpotNibName = "RecentlyVisitedCollectionViewCell"
 
-fileprivate let smartGenreReuseIden = "SmartGenreReuseIden"
-fileprivate let smartGenreNibName = "SmartGenreCollectionViewCell"
+fileprivate let popularSpotReuseIden = "PopularSpotCollectionViewCellIden"
+fileprivate let popularSpotNibName = "PopularSpotCollectionViewCell"
+
+fileprivate let popularTuneSpotTitle = "Popular Tunes Spots"
+fileprivate let recentlyVisitedSpotTitle = "Recently Visited"
+
 
 fileprivate struct CollectionViewUI{
     static let UIEdgeSpace: CGFloat = 16.0
@@ -22,148 +26,143 @@ fileprivate struct CollectionViewUI{
 
 
 class OverviewViewController: UIViewController {
-
+    
     @IBOutlet weak var collectionView: UICollectionView!{
         didSet{
             self.collectionView.delegate = self
             self.collectionView.dataSource = self
-            
+            self.collectionView.alwaysBounceVertical = true
             self.collectionView.contentInset = UIEdgeInsetsMake(0, 0, 44, 0)
+            self.collectionView.refreshControl = self.refreshControl
             
-            //register for recommendation spot cell and reuse
-            self.collectionView.register(UINib(nibName: recommendedSpotNibName, bundle: nil), forCellWithReuseIdentifier: recommendedSpotReuseIden)
-            self.collectionView.register(UINib(nibName: CollectionHeaderReusableViewNibName, bundle: nil), forSupplementaryViewOfKind: UICollectionElementKindSectionHeader, withReuseIdentifier: collectionHeaderReusableViewIden)
+            //register for recently visited spot cell and reuse
+            self.collectionView.register(UINib(nibName: recentlyVisitedSpotNibName, bundle: nil), forCellWithReuseIdentifier: recentlyVisitedSpotReuseIden)
             
             //register for smart genre cell and reuse
-            self.collectionView.register(UINib(nibName: smartGenreNibName, bundle: nil), forCellWithReuseIdentifier: smartGenreReuseIden)
+            self.collectionView.register(UINib(nibName: popularSpotNibName, bundle: nil), forCellWithReuseIdentifier: popularSpotReuseIden)
 
+            //reuse header
+            self.collectionView.register(UINib(nibName: CollectionHeaderReusableViewNibName, bundle: nil), forSupplementaryViewOfKind: UICollectionElementKindSectionHeader, withReuseIdentifier: collectionHeaderReusableViewIden)
         }
     }
     
-    var spot: [Spot]?
+    lazy var refreshControl: UIRefreshControl = {
+        let refreshControl =  UIRefreshControl()
+        refreshControl.addTarget(self, action: #selector(refreshDragged(_:)), for: .valueChanged)
+        return refreshControl
+    }()
     
-    var genre: [Genre]?
     
-
+    var shouldShowRecentlyVisistedSection = false{
+        didSet{
+            self.reloadData()
+        }
+    }
+    
+    var recentlyVisitedSpot: [TuneSpot]?
+    
+    var popularSpot: [TuneSpot]?{
+        didSet{
+            self.reloadData()
+        }
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        let spot_1 = Spot(name: "Geisel", thubmnailURL: "images-4")
-        let spot_2 = Spot(name: "Murray", thubmnailURL: "images-3")
-        let spot_3 = Spot(name: "Price Center", thubmnailURL: "images-2")
-        let spot_4 = Spot(name: "Sixty Four Degree", thubmnailURL: "images-1")
-        let spot_5 = Spot(name: "RIMAC", thubmnailURL: "images-5")
-        self.spot = [spot_1, spot_5, spot_3, spot_2, spot_4]
-        
-        
-//        let genre_1 = Genre(name: "Rock 80's", thubmnailURL: "images-5")
-//        let genre_2 = Genre(name: "Focus", thubmnailURL: "images-1")
-//        let genre_3 = Genre(name: "Chill", thubmnailURL: "images-2")
-//        let genre_4 = Genre(name: "Romance", thubmnailURL: "images-3")
-//        let genre_5 = Genre(name: "Mood", thubmnailURL: "images-4")
-        
-        
-        
-
-        let genre_1 = Genre(name: "Geisel", thubmnailURL: "images-5")
-        let genre_2 = Genre(name: "Murray", thubmnailURL: "images-1")
-        let genre_3 = Genre(name: "Price Center", thubmnailURL: "images-2")
-        let genre_4 = Genre(name: "Sixty Four Degree", thubmnailURL: "images-3")
-        let genre_5 = Genre(name: "RIMAC", thubmnailURL: "images-4")
-
-        self.genre = [genre_2, genre_3, genre_4, genre_5, genre_1]
-        
+        NotificationCenter.default.addObserver(self, selector: #selector(popularSpotShouldUpdate(_:)), name: App.LocalNotification.Name.popularSpotShouldUpdate, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(recentlyVisitedShouldUpdate(_:)), name: App.LocalNotification.Name.recentlyVisitedShouldUpdate, object: nil)
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+    
+    func popularSpotShouldUpdate(_ notification: Notification){
+        self.reloadData()
+    }
+    
+    func recentlyVisitedShouldUpdate(_ notification: Notification){
+        
+//        if !self.shouldShowRecentlyVisistedSection{
+//            //create a new section
+//            let indexSet = IndexSet(integer: 0)
+//            self.collectionView.performBatchUpdates({
+//                self.collectionView.insertSections(indexSet)
+//            }, completion: nil)
+//        }else{
+//            //add new item to the 0 section
+//            let indexPath = IndexPath(row: 0, section: 0)
+//            self.collectionView.performBatchUpdates({
+//                self.collectionView.insertItems(at: [indexPath])
+//            }, completion: nil)
+//        }
+        self.shouldShowRecentlyVisistedSection = true
+        self.collectionView.reloadData()
+
+    }
+    
+    
+    func refreshDragged(_ refreshControl: UIRefreshControl){
+        TuneSpot.getNearbyPopularTuneSpot { (spots) in
+            if let spots = spots{
+                App.delegate?.popularTuneSpot = spots
+            }
+        }
+    }
+    
+    
+    func reloadData(){
+        DispatchQueue.main.async {
+            self.refreshControl.endRefreshing()
+            self.collectionView.reloadData()
+        }
+    }
 }
 
 
 
 
-//extension OverviewViewController: UICollectionViewDelegate, UICollectionViewDataSource{
-//    func numberOfSections(in collectionView: UICollectionView) -> Int {
-//        return 2
-//    }
-//
-//    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-//        return section == 0 ? 1 : (self.genre?.count ?? 0)
-//    }
-//
-//    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-//        if indexPath.section == 0{
-//            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: recommendedSpotReuseIden, for: indexPath) as! RecommendationSpotCollectionViewCell
-//            cell.spot = self.spot
-//            return cell
-//        }else{
-//            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: smartGenreReuseIden, for: indexPath) as! SmartGenreCollectionViewCell
-//            cell.genre = self.genre![indexPath.row]
-//            return cell
-//        }
-//        
-//    }
-//    
-//    func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
-//        let headerView = collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionElementKindSectionHeader, withReuseIdentifier: collectionHeaderReusableViewIden, for: indexPath) as! CollectionHeaderReusableView
-//        if indexPath.section == 0 {
-//            headerView.title = "Popular Tunes Spots"
-//        }else if indexPath.section == 1 {
-//            headerView.title = "Smart Genres"
-//        }
-//        return headerView
-//    }
-//    
-//    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
-//        return CGSize(width: App.screenWidth, height: 54.0)
-//    }
-//    
-//}
-//
-//extension OverviewViewController: UICollectionViewDelegateFlowLayout{
-//    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-//        if indexPath.section == 0{
-//            return CGSize(width:App.screenWidth, height: 128)
-//        }else{
-//            let length = (self.view.frame.size.width - 2 * CollectionViewUI.UIEdgeSpace - CollectionViewUI.MinmumInteritemSpace) / 2 ;
-//            return CGSize(width: length, height: length + 38)
-//        }
-//    }
-//
-//    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
-//        return section == 0 ? 0 :  CollectionViewUI.MinmumLineSpace
-//    }
-//    
-//    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
-//        return  section == 0 ? UIEdgeInsets(top: 0, left: 0, bottom: CollectionViewUI.UIEdgeSpace, right: 0) : UIEdgeInsetsMake( 0,  CollectionViewUI.UIEdgeSpace,  0,  CollectionViewUI.UIEdgeSpace)
-//    }
-//
-//    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
-//        return section == 0 ? 0 : CollectionViewUI.MinmumInteritemSpace
-//    }
-//}
-
 
 extension OverviewViewController: UICollectionViewDelegate, UICollectionViewDataSource{
     func numberOfSections(in collectionView: UICollectionView) -> Int {
-        return 1
+        return self.shouldShowRecentlyVisistedSection ? 2 : 1
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return self.genre?.count ?? 0
+        if self.shouldShowRecentlyVisistedSection{
+            if section == 0{
+                //return the number of recently visited spot
+                return 1
+            }
+        }
+        return App.delegate?.popularTuneSpot?.count ?? 0
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: smartGenreReuseIden, for: indexPath) as! SmartGenreCollectionViewCell
-            cell.genre = self.genre![indexPath.row]
-            return cell
-        
+        if self.shouldShowRecentlyVisistedSection{
+            if indexPath.section == 0{
+                let cell = collectionView.dequeueReusableCell(withReuseIdentifier: recentlyVisitedSpotReuseIden, for: indexPath) as! RecentlyVisitedCollectionViewCell
+                cell.spots = App.delegate?.currentUser?.recentlyVisitedSpot
+                return cell
+            }
+        }
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: popularSpotReuseIden, for: indexPath) as! PopularSpotCollectionViewCell
+        cell.spot = App.delegate?.popularTuneSpot?[indexPath.row]
+        return cell
     }
     
     func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
         let headerView = collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionElementKindSectionHeader, withReuseIdentifier: collectionHeaderReusableViewIden, for: indexPath) as! CollectionHeaderReusableView
-        headerView.title = "Popular Tunes Spots"
+        if self.shouldShowRecentlyVisistedSection{
+            if indexPath.section == 0{
+                headerView.title = recentlyVisitedSpotTitle
+            }else{
+                headerView.title = popularTuneSpotTitle
+            }
+        }else{
+            headerView.title = popularTuneSpotTitle
+        }
         return headerView
     }
     
@@ -173,22 +172,42 @@ extension OverviewViewController: UICollectionViewDelegate, UICollectionViewData
     
 }
 
+
 extension OverviewViewController: UICollectionViewDelegateFlowLayout{
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        if self.shouldShowRecentlyVisistedSection{
+            if indexPath.section == 0{
+                return CGSize(width:App.screenWidth, height: 148)
+            }
+        }
         let length = (self.view.frame.size.width - 2 * CollectionViewUI.UIEdgeSpace - CollectionViewUI.MinmumInteritemSpace) / 2 ;
-        return CGSize(width: length, height: length + 38)
-        
+        return CGSize(width: length, height: length + 60)
     }
-    
+
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+        if self.shouldShowRecentlyVisistedSection{
+            if section == 0{
+                return 0
+            }
+        }
         return CollectionViewUI.MinmumLineSpace
     }
-    
+
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
+        if self.shouldShowRecentlyVisistedSection{
+            if section == 0{
+             return  UIEdgeInsets(top: 0, left: 0, bottom: CollectionViewUI.UIEdgeSpace, right: 0)
+            }
+        }
         return  UIEdgeInsetsMake( 0,  CollectionViewUI.UIEdgeSpace,  0,  CollectionViewUI.UIEdgeSpace)
     }
-    
+
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
+        if self.shouldShowRecentlyVisistedSection{
+            if section == 0{
+                return 0
+            }
+        }
         return CollectionViewUI.MinmumInteritemSpace
     }
 }

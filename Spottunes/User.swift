@@ -8,34 +8,45 @@
 
 import Parse
 
-fileprivate let spotifyIdKey = "spotifyId"
+fileprivate let SpotifyIdKey = "spotifyId"
+fileprivate let RecentlyVisitedSpotKey = "recentlyVisitedSpot"
 fileprivate let className = "User"
 
 class User: PFObject {
     
     var spotifyId : String? {
-        return self[spotifyIdKey] as? String
+        return self[SpotifyIdKey] as? String
     }
     
-    var name: String?
-    
-    var avatorURL: String?
-    
-    //    init(name: String, avatorURL: String) {
-    //        super.init()
-    //        self.name = name
-    //        self.avatorURL = avatorURL
-    //    }
-    //
-    //
-    
-    static var currentUser: User?
+    var recentlyVisitedSpot: [TuneSpot]?{
+        get{
+            return self[RecentlyVisitedSpotKey] as? [TuneSpot]
+        }
+        set{
+            
+        }
+    }
    
     static func getCurrentUser(completionHandler: @escaping (_ user: User?) -> Void){
         let query = PFQuery(className: className)
         query.fromLocalDatastore()
+        query.includeKey(RecentlyVisitedSpotKey)
+
         query.getFirstObjectInBackground { (userObject, error) in
             completionHandler(userObject as? User)
+        }
+    }
+    
+    func addRecentVisitSpot(spot: TuneSpot ,completionHandler: @escaping PFBooleanResultBlock){
+        let newRecentSpot = [spot] + (self.recentlyVisitedSpot ?? [TuneSpot]())
+        self.recentlyVisitedSpot = newRecentSpot
+        self[RecentlyVisitedSpotKey] = newRecentSpot
+        self.saveCurrentUserToDisk { (suceed, error) in
+            if suceed{
+                self.saveInBackground(block: completionHandler)
+            }else{
+                completionHandler(false, nil)
+            }
         }
     }
     
@@ -47,7 +58,8 @@ class User: PFObject {
    
     class func fetchUserByUsername(username: String, completionHandler: @escaping (User?) -> Void){
         let query = PFQuery(className: className)
-        query.whereKey(spotifyIdKey, equalTo: username)
+        query.whereKey(SpotifyIdKey, equalTo: username)
+        query.includeKey(RecentlyVisitedSpotKey)
         query.getFirstObjectInBackground { (object, error) in
             if let user = object as? User{
                 completionHandler(user)
@@ -60,14 +72,14 @@ class User: PFObject {
     //Create a user and save it to Parse
     class func register(spotifyId: String, completionHandler: @escaping  PFBooleanResultBlock) {
         let user = PFObject(className: className)
-        user[spotifyIdKey] = spotifyId
+        user[SpotifyIdKey] = spotifyId
         user.saveInBackground(block: completionHandler)
     }
     
     //Check if the current session user exists in Parse
     class func doesExist(spotifyId: String, completionHandler: @escaping (_ exists: Bool) -> Void ) {
         let query = PFQuery(className: className)
-        query.whereKey(spotifyIdKey, equalTo: spotifyId)
+        query.whereKey(SpotifyIdKey, equalTo: spotifyId)
         query.findObjectsInBackground { (response, error) in
             if let objects = response, objects.count > 0 {
                 print("USER EXISTS")
