@@ -12,15 +12,31 @@ fileprivate let reuseIden = "SearchTableViewCell"
 fileprivate let nibbName = "SearchTableViewCell"
 
 class SongsSearchViewController: UIViewController {
+    
+    @IBOutlet weak var tableView: UITableView! {
+        didSet {
+            self.tableView.delegate = self
+            self.tableView.dataSource = self
+            self.tableView.alwaysBounceVertical = true
+            self.tableView.estimatedRowHeight = 60
+            self.tableView.rowHeight = UITableViewAutomaticDimension
+            self.tableView.contentInset = UIEdgeInsetsMake(0, 0, 64, 0)
+            self.tableView.register(UINib(nibName: nibbName, bundle: nil), forCellReuseIdentifier: reuseIden)
+        }
+    }
 
-    
-    var data : [Any]?
-    
+    var data : Tracks? {
+        didSet {
+            DispatchQueue.main.async {
+                if let table = self.tableView {
+                    table.reloadData()
+                }
+            }
+        }
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        // Do any additional setup after loading the view.
     }
 
     override func didReceiveMemoryWarning() {
@@ -28,7 +44,6 @@ class SongsSearchViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-
     /*
     // MARK: - Navigation
 
@@ -38,7 +53,6 @@ class SongsSearchViewController: UIViewController {
         // Pass the selected object to the new view controller.
     }
     */
-
 }
 
 extension SongsSearchViewController: UITableViewDelegate, UITableViewDataSource {
@@ -48,23 +62,16 @@ extension SongsSearchViewController: UITableViewDelegate, UITableViewDataSource 
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return self.data?.count ?? 0
+        return self.data?.trackList?.count ?? 0
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: reuseIden, for: indexPath) as! SearchTableViewCell
-        
-        if let songs = self.data as? [Track] {
-            print(songs)
-        } else if let artists = self.data as? [Artist] {
-            print(artists)
-        } else if let playlists = self.data as? [Playlist] {
-            print(playlists)
-        } else if let spots = self.data as? [TuneSpot] {
-            print(spots)
+        if let tracklist = self.data?.trackList {
+            if tracklist.count > 0 {
+                cell.data = self.data?.trackList?[indexPath.row]
+            }
         }
-        //cell.titleLabel.text = self.data?[indexPath.row]
-        
         return cell
     }
     
@@ -78,3 +85,14 @@ extension SongsSearchViewController: UITableViewDelegate, UITableViewDataSource 
     }
     
 }
+
+//        if let songs = self.data as? [Track] {
+//            print(songs)
+//        } else if let artists = self.data as? [Artist] {
+//            print(artists)
+//        } else if let playlists = self.data as? [Playlist] {
+//            print(playlists)
+//        } else if let spots = self.data as? [TuneSpot] {
+//            print(spots)
+//        }
+

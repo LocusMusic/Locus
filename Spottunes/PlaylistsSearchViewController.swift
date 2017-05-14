@@ -9,22 +9,39 @@
 import UIKit
 
 fileprivate let reuseIden = "SearchTableViewCell"
+fileprivate let nibbName = "SearchTableViewCell"
 
 class PlaylistsSearchViewController: UIViewController {
     
-    var data : [Any]?
+    @IBOutlet weak var tableView: UITableView! {
+        didSet {
+            self.tableView.delegate = self
+            self.tableView.dataSource = self
+            self.tableView.alwaysBounceVertical = true
+            self.tableView.estimatedRowHeight = 60
+            self.tableView.rowHeight = UITableViewAutomaticDimension
+            self.tableView.contentInset = UIEdgeInsetsMake(0, 0, 64, 0)
+            self.tableView.register(UINib(nibName: nibbName, bundle: nil), forCellReuseIdentifier: reuseIden)
+        }
+    }
+    
+    var data : Playlists? {
+        didSet {
+            DispatchQueue.main.async {
+                if let table = self.tableView {
+                    table.reloadData()
+                }
+            }
+        }
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
-    
 
     /*
     // MARK: - Navigation
@@ -46,23 +63,12 @@ extension PlaylistsSearchViewController: UITableViewDelegate, UITableViewDataSou
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return self.data?.count ?? 0
+        return self.data?.playlists?.count ?? 0
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: reuseIden, for: indexPath) as! SearchTableViewCell
-        
-        if let songs = self.data as? [Track] {
-            print(songs)
-        } else if let artists = self.data as? [Artist] {
-            print(artists)
-        } else if let playlists = self.data as? [Playlist] {
-            print(playlists)
-        } else if let spots = self.data as? [TuneSpot] {
-            print(spots)
-        }
-        //cell.titleLabel.text = self.data?[indexPath.row]
-        
+        cell.data = self.data?.playlists?[indexPath.row]
         return cell
     }
     
