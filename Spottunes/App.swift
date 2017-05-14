@@ -105,6 +105,8 @@ struct App{
             static let searchArtistsShouldBecomeActive = Notification.Name("searchArtistsShouldBecomeActive")
             static let searchPlaylistsShouldBecomeActive = Notification.Name("searchPlaylistsShouldBecomeActive")
             static let searchSpotsShouldBecomeActive = Notification.Name("searchSpotsShouldBecomeActive")
+            static let popularSpotShouldUpdate = Notification.Name("popularSpotShouldUpdate")
+            static let recentlyVisitedShouldUpdate = Notification.Name("recentlyVisitedShouldUpdate")
         }
         
         struct PlayViewShouldShow{
@@ -122,6 +124,8 @@ struct App{
             static let name = Notification.Name("StatusBarStyleUpdate")
             static let styleKey = "style" //tracks key for the user info dictionary
         }
+        
+        
         
     }
     

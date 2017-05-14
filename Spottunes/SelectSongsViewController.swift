@@ -30,8 +30,19 @@ class SelectSongsViewController: UIViewController {
     
     @IBOutlet weak var shareBtn: UIButton!
     
+    @IBOutlet weak var loadingActivityIndicator: UIActivityIndicatorView!{
+        didSet{
+            self.loadingActivityIndicator.isHidden = true
+            self.loadingActivityIndicator.hidesWhenStopped = true
+        }
+    }
+
+    
     
     @IBAction func shareBtnTapped(_ sender: UIButton) {
+        self.loadingActivityIndicator.isHidden = false
+        self.loadingActivityIndicator.startAnimating()
+        sender.setTitle("", for: .normal)
         guard let currentUser = App.delegate?.currentUser else{
             return
         }
@@ -39,13 +50,32 @@ class SelectSongsViewController: UIViewController {
             return
         }
         
-        guard let playlist = self.postInfo[App.PostInfoKey.playlist] as? Playlist else{
-            return
+        if self.selectAll{
+            print("select all")
+            guard let playlist = self.postInfo[App.PostInfoKey.playlist] as? Playlist else{
+                return
+            }
+            
+            //garsp the first song's cover and uplaod together
+            if let coverImage = playlist.getCoverImage(withSize: .large) {
+                spot.coverURLString = coverImage.url?.absoluteString
+            }
+            
+            let playlistPost = PlaylistPost(user: currentUser, spot: spot, playlistId: playlist.spotifyId)
+            playlistPost.share { (succeed, error) in
+                if succeed{
+                    print("succeed")
+                    DispatchQueue.main.async {
+                        App.postLocalNotification(withName: App.LocalNotification.Name.recentlyVisitedShouldUpdate)
+                        self.dismiss(animated: true, completion: nil)
+                    }
+                }else{
+                    print("failed to save")
+                }
+            }
+        }else{
+            print("select individual songs")
         }
-        let playlistPost = PlaylistPost(user: currentUser, spot: spot, playlistId: playlist.spotifyId)
-        
-        
-        self.dismiss(animated: true, completion: nil)
     }
     
     

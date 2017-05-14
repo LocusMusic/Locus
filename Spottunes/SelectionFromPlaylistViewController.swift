@@ -75,7 +75,6 @@ class SelectionFromPlaylistViewController: UIViewController {
                 break
             }
         }
-
     }
 
 }

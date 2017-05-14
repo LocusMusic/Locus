@@ -21,20 +21,11 @@ class GlobalTabBarController: UITabBarController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        print("current user form tabbar ")
-        print(User.currentUser)
-        
-        self.tabBar.unselectedItemTintColor = App.grayColor
         self.delegate = self
-        self.tabBar.tintColor = App.Style.TabBar.tintColor
-        self.tabBar.barTintColor = App.Style.TabBar.barTintColor
-        self.tabBar.isTranslucent = App.Style.TabBar.isTranslucent
+        self.tabBar.updateTabBarAppearance()
         
         UISearchBar.appearance().setImage(#imageLiteral(resourceName: "search-icon"), for: .search, state: .normal)
         
-        self.tabBar.layer.borderWidth = 0.50
-        self.tabBar.layer.borderColor = App.grayColor.cgColor.copy(alpha: 0.3)
-        self.tabBar.clipsToBounds = true
         self.tabBarOriginalY = self.tabBar.frame.origin.y
         
         NotificationCenter.default.addObserver(self, selector: #selector(self.playViewShouldShow(_:)), name: App.LocalNotification.PlayViewShouldShow.name, object: nil)

@@ -19,6 +19,7 @@ class InitViewController: UIViewController {
     //container view
     @IBOutlet weak var loginContainerView: UIView!
     @IBOutlet weak var homeContainerView: UIView!
+    @IBOutlet weak var placeholderContainerView: UIView!
     
     
     //embed view controller
@@ -48,31 +49,34 @@ class InitViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        TuneSpot.getNearByTuneSpots { (spot) in
-            print("spot here")
-        }
-        
-        
         NotificationCenter.default.addObserver(self, selector: #selector(statusBarShouldUpdate(_:)), name: App.LocalNotification.StatusBarStyleUpdate.name, object: nil)
-        
+                
         SpotifyClient.updateSession { (session) in
-            if session != nil{
-                User.getCurrentUser(completionHandler: { (user) in
+            if let session = session{
+                self.view.bringSubview(toFront: self.placeholderContainerView)
+                User.fetchUserByUsername(username: session.canonicalUsername, completionHandler: { (user) in
                     if let user = user{
+                        print("finsihed fetching user")
                         App.delegate?.currentUser = user
                         self.statusBarShouldHidden = false
                         self.statusBarStyle = .default
-                        self.view.bringSubview(toFront: self.homeContainerView)
+                        
+                        //get the popular tune spot near the current location
+                        TuneSpot.getNearbyPopularTuneSpot { (spots) in
+                            if let spots = spots{
+                                App.delegate?.popularTuneSpot = spots
+                                self.view.bringSubview(toFront: self.homeContainerView)
+                            }
+                        }
                     }
                 })
             }else{
                 print("GO TO LOGIN PAGE")
                 self.statusBarShouldHidden = true
+                self.view.bringSubview(toFront: self.loginContainerView)
             }
             self.setNeedsStatusBarAppearanceUpdate()
         }
-       
     }
 
     override var prefersStatusBarHidden: Bool{

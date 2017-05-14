@@ -11,7 +11,6 @@ import UIKit
 fileprivate let reuseIden = "SelectSpotTableViewCell"
 fileprivate let cellNibName = "SelectSpotTableViewCell"
 
-
 class SpotPickerViewController: UIViewController {
 
     var spots: [TuneSpot]?{

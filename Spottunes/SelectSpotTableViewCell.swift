@@ -26,17 +26,16 @@ class SelectSpotTableViewCell: UITableViewCell {
             if let name = self.spot?.name{
                 self.spotNameLabel.text = name
             }
-            
-//            if let address = self.spot?.name{
-//                self.spotNameLabel.text = name
-//            }
-            
-
+            if let address = self.spot?.address{
+                self.addressLabel.text = address
+            }
+            self.locationImageView?.image = #imageLiteral(resourceName: "location-icon")
+            if let coverURL = self.spot?.coverURL{
+                self.locationImageView.loadImageWithURL(coverURL)
+            }
         }
     }
 
-
-    
     override func awakeFromNib() {
         super.awakeFromNib()
     }

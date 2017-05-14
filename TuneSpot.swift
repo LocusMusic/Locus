@@ -2,27 +2,63 @@
 //  TuneSpot.swift
 //  Spottunes
 //
-//  Created by Leo Wong on 5/2/17.
+//  Created by Leo Wong, Kesong Xie on 5/2/17.
 //  Copyright © 2017 ___Spottunes___. All rights reserved.
 //
 
 import UIKit
 import Parse
 
+fileprivate let ClassName = "TuneSpot"
 fileprivate let NameKey = "name"
 fileprivate let LocationKey = "location"
-fileprivate let ClassName = "TuneSpot"
+fileprivate let AddressKey = "address"
+fileprivate let CoverURLStringKey = "coverURLString"
 fileprivate let searchNearbyRadiusMiles: Double = 10
 
-class TuneSpot : PFObject, PFSubclassing {
+class TuneSpot : PFObject {
     
-    var name: String? {
-        return self[NameKey] as? String
+    var name: String! {
+        if self.embedLocation == nil{
+            return self[NameKey] as! String
+        }else{
+            return self.embedLocation.name
+        }
     }
     
-    var geoPoint: PFGeoPoint? {
-        return self[LocationKey] as? PFGeoPoint
+    var address: String! {
+        if self.embedLocation == nil{
+            return self[AddressKey] as! String
+        }else{
+            return self.embedLocation.formatAddress
+        }
     }
+
+    var location: PFGeoPoint! {
+        if self.embedLocation == nil{
+            return self[LocationKey] as! PFGeoPoint
+        }else{
+            return PFGeoPoint(latitude: self.embedLocation.lat, longitude: self.embedLocation.lng)
+        }
+    }
+    
+    var coverURLString: String?{
+        get{
+            return self[CoverURLStringKey] as? String
+        }
+        set(newValue){
+            self[CoverURLStringKey] = newValue
+        }
+    }
+
+    var coverURL: URL?{
+        if let urlString = self.coverURLString{
+            return URL(string: urlString)
+        }
+        return nil
+    }
+    
+    var embedLocation: Location!
     
     var isSpotExisted: Bool?
     
@@ -30,46 +66,44 @@ class TuneSpot : PFObject, PFSubclassing {
         super.init()
     }
     
-    init(name: String, location: PFGeoPoint) {
+    init(location: Location) {
         super.init()
+        self.embedLocation = location
     }
     
-
-    class func saveTuneSpot(name: String, long: CLLocationDegrees, lat: CLLocationDegrees, completionHandler: @escaping PFBooleanResultBlock) {
-        let spot = TuneSpot()
-        spot[NameKey] = name
-        spot[LocationKey] = PFGeoPoint(latitude: lat, longitude: long)
-        spot.saveInBackground(block: completionHandler)
+    override func isEqual(_ object: Any?) -> Bool {
+        if let spot = object as? TuneSpot{
+            return String(self.location.latitude) == String(spot.location.latitude) && String(self.location.longitude) == String(spot.location.longitude)
+        }
+        return false
     }
     
-    static func parseClassName() -> String {
-        return ClassName
+    func saveTuneSpot(completionHandler: @escaping PFBooleanResultBlock) {
+        self[NameKey] = self.name
+        self[LocationKey] = self.location
+        self[AddressKey] = self.address
+        self[CoverURLStringKey] = self.coverURLString ?? ""
+        self.saveInBackground(block: completionHandler)
     }
     
-    static func getNearByTuneSpots(completionHandler: @escaping ([TuneSpot]?) -> Void){
-       
-        
+    static func getNearbyPopularTuneSpot(completionHandler: @escaping ([TuneSpot]?) -> Void){
         PFGeoPoint.geoPointForCurrentLocation { (point, error) in
             if let point = point{
-                
-                //fetch from Foursquare api
-                FoursquareClient.fetchRecommendedPlaces(geoPoint: point, success: { (locations) in
-                    
-                    
-                    
-                })
-
                 //fetch from parse db
                 let searchQuery = PFQuery(className: ClassName)
                 searchQuery.whereKey(LocationKey, nearGeoPoint: point, withinMiles: searchNearbyRadiusMiles)
                 searchQuery.findObjectsInBackground { (objects, error) in
                     if let objects = objects{
-                        if var spots = objects as? [TuneSpot]{
-                            spots = spots.map({ (spot) -> TuneSpot in
+                        if var spotsFromParse = objects as? [TuneSpot]{
+                            spotsFromParse = spotsFromParse.map({ (spot) -> TuneSpot in
                                 spot.isSpotExisted = true
                                 return spot
                             })
-                            completionHandler(spots)
+                            spotsFromParse = spotsFromParse.map({ (spot) -> TuneSpot in
+                                spot.isSpotExisted = true
+                                return spot
+                            })
+                            completionHandler(spotsFromParse)
                         }else{
                             completionHandler(nil)
                         }
@@ -81,7 +115,29 @@ class TuneSpot : PFObject, PFSubclassing {
         }
     }
     
-   
     
     
+    static func getNearByTuneSpots(completionHandler: @escaping ([TuneSpot]?) -> Void){
+        //fetch from Foursquare api
+        PFGeoPoint.geoPointForCurrentLocation { (point, error) in
+            if let point = point{
+                let spotsFromParse = App.delegate?.popularTuneSpot ?? []
+                FoursquareClient.fetchRecommendedPlaces(geoPoint: point, success: { (spotsFromFourSquare) in
+                    //filtered out the spot already in parse database
+                    let filteredSpot = spotsFromFourSquare.filter({ (spot) -> Bool in
+                        return !spotsFromParse.contains(spot)
+                    })
+                    let resultSpot = spotsFromParse + filteredSpot
+                    completionHandler(resultSpot)
+                })
+            }
+        }
+    }
+}
+
+        
+extension TuneSpot: PFSubclassing{
+    static func parseClassName() -> String {
+        return ClassName
+    }
 }
