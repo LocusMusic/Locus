@@ -138,8 +138,8 @@ class SearchViewController: UIViewController {
             switch iden {
                 case App.SegueIden.embedSearchPageVCIden:
                     if let searchEmbedPageVC = segue.destination as? SearchEmbedViewController {
-    //                    searchEmbedPageVC.customDelegate = self
-    //                    self.searchEmbedPageVC = searchEmbedPageVC
+                        searchEmbedPageVC.customDelegate = self
+                        self.searchEmbedPageVC = searchEmbedPageVC
                         self.searchBar.delegate = searchEmbedPageVC
                         print("SET THE SEARCH BAR DELEGATE TO EMBEDDED SEARCH PAGE VC")
                     }
@@ -173,6 +173,7 @@ extension SearchViewController: UISearchBarDelegate {
 
 extension SearchViewController: HomeEmbedPageViewControllerDelegate {
     func willTransitionToPage(viewController: UIViewController, pageIndex: Int) {
+//        print("IS CALLED WITH INDEX: \(pageIndex)")
         if pageIndex == 0 {
             self.setSongsBtnActive()
         } else if pageIndex == 1 {

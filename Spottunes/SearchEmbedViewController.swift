@@ -8,21 +8,30 @@
 
 import UIKit
 
-class SearchEmbedViewController: UIPageViewController, UIPageViewControllerDelegate, UIPageViewControllerDataSource {
+class SearchEmbedViewController: UIPageViewController {
     
     lazy var childControllers: [UIViewController] = {
-        
-        let songsVC = App.searchStoryBoard.instantiateViewController(withIdentifier:App.SearchStoryboardIden.songsSearchViewController)
-        let artistsVC = App.searchStoryBoard.instantiateViewController(withIdentifier:App.SearchStoryboardIden.artistsSearchViewController)
-        let spotsVC = App.searchStoryBoard.instantiateViewController(withIdentifier:App.SearchStoryboardIden.spotsSearchViewController)
-        let playlistsVC = App.searchStoryBoard.instantiateViewController(withIdentifier:App.SearchStoryboardIden.playlistsSearchViewController)
-        
-        return [songsVC, artistsVC, spotsVC, playlistsVC]
-        
-//        let overViewVC = App.mainStoryBoard.instantiateViewController(withIdentifier: App.StoryboardIden.overviewViewController)
-//        let playingVC = App.mainStoryBoard.instantiateViewController(withIdentifier: App.StoryboardIden.playingViewController)
-//        return [overViewVC, playingVC]
-        
+        return [self.songsVC, self.artistsVC, self.playlistsVC, self.spotsVC]
+    }()
+    
+    lazy var songsVC: SongsSearchViewController = {
+        let songVC = App.searchStoryBoard.instantiateViewController(withIdentifier:App.SearchStoryboardIden.songsSearchViewController) as! SongsSearchViewController
+        return songVC
+    }()
+    
+    lazy var artistsVC: ArtistsSearchViewController = {
+        let artistsVC = App.searchStoryBoard.instantiateViewController(withIdentifier:App.SearchStoryboardIden.artistsSearchViewController) as! ArtistsSearchViewController
+        return artistsVC
+    }()
+
+    lazy var playlistsVC: PlaylistsSearchViewController = {
+        let playlistsVC = App.searchStoryBoard.instantiateViewController(withIdentifier:App.SearchStoryboardIden.playlistsSearchViewController) as! PlaylistsSearchViewController
+        return playlistsVC
+    }()
+    
+    lazy var spotsVC: SpotsSearchViewController = {
+        let spotsVC = App.searchStoryBoard.instantiateViewController(withIdentifier:App.SearchStoryboardIden.spotsSearchViewController) as! SpotsSearchViewController
+        return spotsVC
     }()
     
     weak var customDelegate: HomeEmbedPageViewControllerDelegate?
@@ -85,34 +94,6 @@ class SearchEmbedViewController: UIPageViewController, UIPageViewControllerDeleg
         self.setSpotPageActive()
     }
 
-    func pageViewController(_ pageViewController: UIPageViewController, viewControllerBefore viewController: UIViewController) -> UIViewController? {
-        guard let currentIndex = self.childControllers.index(of: viewController) else{
-            return nil
-        }
-        let prevIndex = max(currentIndex - 1, 0)
-        return currentIndex == prevIndex ? nil : self.childControllers[prevIndex]
-    }
-    
-    func pageViewController(_ pageViewController: UIPageViewController, viewControllerAfter viewController: UIViewController) -> UIViewController? {
-        guard let currentIndex = self.childControllers.index(of: viewController) else{
-            return nil
-        }
-        let nextIndex = min(currentIndex + 1, self.childControllers.count - 1)
-        return  currentIndex == nextIndex ? nil : self.childControllers[nextIndex]
-    }
-    
-    
-    func pageViewController(_ pageViewController: UIPageViewController, didFinishAnimating finished: Bool, previousViewControllers: [UIViewController], transitionCompleted completed: Bool) {
-        if completed{
-            if let prevVC = previousViewControllers.first{
-                if let index = self.childControllers.index(of: prevVC){
-                    self.currentPageIndex = (index + 1)%2
-                    self.customDelegate?.willTransitionToPage(viewController: self.childControllers[self.currentPageIndex], pageIndex: self.currentPageIndex)
-                }
-            }
-        }
-    }
-
     /*
     // MARK: - Navigation
 
@@ -125,29 +106,83 @@ class SearchEmbedViewController: UIPageViewController, UIPageViewControllerDeleg
 
 }
 
+extension SearchEmbedViewController: UIPageViewControllerDelegate, UIPageViewControllerDataSource {
+    
+    func pageViewController(_ pageViewController: UIPageViewController, viewControllerBefore viewController: UIViewController) -> UIViewController? {
+//        print("============ VIEWCONTROLLERBEFORE CALLED ===========")
+//        print(viewController)
+        guard let currentIndex = self.childControllers.index(of: viewController) else{
+            return nil
+        }
+        let prevIndex = max(currentIndex - 1, 0)
+        return currentIndex == prevIndex ? nil : self.childControllers[prevIndex]
+    }
+    
+    func pageViewController(_ pageViewController: UIPageViewController, viewControllerAfter viewController: UIViewController) -> UIViewController? {
+//        print("======== VIEWCONTROLLERAFTER CALLED ============")
+//        print(viewController)
+        guard let currentIndex = self.childControllers.index(of: viewController) else{
+            return nil
+        }
+        let nextIndex = min(currentIndex + 1, self.childControllers.count - 1)
+        return  currentIndex == nextIndex ? nil : self.childControllers[nextIndex]
+    }
+    
+    func pageViewController(_ pageViewController: UIPageViewController, didFinishAnimating finished: Bool, previousViewControllers: [UIViewController], transitionCompleted completed: Bool) {
+        if completed {
+            self.customDelegate?.willTransitionToPage(viewController: self.childControllers[0], pageIndex: self.childControllers.index(of: self.viewControllers!.first!)!)
+//            if let prevVC = previousViewControllers.first {
+//                if let index = self.childControllers.index(of: prevVC){
+//                    print(self.childControllers.index(of: self.viewControllers!.first!))
+//                }
+//            }
+        }
+    }
+    
+    func presentationIndex(for pageViewController: UIPageViewController) -> Int {
+        return 1
+    }
+}
+
 extension SearchEmbedViewController: UISearchBarDelegate {
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         print("Search Bar Text Changed")
         
-        //Make spotify API Call
-        //What am i searching for: artists, playlists, etc.
-//        if self.viewControllers?[0] is SongsSearchViewController{
-//    
-//        } else if {
-//            
-//        }
-        if let vc = self.viewControllers?[0] as? SongsSearchViewController{
+        //Make Spotify API Call
+        let params = [
+            "q": searchText,
+            "type": "album,artist,playlist,track"
+        ]
         
+        SpotifyClient.getSearch(parameters: params as [String : AnyObject]) { (resultDict) in
+            
+            //Tracks
+            if let tracksDict = resultDict?["tracks"] as? [String: Any] {
+                let tracks = Tracks(dict: tracksDict)
+                self.songsVC.data = tracks
+            } else {
+                self.songsVC.data = nil
+            }
+            
+            //Artists
+            if let artistsDict = resultDict?["artists"] as? [String: Any] {
+                let artists = Artists(dict: artistsDict)
+                self.artistsVC.data = artists
+            } else {
+                self.artistsVC.data = nil
+            }
+            
+            //Playlists
+            if let playlistsDict = resultDict?["playlists"] as? [String: Any] {
+                let playlists = Playlists(dict: playlistsDict)
+                self.playlistsVC.data = playlists
+            } else {
+                self.playlistsVC.data = nil
+            }
         }
-        //} else if let vc1 = self.//
-//            vc1.data = spotifyResultDict
-        //Spotify API [songs,artists]
         
-        print(self.viewControllers?[0])
-        
-        //Get current tab using self.viewControllers
-        
+        //Get nearby spots
     }
     
     

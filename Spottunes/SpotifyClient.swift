@@ -18,6 +18,7 @@ fileprivate let redirectURL = URL(string: "spottunes://returnAfterLogin")
 fileprivate let fetchTokenEndPoint = "https://accounts.spotify.com/api/token"
 fileprivate let currentUserPlayListEndPoint = "https://api.spotify.com/v1/me/playlists"
 fileprivate let currentUserProfileEndPoint = "https://api.spotify.com/v1/me"
+fileprivate let searchEndPoint = "https://api.spotify.com/v1/search"
 
 
 
@@ -111,12 +112,6 @@ class SpotifyClient {
                         //user not existed
                     }
                 })
-                
-                
-                
-                
-                
-                
                 
 //                User.doesExist(spotifyId: session.canonicalUsername, completionHandler: { (exist) in
 //                    if !exist {
@@ -256,12 +251,10 @@ class SpotifyClient {
         }
     }
     
-    
-    
     //get tracks in playlists
     class func getTracksInPlaylist(tracksHref: String,  completionHandler: @escaping (_ responseDict: [Track]?) -> Void){
         guard let endPoint = URL(string: tracksHref) else{
-            print("end point onvalid")
+            print("end point invalid")
             completionHandler(nil)
             return
         }
@@ -279,6 +272,33 @@ class SpotifyClient {
                 completionHandler(trackList)
             })
         }
+    }
+    
+    class func getSearch(parameters: [String: AnyObject], completionHandler: @escaping (_ responseDict: [String: Any]?) -> Void) {
+        
+        print("getSearch Called")
+        
+        let paramString = parameters.stringFromHttpParams() as String!
+        print("\(paramString!)")
+        guard let requestURL = URL(string:"\(searchEndPoint)?\( paramString!)") else {
+            print("FAIL")
+            return
+        }
+
+        print("Request URL: \(requestURL)")
+        
+        performTask {
+            print("Performing task completion")
+            get(url: requestURL, completionHandler: { (dataDict) in
+                print("Finished!!!")
+                guard let dataDict = dataDict else {
+                    completionHandler(nil)
+                    return
+                }
+                completionHandler(dataDict)
+            })
+        }
+        
     }
     
     
