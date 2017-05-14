@@ -37,32 +37,21 @@ fileprivate let ArtistsKey = "artists"
 fileprivate let ImagesKey = "images"
 fileprivate let DurationKey = "duration_ms"
 
-
-
-
-
-class Track{
+class Track {
+    
     var dict: [String: Any]!
-    var uri: String?{
-        return self.dict[URIKey] as? String
+    
+    init(dict: [String: Any]) {
+        self.dict = dict
     }
     
-    var id: String!{
-        return self.dict[IdKey] as! String
-    }
-
     var album: Album?{
         guard let albumDict = self.dict[AlbumKey] as? [String: Any] else{
             return nil
         }
         return Album(dict: albumDict)
     }
-    
-    var duration: TimeInterval{
-        let milliSeconds =  self.dict[DurationKey] as! TimeInterval
-        return milliSeconds / 1000
-    }
-    
+
     var artists: [Artist]?{
         guard let artistsDict = self.dict[ArtistsKey] as? [[String: Any]] else{
             return nil
@@ -72,21 +61,26 @@ class Track{
         }
         return artists
     }
+    
+    var duration: TimeInterval{
+        let milliSeconds =  self.dict[DurationKey] as! TimeInterval
+        return milliSeconds / 1000
+    }
 
-    
-    
+    var id: String!{
+        return self.dict[IdKey] as! String
+    }
+
     func getCoverImage(withSize size: CoverSize) -> Image?{
         return self.album?.getCoverImage(withSize: size)
         
     }
-
-    
     
     var name: String?{
         return self.dict[NameKey] as? String
     }
-
-    init(dict: [String: Any]) {
-        self.dict = dict
+    
+    var uri: String?{
+        return self.dict[URIKey] as? String
     }
 }
