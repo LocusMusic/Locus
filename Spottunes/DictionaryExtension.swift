@@ -8,6 +8,14 @@
 
 import UIKit
 
-class DictionaryExtension: NSObject {
-
+extension Dictionary {
+    func stringFromHttpParams() -> String {
+        let parameterArray = self.map { (key, value) -> String in
+            let percentEscapedKey = (key as! String).addPercentEncodingForURLQueryVal()!
+            let percentEscapedValue = (value as! String).addPercentEncodingForURLQueryVal()!
+            return "\(percentEscapedKey)=\(percentEscapedValue)"
+        }
+        
+        return parameterArray.joined(separator: "&")
+    }
 }
