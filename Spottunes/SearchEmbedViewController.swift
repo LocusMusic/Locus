@@ -8,6 +8,10 @@
 
 import UIKit
 
+protocol SearchEmbedPageViewControllerDelegate: UIPageViewControllerDelegate {
+    func willTransitionToPage(pageIndex: Int)
+}
+
 class SearchEmbedViewController: UIPageViewController {
     
     lazy var childControllers: [UIViewController] = {
@@ -34,7 +38,7 @@ class SearchEmbedViewController: UIPageViewController {
         return spotsVC
     }()
     
-    weak var customDelegate: HomeEmbedPageViewControllerDelegate?
+    weak var customDelegate: SearchEmbedPageViewControllerDelegate?
     
     var currentPageIndex: Int = 0
     
@@ -49,7 +53,7 @@ class SearchEmbedViewController: UIPageViewController {
         NotificationCenter.default.addObserver(self, selector: #selector(self.playlistPageShouldBecomeActive(_:)), name: App.LocalNotification.Name.searchPlaylistsShouldBecomeActive, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(self.spotPageShouldBeActive(_:)), name: App.LocalNotification.Name.searchSpotsShouldBecomeActive, object: nil)
         
-        self.setSongPageActive()
+        self.setSongPageActive(newIndex: 0)
     }
     
     override func didReceiveMemoryWarning() {
@@ -57,41 +61,58 @@ class SearchEmbedViewController: UIPageViewController {
         // Dispose of any resources that can be recreated.
     }
     
-    func setSongPageActive(){
-        if let songVC = self.childControllers.first {
-            self.setViewControllers([songVC], direction: .reverse, animated: true, completion: nil)
+    func setPageHelper(index: Int, newIndex: Int) {
+        let viewController = self.childControllers[index]
+        var currIndex =  0
+        if let vc = self.viewControllers?.first {
+            currIndex = self.childControllers.index(of: vc)!
         }
+        
+        var direction: UIPageViewControllerNavigationDirection = .reverse
+        
+        if currIndex < newIndex {
+            direction = .forward
+        }
+        self.setViewControllers([viewController], direction: direction, animated: true, completion: nil)
     }
     
-    func setArtistPageActive(){
-        let artistVC = self.childControllers[1]
-        self.setViewControllers([artistVC], direction: .forward, animated: true, completion: nil)
+    func setSongPageActive(newIndex: Int){
+        self.setPageHelper(index: 0, newIndex: newIndex)
     }
     
-    func setPlaylistPageActive(){
-        let playlistVC = self.childControllers[2]
-        self.setViewControllers([playlistVC], direction: .forward, animated: true, completion: nil)
+    func setArtistPageActive(newIndex: Int){
+        self.setPageHelper(index: 1, newIndex: newIndex)
     }
     
-    func setSpotPageActive(){
-        let spotVC = self.childControllers[3]
-        self.setViewControllers([spotVC], direction: .forward, animated: true, completion: nil)
+    func setPlaylistPageActive(newIndex: Int){
+        self.setPageHelper(index: 2, newIndex: newIndex)
+    }
+    
+    func setSpotPageActive(newIndex: Int){
+        self.setPageHelper(index: 3, newIndex: newIndex)
     }
     
     func songPageShouldBecomeActive(_ notification: Notification){
-        self.setSongPageActive()
+        if let tag = notification.userInfo?["index"] as? Int {
+            self.setSongPageActive(newIndex: tag)
+        }
     }
     
     func artistPageShouldBecomeActive(_ notification: Notification){
-        self.setArtistPageActive()
-    }
+        if let tag = notification.userInfo?["index"] as? Int {
+            self.setArtistPageActive(newIndex: tag)
+        }    }
     
     func playlistPageShouldBecomeActive(_ notification: Notification){
-        self.setPlaylistPageActive()
+        if let tag = notification.userInfo?["index"] as? Int {
+            self.setPlaylistPageActive(newIndex: tag)
+        }
     }
 
-    func spotPageShouldBeActive(_ notification: Notification){
-        self.setSpotPageActive()
+    func spotPageShouldBeActive(_ notification: Notification) {
+        if let tag = notification.userInfo?["index"] as? Int {
+            self.setSpotPageActive(newIndex: tag)
+        }
     }
 
     /*
@@ -109,8 +130,6 @@ class SearchEmbedViewController: UIPageViewController {
 extension SearchEmbedViewController: UIPageViewControllerDelegate, UIPageViewControllerDataSource {
     
     func pageViewController(_ pageViewController: UIPageViewController, viewControllerBefore viewController: UIViewController) -> UIViewController? {
-//        print("============ VIEWCONTROLLERBEFORE CALLED ===========")
-//        print(viewController)
         guard let currentIndex = self.childControllers.index(of: viewController) else{
             return nil
         }
@@ -119,8 +138,6 @@ extension SearchEmbedViewController: UIPageViewControllerDelegate, UIPageViewCon
     }
     
     func pageViewController(_ pageViewController: UIPageViewController, viewControllerAfter viewController: UIViewController) -> UIViewController? {
-//        print("======== VIEWCONTROLLERAFTER CALLED ============")
-//        print(viewController)
         guard let currentIndex = self.childControllers.index(of: viewController) else{
             return nil
         }
@@ -130,7 +147,7 @@ extension SearchEmbedViewController: UIPageViewControllerDelegate, UIPageViewCon
     
     func pageViewController(_ pageViewController: UIPageViewController, didFinishAnimating finished: Bool, previousViewControllers: [UIViewController], transitionCompleted completed: Bool) {
         if completed {
-            self.customDelegate?.willTransitionToPage(viewController: self.childControllers[0], pageIndex: self.childControllers.index(of: self.viewControllers!.first!)!)
+            self.customDelegate?.willTransitionToPage(pageIndex: self.childControllers.index(of: self.viewControllers!.first!)!)
 //            if let prevVC = previousViewControllers.first {
 //                if let index = self.childControllers.index(of: prevVC){
 //                    print(self.childControllers.index(of: self.viewControllers!.first!))
