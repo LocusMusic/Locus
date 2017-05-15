@@ -75,8 +75,6 @@ class StreamingViewController: UIViewController {
             }
         }
     }
-
-
 }
 
 

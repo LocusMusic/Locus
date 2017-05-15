@@ -23,11 +23,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
     }
     
-    var queue: [Track]?{
-        didSet{
-            App.postLocalNotification(withName: App.LocalNotification.Name.queueShouldUpdate)
-        }
-    }
+    var queue: [Track]?
     
     var popularTuneSpot: [TuneSpot]?{
         didSet{

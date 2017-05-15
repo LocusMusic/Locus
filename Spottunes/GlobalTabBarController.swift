@@ -39,7 +39,6 @@ class GlobalTabBarController: UITabBarController {
     }
     
     func playViewShouldShow(_ notification: Notification){
-        print(notification.userInfo?[App.LocalNotification.PlayViewShouldShow.tracksKey])
         guard let trackList = notification.userInfo?[App.LocalNotification.PlayViewShouldShow.tracksKey] as? [Track] else{
             print("track list failed")
             return

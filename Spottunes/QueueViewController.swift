@@ -107,8 +107,6 @@ class QueueViewController: UIViewController {
     func queueShouldUpdate(_ notification: Notification){
        self.updateQueueState()
     }
-    
-    
 }
 
 extension QueueViewController: UITableViewDelegate, UITableViewDataSource{

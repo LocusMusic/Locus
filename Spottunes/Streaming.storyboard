@@ -310,16 +310,16 @@
                                             <state key="normal" image="next-icon"/>
                                         </button>
                                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="VIx-Lp-DBQ">
-                                            <rect key="frame" x="104" y="20" width="121.5" height="60.5"/>
+                                            <rect key="frame" x="104" y="20" width="251" height="60.5"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="De Profundis" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5xZ-Zj-ioZ">
-                                                    <rect key="frame" x="0.0" y="0.0" width="121.5" height="27.5"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="De Profundis" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5xZ-Zj-ioZ">
+                                                    <rect key="frame" x="0.0" y="0.0" width="251" height="27.5"/>
                                                     <fontDescription key="fontDescription" name="Avenir-Heavy" family="Avenir" pointSize="20"/>
                                                     <color key="textColor" red="0.1960784314" green="0.20000000000000001" blue="0.20784313730000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YHe-wi-2X8">
-                                                    <rect key="frame" x="0.0" y="27.5" width="121.5" height="33"/>
+                                                    <rect key="frame" x="0.0" y="27.5" width="251" height="33"/>
                                                     <fontDescription key="fontDescription" name="Avenir-Heavy" family="Avenir" pointSize="15"/>
                                                     <state key="normal" title="Max Richer">
                                                         <color key="titleColor" red="0.1960784314" green="0.20000000000000001" blue="0.20784313730000001" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
@@ -340,6 +340,7 @@
                                         <constraint firstItem="VIx-Lp-DBQ" firstAttribute="leading" secondItem="QzP-ON-eKN" secondAttribute="trailing" constant="8" id="Qk7-hX-zMq"/>
                                         <constraint firstItem="aQs-7j-voJ" firstAttribute="centerY" secondItem="Iuh-je-yK9" secondAttribute="centerY" id="VUx-iN-GPc"/>
                                         <constraint firstItem="EXI-vl-Kmy" firstAttribute="leading" secondItem="8qv-f1-FSl" secondAttribute="leading" constant="20" id="d3n-Ca-e06"/>
+                                        <constraint firstAttribute="trailing" secondItem="VIx-Lp-DBQ" secondAttribute="trailing" constant="20" id="hFR-kt-Z7v"/>
                                         <constraint firstAttribute="trailing" secondItem="EXI-vl-Kmy" secondAttribute="trailing" constant="20" id="hWl-nh-8eD"/>
                                         <constraint firstItem="VIx-Lp-DBQ" firstAttribute="top" secondItem="QzP-ON-eKN" secondAttribute="top" id="hjh-aq-aQy"/>
                                         <constraint firstItem="Iuh-je-yK9" firstAttribute="leading" secondItem="QzP-ON-eKN" secondAttribute="leading" id="nZM-jH-QEA"/>

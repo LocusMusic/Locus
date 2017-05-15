@@ -138,9 +138,6 @@ extension GlobalWrapperViewController: CustomGlobalTabBarControllerDelegate{
     func addMusicTapped() {
         self.openAddMusicBox()
     }
-    
-   
-    
 }
 
 extension GlobalWrapperViewController: InitViewControllerDelegate{

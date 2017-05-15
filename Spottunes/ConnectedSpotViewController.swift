@@ -144,11 +144,8 @@ extension ConnectedSpotViewController: UITableViewDelegate, UITableViewDataSourc
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let userInfo: [String: Any] = [
-            App.LocalNotification.PlayViewShouldShow.tracksKey: self.playlistPosts![indexPath.row].playlist!.tracks!.trackList!,
-            App.LocalNotification.PlayViewShouldShow.activeTrackIndex: 0
-        ]
-        App.postLocalNotification(withName: App.LocalNotification.PlayViewShouldShow.name, object: self, userInfo: userInfo)
+        let tracks = self.playlistPosts![indexPath.row].playlist!.tracks!.trackList!
+        App.playTracks(trackList: tracks, activeTrackIndex: 0)
     }
 }
 

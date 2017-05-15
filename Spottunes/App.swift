@@ -185,6 +185,17 @@ struct App{
         let info = [App.LocalNotification.StatusBarStyleUpdate.styleKey : style]
         App.postLocalNotification(withName: App.LocalNotification.StatusBarStyleUpdate.name, object: self, userInfo: info)
     }
+    
+    static func playTracks(trackList: [Track], activeTrackIndex: Int){
+        let userInfo: [String: Any] = [
+            App.LocalNotification.PlayViewShouldShow.tracksKey: trackList,
+            App.LocalNotification.PlayViewShouldShow.activeTrackIndex: activeTrackIndex
+        ]
+        App.delegate?.queue =  Array(trackList[activeTrackIndex ... trackList.count - 1])
+        App.postLocalNotification(withName: App.LocalNotification.Name.queueShouldUpdate)
+        App.postLocalNotification(withName: App.LocalNotification.PlayViewShouldShow.name, object: self, userInfo: userInfo)
+
+    }
 
 }
 

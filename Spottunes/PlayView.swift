@@ -56,8 +56,6 @@ class PlayView: UIView {
     var activeTrackIndex: Int!
     
     @IBAction func sliderDragging(_ sender: UISlider) {
-        
-        
         let position = TimeInterval(sender.value) * self.trackList[activeTrackIndex].duration //seconds
         self.currentTimeLabel.text = formatTimeInterval(timeInterval: position)
 
@@ -130,16 +128,15 @@ class PlayView: UIView {
         if currentActiveIndex == totalTracks - 1{
             return
         }
-        
-        
         self.activeTrackIndex = currentActiveIndex + 1
-        self.updateTracksState()
-
+        App.playTracks(trackList: self.trackList, activeTrackIndex: self.activeTrackIndex)
     }
     
     
     @IBAction func prevBtnTapped(_ sender: UIButton) {
         sender.animateBounceView()
+        print(self.activeTrackIndex)
+
         guard let currentActiveIndex = self.activeTrackIndex else{
             return
         }
@@ -149,12 +146,11 @@ class PlayView: UIView {
         }
         
         self.activeTrackIndex = currentActiveIndex - 1
-        self.updateTracksState()
+        App.playTracks(trackList: self.trackList, activeTrackIndex: self.activeTrackIndex)
     }
     
     
     func updateTracksState(){
-        App.delegate?.queue = self.trackList
         self.thumbnailImageView.image = nil
         if let image = trackList[activeTrackIndex] .getCoverImage(withSize: .large) {
             if let url = image.url{
@@ -298,11 +294,6 @@ class PlayView: UIView {
             }
         })
     }
-    
-    func audioStreaming(_ audioStreaming: SPTAudioStreamingController!, didStopPlayingTrack trackUri: String!) {
-        //go to the next song in the play queue
-        self.playNextTrack()
-    }
 }
 
 extension PlayView: SPTAudioStreamingPlaybackDelegate, SPTAudioStreamingDelegate {
@@ -335,8 +326,14 @@ extension PlayView: SPTAudioStreamingPlaybackDelegate, SPTAudioStreamingDelegate
         self.currentTimeLabel.text = formatTimeInterval(timeInterval: position)
         let percentage = position / self.trackList[activeTrackIndex].duration
         self.sliderControl.value = Float(percentage)
-        
     }
+    
+    
+    func audioStreaming(_ audioStreaming: SPTAudioStreamingController!, didStopPlayingTrack trackUri: String!) {
+        //go to the next song in the play queue
+        self.playNextTrack()
+    }
+
 }
 
 
