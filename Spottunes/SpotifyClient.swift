@@ -95,6 +95,8 @@ class SpotifyClient {
                         print("user existed already")
                         print(user)
                         App.delegate?.currentUser = user
+                        App.postLocalNotification(withName: App.LocalNotification.Name.onLoginSuccessful)
+
                     }else{
                         print("user not existed")
                         //user not existed
@@ -105,6 +107,8 @@ class SpotifyClient {
                                     if let user = user{
                                         print(user)
                                         print("registered succeed")
+                                        App.postLocalNotification(withName: App.LocalNotification.Name.onLoginSuccessful)
+
                                     }else{
                                         print("failed to registered")
                                     }
