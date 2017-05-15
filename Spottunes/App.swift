@@ -12,16 +12,18 @@ import UIKit
 struct App{
     static let mainStoryboadName = "Main"
     static let searchStoryboardName = "Search"
+    static let streamingStoryboardName = "Streaming"
+
     static let grayColor = UIColor(hexString: "#8C8E94")
     static let backColor = UIColor(hexString: "#323335")
     static let themeColor = UIColor(red: 23 / 255.0, green: 131 / 255.0, blue: 198 / 255.0, alpha: 1)
     static let bannerAspectRatio: CGFloat = 3.0
     static let delegate = (UIApplication.shared.delegate as? AppDelegate)
 
-    //    static let currentLocation = delegate?.locationManager.location
-    
     static let mainStoryBoard = UIStoryboard(name: App.mainStoryboadName, bundle: nil)
     static let searchStoryBoard = UIStoryboard(name: App.searchStoryboardName, bundle: nil)
+    static let streammingStoryBoard = UIStoryboard(name: App.streamingStoryboardName, bundle: nil)
+    
     static let screenWidth = UIScreen.main.bounds.size.width
     static let screenHeight = UIScreen.main.bounds.size.height
     static let userDefaults = UserDefaults()
@@ -88,10 +90,7 @@ struct App{
         struct TableView{
             static let contentInset = UIEdgeInsetsMake(8, 0, 0, 0)
         }
-
     }
-    
-    
     
     struct LocalNotification{
         struct Name{
@@ -99,14 +98,19 @@ struct App{
             static let onLoginSuccessful = Notification.Name("loginSuccessful")
             static let keyboardDidShow = Notification.Name.UIKeyboardDidShow
             static let keyboardWillHide = Notification.Name.UIKeyboardWillHide
+            static let streamingSpotShouldBecomeActive = Notification.Name("streamingSpotShouldBecomeActive")
+            static let streamingQueueShouldBecomeActive = Notification.Name("streamingQueueShouldBecomeActive")
             static let homeOverviewShouldBecomeActive = Notification.Name("homeOverviewShouldBecomeActive")
             static let homePlayingShouldBecomeActive = Notification.Name("homePlayingShouldBecomeActive")
             static let searchSongShouldBecomeActive = Notification.Name("searchSongShouldBecomeActive")
             static let searchArtistsShouldBecomeActive = Notification.Name("searchArtistsShouldBecomeActive")
             static let searchPlaylistsShouldBecomeActive = Notification.Name("searchPlaylistsShouldBecomeActive")
             static let searchSpotsShouldBecomeActive = Notification.Name("searchSpotsShouldBecomeActive")
+            
             static let popularSpotShouldUpdate = Notification.Name("popularSpotShouldUpdate")
             static let recentlyVisitedShouldUpdate = Notification.Name("recentlyVisitedShouldUpdate")
+            
+            static let queueShouldUpdate = Notification.Name("queueShouldUpdate")
         }
         
         struct PlayViewShouldShow{
@@ -146,6 +150,12 @@ struct App{
         static let playlistsSearchViewController = "PlaylistsSearchViewController"
     }
     
+    struct StreammingStoryboradIden{
+        static let connectedSpotViewController = "ConnectedSpotViewController"
+        static let queueViewController = "QueueViewController"
+        static let streamingViewController = "StreamingViewController"
+    }
+    
     struct SegueIden {
         static let embedPageVCIden = "EmbedPageVCIden"
         static let addMusicEmbedSegueIden = "AddMusicEmbedSegueIden"
@@ -157,6 +167,7 @@ struct App{
         static let selectPlayListSegue = "SelectPlayListSegue"
         static let selectSpotSegue = "SelectSpotSegue"
         static let selectSongsSegue = "SelectSongsSegue"
+        static let streamEmbedPageVCIden = "StreamEmbedPageVCIden"
     }
     
     struct PostInfoKey{

@@ -13,23 +13,25 @@ protocol CustomGlobalTabBarControllerDelegate : class {
 }
 
 class GlobalTabBarController: UITabBarController {
-    lazy var playView: PlayView = PlayView.instanceFromNib()
-    
-    var tabBarOriginalY: CGFloat = 0
-    
     weak var customDelegate: CustomGlobalTabBarControllerDelegate?
-    
+    lazy var playView: PlayView = PlayView.instanceFromNib()
+    var tabBarOriginalY: CGFloat = 0
+
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        
+        //add streamming tab
+        if let streammingVC = StreamingViewController.instantiateFromStoryboard(){
+            self.viewControllers?.insert(streammingVC, at: 1)
+        }
+        
+        
         self.delegate = self
         self.tabBar.updateTabBarAppearance()
-        
         UISearchBar.appearance().setImage(#imageLiteral(resourceName: "search-icon"), for: .search, state: .normal)
-        
         self.tabBarOriginalY = self.tabBar.frame.origin.y
-        
         NotificationCenter.default.addObserver(self, selector: #selector(self.playViewShouldShow(_:)), name: App.LocalNotification.PlayViewShouldShow.name, object: nil)
-        
         self.playView.frame = CGRect(x: 0, y: App.screenHeight, width: App.screenWidth, height: App.screenHeight)
         self.playView.delegate = self
         self.view.addSubview(playView)
@@ -37,11 +39,14 @@ class GlobalTabBarController: UITabBarController {
     }
     
     func playViewShouldShow(_ notification: Notification){
+        print(notification.userInfo?[App.LocalNotification.PlayViewShouldShow.tracksKey])
         guard let trackList = notification.userInfo?[App.LocalNotification.PlayViewShouldShow.tracksKey] as? [Track] else{
+            print("track list failed")
             return
         }
 
         guard let activeTrackIndex = notification.userInfo?[App.LocalNotification.PlayViewShouldShow.activeTrackIndex] as? Int else{
+            print("active track index failed")
             return
         }
         

@@ -2,7 +2,7 @@
 //  FoursquareClient.swift
 //  Spottunes
 //
-//  Created by Huang Edison on 4/20/17.
+//  Created by Huang Edison, Kesong Xie on 4/20/17.
 //  Copyright © 2017 ___Spottunes___. All rights reserved.
 //
 
@@ -55,18 +55,18 @@ class FoursquareClient: NSObject {
 //        FoursquareClient.fetchRecommendedPlaces(geoPoint: geoPoint, success: success)
 //    }
     
-    func searchNearByLocation(query: String, success: @escaping ([Location])->()){
+    class func searchNearByLocation(query: String, success: @escaping ([TuneSpot])->()){
         PFGeoPoint.geoPointForCurrentLocation { (point, error) in
             if let geoPoint = point{
                 let coordinate = CLLocationCoordinate2D(latitude: geoPoint.latitude, longitude: geoPoint.longitude)
-                self.fetchSearchPlacesResult(query, ll: coordinate, success: success)
+                FoursquareClient.fetchSearchPlacesResult(query, ll: coordinate, success: success)
             }else{
                 print("search nearby failed")
             }
         }
     }
     
-    func fetchSearchPlacesResult(_ query: String, ll: CLLocationCoordinate2D, success: @escaping ([Location]) -> ()){
+    class func fetchSearchPlacesResult(_ query: String, ll: CLLocationCoordinate2D, success: @escaping ([TuneSpot]) -> ()){
         let ll_string = "&ll=\(ll.latitude),\(ll.longitude)"
         let date_string = "&v=" + FoursquareClient.getCurDateString()
         //let limit_offset = "&limit=\(limit)&offset=\(offset)"
@@ -81,9 +81,10 @@ class FoursquareClient: NSObject {
                 if let responseDictionary = try! JSONSerialization.jsonObject(with: data, options: []) as? NSDictionary {
                     let venues = responseDictionary.value(forKeyPath: "response.venues") as? [NSDictionary]
                     let locations = Location.locationsWithArray(venues: venues!)
-                    //print(locations)
-                    success(locations)
-                    //self.offset += self.limit
+                    let tuneSpots = locations.map({ (location) -> TuneSpot in
+                        return TuneSpot(location: location)
+                    })
+                    success(tuneSpots)
                 }
             }
         });

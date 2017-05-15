@@ -44,8 +44,8 @@ class SpotViewController: UIViewController {
     
     @IBOutlet weak var tableView: UITableView!{
         didSet{
-            self.tableView.delegate = self
-            self.tableView.dataSource = self
+//            self.tableView.delegate = self
+//            self.tableView.dataSource = self
             self.tableView.alwaysBounceVertical = true
             self.tableView.estimatedRowHeight = 60
             self.tableView.rowHeight = UITableViewAutomaticDimension
@@ -179,7 +179,7 @@ extension SpotViewController: UITableViewDelegate, UITableViewDataSource{
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: reuseIden, for: indexPath) as! PlayingTableViewCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: reuseIden, for: indexPath) as! QueueTableViewCell
         cell.track = self.trackList?[indexPath.row]
         return cell
     }

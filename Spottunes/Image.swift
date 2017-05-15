@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import Parse
 
 /*
  "height" : 640,
@@ -22,16 +23,25 @@ fileprivate let URLKey = "url"
 
 class Image{
     var dict: [String: Any]!
-    var height: Int!{
-        return self.dict[HeightKey] as! Int
+    var height: Int?{
+        return self.dict[HeightKey] as? Int
     }
     
-    var width: Int!{
-        return self.dict[WidthKey] as! Int
+    var width: Int?{
+        return self.dict[WidthKey] as? Int
     }
     
     var url: URL?{
         return URL(string: self.dict[URLKey] as! String)
+    }
+    
+    var asset: PFFile?{
+        if let url = self.url{
+            if let data = try? Data(contentsOf: url){
+                return PFFile(data: data)
+            }
+        }
+        return nil
     }
     
     init(dict: [String: Any]) {

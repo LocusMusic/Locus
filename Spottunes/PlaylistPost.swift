@@ -16,58 +16,120 @@ fileprivate let PlaylistIdKey = "playlistId"
 fileprivate let TypeKey = "type" //reserve for later use, 0 for Spotify playlist
 
 class PlaylistPost: PFObject {
-    var user: User?
-    var spot: TuneSpot?
-    var playlistId: String?
-    var type: Int = 0
+    var user: User?{
+        get{
+            return self[UserKey] as? User
+        }
+        set{
+        
+        }
+    }
+    var spot: TuneSpot?{
+        get{
+            return self[SpotKey] as? TuneSpot
+        }
+        set{
+        }
+    }
+    var playlistId: String?{
+        get{
+            return self[PlaylistIdKey] as? String
+        }
+        set{
+        }
+    }
     
-    func share(completionHandler: @escaping PFBooleanResultBlock){
+    var playlist: Playlist?
+    
+    var type: Int?{
+        get{
+            return self[TypeKey] as? Int
+        }
+        set{
+        }
+    }
+    
+    class func shareAllToSpot(playlistPosts: [PlaylistPost], spot: TuneSpot, completionHandler: @escaping PFBooleanResultBlock){
         //check whether the spot existed or not
         //save spot first if not
-        guard let spot = self.spot else{
-            return
-        }
         
         if let existed = spot.isSpotExisted, existed{
             //no need to create
-            self.savePlaylistToSpot(spot: spot, completionHandler: completionHandler)
+            App.delegate?.currentUser?.addRecentVisitSpot(spot: spot, completionHandler: { (succeed, error) in
+                if succeed{
+                    print("existing recent spot added succeed")
+                    PlaylistPost.saveAll(inBackground: playlistPosts, block: completionHandler)
+                }else{
+                    print("existing recent spot added failed")
+                }
+            })
         }else{
-            //create new one
+            print("here ne")
+            //create new spot first
             spot.saveTuneSpot(completionHandler: { (succeed, error) in
                 if succeed{
-                   self.savePlaylistToSpot(spot: spot, completionHandler: completionHandler)
+                    App.delegate?.currentUser?.addRecentVisitSpot(spot: spot, completionHandler: { (succeed, error) in
+                        if succeed{
+                            print("existing recent spot added succeed")
+                            PlaylistPost.saveAll(inBackground: playlistPosts, block: completionHandler)
+                        }else{
+                            print("existing recent spot added failed")
+                        }
+                    })
                 }
                 completionHandler(false, nil)
             })
         }
     }
     
-    func savePlaylistToSpot(spot: TuneSpot, completionHandler: @escaping PFBooleanResultBlock){
-        user?.addRecentVisitSpot(spot: spot, completionHandler: { (succeed, error) in
-            if succeed{
-                print("successfully added recently visited")
-                guard let user = self.user else{
-                    return
-                }
-                guard let playlistId = self.playlistId else{
-                    return
-                }
-                self[SpotKey] = spot
-                self[UserKey] = user
-                self[PlaylistIdKey] = playlistId
-                self[TypeKey] = self.type
-                self.saveInBackground(block: completionHandler)
+//    func savePlaylistToSpot(spot: TuneSpot, completionHandler: @escaping PFBooleanResultBlock){
+//        user?.addRecentVisitSpot(spot: spot, completionHandler: { (succeed, error) in
+//            if succeed{
+//                print("successfully added recently visited")
+//                guard let user = self.user else{
+//                    return
+//                }
+//                guard let playlistId = self.playlistId else{
+//                    return
+//                }
+//                self[SpotKey] = spot
+//                self[UserKey] = user
+//                self[PlaylistIdKey] = playlistId
+//                self[TypeKey] = self.type
+//                self.saveInBackground(block: completionHandler)
+//            }else{
+//                completionHandler(false, nil)
+//            }
+//        })
+//    }
+    
+    class func fetchPlaylistPostInSpot(spot: TuneSpot, completionHandler: @escaping ([PlaylistPost]?) -> Void){
+        let query = PFQuery(className: ClassName)
+        query.whereKey(SpotKey, equalTo: spot)
+        query.includeKey(UserKey)
+        query.findObjectsInBackground { (objects, error) in
+            if let playlistPosts = objects as? [PlaylistPost]{
+                completionHandler(playlistPosts)
             }else{
-                completionHandler(false, nil)
+                completionHandler(nil)
             }
-        })
+        }
     }
     
-    init(user: User, spot: TuneSpot, playlistId: String) {
+    func fetchPlaylist(completionHandler: @escaping (Playlist) -> Void){
+        
+    }
+    
+    override init() {
         super.init()
-        self.user = user
-        self.spot = spot
-        self.playlistId = playlistId
+    }
+    
+    init(user: User, spot: TuneSpot, type: Int? = 0,  playlistId: String) {
+        super.init()
+        self[UserKey] = user
+        self[SpotKey] = spot
+        self[TypeKey] = type
+        self[PlaylistIdKey] = playlistId
     }
 }
 

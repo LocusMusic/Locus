@@ -14,6 +14,8 @@ fileprivate let NameKey = "name"
 fileprivate let LocationKey = "location"
 fileprivate let AddressKey = "address"
 fileprivate let CoverURLStringKey = "coverURLString"
+fileprivate let GenreKey = "genre"
+
 fileprivate let searchNearbyRadiusMiles: Double = 10
 
 class TuneSpot : PFObject {
@@ -58,6 +60,17 @@ class TuneSpot : PFObject {
         return nil
     }
     
+    var genre: String?{
+        get{
+            return self[CoverURLStringKey] as? String
+        }
+        set(newValue){
+            self[CoverURLStringKey] = newValue
+        }
+    }
+
+    
+    
     var embedLocation: Location!
     
     var isSpotExisted: Bool?
@@ -73,11 +86,14 @@ class TuneSpot : PFObject {
     
     override func isEqual(_ object: Any?) -> Bool {
         if let spot = object as? TuneSpot{
-            return String(self.location.latitude) == String(spot.location.latitude) && String(self.location.longitude) == String(spot.location.longitude)
+            print("is equals?")
+            print(abs(self.location.latitude - spot.location.latitude) < 0.0001 && abs(self.location.longitude - spot.location.longitude) < 0.0001)
+            return abs(self.location.latitude - spot.location.latitude) < 0.0001 && abs(self.location.longitude - spot.location.longitude) < 0.0001
         }
         return false
     }
     
+ 
     func saveTuneSpot(completionHandler: @escaping PFBooleanResultBlock) {
         self[NameKey] = self.name
         self[LocationKey] = self.location
@@ -115,8 +131,6 @@ class TuneSpot : PFObject {
         }
     }
     
-    
-    
     static func getNearByTuneSpots(completionHandler: @escaping ([TuneSpot]?) -> Void){
         //fetch from Foursquare api
         PFGeoPoint.geoPointForCurrentLocation { (point, error) in
@@ -131,6 +145,53 @@ class TuneSpot : PFObject {
                     completionHandler(resultSpot)
                 })
             }
+        }
+    }
+
+    
+    static func searchNearbyTuneSpot(query: String, completionHandler: @escaping ([TuneSpot]?) -> Void){
+        PFGeoPoint.geoPointForCurrentLocation { (point, error) in
+            if let point = point{
+                //fetch from parse db
+                let searchQuery = PFQuery(className: ClassName)
+                searchQuery.whereKey(LocationKey, nearGeoPoint: point, withinMiles: searchNearbyRadiusMiles)
+                searchQuery.whereKey(NameKey, matchesRegex: query, modifiers: "i")
+                searchQuery.findObjectsInBackground { (objects, error) in
+                    if let objects = objects{
+                        if var spotsFromParse = objects as? [TuneSpot]{
+                            spotsFromParse = spotsFromParse.map({ (spot) -> TuneSpot in
+                                spot.isSpotExisted = true
+                                return spot
+                            })
+                            spotsFromParse = spotsFromParse.map({ (spot) -> TuneSpot in
+                                spot.isSpotExisted = true
+                                return spot
+                            })
+                            completionHandler(spotsFromParse)
+                        }else{
+                            completionHandler(nil)
+                        }
+                    }else{
+                        completionHandler(nil)
+                    }
+                }
+            }
+        }
+    }
+    
+    static func searchNearbyTuneSpotInclusive(query: String, completionHandler: @escaping ([TuneSpot]?) -> Void){
+        //combine parse and foursquare api
+        TuneSpot.searchNearbyTuneSpot(query: query) { (spotsFromParse) in
+            let spotsFromParse = spotsFromParse ?? []
+            FoursquareClient.searchNearByLocation(query: query, success: { (spotsFromFourSquare) in
+                //filtered out the spot already in parse database
+                let filteredSpot = spotsFromFourSquare.filter({ (spot) -> Bool in
+                    return !spotsFromParse.contains(spot)
+                })
+                let resultSpot = spotsFromParse + filteredSpot
+                completionHandler(resultSpot)
+
+            })
         }
     }
 }

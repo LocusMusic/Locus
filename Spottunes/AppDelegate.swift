@@ -18,9 +18,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var currentUser: User?{
         didSet{
             if let count = self.currentUser?.recentlyVisitedSpot?.count, count > 0{
-                print(count)
                 App.postLocalNotification(withName: App.LocalNotification.Name.recentlyVisitedShouldUpdate)
             }
+        }
+    }
+    
+    var queue: [Track]?{
+        didSet{
+            App.postLocalNotification(withName: App.LocalNotification.Name.queueShouldUpdate)
         }
     }
     

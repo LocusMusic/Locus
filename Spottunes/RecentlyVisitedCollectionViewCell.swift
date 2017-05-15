@@ -12,6 +12,10 @@ fileprivate let spotThumbnailReuseIden = "SpotThumbnailReuseIden"
 fileprivate let spotThumbnailNibName = "SpotThumbnailCollectionViewCell"
 
 
+protocol RecentlyVisitedCollectionViewCellDelegate: class  {
+    func spotThumbnailImageViewImageTapped(spot: TuneSpot)
+}
+
 class RecentlyVisitedCollectionViewCell: UICollectionViewCell {
 
     @IBOutlet weak var collectionView: UICollectionView!{
@@ -23,6 +27,9 @@ class RecentlyVisitedCollectionViewCell: UICollectionViewCell {
             self.collectionView.register( UINib(nibName: spotThumbnailNibName, bundle: nil), forCellWithReuseIdentifier: spotThumbnailReuseIden)
         }
     }
+    
+    weak var delegate: RecentlyVisitedCollectionViewCellDelegate?
+
     
     var spots: [TuneSpot]?{
         didSet{
@@ -49,6 +56,7 @@ extension RecentlyVisitedCollectionViewCell: UICollectionViewDelegate, UICollect
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: spotThumbnailReuseIden, for: indexPath) as! SpotThumbnailCollectionViewCell
+        cell.delegate = self
         cell.spot = self.spots?[indexPath.row]
         return cell
     }
@@ -66,6 +74,12 @@ extension RecentlyVisitedCollectionViewCell:UICollectionViewDelegateFlowLayout{
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
         return 0
+    }
+}
+
+extension RecentlyVisitedCollectionViewCell: SpotThumbnailCollectionViewCellDelegate{
+    func spotThumbnailImageViewImageTapped(spot: TuneSpot) {
+        self.delegate?.spotThumbnailImageViewImageTapped(spot: spot)
     }
 }
 

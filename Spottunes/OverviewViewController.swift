@@ -143,6 +143,7 @@ extension OverviewViewController: UICollectionViewDelegate, UICollectionViewData
         if self.shouldShowRecentlyVisistedSection{
             if indexPath.section == 0{
                 let cell = collectionView.dequeueReusableCell(withReuseIdentifier: recentlyVisitedSpotReuseIden, for: indexPath) as! RecentlyVisitedCollectionViewCell
+                cell.delegate = self
                 cell.spots = App.delegate?.currentUser?.recentlyVisitedSpot
                 return cell
             }
@@ -213,7 +214,16 @@ extension OverviewViewController: UICollectionViewDelegateFlowLayout{
 }
 
 
-
+extension OverviewViewController: RecentlyVisitedCollectionViewCellDelegate{
+    func spotThumbnailImageViewImageTapped(spot: TuneSpot) {
+        print("spot tapped from overview")
+        if let spotVC = App.streammingStoryBoard.instantiateViewController(withIdentifier: App.StreammingStoryboradIden.connectedSpotViewController) as? ConnectedSpotViewController{
+            spotVC.spot = spot
+            self.navigationController?.pushViewController(spotVC, animated: true)
+        }
+        
+    }
+}
 
 
 

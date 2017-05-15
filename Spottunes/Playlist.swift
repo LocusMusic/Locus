@@ -40,6 +40,14 @@ class Playlist: PFObject {
         return self.dict[NameKey] as? String
     }
     
+    var ownerId: String?{
+        if let ownerDict = self.dict[OwnerKey] as? [String: Any]{
+            return Owner(dict: ownerDict).id
+        }
+        return nil
+    }
+    
+    
     var tracks: Tracks?{
         guard let tracksDict = self.dict[TracksKey] as? [String: Any] else{
             return nil

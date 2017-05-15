@@ -62,17 +62,19 @@ class SelectSongsViewController: UIViewController {
             }
             
             let playlistPost = PlaylistPost(user: currentUser, spot: spot, playlistId: playlist.spotifyId)
-            playlistPost.share { (succeed, error) in
-                if succeed{
-                    print("succeed")
-                    DispatchQueue.main.async {
-                        App.postLocalNotification(withName: App.LocalNotification.Name.recentlyVisitedShouldUpdate)
-                        self.dismiss(animated: true, completion: nil)
-                    }
-                }else{
-                    print("failed to save")
-                }
-            }
+            
+            
+//            playlistPost.share { (succeed, error) in
+//                if succeed{
+//                    print("succeed")
+//                    DispatchQueue.main.async {
+//                        App.postLocalNotification(withName: App.LocalNotification.Name.recentlyVisitedShouldUpdate)
+//                        self.dismiss(animated: true, completion: nil)
+//                    }
+//                }else{
+//                    print("failed to save")
+//                }
+//            }
         }else{
             print("select individual songs")
         }

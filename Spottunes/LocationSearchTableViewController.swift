@@ -52,11 +52,11 @@ class LocationSearchTableViewController: UIViewController, UITableViewDelegate, 
     
     func searchBar(_ searchBar: UISearchBar, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
         let newText = NSString(string: searchBar.text!).replacingCharacters(in: range, with: text)
-        
-        FoursquareClient.shared.searchNearByLocation(query: newText, success: { ( locations: [Location]) in
-            self.result = locations
-            self.tableView.reloadData()
-        })
+//        
+//        FoursquareClient.searchNearByLocation(query: newText, success: { ( locations: [Location]) in
+//            self.result = locations
+//            self.tableView.reloadData()
+//        })
         return true
     }
     

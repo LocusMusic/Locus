@@ -8,16 +8,26 @@
 
 import UIKit
 
+protocol SpotThumbnailCollectionViewCellDelegate: class {
+    func spotThumbnailImageViewImageTapped(spot: TuneSpot)
+}
+
 class SpotThumbnailCollectionViewCell: UICollectionViewCell {
 
     @IBOutlet weak var thumbnailImageView: UIImageView!{
         didSet{
             self.thumbnailImageView.layer.cornerRadius = 4.0
             self.thumbnailImageView.clipsToBounds = true
+            self.thumbnailImageView.isUserInteractionEnabled = true
+            let tapGesture = UITapGestureRecognizer(target: self, action: #selector(spotThumnailTapped(_:)))
+            self.thumbnailImageView.addGestureRecognizer(tapGesture)
         }
     }
+
     
     @IBOutlet weak var nameLabel: UILabel!
+    
+    weak var delegate: SpotThumbnailCollectionViewCellDelegate?
     
     var spot: TuneSpot!{
         didSet{
@@ -35,5 +45,11 @@ class SpotThumbnailCollectionViewCell: UICollectionViewCell {
         super.awakeFromNib()
         // Initialization code
     }
+    
+    func spotThumnailTapped(_ gesture: UITapGestureRecognizer){
+        self.delegate?.spotThumbnailImageViewImageTapped(spot: self.spot)
+    }
+    
+
 
 }

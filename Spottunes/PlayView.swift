@@ -153,9 +153,8 @@ class PlayView: UIView {
     }
     
     
-    
-
     func updateTracksState(){
+        App.delegate?.queue = self.trackList
         self.thumbnailImageView.image = nil
         if let image = trackList[activeTrackIndex] .getCoverImage(withSize: .large) {
             if let url = image.url{

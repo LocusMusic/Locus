@@ -26,25 +26,17 @@
                             <constraint firstAttribute="height" constant="48" id="p5K-MH-NV9"/>
                         </constraints>
                     </imageView>
-                    <button opaque="NO" alpha="0.80000000000000004" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MlF-hp-SdI">
-                        <rect key="frame" x="351" y="21.5" width="20" height="20"/>
-                        <constraints>
-                            <constraint firstAttribute="height" constant="20" id="2W9-oi-sds"/>
-                            <constraint firstAttribute="width" constant="20" id="x6x-Z6-oaB"/>
-                        </constraints>
-                        <state key="normal" image="next-arrow-icon"/>
-                    </button>
                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="Ucs-Yn-lkG">
-                        <rect key="frame" x="72" y="8" width="98.5" height="46.5"/>
+                        <rect key="frame" x="72" y="8" width="299" height="46.5"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Playlist Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ie5-Ui-49n">
-                                <rect key="frame" x="0.0" y="0.0" width="98.5" height="22"/>
+                                <rect key="frame" x="0.0" y="0.0" width="299" height="22"/>
                                 <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="16"/>
                                 <color key="textColor" red="0.1960784314" green="0.20000000000000001" blue="0.20784313730000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" text="Songs count" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="koq-MK-kLt">
-                                <rect key="frame" x="0.0" y="26" width="98.5" height="20.5"/>
+                                <rect key="frame" x="0.0" y="26" width="299" height="20.5"/>
                                 <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="15"/>
                                 <color key="textColor" red="0.1960784314" green="0.20000000000000001" blue="0.20784313730000001" alpha="0.80000000000000004" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
@@ -62,14 +54,12 @@
                 <constraints>
                     <constraint firstItem="CZc-3L-JS7" firstAttribute="leading" secondItem="faz-iz-CKb" secondAttribute="leading" constant="16" id="13O-Y1-2pH"/>
                     <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="Ge7-1t-0TW" secondAttribute="bottom" constant="8" id="BNU-wb-NZS"/>
-                    <constraint firstAttribute="trailing" secondItem="MlF-hp-SdI" secondAttribute="trailing" constant="20" id="YZw-kO-s9f"/>
+                    <constraint firstAttribute="trailing" secondItem="Ucs-Yn-lkG" secondAttribute="trailing" constant="20" id="Hp5-rK-Xec"/>
                     <constraint firstItem="Ge7-1t-0TW" firstAttribute="top" secondItem="Ucs-Yn-lkG" secondAttribute="bottom" constant="12" id="Zwe-pB-3GS"/>
                     <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="CZc-3L-JS7" secondAttribute="bottom" constant="8" id="cMq-Es-m7X"/>
                     <constraint firstItem="CZc-3L-JS7" firstAttribute="top" secondItem="faz-iz-CKb" secondAttribute="top" constant="8" id="eag-vp-zWo"/>
                     <constraint firstItem="Ucs-Yn-lkG" firstAttribute="top" secondItem="CZc-3L-JS7" secondAttribute="top" id="iFg-R3-knx"/>
-                    <constraint firstItem="MlF-hp-SdI" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="Ucs-Yn-lkG" secondAttribute="trailing" constant="16" id="kPT-xH-aSk"/>
                     <constraint firstAttribute="trailing" secondItem="Ge7-1t-0TW" secondAttribute="trailing" constant="16" id="l8h-Yp-ZvH"/>
-                    <constraint firstItem="MlF-hp-SdI" firstAttribute="centerY" secondItem="Ucs-Yn-lkG" secondAttribute="centerY" id="lOo-3X-FMg"/>
                     <constraint firstItem="Ge7-1t-0TW" firstAttribute="leading" secondItem="Ucs-Yn-lkG" secondAttribute="leading" id="uEh-jb-722"/>
                     <constraint firstItem="Ucs-Yn-lkG" firstAttribute="leading" secondItem="CZc-3L-JS7" secondAttribute="trailing" constant="8" id="v0y-Li-jAe"/>
                 </constraints>
@@ -82,7 +72,4 @@
             <point key="canvasLocation" x="38.5" y="-115"/>
         </tableViewCell>
     </objects>
-    <resources>
-        <image name="next-arrow-icon" width="60" height="60"/>
-    </resources>
 </document>

@@ -1,5 +1,5 @@
 //
-//  PlayingTableViewCell.swift
+//  QueueTableViewCell.swift
 //  Spottunes
 //
 //  Created by Xie kesong on 4/27/17.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-class PlayingTableViewCell: UITableViewCell {
+class QueueTableViewCell: UITableViewCell {
     @IBOutlet weak var thumbnailImageView: UIImageView!{
         didSet{
             self.thumbnailImageView.layer.cornerRadius = 4.0

@@ -8,15 +8,41 @@
 
 import Parse
 
+fileprivate let className = "User"
 fileprivate let SpotifyIdKey = "spotifyId"
 fileprivate let RecentlyVisitedSpotKey = "recentlyVisitedSpot"
-fileprivate let className = "User"
+fileprivate let ProfileImageKey = "profileImage"
+fileprivate let DisplayNameKey = "displayName"
+
 
 class User: PFObject {
     
     var spotifyId : String? {
         return self[SpotifyIdKey] as? String
     }
+    
+    var displayName: String?{
+        return self[DisplayNameKey] as? String
+    }
+    
+    
+    func loadUserProfileImage(withCompletion completion: @escaping (UIImage?, Error?) -> Void){
+        DispatchQueue.global(qos: .default).async {
+            (self[ProfileImageKey] as? PFFile)?.getDataInBackground { (data, error) in
+                if error == nil{
+                    if let data = data{
+                        let image = UIImage(data: data)
+                        completion(image, nil)
+                    }else{
+                        completion(nil, nil)
+                    }
+                }else{
+                    completion(nil, error)
+                }
+            }
+        }
+    }
+    
     
     var recentlyVisitedSpot: [TuneSpot]?{
         get{
@@ -27,33 +53,18 @@ class User: PFObject {
         }
     }
    
-    static func getCurrentUser(completionHandler: @escaping (_ user: User?) -> Void){
-        let query = PFQuery(className: className)
-        query.fromLocalDatastore()
-        query.includeKey(RecentlyVisitedSpotKey)
-
-        query.getFirstObjectInBackground { (userObject, error) in
-            completionHandler(userObject as? User)
-        }
-    }
     
     func addRecentVisitSpot(spot: TuneSpot ,completionHandler: @escaping PFBooleanResultBlock){
-        let newRecentSpot = [spot] + (self.recentlyVisitedSpot ?? [TuneSpot]())
+        let newSpot = [spot]
+        let filteredArray = self.recentlyVisitedSpot?.filter({ (tuneSpot) -> Bool in
+            return !newSpot.contains(tuneSpot)
+        })
+        let newRecentSpot = newSpot + (filteredArray ?? [TuneSpot]())
         self.recentlyVisitedSpot = newRecentSpot
         self[RecentlyVisitedSpotKey] = newRecentSpot
-        self.saveCurrentUserToDisk { (suceed, error) in
-            if suceed{
-                self.saveInBackground(block: completionHandler)
-            }else{
-                completionHandler(false, nil)
-            }
-        }
+        self.saveInBackground(block: completionHandler)
     }
     
-    
-    func saveCurrentUserToDisk(completionHandler: @escaping PFBooleanResultBlock){
-        self.pinInBackground(block: completionHandler)
-    }
     
    
     class func fetchUserByUsername(username: String, completionHandler: @escaping (User?) -> Void){
@@ -62,6 +73,9 @@ class User: PFObject {
         query.includeKey(RecentlyVisitedSpotKey)
         query.getFirstObjectInBackground { (object, error) in
             if let user = object as? User{
+                SpotifyClient.fetchUserProfileByUsername(username: username, { (userDict) in
+//                    user.dict = userDict
+                })
                 completionHandler(user)
             }else{
                 completionHandler(nil)
@@ -70,10 +84,23 @@ class User: PFObject {
     }
     
     //Create a user and save it to Parse
-    class func register(spotifyId: String, completionHandler: @escaping  PFBooleanResultBlock) {
-        let user = PFObject(className: className)
-        user[SpotifyIdKey] = spotifyId
-        user.saveInBackground(block: completionHandler)
+    class func register(dict: [String: Any], completionHandler: @escaping  (User?) -> Void) {
+        let user = User()
+        let profile = Profile(dict: dict)
+        user[SpotifyIdKey] = profile.id
+        if let image = profile.image?.asset{
+            user[ProfileImageKey] = image
+        }
+        if let displayNaem = profile.displayName{
+            user[DisplayNameKey] = displayNaem
+        }
+        user.saveInBackground { (succeed, error) in
+            if succeed{
+                completionHandler(user)
+            }else{
+                completionHandler(nil)
+            }
+        }
     }
     
     //Check if the current session user exists in Parse

@@ -13,27 +13,31 @@ class ListenerCollectionViewCell: UICollectionViewCell {
         didSet{
             self.profileImageView.layer.borderColor = App.grayColor.cgColor.copy(alpha: 0.2)
             self.profileImageView.layer.borderWidth = 1.0
-            self.profileImageView.layer.cornerRadius = 24
             self.profileImageView.clipsToBounds = true
         }
     }
     
     @IBOutlet weak var nameLabel: UILabel!
     
-    @IBOutlet weak var songNameLabel: UILabel!
-
-    @IBOutlet weak var authorNameLabel: UILabel!
-    
     var listener: User?{
         didSet{
-//            if let url = listener?.avatorURL{
-//                self.profileImageView.image = UIImage(named: url)
-//            }
-//            if let name = listener?.name{
-//                self.nameLabel.text = name
+            if let name = self.listener?.displayName{
+                self.nameLabel.text = name
+            }
+//            if let image = self.listener?.images?.first{
+//                if let url = image.url{
+//                    self.profileImageView.loadImageWithURL(url)
+//                }
 //            }
         }
     }
+    
+    
+    func updateImageLayerCorner(width: CGFloat){
+        print("update ui")
+        self.profileImageView.layer.cornerRadius = width / 2
+    }
+
     
     override func awakeFromNib() {
         super.awakeFromNib()

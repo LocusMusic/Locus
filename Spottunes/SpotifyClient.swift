@@ -2,7 +2,7 @@
 //  SpotifyClient.swift
 //  Spottunes
 //
-//  Created by Xie kesong on 4/19/17.
+//  Created by Xie kesong, Leo Wong on 4/19/17.
 //  Copyright © 2017 ___Spottunes___. All rights reserved.
 //
 
@@ -18,9 +18,9 @@ fileprivate let redirectURL = URL(string: "spottunes://returnAfterLogin")
 fileprivate let fetchTokenEndPoint = "https://accounts.spotify.com/api/token"
 fileprivate let currentUserPlayListEndPoint = "https://api.spotify.com/v1/me/playlists"
 fileprivate let currentUserProfileEndPoint = "https://api.spotify.com/v1/me"
-
-//GET https://api.spotify.com/v1/users/{user_id}/playlists/{playlist_id}
-
+fileprivate let userProfileEndPoint = "https://api.spotify.com/v1/users/"
+//fetch a playlist by user id and playlist id
+fileprivate let fetchPlaylistEndpoint = "https://api.spotify.com/v1/users/{user_id}/playlists/{playlist_id}"
 
 struct Http {
     struct Method{
@@ -38,6 +38,7 @@ struct ResponseKey{
 
 class SpotifyClient {
     
+    
     static var auth = SPTAuth()
     
     static let spotifySessionkey = "SpotifySession"
@@ -45,14 +46,12 @@ class SpotifyClient {
     static var encodedBase64ClientId: String {
         let data = clientID.data(using: String.Encoding.utf8)
         let base64 = data!.base64EncodedString()
-        print(base64)
         return base64
     }
     
     static var encodedBase64ClientSecret: String {
         let data = clientSecret.data(using: String.Encoding.utf8)
         let base64 = data!.base64EncodedString()
-        print(base64)
         return base64
     }
     
@@ -92,50 +91,27 @@ class SpotifyClient {
                 User.fetchUserByUsername(username: session.canonicalUsername, completionHandler: { (user) in
                     if let user = user{
                         //user existed
-                        print("user eixsted")
-                        user.saveCurrentUserToDisk(completionHandler: { (succeed, error) in
-                            if succeed{
-                                print("saved user to disk")
-                                User.getCurrentUser(completionHandler: { (user) in
-                                    //make sure ther user is in the disk
-                                    if let user = user{
-                                        App.delegate?.currentUser = user
-                                        App.postLocalNotification(withName: App.LocalNotification.Name.onLoginSuccessful)
-                                    }
-                                })
-                            }else{
-                                print("failed to save user to disk")
-                            }
-                        })
+                        print("user existed already")
+                        print(user)
+                        App.delegate?.currentUser = user
                     }else{
                         print("user not existed")
                         //user not existed
+                        //fetch the user's profile for recording to parse db
+                        SpotifyClient.fetchUserProfile({ (dict) in
+                            if let dict = dict{
+                                User.register(dict: dict, completionHandler: { (user) in
+                                    if let user = user{
+                                        print(user)
+                                        print("registered succeed")
+                                    }else{
+                                        print("failed to registered")
+                                    }
+                                })
+                            }
+                        })
                     }
                 })
-                
-                
-                
-                
-                
-                
-                
-//                User.doesExist(spotifyId: session.canonicalUsername, completionHandler: { (exist) in
-//                    if !exist {
-//                        print("User with spotifyId \(session.canonicalUsername) doesn't exist")
-//                        User.register(spotifyId: session.canonicalUsername, completionHandler: { (succeed, error) in
-//                            if succeed{
-//                                //save user to disk
-//                                
-//                                App.postLocalNotification(withName: App.LocalNotification.Name.onLoginSuccessful)
-//                            }else{
-//                                print("failed to register")
-//                            }
-//                        })
-//                    }else{
-//                        //save user to disk
-//                        App.postLocalNotification(withName: App.LocalNotification.Name.onLoginSuccessful)
-//                    }
-//                })
             })
             return true
         }
@@ -219,6 +195,8 @@ class SpotifyClient {
                 let playlists = playlistDicts.map({ (playlistDict) -> Playlist in
                     return Playlist(dict: playlistDict)
                 })
+                
+
                 completionHandler(playlists)
             })
         }
@@ -233,8 +211,35 @@ class SpotifyClient {
         }
     }
     
-    class func getPlaylistById(id: String,completionHandler: @escaping (_ responseDict: [Playlist]?) -> Void  ){
-        
+    class func fetchUserProfileByUsername(username: String, _ completionHandler: @escaping (_ responseDict: [String: Any]?) -> Void){
+        guard let endPoint = URL(string: userProfileEndPoint + username) else { return }
+        performTask {
+            get(url: endPoint, completionHandler: { (dataDict) in
+                completionHandler(dataDict)
+            })
+        }
+
+    }
+    
+    
+    class func fetchPlaylistByUserIdAndPlaylistId(userId:String, playlistId: String,completionHandler: @escaping (_ responseDict: Playlist?) -> Void  ){
+        var endPointStrig = fetchPlaylistEndpoint
+        endPointStrig =  SpotifyClient.replaceUserIdPlaceholder(ofEnpoint: endPointStrig, userId: userId)
+        endPointStrig = SpotifyClient.replacePlaylistIdPlaceholder(ofEnpoint: endPointStrig, playlistId: playlistId)
+        guard let endPoint = URL(string: endPointStrig) else {
+            completionHandler(nil)
+            return
+        }
+        performTask {
+            get(url: endPoint, completionHandler: { (dataDict) in
+                if let dataDict = dataDict{
+                    let playlist = Playlist(dict: dataDict)
+                    completionHandler(playlist)
+                }else{
+                    completionHandler(nil)
+                }
+            })
+        }
     }
     
     
@@ -251,6 +256,7 @@ class SpotifyClient {
                         completionHandler(nil)
                         return
                     }
+                    
                     let tracks = Tracks(dict: dataDict)
                     guard let trackList = tracks.trackList else{
                         completionHandler(nil)
@@ -264,10 +270,12 @@ class SpotifyClient {
     
     
     
+    
+    
+    
     //get tracks in playlists
     class func getTracksInPlaylist(tracksHref: String,  completionHandler: @escaping (_ responseDict: [Track]?) -> Void){
         guard let endPoint = URL(string: tracksHref) else{
-            print("end point onvalid")
             completionHandler(nil)
             return
         }
@@ -323,4 +331,17 @@ class SpotifyClient {
             }
         }).resume()
     }
+    
+    
+    //helper functions
+    private class func replaceUserIdPlaceholder(ofEnpoint endpoint: String, userId: String) -> String{
+        return endpoint.replacingOccurrences(of: "{user_id}", with: userId)
+    }
+    
+    
+    private class func replacePlaylistIdPlaceholder(ofEnpoint endpoint: String, playlistId: String) -> String{
+        return endpoint.replacingOccurrences(of: "{playlist_id}", with: playlistId)
+    }
+    
+
 }

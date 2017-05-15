@@ -1,42 +1,36 @@
 //
-//  HomePageViewController.swift
+//  StreamingEmbedViewController.swift
 //  Spottunes
 //
-//  Created by Xie kesong on 4/28/17.
+//  Created by Xie kesong on 5/12/17.
 //  Copyright © 2017 ___Spottunes___. All rights reserved.
 //
 
 import UIKit
 
-
-
-protocol HomeEmbedPageViewControllerDelegate: UIPageViewControllerDelegate {
+protocol StreamingEmbedViewControllerDelegate: UIPageViewControllerDelegate {
     func willTransitionToPage(viewController: UIViewController, pageIndex: Int)
 }
 
-class HomeEmbedPageViewController: UIPageViewController{
+class StreamingEmbedViewController: UIPageViewController {
 
     lazy var childControllers: [UIViewController] = {
-        let overViewVC = App.mainStoryBoard.instantiateViewController(withIdentifier: App.StoryboardIden.overviewViewController)
-        return [overViewVC]
+        let queueVC = App.streammingStoryBoard.instantiateViewController(withIdentifier: App.StreammingStoryboradIden.queueViewController)
+        
+        let spotVC = App.streammingStoryBoard.instantiateViewController(withIdentifier: App.StreammingStoryboradIden.connectedSpotViewController)
+        
+        return [queueVC, spotVC]
     }()
     
-    weak var customDelegate: HomeEmbedPageViewControllerDelegate?
-    
+    weak var customDelegate: StreamingEmbedViewControllerDelegate?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.dataSource = self
         self.delegate = self
-        
-        
-        
-        
-        //add notification
-        NotificationCenter.default.addObserver(self, selector: #selector(self.overviewPageShouldBecomeActive(_:)), name: App.LocalNotification.Name.homeOverviewShouldBecomeActive, object: nil)
-//        NotificationCenter.default.addObserver(self, selector: #selector(self.playingPageShouldBecomeActive(_:)), name: App.LocalNotification.Name.homePlayingShouldBecomeActive, object: nil)
-        
-        self.setOverviewPageActive()
+        NotificationCenter.default.addObserver(self, selector: #selector(self.spotPageShouldBecomeActive(_:)), name: App.LocalNotification.Name.streamingSpotShouldBecomeActive, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(self.queuePageShouldBecomeActive(_:)), name: App.LocalNotification.Name.streamingQueueShouldBecomeActive, object: nil)
+        self.setSpotPageActive()
     }
 
     override func didReceiveMemoryWarning() {
@@ -44,28 +38,27 @@ class HomeEmbedPageViewController: UIPageViewController{
         // Dispose of any resources that can be recreated.
     }
     
-    func setOverviewPageActive(){
-        if let overViewVC = self.childControllers.first{
-            self.setViewControllers([overViewVC], direction: .reverse, animated: true, completion: nil)
+    func setSpotPageActive(){
+        if let spotVC = self.childControllers.first{
+            self.setViewControllers([spotVC], direction: .reverse, animated: true, completion: nil)
         }
     }
     
-//    func setPlayingPageActive(){
-//        let playingVC = self.childControllers[1]
-//        self.setViewControllers([playingVC], direction: .forward, animated: true, completion: nil)
-//    }
-
-    
-    func overviewPageShouldBecomeActive(_ notification: Notification){
-       self.setOverviewPageActive()
+    func setQueuePageActive(){
+        let queueVC = self.childControllers[1]
+        self.setViewControllers([queueVC], direction: .forward, animated: true, completion: nil)
     }
-
-//    func playingPageShouldBecomeActive(_ notification: Notification){
-//        self.setPlayingPageActive()
-//    }
+    
+    func spotPageShouldBecomeActive(_ notification: Notification){
+        self.setSpotPageActive()
+    }
+    
+    func queuePageShouldBecomeActive(_ notification: Notification){
+        self.setQueuePageActive()
+    }
 }
 
-extension HomeEmbedPageViewController: UIPageViewControllerDelegate, UIPageViewControllerDataSource{
+extension StreamingEmbedViewController: UIPageViewControllerDelegate, UIPageViewControllerDataSource{
     func pageViewController(_ pageViewController: UIPageViewController, viewControllerBefore viewController: UIViewController) -> UIViewController? {
         guard let currentIndex = self.childControllers.index(of: viewController) else{
             return nil
@@ -94,4 +87,3 @@ extension HomeEmbedPageViewController: UIPageViewControllerDelegate, UIPageViewC
     }
 
 }
-

@@ -50,7 +50,9 @@ class InitViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         NotificationCenter.default.addObserver(self, selector: #selector(statusBarShouldUpdate(_:)), name: App.LocalNotification.StatusBarStyleUpdate.name, object: nil)
-                
+        self.statusBarShouldHidden = false
+        self.statusBarStyle = .default
+
         SpotifyClient.updateSession { (session) in
             if let session = session{
                 self.view.bringSubview(toFront: self.placeholderContainerView)
@@ -58,8 +60,6 @@ class InitViewController: UIViewController {
                     if let user = user{
                         print("finsihed fetching user")
                         App.delegate?.currentUser = user
-                        self.statusBarShouldHidden = false
-                        self.statusBarStyle = .default
                         
                         //get the popular tune spot near the current location
                         TuneSpot.getNearbyPopularTuneSpot { (spots) in
