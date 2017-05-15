@@ -18,6 +18,10 @@ fileprivate let popularTuneSpotTitle = "Popular Tunes Spots"
 fileprivate let recentlyVisitedSpotTitle = "Recently Visited"
 
 
+fileprivate let spotThumbnailReuseIden = "SpotThumbnailReuseIden"
+fileprivate let spotThumbnailNibName = "SpotThumbnailCollectionViewCell"
+
+
 fileprivate struct CollectionViewUI{
     static let UIEdgeSpace: CGFloat = 16.0
     static let MinmumLineSpace: CGFloat = 16.0
@@ -39,7 +43,10 @@ class OverviewViewController: UIViewController {
             self.collectionView.register(UINib(nibName: recentlyVisitedSpotNibName, bundle: nil), forCellWithReuseIdentifier: recentlyVisitedSpotReuseIden)
             
             //register for smart genre cell and reuse
-            self.collectionView.register(UINib(nibName: popularSpotNibName, bundle: nil), forCellWithReuseIdentifier: popularSpotReuseIden)
+//            self.collectionView.register(UINib(nibName: popularSpotNibName, bundle: nil), forCellWithReuseIdentifier: popularSpotReuseIden)
+            
+            self.collectionView.register(UINib(nibName: spotThumbnailNibName, bundle: nil), forCellWithReuseIdentifier: spotThumbnailReuseIden)
+
 
             //reuse header
             self.collectionView.register(UINib(nibName: CollectionHeaderReusableViewNibName, bundle: nil), forSupplementaryViewOfKind: UICollectionElementKindSectionHeader, withReuseIdentifier: collectionHeaderReusableViewIden)
@@ -148,7 +155,8 @@ extension OverviewViewController: UICollectionViewDelegate, UICollectionViewData
                 return cell
             }
         }
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: popularSpotReuseIden, for: indexPath) as! PopularSpotCollectionViewCell
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: spotThumbnailReuseIden, for: indexPath) as! SpotThumbnailCollectionViewCell
+        cell.delegate = self
         cell.spot = App.delegate?.popularTuneSpot?[indexPath.row]
         return cell
     }
@@ -214,7 +222,7 @@ extension OverviewViewController: UICollectionViewDelegateFlowLayout{
 }
 
 
-extension OverviewViewController: RecentlyVisitedCollectionViewCellDelegate{
+extension OverviewViewController: RecentlyVisitedCollectionViewCellDelegate, SpotThumbnailCollectionViewCellDelegate{
     func spotThumbnailImageViewImageTapped(spot: TuneSpot) {
         print("spot tapped from overview")
         if let spotVC = App.streammingStoryBoard.instantiateViewController(withIdentifier: App.StreammingStoryboradIden.connectedSpotViewController) as? ConnectedSpotViewController{
