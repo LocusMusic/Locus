@@ -61,6 +61,14 @@ class SpotPlaylistTableViewCell: UITableViewCell {
         }
     }
     
+    @IBAction func likeBtnTapped(_ sender: UIButton) {
+        //Change the button color
+        //Save to ParseDB 
+        //Once loaded, 
+        //Add likes key, where likes key = [User]
+    
+    }
+    
     func updateUIWithPlaylist(playlist: Playlist){
         if let coverImage = playlist.getCoverImage(withSize: .small){
             if let coverURL = coverImage.url{
