@@ -20,10 +20,8 @@ enum PlayViewUIState{
 
 protocol PlayViewDelegate : class{
     func panning(playView : PlayView, delta: CGFloat)
-    
     func playViewBecomeMaximized(playView : PlayView)
     func playViewBecomeMinimized(playView : PlayView)
-
 }
 
 class PlayView: UIView {
@@ -43,18 +41,6 @@ class PlayView: UIView {
     @IBOutlet weak var minTrackNameLabel: UILabel!
     @IBOutlet weak var minAuthorNameLabel: UILabel!
 
-    var delegate: PlayViewDelegate?
-    var state: PlayViewUIState = .hidden
-    var delta: CGFloat = 0
-    var originalCenter: CGPoint!
-
-    var minimizedCenter:CGPoint!
-    var maximizedCenter:CGPoint!
-    
-    
-    var trackList: [Track]!
-    var activeTrackIndex: Int!
-    
     @IBAction func sliderDragging(_ sender: UISlider) {
         let position = TimeInterval(sender.value) * self.trackList[activeTrackIndex].duration //seconds
         self.currentTimeLabel.text = formatTimeInterval(timeInterval: position)
@@ -117,20 +103,15 @@ class PlayView: UIView {
         self.playNextTrack()
     }
     
-    func playNextTrack(){
-        guard let totalTracks = self.trackList?.count else{
-            return
-        }
-        guard let currentActiveIndex = self.activeTrackIndex else{
-            return
-        }
-        
-        if currentActiveIndex == totalTracks - 1{
-            return
-        }
-        self.activeTrackIndex = currentActiveIndex + 1
-        App.playTracks(trackList: self.trackList, activeTrackIndex: self.activeTrackIndex)
-    }
+    var delegate: PlayViewDelegate?
+    var state: PlayViewUIState = .hidden
+    var delta: CGFloat = 0
+    var originalCenter: CGPoint!
+    var minimizedCenter:CGPoint!
+    var maximizedCenter:CGPoint!
+    var trackList: [Track]!
+    var activeTrackIndex: Int!
+
     
     
     @IBAction func prevBtnTapped(_ sender: UIButton) {
@@ -294,6 +275,23 @@ class PlayView: UIView {
             }
         })
     }
+    
+    func playNextTrack(){
+        guard let totalTracks = self.trackList?.count else{
+            return
+        }
+        guard let currentActiveIndex = self.activeTrackIndex else{
+            return
+        }
+        
+        if currentActiveIndex == totalTracks - 1{
+            return
+        }
+        self.activeTrackIndex = currentActiveIndex + 1
+        App.playTracks(trackList: self.trackList, activeTrackIndex: self.activeTrackIndex)
+    }
+    
+
 }
 
 extension PlayView: SPTAudioStreamingPlaybackDelegate, SPTAudioStreamingDelegate {
@@ -333,7 +331,6 @@ extension PlayView: SPTAudioStreamingPlaybackDelegate, SPTAudioStreamingDelegate
         //go to the next song in the play queue
         self.playNextTrack()
     }
-
 }
 
 

@@ -40,10 +40,7 @@ class SpotPlaylistTableViewCell: UITableViewCell {
             guard let playlistId = playlistPost?.playlistId else{
                 return
             }
-            if let user = self.playlistPost.user{
-                self.userLabel.text = user.displayName
-            }
-            self.coverImageView.image = nil
+                        self.coverImageView.image = nil
             if let playlist = self.playlistPost.playlist{
                 //no need to re-fetch
                 self.updateUIWithPlaylist(playlist: playlist)
@@ -62,17 +59,16 @@ class SpotPlaylistTableViewCell: UITableViewCell {
     }
     
     func updateUIWithPlaylist(playlist: Playlist){
+        if let user = self.playlistPost.user{
+            self.userLabel.text = user.displayName
+        }
         if let coverImage = playlist.getCoverImage(withSize: .small){
             if let coverURL = coverImage.url{
                 self.coverImageView.loadImageWithURL(coverURL)
             }
         }
-        
         self.playlistNameLabel.text = playlist.name
-
     }
-    
-    
     
     
     override func awakeFromNib() {

@@ -92,6 +92,10 @@ struct App{
         }
     }
     
+    struct UserDefaultKey{
+        static let queue = "queue"
+    }
+    
     struct LocalNotification{
         struct Name{
             static let mapShouldReveal = Notification.Name("mapShouldReveal")
@@ -128,9 +132,6 @@ struct App{
             static let name = Notification.Name("StatusBarStyleUpdate")
             static let styleKey = "style" //tracks key for the user info dictionary
         }
-        
-        
-        
     }
     
     static func postLocalNotification(withName name: Notification.Name, object: Any? = nil, userInfo: [String: Any]? = nil){
@@ -191,12 +192,41 @@ struct App{
             App.LocalNotification.PlayViewShouldShow.tracksKey: trackList,
             App.LocalNotification.PlayViewShouldShow.activeTrackIndex: activeTrackIndex
         ]
+        
         App.delegate?.queue =  Array(trackList[activeTrackIndex ... trackList.count - 1])
+        
+        
+//        //save queue to the user default
+//        if let queue = App.delegate?.queue{
+//            App.saveObjectToDefaultWithKey(object: queue, key: App.UserDefaultKey.queue)
+//        }
+//        
+//        //retrieve queue
+//        if let queue = App.retrieveObjectFromDefaultWithKey(key: App.UserDefaultKey.queue) as? [Track]{
+//            print("retrieve from default")
+//            print(queue)
+//        }
+//        
+//        
+//        
+//        return
         App.postLocalNotification(withName: App.LocalNotification.Name.queueShouldUpdate)
         App.postLocalNotification(withName: App.LocalNotification.PlayViewShouldShow.name, object: self, userInfo: userInfo)
-
     }
-
+    
+    static func saveObjectToDefaultWithKey(object: Any, key: String){
+        let userDefaults = UserDefaults.standard
+        let encodedData: Data = NSKeyedArchiver.archivedData(withRootObject: object)
+        userDefaults.set(encodedData, forKey: key)
+        userDefaults.synchronize()
+    }
+    
+    static func retrieveObjectFromDefaultWithKey(key: String) -> Any?{
+        let decoded  = userDefaults.object(forKey: key) as! Data
+        return NSKeyedUnarchiver.unarchiveObject(with: decoded)
+    }
+    
+    
 }
 
 enum CoverSize{

@@ -31,12 +31,7 @@ class ConnectedSpotViewController: UIViewController {
             self.collectionView.register(UINib(nibName: listenerNibName, bundle: nil), forCellWithReuseIdentifier: listenerReuseIden)
         }
     }
-    @IBOutlet weak var focusTabBtn: UIButton!{
-        didSet{
-            self.focusTabBtn.layer.cornerRadius = self.focusTabBtn.frame.size.height / 2
-            self.focusTabBtn.clipsToBounds = true
-        }
-    }
+ 
     
     @IBOutlet weak var tableView: UITableView!{
         didSet{
@@ -72,6 +67,18 @@ class ConnectedSpotViewController: UIViewController {
             }
         }
     }
+    
+    @IBAction func backBtnTapped(_ sender: UIBarButtonItem) {
+        self.navigationController?.popViewController(animated: true)
+    }
+    
+    
+    @IBOutlet weak var navigationBar: UINavigationBar!{
+        didSet{
+            self.navigationBar.updateNavigationBarAppearance()
+        }
+    }
+    
     
     @IBOutlet weak var nameLabel: UILabel!
 //    var listeners: [User]?{
@@ -148,13 +155,6 @@ extension ConnectedSpotViewController: UITableViewDelegate, UITableViewDataSourc
         App.playTracks(trackList: tracks, activeTrackIndex: 0)
     }
 }
-
-
-
-
-
-
-
 
 
 
