@@ -52,6 +52,16 @@ class User: PFObject {
             
         }
     }
+    
+    
+    override func isEqual(_ object: Any?) -> Bool {
+        if let user = object as? User{
+            return self.spotifyId! == user.spotifyId!
+        }
+        return false
+    }
+    
+    
    
     
     func addRecentVisitSpot(spot: TuneSpot ,completionHandler: @escaping PFBooleanResultBlock){

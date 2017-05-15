@@ -13,6 +13,8 @@ fileprivate let ClassName = "PlaylistPost"
 fileprivate let SpotKey = "spot"
 fileprivate let UserKey = "user"
 fileprivate let PlaylistIdKey = "playlistId"
+fileprivate let LikeUsersKey = "likeUsers"
+
 fileprivate let TypeKey = "type" //reserve for later use, 0 for Spotify playlist
 
 class PlaylistPost: PFObject {
@@ -64,7 +66,6 @@ class PlaylistPost: PFObject {
                 }
             })
         }else{
-            print("here ne")
             //create new spot first
             spot.saveTuneSpot(completionHandler: { (succeed, error) in
                 if succeed{
@@ -124,11 +125,12 @@ class PlaylistPost: PFObject {
         super.init()
     }
     
-    init(user: User, spot: TuneSpot, type: Int? = 0,  playlistId: String) {
+    init(user: User, spot: TuneSpot, type: Int? = 0, likeUser: [User]? = [],  playlistId: String) {
         super.init()
         self[UserKey] = user
         self[SpotKey] = spot
         self[TypeKey] = type
+        self[LikeUsersKey] = likeUser
         self[PlaylistIdKey] = playlistId
     }
 }
