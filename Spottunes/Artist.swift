@@ -22,26 +22,15 @@ import Foundation
  */
 
 fileprivate let NameKey = "name"
+fileprivate let GenresKey = "genres"
 fileprivate let IdKey = "id"
 fileprivate let HrefKey = "href"
 fileprivate let URIKey = "uri"
+fileprivate let FollowersKey = "followers"
+fileprivate let TotalFollowersKey = "total"
+fileprivate let ImagesKey = "images"
 
 class Artist {
-    var href: String{
-        return self.dict[HrefKey] as! String
-    }
-    
-    var id: String!{
-        return self.dict[IdKey] as! String
-    }
-    
-    var name: String?{
-        return self.dict[NameKey] as? String
-    }
-    
-    var uri: String?{
-        return self.dict[URIKey] as? String
-    }
     
     //the spotify representation
     var dict: [String: Any]!
@@ -49,5 +38,56 @@ class Artist {
     init(dict: [String: Any]) {
         self.dict = dict
     }
+
+    
+    var followers: Int {
+        guard let followersDict = self.dict[FollowersKey] as? [String: Any] else {
+            return 0
+        }
+        return followersDict[TotalFollowersKey] as! Int
+    }
+    
+    var genres: Array<Any> {
+        return self.dict[GenresKey] as! Array
+    }
+    
+    var href: String {
+        return self.dict[HrefKey] as! String
+    }
+    
+    var id: String! {
+        return self.dict[IdKey] as! String
+    }
+    
+    var images: [Image]? {
+        guard let imagesDict = self.dict[ImagesKey] as? [[String: Any]] else {
+            return nil
+        }
+        let images = imagesDict.map { (imageDict) -> Image in
+            return Image(dict: imageDict)
+        }
+        return images
+    }
+    
+    func getArtistImage(withSize size: CoverSize) -> Image? {
+        let imagesCount = self.images?.count ?? 0
+        guard imagesCount - 1 >= size.hashValue else {
+            return nil
+        }
+        if let coverImage = self.images?[size.hashValue] {
+            return coverImage
+        } else {
+            return self.images?.first
+        }
+    }
+    
+    var name: String? {
+        return self.dict[NameKey] as? String
+    }
+    
+    var uri: String? {
+        return self.dict[URIKey] as? String
+    }
+    
 }
 

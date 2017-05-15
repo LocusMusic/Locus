@@ -21,6 +21,7 @@ fileprivate let currentUserProfileEndPoint = "https://api.spotify.com/v1/me"
 fileprivate let userProfileEndPoint = "https://api.spotify.com/v1/users/"
 //fetch a playlist by user id and playlist id
 fileprivate let fetchPlaylistEndpoint = "https://api.spotify.com/v1/users/{user_id}/playlists/{playlist_id}"
+fileprivate let searchEndPoint = "https://api.spotify.com/v1/search"
 
 struct Http {
     struct Method{
@@ -112,6 +113,24 @@ class SpotifyClient {
                         })
                     }
                 })
+                
+//                User.doesExist(spotifyId: session.canonicalUsername, completionHandler: { (exist) in
+//                    if !exist {
+//                        print("User with spotifyId \(session.canonicalUsername) doesn't exist")
+//                        User.register(spotifyId: session.canonicalUsername, completionHandler: { (succeed, error) in
+//                            if succeed{
+//                                //save user to disk
+//                                
+//                                App.postLocalNotification(withName: App.LocalNotification.Name.onLoginSuccessful)
+//                            }else{
+//                                print("failed to register")
+//                            }
+//                        })
+//                    }else{
+//                        //save user to disk
+//                        App.postLocalNotification(withName: App.LocalNotification.Name.onLoginSuccessful)
+//                    }
+//                })
             })
             return true
         }
@@ -293,6 +312,33 @@ class SpotifyClient {
                 completionHandler(trackList)
             })
         }
+    }
+    
+    class func getSearch(parameters: [String: AnyObject], completionHandler: @escaping (_ responseDict: [String: Any]?) -> Void) {
+        
+        print("getSearch Called")
+        
+        let paramString = parameters.stringFromHttpParams() as String!
+        print("\(paramString!)")
+        guard let requestURL = URL(string:"\(searchEndPoint)?\( paramString!)") else {
+            print("FAIL")
+            return
+        }
+
+        print("Request URL: \(requestURL)")
+        
+        performTask {
+            print("Performing task completion")
+            get(url: requestURL, completionHandler: { (dataDict) in
+                print("Finished!!!")
+                guard let dataDict = dataDict else {
+                    completionHandler(nil)
+                    return
+                }
+                completionHandler(dataDict)
+            })
+        }
+        
     }
     
     

@@ -35,13 +35,29 @@ class SearchViewController: UIViewController {
     
     @IBOutlet weak var homeHeaderView: UIView!
     
-    @IBOutlet weak var songsButton: UIButton!
+    @IBOutlet weak var songsButton: UIButton! {
+        didSet {
+            songsButton.tag = 0
+        }
+    }
     
-    @IBOutlet weak var artistsButton: UIButton!
+    @IBOutlet weak var artistsButton: UIButton! {
+        didSet {
+            artistsButton.tag = 1
+        }
+    }
     
-    @IBOutlet weak var playlistsButton: UIButton!
+    @IBOutlet weak var playlistsButton: UIButton! {
+        didSet {
+            playlistsButton.tag = 2
+        }
+    }
     
-    @IBOutlet weak var spotsButton: UIButton!
+    @IBOutlet weak var spotsButton: UIButton! {
+        didSet {
+            spotsButton.tag = 3
+        }
+    }
     
     //tab model
     var pages: [SearchPageType] = [.songs, .artists, .playlists, .spots]
@@ -107,29 +123,29 @@ class SearchViewController: UIViewController {
     @IBAction func songsBtnTapped(_ sender: UIButton) {
         self.setSongsBtnActive()
         sender.animateBounceView()
-        let notification = Notification(name: App.LocalNotification.Name.searchSongShouldBecomeActive)
-        NotificationCenter.default.post(notification)
+        let userInfo: [String: Int] = [ "index": sender.tag ]
+        NotificationCenter.default.post(name: App.LocalNotification.Name.searchSongShouldBecomeActive, object: nil, userInfo: userInfo)
     }
     
     @IBAction func artistsBtnTapped(_ sender: UIButton) {
         self.setArtistsBtnActive()
         sender.animateBounceView()
-        let notification = Notification(name: App.LocalNotification.Name.searchArtistsShouldBecomeActive)
-        NotificationCenter.default.post(notification)
+        let userInfo: [String: Int] = [ "index": sender.tag ]
+        NotificationCenter.default.post(name: App.LocalNotification.Name.searchArtistsShouldBecomeActive, object: nil, userInfo: userInfo)
     }
     
     @IBAction func playlistsBtnTapped(_ sender: UIButton) {
         self.setPlaylistsBtnActive()
         sender.animateBounceView()
-        let notification = Notification(name: App.LocalNotification.Name.searchPlaylistsShouldBecomeActive)
-        NotificationCenter.default.post(notification)
+        let userInfo: [String: Int] = [ "index": sender.tag ]
+        NotificationCenter.default.post(name: App.LocalNotification.Name.searchPlaylistsShouldBecomeActive, object: nil, userInfo: userInfo)
     }
     
     @IBAction func spotsBtnTapped(_ sender: UIButton) {
         self.setSpotsBtnActive()
         sender.animateBounceView()
-        let notification = Notification(name: App.LocalNotification.Name.searchSpotsShouldBecomeActive)
-        NotificationCenter.default.post(notification)
+        let userInfo: [String: Int] = [ "indrex": sender.tag ]
+        NotificationCenter.default.post(name: App.LocalNotification.Name.searchSpotsShouldBecomeActive, object: nil, userInfo: userInfo)
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -138,8 +154,8 @@ class SearchViewController: UIViewController {
             switch iden {
                 case App.SegueIden.embedSearchPageVCIden:
                     if let searchEmbedPageVC = segue.destination as? SearchEmbedViewController {
-    //                    searchEmbedPageVC.customDelegate = self
-    //                    self.searchEmbedPageVC = searchEmbedPageVC
+                        searchEmbedPageVC.customDelegate = self
+                        self.searchEmbedPageVC = searchEmbedPageVC
                         self.searchBar.delegate = searchEmbedPageVC
                         print("SET THE SEARCH BAR DELEGATE TO EMBEDDED SEARCH PAGE VC")
                     }
@@ -171,8 +187,8 @@ extension SearchViewController: UISearchBarDelegate {
     
 }
 
-extension SearchViewController: HomeEmbedPageViewControllerDelegate {
-    func willTransitionToPage(viewController: UIViewController, pageIndex: Int) {
+extension SearchViewController: SearchEmbedPageViewControllerDelegate {
+    func willTransitionToPage(pageIndex: Int) {
         if pageIndex == 0 {
             self.setSongsBtnActive()
         } else if pageIndex == 1 {

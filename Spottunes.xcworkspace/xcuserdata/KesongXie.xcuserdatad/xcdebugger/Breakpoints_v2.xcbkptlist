@@ -40,12 +40,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Spottunes/SpotifyClient.swift"
-            timestampString = "516430854.697257"
+            timestampString = "516503475.991193"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "181"
-            endingLineNumber = "181"
-            landmarkName = "performTask(task:)"
+            startingLineNumber = "172"
+            endingLineNumber = "172"
+            landmarkName = "updateSession(completionHandler:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

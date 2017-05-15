@@ -14,15 +14,18 @@ fileprivate let TotalKey = "total"
 fileprivate let ItemsKey = "items"
 fileprivate let TrackKey = "track"
 
-
-
 /*
  href = "https://api.spotify.com/v1/users/taylordiem1025/playlists/1y5Xvya1yqXOMpF6ErmExv/tracks";
  total = 736;
  */
 
-class Tracks{
+class Tracks {
     var dict: [String: Any]!
+    
+    init(dict: [String: Any]) {
+        self.dict = dict
+    }
+
     var href: String{
         return self.dict[HrefKey] as! String
     }
@@ -36,16 +39,12 @@ class Tracks{
             return nil
         }
         let tracks = itemsDict.map { (itemDict) -> Track in
-            let trackDict = itemDict[TrackKey] as! [String : Any]
-            return Track(dict: trackDict)
+            if let trackDict = itemDict[TrackKey] as? [String : Any] {
+                return Track(dict: trackDict)
+            } else {
+                return Track(dict: itemDict)
+            }
         }
         return tracks
-    }
-    
-    
-    
-    
-    init(dict: [String: Any]) {
-        self.dict = dict
     }
 }

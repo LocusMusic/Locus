@@ -23,35 +23,56 @@ class SearchTableViewCell: UITableViewCell {
     
     var data: Any! {
         didSet {
-            if let songs = self.data as? Track {
-                print(songs)
-            } else if let artists = self.data as? Artist {
-                print(artists)
-            } else if let playlists = self.data as? Playlist {
-                print(playlists)
+            if let song = self.data as? Track {
+                
+                if let name = song.name{
+                    self.titleLabel.text = name
+                }
+                
+                if let authorName = song.artists?.first?.name {
+                    self.subtitleLabel.text = authorName
+                }
+                
+                if let coverImage = song.getCoverImage(withSize: .small) {
+                    if let coverURL = coverImage.url {
+                        self.thumbnailImageView.loadImageWithURL(coverURL)
+                    }
+                }
+                
+            } else if let artist = self.data as? Artist {
+                
+                if let name = artist.name {
+                    self.titleLabel.text = name
+                }
+                
+                self.subtitleLabel.text = "\(artist.followers) Followers"
+                
+                if let artistImage = artist.getArtistImage(withSize: .small) {
+                    if let imageURL = artistImage.url {
+                        self.thumbnailImageView.loadImageWithURL(imageURL)
+                    }
+                }
+                
+            } else if let playlist = self.data as? Playlist {
+                
+                if let name = playlist.name {
+                    self.titleLabel.text = name
+                }
+                
+                self.subtitleLabel.text = "\(playlist.trackCount!) Tracks"
+                
+                if let playlistImage = playlist.getCoverImage(withSize: .small) {
+                    if let imageURL = playlistImage.url {
+                        self.thumbnailImageView.loadImageWithURL(imageURL)
+                    }
+                }
+
             } else if let spots = self.data as? TuneSpot {
                 print(spots)
             }
         }
     }
     
-    var track: Track!{
-        didSet{
-            if let name = self.track.name{
-                self.titleLabel.text = name
-            }
-            
-            if let authorName = self.track.artists?.first?.name {
-                self.subtitleLabel.text = authorName
-            }
-            
-            if let coverImage = self.track.getCoverImage(withSize: .small) {
-                if let coverURL = coverImage.url {
-                    self.thumbnailImageView.loadImageWithURL(coverURL)
-                }
-            }
-        }
-    }
     
     override func awakeFromNib() {
         super.awakeFromNib()

@@ -15,9 +15,19 @@ fileprivate let ImagesKey = "images"
 fileprivate let NameKey = "name"
 fileprivate let OwnerKey = "owner"
 fileprivate let TracksKey = "tracks"
+fileprivate let FollowersKey = "followers"
+fileprivate let TotalFollowersKey = "total"
 
 class Playlist: PFObject {
+
+    //the spotify representation
+    var dict: [String: Any]!
     
+    init(dict: [String: Any]) {
+        super.init()
+        self.dict = dict
+    }
+
     var owner: User?
     
     var spot: Spot?
@@ -25,6 +35,16 @@ class Playlist: PFObject {
     var spotifyId: String!{
         return self.dict[IdKey] as! String
     }
+    
+//    var followers: Int {
+//        print(self.dict)
+//        
+//        guard let followersDict = self.dict[FollowersKey] as? [String: Any] else {
+//            print("PLAYLIST FOLLOWERS FAIL")
+//            return -1
+//        }
+//        return followersDict[TotalFollowersKey] as! Int
+//    }
     
     private var images: [Image]?{
         guard let imagesDict = self.dict[ImagesKey] as? [[String: Any]] else{
@@ -59,14 +79,6 @@ class Playlist: PFObject {
         return self.tracks?.total ?? 0
     }
     
-    //the spotify representation
-    var dict: [String: Any]!
-    
-    init(dict: [String: Any]) {
-        super.init()
-        self.dict = dict
-    }
-    
     func savePlaylist(){
         if let id = self.spotifyId{
             self[IdKey] = id
@@ -88,9 +100,7 @@ class Playlist: PFObject {
 //            return coverImage
 //        }else{
 //        }
-        
         return self.images?.first
-
     }
     
     
