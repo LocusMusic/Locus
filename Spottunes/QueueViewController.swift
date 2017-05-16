@@ -37,22 +37,34 @@ class QueueViewController: UIViewController {
         }
     }
       
-    @IBOutlet weak var currentTrackThumbnailImageView: UIImageView!{
+    @IBOutlet weak var currentTrackThumbnailImageView: UIImageView!
+    
+    
+    @IBOutlet weak var currentTrackCoverThumbnailWrapper: UIView!{
         didSet{
-            self.currentTrackThumbnailImageView.layer.cornerRadius = 4.0
-            self.currentTrackThumbnailImageView.clipsToBounds = true
+            self.currentTrackCoverThumbnailWrapper.layer.cornerRadius = 4.0
+            self.currentTrackCoverThumbnailWrapper.clipsToBounds = true
+            self.currentTrackCoverThumbnailWrapper.isUserInteractionEnabled = true
+            let tap = UITapGestureRecognizer(target: self, action: #selector(currentTrackThumbnailTapped(_:)) )
+            self.currentTrackCoverThumbnailWrapper.addGestureRecognizer(tap)
         }
+
     }
     
     
-    @IBOutlet weak var currentTrackNameLabel: UILabel!
     
+    @IBOutlet weak var currentTrackNameLabel: UILabel!
     @IBOutlet weak var currentTrackArtistNameLabel: UIButton!
     @IBOutlet weak var headerView: UIView!
+    @IBOutlet weak var placeholderView: UIView!
     
+    @IBOutlet weak var playBtn: UIButton!{
+        didSet{
+            self.playBtn.isUserInteractionEnabled = false
+        }
+    }
     
-    
-    var queue: [Track]?
+    var queue: [Track]? = App.delegate?.queue
     
     @IBAction func listenTapped(_ sender: UIButton) {
         if let listenerVC = App.mainStoryBoard.instantiateViewController(withIdentifier: App.StoryboardIden.listenerViewController) as? ListenerViewController{
@@ -62,7 +74,6 @@ class QueueViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        print("view will appear")
         NotificationCenter.default.addObserver(self, selector: #selector(queueShouldUpdate(_:)), name: App.LocalNotification.Name.queueShouldUpdate, object: nil)
         self.updateQueueState()
     }
@@ -82,25 +93,46 @@ class QueueViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
+    func currentTrackThumbnailTapped(_ gesture: UITapGestureRecognizer){
+        self.playBtn.imageBtnActivateWithColor(color: App.backColor, usingImage: #imageLiteral(resourceName: "playing-icon-small-white"),  withBounceAnimation: true)
+        UIView.animate(withDuration: 0.3, animations: {
+            self.playBtn.alpha = 0
+        }) { (finished) in
+            if finished{
+                self.playBtn.isHidden = true
+                self.currentTrackCoverThumbnailWrapper.isUserInteractionEnabled = false
+            }
+        }
+        if let queue = App.delegate?.queue{
+            App.playTracks(trackList: queue, activeTrackIndex: 0)
+        }
+    }
+    
     func updateQueueState(){
         self.queue = App.delegate?.queue
-        DispatchQueue.main.async {
-            if let currentTrack = self.queue?.first{
-                if let coverImage = currentTrack.getCoverImage(withSize: .medium){
-                    if let url = coverImage.url{
-                        self.currentTrackThumbnailImageView.loadImageWithURL(url)
+        if let playQueue = self.queue, playQueue.count > 0{
+            self.placeholderView.isHidden = true
+            //queue is not nil
+            DispatchQueue.main.async {
+                if let currentTrack = playQueue.first{
+                    if let coverImage = currentTrack.getCoverImage(withSize: .medium){
+                        if let url = coverImage.url{
+                            self.currentTrackThumbnailImageView.loadImageWithURL(url)
+                        }
                     }
+                    if let name = currentTrack.name{
+                        self.currentTrackNameLabel.text = name
+                    }
+                    if let artistName = currentTrack.artists?.first?.name{
+                        self.currentTrackArtistNameLabel.setTitle(artistName, for: .normal)
+                    }
+                    self.queue?.remove(at: 0)
                 }
-                if let name = currentTrack.name{
-                    self.currentTrackNameLabel.text = name
-                }
-                if let artistName = currentTrack.artists?.first?.name{
-                    self.currentTrackArtistNameLabel.setTitle(artistName, for: .normal)
-                }
-                self.queue?.remove(at: 0)
+                self.tableView?.reloadData()
+                self.activityIndicatorView.stopAnimating()
             }
-            self.tableView?.reloadData()
-            self.activityIndicatorView.stopAnimating()
+        }else{
+            self.placeholderView.isHidden = false
         }
     }
     

@@ -68,8 +68,6 @@ class TuneSpot : PFObject {
             self[CoverURLStringKey] = newValue
         }
     }
-
-    
     
     var embedLocation: Location!
     

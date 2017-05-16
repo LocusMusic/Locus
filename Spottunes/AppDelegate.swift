@@ -34,11 +34,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         
-        let userNotificationTypes: UIUserNotificationType = [.alert, .badge, .sound]
-        let settings = UIUserNotificationSettings(types: userNotificationTypes, categories: nil)
-        application.registerUserNotificationSettings(settings)
-        application.registerForRemoteNotifications()
+        //remote notification
+//        let userNotificationTypes: UIUserNotificationType = [.alert, .badge, .sound]
+//        let settings = UIUserNotificationSettings(types: userNotificationTypes, categories: nil)
+//        application.registerUserNotificationSettings(settings)
+//        application.registerForRemoteNotifications()
 
+        self.queue = App.retrivingQueueFromDisk()
+        print(self.queue?.count)
+        
         Parse.initialize(
             with: ParseClientConfiguration(block: { (configuration: ParseMutableClientConfiguration) -> Void in
                 

@@ -194,39 +194,33 @@ struct App{
         ]
         
         App.delegate?.queue =  Array(trackList[activeTrackIndex ... trackList.count - 1])
-        
-        
-//        //save queue to the user default
-//        if let queue = App.delegate?.queue{
-//            App.saveObjectToDefaultWithKey(object: queue, key: App.UserDefaultKey.queue)
-//        }
-//        
-//        //retrieve queue
-//        if let queue = App.retrieveObjectFromDefaultWithKey(key: App.UserDefaultKey.queue) as? [Track]{
-//            print("retrieve from default")
-//            print(queue)
-//        }
-//        
-//        
-//        
-//        return
+        App.savingQueueToDisk()
         App.postLocalNotification(withName: App.LocalNotification.Name.queueShouldUpdate)
         App.postLocalNotification(withName: App.LocalNotification.PlayViewShouldShow.name, object: self, userInfo: userInfo)
     }
     
-    static func saveObjectToDefaultWithKey(object: Any, key: String){
-        let userDefaults = UserDefaults.standard
-        let encodedData: Data = NSKeyedArchiver.archivedData(withRootObject: object)
-        userDefaults.set(encodedData, forKey: key)
-        userDefaults.synchronize()
+    
+    //saving current queue in the app delegate to disk
+    static func savingQueueToDisk(){
+        let queueDict = App.delegate?.queue?.map({ (track) -> [String: Any] in
+            return track.dict
+        })
+        if let queueDict = queueDict{
+            UserDefaults.standard.set(queueDict, forKey: App.UserDefaultKey.queue)
+            UserDefaults.standard.synchronize()
+        }
     }
     
-    static func retrieveObjectFromDefaultWithKey(key: String) -> Any?{
-        let decoded  = userDefaults.object(forKey: key) as! Data
-        return NSKeyedUnarchiver.unarchiveObject(with: decoded)
+    //retriving queue form disk
+    static func retrivingQueueFromDisk() -> [Track]?{
+        if let queueDict = UserDefaults.standard.value(forKey: App.UserDefaultKey.queue) as? [[String: Any]]{
+            let tracks = queueDict.map({ (trackDict) -> Track in
+                return Track(dict: trackDict)
+            })
+            return tracks
+        }
+        return nil
     }
-    
-    
 }
 
 enum CoverSize{
