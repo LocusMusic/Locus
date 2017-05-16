@@ -39,10 +39,17 @@ class ConnectedSpotViewController: UIViewController {
     }
  
     
+    @IBOutlet weak var activityIndicatorView: UIActivityIndicatorView!{
+        didSet{
+            self.activityIndicatorView.hidesWhenStopped = true
+        }
+    }
+    
     @IBOutlet weak var tableView: UITableView!{
         didSet{
             self.tableView.delegate = self
             self.tableView.dataSource = self
+            self.tableView.allowsSelection = false
             self.tableView.alwaysBounceVertical = true
             self.tableView.estimatedRowHeight = 60
             self.tableView.rowHeight = UITableViewAutomaticDimension
@@ -70,6 +77,7 @@ class ConnectedSpotViewController: UIViewController {
         didSet{
             PlaylistPost.fetchPlaylistPostInSpot(spot: self.spot) { (playlistPosts) in
                 self.playlistPosts = playlistPosts
+                self.tableView.allowsSelection = true
             }
         }
     }
@@ -100,6 +108,7 @@ class ConnectedSpotViewController: UIViewController {
     var playlistPosts: [PlaylistPost]?{
         didSet{
             DispatchQueue.main.async {
+                self.activityIndicatorView.stopAnimating()
                 self.tableView?.reloadData()
             }
         }
@@ -195,7 +204,6 @@ extension ConnectedSpotViewController: UITableViewDelegate, UITableViewDataSourc
         }
     }
 }
-
 
 
 extension ConnectedSpotViewController: UICollectionViewDelegate, UICollectionViewDataSource{

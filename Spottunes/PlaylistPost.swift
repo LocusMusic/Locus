@@ -133,7 +133,10 @@ class PlaylistPost: PFObject {
         query.includeKey(UserKey)
         query.findObjectsInBackground { (objects, error) in
             if let playlistPosts = objects as? [PlaylistPost]{
-                completionHandler(playlistPosts)
+                let resultSortedList = playlistPosts.sorted(by: { (post_1, post_2) -> Bool in
+                    return post_1.likeUsers!.count > post_2.likeUsers!.count
+                })
+                completionHandler(resultSortedList)
             }else{
                 completionHandler(nil)
             }

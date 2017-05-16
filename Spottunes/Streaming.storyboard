@@ -152,6 +152,9 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" animating="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="GYb-GH-UdH">
+                                <rect key="frame" x="177" y="323" width="20" height="20"/>
+                            </activityIndicatorView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zC4-XE-dPx" userLabel="Sparator View">
                                 <rect key="frame" x="0.0" y="64" width="375" height="1"/>
                                 <color key="backgroundColor" red="0.1960784314" green="0.20000000000000001" blue="0.20784313730000001" alpha="0.059999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
@@ -250,10 +253,13 @@
                             <constraint firstItem="Zoo-CP-SLx" firstAttribute="top" secondItem="tz8-xT-3cT" secondAttribute="bottom" id="ieN-Y9-EPE"/>
                             <constraint firstItem="zC4-XE-dPx" firstAttribute="leading" secondItem="lyM-vL-ktw" secondAttribute="leading" id="kak-7B-0Jv"/>
                             <constraint firstItem="A3B-NH-c5k" firstAttribute="top" secondItem="PNg-gm-dPf" secondAttribute="bottom" id="nDK-iI-Y5o"/>
+                            <constraint firstItem="GYb-GH-UdH" firstAttribute="centerX" secondItem="lyM-vL-ktw" secondAttribute="centerX" id="oFN-h1-2Zr"/>
                             <constraint firstItem="zC4-XE-dPx" firstAttribute="top" secondItem="Zoo-CP-SLx" secondAttribute="bottom" id="v1J-7w-Ffv"/>
+                            <constraint firstItem="GYb-GH-UdH" firstAttribute="centerY" secondItem="lyM-vL-ktw" secondAttribute="centerY" id="v39-pa-h3M"/>
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="activityIndicatorView" destination="GYb-GH-UdH" id="OKP-Ih-HxV"/>
                         <outlet property="headerView" destination="lq8-4y-FAs" id="rgF-9y-iRK"/>
                         <outlet property="nameLabel" destination="QfK-K0-avV" id="bY6-xu-W1g"/>
                         <outlet property="navigationBar" destination="Zoo-CP-SLx" id="cGA-rT-67H"/>

@@ -41,7 +41,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 //        application.registerForRemoteNotifications()
 
         self.queue = App.retrivingQueueFromDisk()
-        print(self.queue?.count)
         
         Parse.initialize(
             with: ParseClientConfiguration(block: { (configuration: ParseMutableClientConfiguration) -> Void in

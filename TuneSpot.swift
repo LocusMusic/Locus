@@ -84,8 +84,6 @@ class TuneSpot : PFObject {
     
     override func isEqual(_ object: Any?) -> Bool {
         if let spot = object as? TuneSpot{
-            print("is equals?")
-            print(abs(self.location.latitude - spot.location.latitude) < 0.0001 && abs(self.location.longitude - spot.location.longitude) < 0.0001)
             return abs(self.location.latitude - spot.location.latitude) < 0.0001 && abs(self.location.longitude - spot.location.longitude) < 0.0001
         }
         return false

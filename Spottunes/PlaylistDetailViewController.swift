@@ -115,8 +115,10 @@ class PlaylistDetailViewController: UIViewController {
                 self.songsCountLabel.text = playlist.trackCountString
             }
             //reload data
+            self.activityIndicatorView.stopAnimating()
             self.tableView.reloadData()
-
+        }else{
+            print("playlist post is nil")
         }
     }
     

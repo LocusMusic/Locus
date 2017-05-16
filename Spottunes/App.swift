@@ -213,18 +213,10 @@ struct App{
             let queueDict = queue.map({ (track) -> [String: Any] in
                 return track.dict
             })
-            
             if let data = try? JSONSerialization.data(withJSONObject: queueDict, options: []){
-                print(data)
-                print("data is valid")
                 UserDefaults.standard.set(data, forKey: App.UserDefaultKey.queue)
                 UserDefaults.standard.synchronize()
-            }else{
-                print("data invalid")
             }
-            
-            
-            
         }
     }
     
