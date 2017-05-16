@@ -15,23 +15,65 @@
             <rect key="frame" x="0.0" y="0.0" width="300" height="80"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Section ttile" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8Ey-kz-4zU">
-                    <rect key="frame" x="16" y="29" width="90.5" height="22"/>
-                    <fontDescription key="fontDescription" name="Avenir-Heavy" family="Avenir" pointSize="16"/>
-                    <color key="textColor" red="0.1973162722" green="0.2002126625" blue="0.20890183330000001" alpha="0.79738334759999996" colorSpace="custom" customColorSpace="sRGB"/>
-                    <nil key="highlightedColor"/>
-                </label>
+                <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="oFg-2A-RJD">
+                    <rect key="frame" x="20" y="30" width="260" height="20"/>
+                    <subviews>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Top Playlists" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rNk-u3-dvP">
+                            <rect key="frame" x="0.0" y="0.0" width="200" height="20"/>
+                            <fontDescription key="fontDescription" name="Avenir-Heavy" family="Avenir" pointSize="16"/>
+                            <color key="textColor" red="0.1960784314" green="0.20000000000000001" blue="0.20784313730000001" alpha="0.80000000000000004" colorSpace="custom" customColorSpace="sRGB"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kaZ-Y2-tg4">
+                            <rect key="frame" x="200" y="0.0" width="60" height="20"/>
+                            <subviews>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DSZ-qu-u5x">
+                                    <rect key="frame" x="32" y="-4" width="28" height="28"/>
+                                    <constraints>
+                                        <constraint firstAttribute="width" constant="28" id="5v6-4c-8IH"/>
+                                        <constraint firstAttribute="height" constant="28" id="qjz-Ad-bVl"/>
+                                    </constraints>
+                                    <color key="tintColor" red="0.058823529409999999" green="0.32549019610000002" blue="0.71372549019999998" alpha="1" colorSpace="calibratedRGB"/>
+                                    <state key="normal" image="shuffle-icon"/>
+                                </button>
+                            </subviews>
+                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="60" id="AJp-iw-TJK"/>
+                                <constraint firstAttribute="trailing" secondItem="DSZ-qu-u5x" secondAttribute="trailing" id="Txb-nj-ENP"/>
+                                <constraint firstItem="DSZ-qu-u5x" firstAttribute="centerY" secondItem="kaZ-Y2-tg4" secondAttribute="centerY" id="Z3N-6C-529"/>
+                            </constraints>
+                        </view>
+                    </subviews>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="20" id="D9r-5u-qbS"/>
+                    </constraints>
+                </stackView>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xxZ-hu-hhy" userLabel="Sparator View">
+                    <rect key="frame" x="20" y="62" width="260" height="1"/>
+                    <color key="backgroundColor" red="0.1960784314" green="0.20000000000000001" blue="0.20784313730000001" alpha="0.12" colorSpace="custom" customColorSpace="sRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="1" id="zwG-ID-0Mg"/>
+                    </constraints>
+                </view>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
-                <constraint firstItem="8Ey-kz-4zU" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="Cxk-eI-CQF"/>
-                <constraint firstItem="8Ey-kz-4zU" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="16" id="Yzq-af-pkc"/>
+                <constraint firstAttribute="trailing" secondItem="oFg-2A-RJD" secondAttribute="trailing" constant="20" id="6Ve-vO-Tle"/>
+                <constraint firstItem="xxZ-hu-hhy" firstAttribute="trailing" secondItem="oFg-2A-RJD" secondAttribute="trailing" id="BHe-s5-fTP"/>
+                <constraint firstItem="xxZ-hu-hhy" firstAttribute="leading" secondItem="oFg-2A-RJD" secondAttribute="leading" id="I7K-5g-9yC"/>
+                <constraint firstItem="oFg-2A-RJD" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="20" id="Yxu-5E-dyU"/>
+                <constraint firstItem="oFg-2A-RJD" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="dTc-b5-7ha"/>
+                <constraint firstItem="xxZ-hu-hhy" firstAttribute="top" secondItem="oFg-2A-RJD" secondAttribute="bottom" constant="12" id="pII-34-vcR"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <connections>
-                <outlet property="headerLabel" destination="8Ey-kz-4zU" id="MVO-U3-TqP"/>
+                <outlet property="headerLabel" destination="rNk-u3-dvP" id="TkT-9V-R5a"/>
             </connections>
             <point key="canvasLocation" x="-4" y="-240"/>
         </view>
     </objects>
+    <resources>
+        <image name="shuffle-icon" width="60" height="60"/>
+    </resources>
 </document>

@@ -1,5 +1,5 @@
 //
-//  QueueTableViewCell.swift
+//  SongTableViewCell.swift
 //  Spottunes
 //
 //  Created by Xie kesong on 4/27/17.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-class QueueTableViewCell: UITableViewCell {
+class SongTableViewCell: UITableViewCell {
     @IBOutlet weak var thumbnailImageView: UIImageView!{
         didSet{
             self.thumbnailImageView.layer.cornerRadius = 4.0

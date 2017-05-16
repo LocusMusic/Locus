@@ -8,8 +8,8 @@
 
 import UIKit
 
-fileprivate let listenerReuseIden = "ListenerCollectionViewCell"
-fileprivate let listenerNibName = "ListenerCollectionViewCell"
+fileprivate let listenerSliderReuseIden = "ListenerSliderTableViewCell"
+fileprivate let listenerSliderNibName = "ListenerSliderTableViewCell"
 
 fileprivate let reuseIden = "SpotPlaylistTableViewCell"
 fileprivate let cellNibName = "SpotPlaylistTableViewCell"
@@ -21,6 +21,12 @@ fileprivate struct CollectionViewUI{
     static let MinmumInteritemSpace: CGFloat = 16.0
 }
 
+
+fileprivate let sectionHeaderHeight: CGFloat = 60.0
+fileprivate let sectionFooterHeight: CGFloat = 60.0
+fileprivate let maxTopPlaylistCount: Int = 2
+fileprivate let topPlaylistSectionTitle = "Top Playlists"
+
 class ConnectedSpotViewController: UIViewController {
 
     @IBOutlet weak var collectionView: UICollectionView!{
@@ -28,7 +34,7 @@ class ConnectedSpotViewController: UIViewController {
             self.collectionView.delegate = self
             self.collectionView.dataSource = self
             self.collectionView.alwaysBounceHorizontal = true
-            self.collectionView.register(UINib(nibName: listenerNibName, bundle: nil), forCellWithReuseIdentifier: listenerReuseIden)
+//            self.collectionView.register(UINib(nibName: listenerNibName, bundle: nil), forCellWithReuseIdentifier: listenerReuseIden)
         }
     }
  
@@ -67,6 +73,8 @@ class ConnectedSpotViewController: UIViewController {
             }
         }
     }
+    
+    var listeners: [User]?
     
     @IBAction func backBtnTapped(_ sender: UIBarButtonItem) {
         self.navigationController?.popViewController(animated: true)
@@ -141,18 +149,50 @@ extension ConnectedSpotViewController: UITableViewDelegate, UITableViewDataSourc
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return  self.playlistPosts?.count ?? 0
+//        if section == 0{
+//            return self.listeners?.count ?? 0
+//        }
+        return self.playlistPosts?.count ?? 0
+
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+//        if indexPath.section == 0{
+//            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: listenerSliderReuseIden, for: indexPath) as! ListenerSliderTableViewCell
+//            cell.listeners = self.listeners
+//            return cell
+//        }
         let cell = tableView.dequeueReusableCell(withIdentifier: reuseIden, for: indexPath) as! SpotPlaylistTableViewCell
         cell.playlistPost = self.playlistPosts?[indexPath.row]
         return cell
+
+        
     }
     
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+//        if section == 0{
+//            let headerView = ReusableTableSectionHeaderView.instanceFromNib(withTitle: topPlaylistSectionTitle)
+//            return headerView
+//        }
+//        return nil
+        
+        let headerView = ReusableTableSectionHeaderView.instanceFromNib(withTitle: topPlaylistSectionTitle)
+        return headerView
+
+    }
+    
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return sectionHeaderHeight
+    }
+    
+    
+
+    
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let tracks = self.playlistPosts![indexPath.row].playlist!.tracks!.trackList!
-        App.playTracks(trackList: tracks, activeTrackIndex: 0)
+        if let playlistDetailVC = App.mainStoryBoard.instantiateViewController(withIdentifier: App.StoryboardIden.playlistDetailViewController) as? PlaylistDetailViewController{
+            playlistDetailVC.playlistPost = self.playlistPosts?[indexPath.row]
+            self.navigationController?.pushViewController(playlistDetailVC, animated: true)
+        }
     }
 }
 
@@ -167,11 +207,11 @@ extension ConnectedSpotViewController: UICollectionViewDelegate, UICollectionVie
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return  0 //self.listeners?.count ?? 0
     }
-    
+//    
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: listenerReuseIden, for: indexPath) as! ListenerCollectionViewCell
-//        cell.listener = self.listeners![indexPath.row]
-        cell.updateImageLayerCorner(width: self.cellWidth)
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: listenerSliderReuseIden, for: indexPath)
+        
+//        cell.updateImageLayerCorner(width: self.cellWidth)
         return cell
     }
 }

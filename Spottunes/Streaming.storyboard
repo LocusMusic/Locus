@@ -163,7 +163,7 @@
                                 <rect key="frame" x="0.0" y="65" width="375" height="602"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <view key="tableHeaderView" contentMode="scaleToFill" id="lq8-4y-FAs">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="260"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="193"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <subviews>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ywE-fX-JmX">
@@ -210,75 +210,29 @@
                                             <color key="textColor" red="0.1960784314" green="0.20000000000000001" blue="0.20784313730000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7Lp-h7-NfH">
-                                            <rect key="frame" x="20" y="160" width="335" height="20"/>
-                                            <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Top Playlists" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YOS-Oc-4cf">
-                                                    <rect key="frame" x="0.0" y="0.0" width="275" height="20"/>
-                                                    <fontDescription key="fontDescription" name="Avenir-Heavy" family="Avenir" pointSize="16"/>
-                                                    <color key="textColor" red="0.1960784314" green="0.20000000000000001" blue="0.20784313730000001" alpha="0.80000000000000004" colorSpace="custom" customColorSpace="sRGB"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Foc-OB-Qxo">
-                                                    <rect key="frame" x="275" y="0.0" width="60" height="20"/>
-                                                    <subviews>
-                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="H6R-K9-6Ev">
-                                                            <rect key="frame" x="32" y="-4" width="28" height="28"/>
-                                                            <constraints>
-                                                                <constraint firstAttribute="height" constant="28" id="Dx6-a2-5ll"/>
-                                                                <constraint firstAttribute="width" constant="28" id="bsy-Qf-3wC"/>
-                                                            </constraints>
-                                                            <color key="tintColor" red="0.058823529409999999" green="0.32549019610000002" blue="0.71372549019999998" alpha="1" colorSpace="calibratedRGB"/>
-                                                            <state key="normal" image="shuffle-icon"/>
-                                                        </button>
-                                                    </subviews>
-                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="trailing" secondItem="H6R-K9-6Ev" secondAttribute="trailing" id="6tZ-SC-h7H"/>
-                                                        <constraint firstAttribute="width" constant="60" id="J1s-GA-KbM"/>
-                                                        <constraint firstItem="H6R-K9-6Ev" firstAttribute="centerY" secondItem="Foc-OB-Qxo" secondAttribute="centerY" id="tpU-VL-UIg"/>
-                                                    </constraints>
-                                                </view>
-                                            </subviews>
-                                            <constraints>
-                                                <constraint firstAttribute="height" constant="20" id="7Rl-Ja-pjG"/>
-                                            </constraints>
-                                        </stackView>
-                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="e6J-Ay-o1S" userLabel="Sparator View">
-                                            <rect key="frame" x="20" y="192" width="335" height="1"/>
-                                            <color key="backgroundColor" red="0.1960784314" green="0.20000000000000001" blue="0.20784313730000001" alpha="0.12" colorSpace="custom" customColorSpace="sRGB"/>
-                                            <constraints>
-                                                <constraint firstAttribute="height" constant="1" id="X9y-tB-ay9"/>
-                                            </constraints>
-                                        </view>
                                     </subviews>
                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     <constraints>
-                                        <constraint firstItem="e6J-Ay-o1S" firstAttribute="leading" secondItem="lq8-4y-FAs" secondAttribute="leading" constant="20" id="2Bd-Oz-Ca4"/>
-                                        <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="e6J-Ay-o1S" secondAttribute="bottom" constant="8" id="5pI-d4-x5H"/>
-                                        <constraint firstAttribute="trailing" secondItem="e6J-Ay-o1S" secondAttribute="trailing" constant="20" id="8C1-rt-bOG"/>
                                         <constraint firstItem="QfK-K0-avV" firstAttribute="top" secondItem="lOt-8X-A43" secondAttribute="top" id="A8J-es-i6N"/>
                                         <constraint firstItem="Cvp-UJ-COG" firstAttribute="top" secondItem="QfK-K0-avV" secondAttribute="bottom" id="C2C-sQ-Ngu"/>
+                                        <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="Cvp-UJ-COG" secondAttribute="bottom" constant="16" id="D9j-YP-iae"/>
                                         <constraint firstItem="QfK-K0-avV" firstAttribute="leading" secondItem="ywE-fX-JmX" secondAttribute="trailing" constant="20" id="Qk0-Cx-S8u"/>
-                                        <constraint firstItem="7Lp-h7-NfH" firstAttribute="leading" secondItem="lOt-8X-A43" secondAttribute="leading" id="Ri3-KK-ymh"/>
                                         <constraint firstAttribute="trailing" secondItem="QfK-K0-avV" secondAttribute="trailing" constant="20" id="XjN-YC-ebJ"/>
-                                        <constraint firstAttribute="trailing" secondItem="7Lp-h7-NfH" secondAttribute="trailing" constant="20" id="bxE-ZQ-2Sm"/>
                                         <constraint firstItem="Cvp-UJ-COG" firstAttribute="leading" secondItem="QfK-K0-avV" secondAttribute="leading" id="efu-CO-wMK"/>
                                         <constraint firstItem="ywE-fX-JmX" firstAttribute="top" secondItem="lq8-4y-FAs" secondAttribute="top" constant="20" id="fOR-dT-eaV"/>
+                                        <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="ywE-fX-JmX" secondAttribute="bottom" constant="16" id="jI6-Yy-TN4"/>
                                         <constraint firstItem="ywE-fX-JmX" firstAttribute="leading" secondItem="lq8-4y-FAs" secondAttribute="leading" constant="20" id="ja4-Sl-Yvw"/>
-                                        <constraint firstItem="e6J-Ay-o1S" firstAttribute="top" secondItem="7Lp-h7-NfH" secondAttribute="bottom" constant="12" id="snb-nP-NHl"/>
-                                        <constraint firstItem="7Lp-h7-NfH" firstAttribute="top" secondItem="ywE-fX-JmX" secondAttribute="bottom" constant="40" id="uPv-dH-rlH"/>
                                     </constraints>
                                 </view>
                             </tableView>
                             <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Zoo-CP-SLx">
                                 <rect key="frame" x="0.0" y="20" width="375" height="44"/>
                                 <items>
-                                    <navigationItem title="SPOT" id="pNX-hX-WIi">
-                                        <barButtonItem key="leftBarButtonItem" image="back-icon" id="5mX-qu-ywg">
+                                    <navigationItem title="Spot" id="GHT-c1-5IF">
+                                        <barButtonItem key="leftBarButtonItem" image="back-icon" id="zwo-Ha-O86">
                                             <color key="tintColor" red="0.1960784314" green="0.20000000000000001" blue="0.20784313730000001" alpha="0.80000000000000004" colorSpace="custom" customColorSpace="sRGB"/>
                                             <connections>
-                                                <action selector="backBtnTapped:" destination="1Ir-FK-LKc" id="4MB-mM-ClF"/>
+                                                <action selector="backBtnTapped:" destination="1Ir-FK-LKc" id="qRJ-7p-ye3"/>
                                             </connections>
                                         </barButtonItem>
                                     </navigationItem>
@@ -500,6 +454,5 @@
         <image name="music-symbol-big" width="300" height="329"/>
         <image name="next-icon" width="60" height="60"/>
         <image name="play-icon-white" width="20" height="20"/>
-        <image name="shuffle-icon" width="60" height="60"/>
     </resources>
 </document>

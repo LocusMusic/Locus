@@ -8,8 +8,8 @@
 
 import UIKit
 
-fileprivate let reuseIden = "QueueTableViewCell"
-fileprivate let cellNibName = "QueueTableViewCell"
+fileprivate let reuseIden = "SongTableViewCell"
+fileprivate let cellNibName = "SongTableViewCell"
 
 class QueueViewController: UIViewController {
 
@@ -50,9 +50,7 @@ class QueueViewController: UIViewController {
         }
 
     }
-    
-    
-    
+        
     @IBOutlet weak var currentTrackNameLabel: UILabel!
     @IBOutlet weak var currentTrackArtistNameLabel: UIButton!
     @IBOutlet weak var headerView: UIView!
@@ -151,17 +149,22 @@ extension QueueViewController: UITableViewDelegate, UITableViewDataSource{
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: reuseIden, for: indexPath) as! QueueTableViewCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: reuseIden, for: indexPath) as! SongTableViewCell
         cell.track = self.queue?[indexPath.row]
         return cell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let userInfo: [String: Any] = [
-                App.LocalNotification.PlayViewShouldShow.tracksKey: self.queue!,
-                App.LocalNotification.PlayViewShouldShow.activeTrackIndex: indexPath.row
-        ]
-        App.postLocalNotification(withName: App.LocalNotification.PlayViewShouldShow.name, object: self, userInfo: userInfo)
+//        let userInfo: [String: Any] = [
+//                App.LocalNotification.PlayViewShouldShow.tracksKey: self.queue!,
+//                App.LocalNotification.PlayViewShouldShow.activeTrackIndex: indexPath.row
+//        ]
+//        App.postLocalNotification(withName: App.LocalNotification.PlayViewShouldShow.name, object: self, userInfo: userInfo)
+        
+        
+        
+        //present the playlist detail
+        
     }
 }
 

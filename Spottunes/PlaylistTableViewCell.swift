@@ -31,9 +31,7 @@ class PlaylistTableViewCell: UITableViewCell {
                     self.coverImageView.loadImageWithURL(coverURL)
                 }
             }
-            if let trackCount = self.playlist.trackCount{
-                self.numberOfSongsLabel.text = "\(trackCount) Song" + ((trackCount > 1) ? "s" : "")
-            }
+            self.numberOfSongsLabel.text = playlist.trackCountString
             self.playlistNameLabel.text = self.playlist.name
         }
     }

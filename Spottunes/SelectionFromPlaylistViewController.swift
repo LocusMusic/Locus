@@ -118,7 +118,6 @@ class SelectionFromPlaylistViewController: UIViewController {
     
     var postInfo: [String: Any]!
     
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         SpotifyClient.fetchCurrentUserPlayList { (playlists) in

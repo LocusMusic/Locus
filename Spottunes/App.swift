@@ -13,6 +13,8 @@ struct App{
     static let mainStoryboadName = "Main"
     static let searchStoryboardName = "Search"
     static let streamingStoryboardName = "Streaming"
+    static let spotStoryboardName = "Spot"
+
 
     static let grayColor = UIColor(hexString: "#8C8E94")
     static let backColor = UIColor(hexString: "#323335")
@@ -23,7 +25,8 @@ struct App{
     static let mainStoryBoard = UIStoryboard(name: App.mainStoryboadName, bundle: nil)
     static let searchStoryBoard = UIStoryboard(name: App.searchStoryboardName, bundle: nil)
     static let streammingStoryBoard = UIStoryboard(name: App.streamingStoryboardName, bundle: nil)
-    
+    static let spotStoryBoard = UIStoryboard(name: App.spotStoryboardName, bundle: nil)
+
     static let screenWidth = UIScreen.main.bounds.size.width
     static let screenHeight = UIScreen.main.bounds.size.height
     static let userDefaults = UserDefaults()
@@ -142,6 +145,8 @@ struct App{
         static let overviewViewController = "OverviewViewController"
         static let playingViewController = "PlayingViewController"
         static let listenerViewController = "ListenerViewController"
+        static let playlistDetailViewController = "PlaylistDetailViewController"
+
     }
     
     struct SearchStoryboardIden {
@@ -150,6 +155,7 @@ struct App{
         static let spotsSearchViewController = "SpotsSearchViewController"
         static let playlistsSearchViewController = "PlaylistsSearchViewController"
     }
+    
     
     struct StreammingStoryboradIden{
         static let connectedSpotViewController = "ConnectedSpotViewController"
@@ -202,19 +208,36 @@ struct App{
     
     //saving current queue in the app delegate to disk
     static func savingQueueToDisk(){
-        let queueDict = App.delegate?.queue?.map({ (track) -> [String: Any] in
-            return track.dict
-        })
-        if let queueDict = queueDict{
-            UserDefaults.standard.set(queueDict, forKey: App.UserDefaultKey.queue)
-            UserDefaults.standard.synchronize()
+        if let queue = App.delegate?.queue{
+            let queueDict = queue.map({ (track) -> [String: Any] in
+                return track.dict
+            })
+            
+            if let data = try? JSONSerialization.data(withJSONObject: queueDict, options: []){
+                print(data)
+                print("data is valid")
+                UserDefaults.standard.set(data, forKey: App.UserDefaultKey.queue)
+                UserDefaults.standard.synchronize()
+            }else{
+                print("data invalid")
+            }
+            
+            
+            
         }
     }
     
     //retriving queue form disk
     static func retrivingQueueFromDisk() -> [Track]?{
-        if let queueDict = UserDefaults.standard.value(forKey: App.UserDefaultKey.queue) as? [[String: Any]]{
-            let tracks = queueDict.map({ (trackDict) -> Track in
+        if let queueData = UserDefaults.standard.value(forKey: App.UserDefaultKey.queue) as? Data{
+            guard let jsonObject = try? JSONSerialization.jsonObject(with: queueData, options: []) else{
+                return nil
+            }
+            
+            guard let queueDicts = jsonObject as? [[String: Any]] else{
+                return nil
+            }
+            let tracks = queueDicts.map({ (trackDict) -> Track in
                 return Track(dict: trackDict)
             })
             return tracks

@@ -12,49 +12,49 @@ fileprivate let reuseIden = "ListenerCellIden"
 fileprivate let xibName = "ListenerTableViewCell"
 
 class ListenerViewController: UIViewController {
-    
-    @IBOutlet weak var navigationHeaderViewWrapper: UIView!{
-        didSet{
-            let navigationHeaderView = NavigationHeaderView.instanceFromNib(withTitle: "Listeners")
-            navigationHeaderView.delegate = self
-            self.navigationHeaderViewWrapper.addSubview(navigationHeaderView)
-        }
-    }
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-    }
-    
-    
-    @IBOutlet weak var tableView: UITableView!{
-        didSet{
-            self.tableView.delegate = self
-            self.tableView.dataSource = self
-            self.tableView.alwaysBounceVertical = true
-            self.tableView.estimatedRowHeight = self.tableView.rowHeight
-            self.tableView.rowHeight = UITableViewAutomaticDimension
-            self.tableView.register(UINib(nibName: xibName, bundle: nil), forCellReuseIdentifier: reuseIden)
-        }
-    }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-    }
-}
-
-extension ListenerViewController: UITableViewDelegate, UITableViewDataSource{
-    func numberOfSections(in tableView: UITableView) -> Int {
-        return 1
-    }
-    
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 1
-    }
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: reuseIden, for: indexPath) as! ListenerTableViewCell
-        return cell
-    }
+//    
+//    @IBOutlet weak var navigationHeaderViewWrapper: UIView!{
+//        didSet{
+//            let navigationHeaderView = NavigationHeaderView.instanceFromNib(withTitle: "Listeners")
+//            navigationHeaderView.delegate = self
+//            self.navigationHeaderViewWrapper.addSubview(navigationHeaderView)
+//        }
+//    }
+//    
+//    override func viewDidLoad() {
+//        super.viewDidLoad()
+//    }
+//    
+//    
+//    @IBOutlet weak var tableView: UITableView!{
+//        didSet{
+//            self.tableView.delegate = self
+//            self.tableView.dataSource = self
+//            self.tableView.alwaysBounceVertical = true
+//            self.tableView.estimatedRowHeight = self.tableView.rowHeight
+//            self.tableView.rowHeight = UITableViewAutomaticDimension
+//            self.tableView.register(UINib(nibName: xibName, bundle: nil), forCellReuseIdentifier: reuseIden)
+//        }
+//    }
+//
+//    override func didReceiveMemoryWarning() {
+//        super.didReceiveMemoryWarning()
+//    }
+//}
+//
+//extension ListenerViewController: UITableViewDelegate, UITableViewDataSource{
+//    func numberOfSections(in tableView: UITableView) -> Int {
+//        return 1
+//    }
+//    
+//    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+//        return 1
+//    }
+//    
+//    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+//        let cell = tableView.dequeueReusableCell(withIdentifier: reuseIden, for: indexPath) as! ListenerTableViewCell
+//        return cell
+//    }
 }
 
 extension ListenerViewController: NavigationHeaderViewDelegate{

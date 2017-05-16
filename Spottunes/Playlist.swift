@@ -79,6 +79,15 @@ class Playlist: PFObject {
         return self.tracks?.total ?? 0
     }
     
+    var trackCountString: String?{
+        if let trackCount = self.trackCount{
+            return "\(trackCount) Song" + ((trackCount > 1) ? "s" : "")
+        }
+        return "0 Song"
+    }
+    
+    
+    
     func savePlaylist(){
         if let id = self.spotifyId{
             self[IdKey] = id
