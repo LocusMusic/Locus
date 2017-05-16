@@ -33,7 +33,8 @@ struct App{
     static let mediaMaxLenght: CGFloat = 600
     
     struct Style{
-        struct Color{
+        struct Color {
+            static let heartInactiveColor = App.grayColor
             static let heartActiveColor = UIColor(hexString: "#B70C1F")
         }
         

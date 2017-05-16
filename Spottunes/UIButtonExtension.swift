@@ -14,7 +14,7 @@ extension UIButton{
         let tintedImage =  image?.withRenderingMode(.alwaysTemplate)
         self.setImage(tintedImage, for: .normal)
         self.tintColor = color
-        if animated{
+        if animated {
             self.animateBounceView()
         }
     }
