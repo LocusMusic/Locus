@@ -18,6 +18,7 @@ fileprivate let LikeUsersKey = "likeUsers"
 fileprivate let TypeKey = "type" //reserve for later use, 0 for Spotify playlist
 
 class PlaylistPost: PFObject {
+    
     var user: User?{
         get{
             return self[UserKey] as? User
@@ -26,6 +27,7 @@ class PlaylistPost: PFObject {
         
         }
     }
+    
     var spot: TuneSpot?{
         get{
             return self[SpotKey] as? TuneSpot
@@ -33,11 +35,13 @@ class PlaylistPost: PFObject {
         set{
         }
     }
+    
     var playlistId: String?{
         get{
             return self[PlaylistIdKey] as? String
         }
         set{
+            
         }
     }
     
@@ -47,7 +51,26 @@ class PlaylistPost: PFObject {
         get{
             return self[TypeKey] as? Int
         }
-        set{
+        set {
+            
+        }
+    }
+    
+    var isFavored: Bool? {
+        guard let currentUser = App.delegate?.currentUser else {
+            return nil
+        }
+        return self.likeUsers?.contains(currentUser)
+    }
+    
+    var likeUsers: [User]? {
+        get {
+            return self[LikeUsersKey] as! [User]
+        }
+        set (newValue){
+            print("new users are ")
+            self[LikeUsersKey] = newValue
+
         }
     }
     

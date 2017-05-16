@@ -2,6 +2,9 @@
 <Workspace
    version = "1.0">
    <FileRef
+      location = "group:ucsd.gpx">
+   </FileRef>
+   <FileRef
       location = "group:Spottunes.xcodeproj">
    </FileRef>
    <FileRef

@@ -16,15 +16,14 @@ class SpotPlaylistTableViewCell: UITableViewCell {
         }
     }
     
+    @IBOutlet weak var likeButton: UIButton!
     
     @IBOutlet weak var palylistThumbnailWrapper: UIView!{
         didSet{
             self.palylistThumbnailWrapper.layer.cornerRadius = 4.0
             self.palylistThumbnailWrapper.clipsToBounds = true
         }
-        
     }
-    
     
     
     @IBOutlet weak var playlistNameLabel: UILabel!
@@ -53,17 +52,83 @@ class SpotPlaylistTableViewCell: UITableViewCell {
                         }
                     }
                 }
-
+            }
+            
+            //Check if user liked the playlistPost already
+            guard let isFavored = self.playlistPost.isFavored else{
+                return
+            }
+            
+            if isFavored {
+                self.likeButton.imageBtnActivateWithColor(color: App.Style.Color.heartActiveColor)
+            } else {
+                self.likeButton.imageBtnActivateWithColor(color: App.Style.Color.heartInactiveColor)
             }
         }
     }
     
     @IBAction func likeBtnTapped(_ sender: UIButton) {
-        //Change the button color
-        //Save to ParseDB 
-        //Once loaded, 
+        //Save to ParseDB
         //Add likes key, where likes key = [User]
-    
+        //Change the button color (depends on if User likes/unlikes)
+        sender.isEnabled = false
+        
+        guard let currentUser = App.delegate?.currentUser else{
+            return
+        }
+        
+        guard let currenrtLikeUser = self.playlistPost.likeUsers else {
+            return
+        }
+        
+        guard let isFavored = self.playlistPost.isFavored else{
+            return
+        }
+        
+        
+        if isFavored {
+            print("Contains current user")
+            //remove from like user
+            
+            sender.imageBtnActivateWithColor(color: App.Style.Color.heartInactiveColor)
+            
+            let newUsers = currenrtLikeUser.filter({ (user) -> Bool in
+                return user != currentUser
+            })
+            print(newUsers)
+            
+            self.playlistPost.likeUsers = newUsers
+            
+            
+            self.playlistPost.saveInBackground(block: { (success, error) in
+                if !success {
+                    print(error)
+                } else {
+                    print("SUCCESSFUL SAVE")
+                    sender.isEnabled = true
+                }
+            })
+            
+        } else {
+        
+            print("Doesnt contain current user")
+            print( currenrtLikeUser)
+            self.playlistPost.likeUsers?.append(currentUser)
+            print("after")
+            print(self.playlistPost.likeUsers)
+            
+            sender.imageBtnActivateWithColor(color: App.Style.Color.heartActiveColor)
+            
+            self.playlistPost.saveInBackground(block: { (success, error) in
+                if !success {
+                    print(error ?? "")
+                } else {
+                    print("SUCCESSFUL SAVE")
+                    sender.isEnabled = true
+                }
+            })
+
+        }
     }
     
     func updateUIWithPlaylist(playlist: Playlist){
