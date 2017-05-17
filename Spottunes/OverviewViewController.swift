@@ -90,7 +90,6 @@ class OverviewViewController: UIViewController {
     }
     
     func recentlyVisitedShouldUpdate(_ notification: Notification){
-        
 //        if !self.shouldShowRecentlyVisistedSection{
 //            //create a new section
 //            let indexSet = IndexSet(integer: 0)

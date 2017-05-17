@@ -86,8 +86,9 @@ class PlaylistDetailViewController: UIViewController {
     
     
     func playlistThumbnailCoverTapped(_ gesture: UIGestureRecognizer){
-        //play the playlist
+        //play the playlist of this given playlist post
         if let trakList = self.trackList{
+            App.delegate?.currentUser?.currentListeningPlaylistPost = self.playlistPost
             App.playTracks(trackList: trakList, activeTrackIndex: 0)
         }
         

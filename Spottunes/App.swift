@@ -14,8 +14,6 @@ struct App{
     static let searchStoryboardName = "Search"
     static let streamingStoryboardName = "Streaming"
     static let spotStoryboardName = "Spot"
-
-
     static let grayColor = UIColor(hexString: "#8C8E94")
     static let backColor = UIColor(hexString: "#323335")
     static let themeColor = UIColor(red: 23 / 255.0, green: 131 / 255.0, blue: 198 / 255.0, alpha: 1)

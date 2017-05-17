@@ -127,6 +127,7 @@
             <connections>
                 <outlet property="coverImageView" destination="3CC-x2-U65" id="GRm-UJ-SIx"/>
                 <outlet property="favorBtn" destination="uq1-Wh-Foq" id="peE-zA-chG"/>
+                <outlet property="favorCountLabel" destination="47q-jF-YX2" id="Sao-Qk-euC"/>
                 <outlet property="palylistThumbnailWrapper" destination="4Nu-kJ-TPp" id="6lo-N3-8FV"/>
                 <outlet property="playlistNameLabel" destination="0Un-Pc-gN3" id="SLO-Lz-bAS"/>
                 <outlet property="userLabel" destination="6No-gh-0iF" id="8IW-bG-Xw7"/>

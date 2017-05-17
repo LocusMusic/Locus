@@ -617,7 +617,6 @@
 				986F070B1EA86C04003806CA /* InitViewController.swift */,
 				98EFBE131EA29DCC0050675D /* Main.storyboard */,
 				985230731EBFCD0600523D1D /* CoreNavigationViewController.swift */,
-				9844ADAB1ECAEDF7000A3A44 /* PlaylistDetail */,
 				9844ADA41ECAECDF000A3A44 /* SpotStoryboard */,
 				98D4944E1EC6ADA300B4AC63 /* StreamingTab */,
 				985425521EC520930027979A /* PlaceholderViewController.swift */,
@@ -720,6 +719,7 @@
 			isa = PBXGroup;
 			children = (
 				98D494551EC6B57000B4AC63 /* ConnectedSpotViewController.swift */,
+				9844ADAB1ECAEDF7000A3A44 /* PlaylistDetail */,
 				98E7F0B51EC7FFB2005D745B /* SpotPlaylistCell */,
 			);
 			name = Spot;

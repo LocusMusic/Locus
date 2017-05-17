@@ -174,7 +174,7 @@ extension ConnectedSpotViewController: UITableViewDelegate, UITableViewDataSourc
         let cell = tableView.dequeueReusableCell(withIdentifier: reuseIden, for: indexPath) as! SpotPlaylistTableViewCell
         cell.playlistPost = self.playlistPosts?[indexPath.row]
         return cell
-
+        
         
     }
     

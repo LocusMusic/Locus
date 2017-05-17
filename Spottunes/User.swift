@@ -13,6 +13,9 @@ fileprivate let SpotifyIdKey = "spotifyId"
 fileprivate let RecentlyVisitedSpotKey = "recentlyVisitedSpot"
 fileprivate let ProfileImageKey = "profileImage"
 fileprivate let DisplayNameKey = "displayName"
+fileprivate let CurrentListeningPlaylistPostKey = "currentListeningPlaylistPost"
+fileprivate let CurrentActiveTrackIndexKey = "currentActiveTrackIndex"
+
 
 
 class User: PFObject {
@@ -53,6 +56,29 @@ class User: PFObject {
         }
     }
     
+    var currentListeningPlaylistPost: PlaylistPost?{
+        get{
+            return self[CurrentListeningPlaylistPostKey] as? PlaylistPost
+        }
+        set{
+            if let post = newValue{
+                self[CurrentListeningPlaylistPostKey] = post
+            }
+        }
+    }
+    
+    var currentActiveTrackIndex: Int?{
+        get{
+            return self[CurrentActiveTrackIndexKey] as? Int
+        }
+        set{
+            if let index = newValue{
+                self[CurrentActiveTrackIndexKey] = index
+            }
+
+        }
+    }
+
     
     override func isEqual(_ object: Any?) -> Bool {
         if let user = object as? User{
@@ -75,6 +101,23 @@ class User: PFObject {
         self.saveInBackground(block: completionHandler)
     }
     
+    
+    //update the user's current listening state and save to parse database
+    func updateCurrentPlayingState(){
+        print("updating current playing state")
+        guard let activeTrackIndex = self.currentActiveTrackIndex else{
+            print("active track index is nil")
+            return
+        }
+        guard let currentListeningPlaylistPost = self.currentListeningPlaylistPost else{
+            print("current listing playing list post is nil")
+            return
+        }
+        self[CurrentActiveTrackIndexKey] = activeTrackIndex
+        self[CurrentListeningPlaylistPostKey] = currentListeningPlaylistPost
+        self.saveInBackground()
+    }
+
     
    
     class func fetchUserByUsername(username: String, completionHandler: @escaping (User?) -> Void){

@@ -320,21 +320,13 @@ class SpotifyClient {
     
     class func getSearch(parameters: [String: AnyObject], completionHandler: @escaping (_ responseDict: [String: Any]?) -> Void) {
         
-        print("getSearch Called")
-        
         let paramString = parameters.stringFromHttpParams() as String!
-        print("\(paramString!)")
         guard let requestURL = URL(string:"\(searchEndPoint)?\( paramString!)") else {
-            print("FAIL")
             return
         }
-
-        print("Request URL: \(requestURL)")
-        
+ 
         performTask {
-            print("Performing task completion")
             get(url: requestURL, completionHandler: { (dataDict) in
-                print("Finished!!!")
                 guard let dataDict = dataDict else {
                     completionHandler(nil)
                     return
@@ -342,9 +334,7 @@ class SpotifyClient {
                 completionHandler(dataDict)
             })
         }
-        
     }
-    
     
     
     private class func get(url: URL,  completionHandler: @escaping (_ responseDict: [String: Any]?) -> Void){

@@ -18,6 +18,8 @@ class SpotPlaylistTableViewCell: UITableViewCell {
     
     @IBOutlet weak var favorBtn: FavorButton!
     
+    @IBOutlet weak var favorCountLabel: UILabel!
+    
     @IBOutlet weak var palylistThumbnailWrapper: UIView!{
         didSet{
             self.palylistThumbnailWrapper.layer.cornerRadius = 4.0
@@ -60,6 +62,9 @@ class SpotPlaylistTableViewCell: UITableViewCell {
                 }
             }
             
+            //update the favor count label
+            self.updateLikeLabelCount()
+            
             //Check if user liked the playlistPost already
             self.favorBtn.updateIsFavorApperanceForButton(playlistPost: self.playlistPost)
         }
@@ -67,8 +72,13 @@ class SpotPlaylistTableViewCell: UITableViewCell {
     
     @IBAction func favorBtnTapped(_ sender: FavorButton) {
         sender.favorPlaylistPost(playlistPost: self.playlistPost)
+        self.updateLikeLabelCount()
     }
     
+    func updateLikeLabelCount(){
+        self.favorCountLabel.text = String(self.playlistPost.likeUsers?.count ?? 0)
+    }
+
     func updateUIWithPlaylist(playlist: Playlist){
         if let user = self.playlistPost.user{
             self.userLabel.text = "Added by " + (user.displayName ?? "")
@@ -80,7 +90,6 @@ class SpotPlaylistTableViewCell: UITableViewCell {
         }
         self.playlistNameLabel.text = playlist.name
     }
-    
     
     override func awakeFromNib() {
         super.awakeFromNib()

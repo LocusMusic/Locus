@@ -110,9 +110,12 @@ class PlayView: UIView {
     var minimizedCenter:CGPoint!
     var maximizedCenter:CGPoint!
     var trackList: [Track]!
-    var activeTrackIndex: Int!
+    var activeTrackIndex: Int!{
+        didSet{
+            App.delegate?.currentUser?.currentActiveTrackIndex = self.activeTrackIndex
+        }
+    }
 
-    
     
     @IBAction func prevBtnTapped(_ sender: UIButton) {
         sender.animateBounceView()
@@ -265,6 +268,9 @@ class PlayView: UIView {
         guard let activeTrackURI = self.trackList[activeTrackIndex].uri else{
             return
         }
+        
+        //save the current user listening track to the database
+        App.delegate?.currentUser?.updateCurrentPlayingState()
         
         self.streamController.playSpotifyURI(activeTrackURI, startingWith: 0, startingWithPosition: 0, callback: { (error) in
             if let error = error {
