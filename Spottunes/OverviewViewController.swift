@@ -118,7 +118,6 @@ class OverviewViewController: UIViewController {
         }
     }
     
-    
     func reloadData(){
         DispatchQueue.main.async {
             self.refreshControl.endRefreshing()
@@ -224,7 +223,6 @@ extension OverviewViewController: UICollectionViewDelegateFlowLayout{
 
 extension OverviewViewController: RecentlyVisitedCollectionViewCellDelegate, SpotThumbnailCollectionViewCellDelegate{
     func spotThumbnailImageViewImageTapped(spot: TuneSpot) {
-        print("spot tapped from overview")
         if let spotVC = App.streammingStoryBoard.instantiateViewController(withIdentifier: App.StreammingStoryboradIden.connectedSpotViewController) as? ConnectedSpotViewController{
             spotVC.spot = spot
             self.navigationController?.pushViewController(spotVC, animated: true)

@@ -127,6 +127,20 @@ class User: PFObject {
             }
         }
     }
+    
+    //fetch all the users at a given spot
+    class func fetchVisitedUserInSpot(spot: TuneSpot, completionHandler: @escaping ([User]?) -> Void ){
+        let query = PFQuery(className: className)
+        query.whereKey(RecentlyVisitedSpotKey, containsAllObjectsIn: [spot])
+        query.findObjectsInBackground { (objects, error) in
+            if let users = objects as? [User]{
+                completionHandler(users)
+            }else{
+                completionHandler(nil)
+            }
+        }
+    }
+    
 }
 
 extension User: PFSubclassing {

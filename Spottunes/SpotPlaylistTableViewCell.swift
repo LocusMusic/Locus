@@ -24,9 +24,16 @@ class SpotPlaylistTableViewCell: UITableViewCell {
             self.palylistThumbnailWrapper.clipsToBounds = true
         }
     }
+//    @IBOutlet weak var profileImageView: UIImageView!{
+//        didSet{
+//            self.profileImageView.layer.cornerRadius = self.profileImageView.frame.size.width / 2
+//            self.profileImageView.clipsToBounds = true
+//        }
+//    }
     
     
     @IBOutlet weak var playlistNameLabel: UILabel!
+    
     @IBOutlet weak var userLabel: UILabel!
     
     
@@ -64,7 +71,7 @@ class SpotPlaylistTableViewCell: UITableViewCell {
     
     func updateUIWithPlaylist(playlist: Playlist){
         if let user = self.playlistPost.user{
-            self.userLabel.text = user.displayName
+            self.userLabel.text = "Added by " + (user.displayName ?? "")
         }
         if let coverImage = playlist.getCoverImage(withSize: .small){
             if let coverURL = coverImage.url{

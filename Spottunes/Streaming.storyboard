@@ -202,13 +202,13 @@
                                             </constraints>
                                         </view>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Focus, Study" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Cvp-UJ-COG">
-                                            <rect key="frame" x="140" y="50.5" width="93" height="22"/>
+                                            <rect key="frame" x="132" y="50.5" width="93" height="22"/>
                                             <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="16"/>
                                             <color key="textColor" red="0.1960784314" green="0.20000000000000001" blue="0.20784313730000001" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Geisel Library" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QfK-K0-avV">
-                                            <rect key="frame" x="140" y="20" width="215" height="30.5"/>
+                                            <rect key="frame" x="132" y="20" width="223" height="30.5"/>
                                             <fontDescription key="fontDescription" name="Avenir-Heavy" family="Avenir" pointSize="22"/>
                                             <color key="textColor" red="0.1960784314" green="0.20000000000000001" blue="0.20784313730000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <nil key="highlightedColor"/>
@@ -219,7 +219,7 @@
                                         <constraint firstItem="QfK-K0-avV" firstAttribute="top" secondItem="lOt-8X-A43" secondAttribute="top" id="A8J-es-i6N"/>
                                         <constraint firstItem="Cvp-UJ-COG" firstAttribute="top" secondItem="QfK-K0-avV" secondAttribute="bottom" id="C2C-sQ-Ngu"/>
                                         <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="Cvp-UJ-COG" secondAttribute="bottom" constant="16" id="D9j-YP-iae"/>
-                                        <constraint firstItem="QfK-K0-avV" firstAttribute="leading" secondItem="ywE-fX-JmX" secondAttribute="trailing" constant="20" id="Qk0-Cx-S8u"/>
+                                        <constraint firstItem="QfK-K0-avV" firstAttribute="leading" secondItem="ywE-fX-JmX" secondAttribute="trailing" constant="12" id="Qk0-Cx-S8u"/>
                                         <constraint firstAttribute="trailing" secondItem="QfK-K0-avV" secondAttribute="trailing" constant="20" id="XjN-YC-ebJ"/>
                                         <constraint firstItem="Cvp-UJ-COG" firstAttribute="leading" secondItem="QfK-K0-avV" secondAttribute="leading" id="efu-CO-wMK"/>
                                         <constraint firstItem="ywE-fX-JmX" firstAttribute="top" secondItem="lq8-4y-FAs" secondAttribute="top" constant="20" id="fOR-dT-eaV"/>

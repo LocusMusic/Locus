@@ -117,7 +117,6 @@ class InitViewController: UIViewController {
         }
     }
 
-    
 }
 
 extension InitViewController: LogInViewControllerDelegate {

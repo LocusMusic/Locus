@@ -90,6 +90,16 @@ class PlaylistDetailViewController: UIViewController {
         if let trakList = self.trackList{
             App.playTracks(trackList: trakList, activeTrackIndex: 0)
         }
+        
+        //save the spot as the user's recently visited
+        if let spot = self.playlistPost.spot{
+            App.delegate?.currentUser?.addRecentVisitSpot(spot: spot, completionHandler: { (succeed, error) in
+                if succeed{
+                    //recently visit should update
+                    App.postLocalNotification(withName: App.LocalNotification.Name.recentlyVisitedShouldUpdate)
+                }
+            })
+        }
     }
     
     func updateUI(){
