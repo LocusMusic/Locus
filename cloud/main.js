@@ -13,7 +13,7 @@ Parse.Cloud.define("iosPushTest", function(request, response) {
 
   userQuery.find({
     success: function(users) {
-      response.success(userQuery);
+      response.success(users);
     },
     error: function(error) {
     response.success(error);
