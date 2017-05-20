@@ -89,104 +89,26 @@ class SpotifyClient {
                     return
                 }
                 saveSession(session: session)
-                User.fetchUserByUsername(username: session.canonicalUsername, completionHandler: { (user) in
-                    if let user = user{
-                        //user existed
-                        print("user existed already")
-                        print(user)
-                        App.delegate?.currentUser = user
-                        App.postLocalNotification(withName: App.LocalNotification.Name.onLoginSuccessful)
-
-                    }else{
-                        print("user not existed")
-                        
-                        
-                        User.register(ParseAuthDelegate(), forAuthType: "spotify")
-                        if let token = session.accessToken{
-                            let authData: [String: String] = ["access_token": token, "id" : session.canonicalUsername]
-                            User.logInWithAuthType(inBackground: "spotify", authData: authData).continue({ (task) -> AnyObject? in
-                                // the PFUser currentUser should not be nil at this point
-                                if let currentUser = User.current(){
-                                    print("has current user")
-                                    if let installation = PFInstallation.current(){
-                                        print("installation succeed")
-//                                        currentUser["Installation"] = installation
-//                                        currentUser.saveInBackground()
-                                        
-                                        installation["user"] = currentUser
-                                        installation.saveInBackground(block: { (succeed, error) in
-                                            if succeed{
-                                                print("instllation user saved")
-                                            }else{
-                                                print("installation user failed")
-                                            }
-                                        })
-
-                                        
-                                        
-                                    }else{
-                                        print("no current installation")
-                                    }
-                                }else{
-                                    print("no current user")
-                                }
-                                return nil
-                            })
-                        }
-
-                        
-                        
-                        
-                        
-                        
-                        
-                        
-                        
-                        
-                        
-                        
-//                        //user not existed
-//                        //fetch the user's profile for recording to parse db
-//                        SpotifyClient.fetchUserProfile({ (dict) in
-//                            if let dict = dict{
-//                                User.register(dict: dict, completionHandler: { (user) in
-//                                    if let user = user{
-//                                        print(user)
-//                                        print("registered succeed")
-//                                        App.postLocalNotification(withName: App.LocalNotification.Name.onLoginSuccessful)
-//
-//                                    }else{
-//                                        print("failed to registered")
-//                                    }
-//                                })
-//                            }
-//                        })
+                print("user not existed")
+                SpotifyClient.fetchUserProfile({ (dict) in
+                    if let dict = dict{
+                        let profile = Profile(dict: dict)
+                        User.register(profile: profile, accessToken: session.accessToken,  completionHandler: { (user) in
+                            if let user = user{
+                                print(user)
+                                App.postLocalNotification(withName: App.LocalNotification.Name.onLoginSuccessful)
+                            }else{
+                                print("user not available")
+                            }
+                        })
                     }
                 })
-                
-//                User.doesExist(spotifyId: session.canonicalUsername, completionHandler: { (exist) in
-//                    if !exist {
-//                        print("User with spotifyId \(session.canonicalUsername) doesn't exist")
-//                        User.register(spotifyId: session.canonicalUsername, completionHandler: { (succeed, error) in
-//                            if succeed{
-//                                //save user to disk
-//                                
-//                                App.postLocalNotification(withName: App.LocalNotification.Name.onLoginSuccessful)
-//                            }else{
-//                                print("failed to register")
-//                            }
-//                        })
-//                    }else{
-//                        //save user to disk
-//                        App.postLocalNotification(withName: App.LocalNotification.Name.onLoginSuccessful)
-//                    }
-//                })
             })
             return true
         }
         return false
     }
-    
+         
     //save the session to the user defaults
     class func saveSession(session: SPTSession) {
         let userDefaults = UserDefaults.standard

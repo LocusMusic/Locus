@@ -106,10 +106,14 @@ class PlaylistPost: PFObject {
     class func shareAllToSpot(playlistPosts: [PlaylistPost], spot: TuneSpot, completionHandler: @escaping PFBooleanResultBlock){
         //check whether the spot existed or not
         //save spot first if not
+        guard let currentUser = User.current() else{
+            print("curent user si nil from shareAllToSpot in playlistPost.swift")
+            return
+        }
         
         if let existed = spot.isSpotExisted, existed{
             //no need to create
-            App.delegate?.currentUser?.addRecentVisitSpot(spot: spot, completionHandler: { (succeed, error) in
+                currentUser.addRecentVisitSpot(spot: spot, completionHandler: { (succeed, error) in
                 if succeed{
                     print("existing recent spot added succeed")
                     PlaylistPost.saveAll(inBackground: playlistPosts, block: completionHandler)
@@ -121,7 +125,7 @@ class PlaylistPost: PFObject {
             //create new spot first
             spot.saveTuneSpot(completionHandler: { (succeed, error) in
                 if succeed{
-                    App.delegate?.currentUser?.addRecentVisitSpot(spot: spot, completionHandler: { (succeed, error) in
+                    currentUser.addRecentVisitSpot(spot: spot, completionHandler: { (succeed, error) in
                         if succeed{
                             print("existing recent spot added succeed")
                             PlaylistPost.saveAll(inBackground: playlistPosts, block: completionHandler)
@@ -129,18 +133,20 @@ class PlaylistPost: PFObject {
                             print("existing recent spot added failed")
                         }
                     })
+                }else{
+                    completionHandler(false, nil)
                 }
-                completionHandler(false, nil)
             })
         }
     }
     
 
-    
+    //fetch all the playlist post in a given spot
     class func fetchPlaylistPostInSpot(spot: TuneSpot, completionHandler: @escaping ([PlaylistPost]?) -> Void){
         let query = PFQuery(className: ClassName)
         query.whereKey(SpotKey, equalTo: spot)
         query.includeKey(UserKey)
+        query.includeKey(SpotKey)
         query.findObjectsInBackground { (objects, error) in
             if let playlistPosts = objects as? [PlaylistPost]{
                 let resultSortedList = playlistPosts.sorted(by: { (post_1, post_2) -> Bool in

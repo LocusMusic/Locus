@@ -135,10 +135,10 @@ class SpotPickerViewController: UIViewController {
     }
     
     func keyboardWillHide(_ notification: Notification){
+        self.footerViewBottomConstraint.constant = 0
         UIView.animate(withDuration: 0.3, animations: {
-            self.view.frame.origin.y = 0
+            self.view.layoutIfNeeded()
         })
-
     }
     
     

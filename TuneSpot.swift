@@ -16,7 +16,7 @@ fileprivate let AddressKey = "address"
 fileprivate let CoverURLStringKey = "coverURLString"
 fileprivate let GenreKey = "genre"
 
-fileprivate let searchNearbyRadiusMiles: Double = 10
+fileprivate let searchNearbyRadiusMiles: Double = 1
 
 class TuneSpot : PFObject {
     

@@ -201,8 +201,8 @@
                                                 <constraint firstItem="Hym-PA-9RK" firstAttribute="top" secondItem="ywE-fX-JmX" secondAttribute="top" id="xW2-QF-J1H"/>
                                             </constraints>
                                         </view>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Focus, Study" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Cvp-UJ-COG">
-                                            <rect key="frame" x="132" y="50.5" width="93" height="22"/>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Cvp-UJ-COG">
+                                            <rect key="frame" x="132" y="50.5" width="0.0" height="0.0"/>
                                             <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="16"/>
                                             <color key="textColor" red="0.1960784314" green="0.20000000000000001" blue="0.20784313730000001" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
                                             <nil key="highlightedColor"/>

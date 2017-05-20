@@ -86,15 +86,19 @@ class PlaylistDetailViewController: UIViewController {
     
     
     func playlistThumbnailCoverTapped(_ gesture: UIGestureRecognizer){
+        guard let currentUser = User.current() else{
+            print("no current user")
+            return
+        }
         //play the playlist of this given playlist post
         if let trakList = self.trackList{
-            App.delegate?.currentUser?.currentListeningPlaylistPost = self.playlistPost
+            currentUser.currentListeningPlaylistPost = self.playlistPost
             App.playTracks(trackList: trakList, activeTrackIndex: 0)
         }
         
         //save the spot as the user's recently visited
         if let spot = self.playlistPost.spot{
-            App.delegate?.currentUser?.addRecentVisitSpot(spot: spot, completionHandler: { (succeed, error) in
+           currentUser.addRecentVisitSpot(spot: spot, completionHandler: { (succeed, error) in
                 if succeed{
                     //recently visit should update
                     App.postLocalNotification(withName: App.LocalNotification.Name.recentlyVisitedShouldUpdate)

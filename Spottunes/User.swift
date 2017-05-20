@@ -8,7 +8,7 @@
 
 import Parse
 
-fileprivate let className = "User"
+fileprivate let className = "_User"
 fileprivate let SpotifyIdKey = "spotifyId"
 fileprivate let RecentlyVisitedSpotKey = "recentlyVisitedSpot"
 fileprivate let ProfileImageKey = "profileImage"
@@ -21,11 +21,11 @@ fileprivate let UsernameKey = "username"
 fileprivate let PasswordKey = "password"
 //CredentialTypeKey, default 0, means spotify
 fileprivate let CredentialTypeKey = "credentialType"
-
+fileprivate let authDataSpotifyKey = "authData"
+fileprivate let authType = "spotify"
 
 
 class User: PFUser {
-    
     var spotifyId : String? {
         return self[SpotifyIdKey] as? String
     }
@@ -33,6 +33,8 @@ class User: PFUser {
     var displayName: String?{
         return self[DisplayNameKey] as? String
     }
+    
+    
     
     
     func loadUserProfileImage(withCompletion completion: @escaping (UIImage?, Error?) -> Void){
@@ -53,14 +55,6 @@ class User: PFUser {
     }
     
     
-    var recentlyVisitedSpot: [TuneSpot]?{
-        get{
-            return self[RecentlyVisitedSpotKey] as? [TuneSpot]
-        }
-        set{
-            
-        }
-    }
     
     var currentListeningPlaylistPost: PlaylistPost?{
         get{
@@ -72,6 +66,9 @@ class User: PFUser {
             }
         }
     }
+    
+    var recentlyVisitedSpot: RecentlyVisitedSpot?
+    
     
     var currentActiveTrackIndex: Int?{
         get{
@@ -93,20 +90,17 @@ class User: PFUser {
         return false
     }
     
-    
    
-    
-    func addRecentVisitSpot(spot: TuneSpot ,completionHandler: @escaping PFBooleanResultBlock){
-        let newSpot = [spot]
-        let filteredArray = self.recentlyVisitedSpot?.filter({ (tuneSpot) -> Bool in
-            return !newSpot.contains(tuneSpot)
-        })
-        let newRecentSpot = newSpot + (filteredArray ?? [TuneSpot]())
-        self.recentlyVisitedSpot = newRecentSpot
-        self[RecentlyVisitedSpotKey] = newRecentSpot
-        self.saveInBackground(block: completionHandler)
+    func addRecentVisitSpot(spot: TuneSpot, completionHandler: @escaping PFBooleanResultBlock){
+        RecentlyVisitedSpot.saveRecentlyVisitedSpot(user: self, newSpot: spot) { (newRecentSpots) in
+            if let newRecentSpots = newRecentSpots{
+                self.recentlyVisitedSpot = newRecentSpots
+                completionHandler(true, nil)
+            }else{
+                completionHandler(false, nil)
+            }
+        }
     }
-    
     
     //update the user's current listening state and save to parse database
     func updateCurrentPlayingState(){
@@ -143,49 +137,43 @@ class User: PFUser {
     }
     
     //Create a user and save it to Parse
-    class func register(dict: [String: Any], completionHandler: @escaping  (User?) -> Void) {
-        let user = User()
-        let profile = Profile(dict: dict)
-        user[SpotifyIdKey] = profile.id
-        user[UsernameKey] = profile.id
-        let uuid = UUID().uuidString
-        user[PasswordKey] = uuid
-        user[CredentialTypeKey] = 0
-
+    
+    
+    class func register(profile: Profile, accessToken: String, completionHandler: @escaping  (User?) -> Void) {
         
-        if let image = profile.image?.asset{
-            user[ProfileImageKey] = image
-        }
-        if let displayNaem = profile.displayName{
-            user[DisplayNameKey] = displayNaem
-        }
-        
-        if let installation = PFInstallation.current(){
-            user[InstallationKey] = installation
-        }
-        
-        
-        
-        user.signUpInBackground  { (succeed, error) in
-            if succeed{
-                if let installation = PFInstallation.current(){
-                    print("current installation is not nil")
-                    installation["user"] = user
-                    installation.saveInBackground(block: { (succeed, error) in
-                        print(error)
+        User.register(ParseAuthDelegate(), forAuthType: authType)
+        let authData: [String: String] = ["access_token": accessToken, "id" : profile.id]
+        User.logInWithAuthType(inBackground: authType, authData: authData).continue({ (task) -> AnyObject? in
+            guard let currentUser = User.current() else{
+                return nil
+            }
+            //now we have the login user
+            PFInstallation.saveUserPointerToCurrentInstallation(user: currentUser, completionHandler: { (succeed, error) in
+                //saved the token correctly
+                if succeed{
+                    //save extra information about the user
+                    currentUser[SpotifyIdKey] = profile.id
+                    if let image = profile.image?.asset{
+                        currentUser[ProfileImageKey] = image
+                    }
+                    if let displayNaem = profile.displayName{
+                        currentUser[DisplayNameKey] = displayNaem
+                    }
+                    currentUser.saveInBackground(block: { (succeed, error) in
                         if succeed{
-                            completionHandler(user)
+                            completionHandler(currentUser)
                         }else{
+                            print("failed to save current user")
                             completionHandler(nil)
                         }
                     })
                 }else{
+                    print("failed to save installation for user")
                     completionHandler(nil)
                 }
-            }else{
-                completionHandler(nil)
-            }
-        }
+            })
+            return nil
+        })
     }
     
     //Check if the current session user exists in Parse

@@ -41,6 +41,7 @@ class SelectionFromPlaylistViewController: UIViewController {
     
     @IBAction func shareBtnTapped(_ sender: UIButton) {
         guard let playlists = self.playlists else{
+            print("playlists is nil from share btn clicked")
             return
         }
         var selectedPlaylists = [Playlist]()
@@ -57,10 +58,12 @@ class SelectionFromPlaylistViewController: UIViewController {
         self.loadingActivityIndicator.isHidden = false
         self.loadingActivityIndicator.startAnimating()
         sender.setTitle("", for: .normal)
-        guard let currentUser = App.delegate?.currentUser else{
+        guard let currentUser = User.current() else{
+            print("current user is nil from share clicked")
             return
         }
         guard let spot = self.postInfo[App.PostInfoKey.spot] as? TuneSpot else{
+            print("spot is nil from share clicked")
             return
         }
        
@@ -80,6 +83,7 @@ class SelectionFromPlaylistViewController: UIViewController {
         let playlistPosts = selectedPlaylists.map({ (playlist) -> PlaylistPost in
             return PlaylistPost(user: currentUser, spot: spot, playlistId: playlist.spotifyId)
         })
+        
         
         PlaylistPost.shareAllToSpot(playlistPosts: playlistPosts, spot: spot) { (succeed, error) in
             if succeed{
@@ -120,10 +124,13 @@ class SelectionFromPlaylistViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        guard let currentUserId = User.current()?.spotifyId else{
+            return
+        }
         SpotifyClient.fetchCurrentUserPlayList { (playlists) in
             if var playlists = playlists{
                 playlists = playlists.filter({ (playlist) -> Bool in
-                    return playlist.ownerId == App.delegate!.currentUser!.spotifyId
+                    return playlist.ownerId == currentUserId
                 })
                 self.playlists = playlists
             }

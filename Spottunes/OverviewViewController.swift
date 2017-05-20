@@ -90,22 +90,8 @@ class OverviewViewController: UIViewController {
     }
     
     func recentlyVisitedShouldUpdate(_ notification: Notification){
-//        if !self.shouldShowRecentlyVisistedSection{
-//            //create a new section
-//            let indexSet = IndexSet(integer: 0)
-//            self.collectionView.performBatchUpdates({
-//                self.collectionView.insertSections(indexSet)
-//            }, completion: nil)
-//        }else{
-//            //add new item to the 0 section
-//            let indexPath = IndexPath(row: 0, section: 0)
-//            self.collectionView.performBatchUpdates({
-//                self.collectionView.insertItems(at: [indexPath])
-//            }, completion: nil)
-//        }
         self.shouldShowRecentlyVisistedSection = true
         self.collectionView.reloadData()
-
     }
     
     
@@ -149,7 +135,7 @@ extension OverviewViewController: UICollectionViewDelegate, UICollectionViewData
             if indexPath.section == 0{
                 let cell = collectionView.dequeueReusableCell(withReuseIdentifier: recentlyVisitedSpotReuseIden, for: indexPath) as! RecentlyVisitedCollectionViewCell
                 cell.delegate = self
-                cell.spots = App.delegate?.currentUser?.recentlyVisitedSpot
+                cell.spots = User.current()?.recentlyVisitedSpot?.spots
                 return cell
             }
         }

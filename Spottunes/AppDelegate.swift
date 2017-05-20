@@ -17,7 +17,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     var currentUser: User?{
         didSet{
-            if let count = self.currentUser?.recentlyVisitedSpot?.count, count > 0{
+            if let count = User.current()?.recentlyVisitedSpot?.spots.count, count > 0{
                 App.postLocalNotification(withName: App.LocalNotification.Name.recentlyVisitedShouldUpdate)
             }
         }
@@ -90,8 +90,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func applicationWillTerminate(_ application: UIApplication) {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
-        self.currentUser?.currentActiveTrackIndex = -1
-        self.currentUser?.updateCurrentPlayingState()
+//        self.currentUser?.currentActiveTrackIndex = -1
+//        self.currentUser?.updateCurrentPlayingState()
     }
     
     

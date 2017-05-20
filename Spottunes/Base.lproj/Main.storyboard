@@ -265,11 +265,55 @@
                     <connections>
                         <segue destination="ZWg-ON-FVg" kind="relationship" relationship="viewControllers" id="guN-28-sXX"/>
                         <segue destination="cEe-Tb-zcE" kind="relationship" relationship="viewControllers" id="W6s-Xi-sHu"/>
+                        <segue destination="iTh-pH-yhY" kind="relationship" relationship="viewControllers" id="Vf4-xp-xbX"/>
+                        <segue destination="ZIA-ZO-Zin" kind="relationship" relationship="viewControllers" id="Iht-uB-BjW"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="c7h-g0-scX" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-263" y="3340"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="20g-4X-xjf">
+            <objects>
+                <viewController id="ZIA-ZO-Zin" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="w5w-W9-We7"/>
+                        <viewControllerLayoutGuide type="bottom" id="XrC-JH-xA9"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="G3P-B9-NsC">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="" image="profile-icon" id="ORB-Wn-hCB">
+                        <inset key="imageInsets" minX="0.0" minY="8" maxX="0.0" maxY="-8"/>
+                    </tabBarItem>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ltG-CK-RaW" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1002" y="3120"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="lUG-N2-AW7">
+            <objects>
+                <viewController id="iTh-pH-yhY" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Y3W-ZX-vkw"/>
+                        <viewControllerLayoutGuide type="bottom" id="hsy-RD-mV0"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="n2k-Oy-7fS">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="" image="heart-icon" id="RL5-7F-eoI">
+                        <inset key="imageInsets" minX="0.0" minY="6" maxX="0.0" maxY="-6"/>
+                    </tabBarItem>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="uSw-G4-T7s" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1100" y="3878"/>
         </scene>
         <!--Home View Controller-->
         <scene sceneID="zAU-eE-yVd">
@@ -398,7 +442,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="BVx-gL-2dM" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1983.2" y="2640.6296851574216"/>
+            <point key="canvasLocation" x="1966" y="1424"/>
         </scene>
         <!--Global Wrapper View Controller-->
         <scene sceneID="mAN-ik-nFU">
@@ -527,14 +571,14 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="" image="heart-icon" id="WZQ-LT-CKg">
+                    <tabBarItem key="tabBarItem" title="" image="add-button" id="WZQ-LT-CKg">
                         <inset key="imageInsets" minX="0.0" minY="6" maxX="0.0" maxY="-6"/>
                         <offsetWrapper key="titlePositionAdjustment" horizontal="0.0" vertical="0.0"/>
                     </tabBarItem>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="aWV-4b-TqY" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2322.4000000000001" y="4471.2143928035985"/>
+            <point key="canvasLocation" x="113" y="4157"/>
         </scene>
         <!--Selection From Playlist View Controller-->
         <scene sceneID="tUp-yU-KG5">
@@ -958,7 +1002,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vMw-eC-qTl" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1916" y="3452"/>
+            <point key="canvasLocation" x="1898" y="2234"/>
         </scene>
         <!--Home Embed Page View Controller-->
         <scene sceneID="aXU-oA-vcT">
@@ -966,7 +1010,7 @@
                 <pageViewController autoresizesArchivedViewToFullSize="NO" transitionStyle="scroll" navigationOrientation="horizontal" spineLocation="none" id="SNT-D9-jHl" customClass="HomeEmbedPageViewController" customModule="Spottunes" customModuleProvider="target" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="TH4-NN-geZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2735" y="3374"/>
+            <point key="canvasLocation" x="2716" y="2157"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="hyp-Vx-0Ja">
@@ -987,7 +1031,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Dtg-cq-WIk" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1044" y="2640.6296851574216"/>
+            <point key="canvasLocation" x="1026" y="1424"/>
         </scene>
         <!--Add Music View Controller-->
         <scene sceneID="4RK-yd-Jff">
@@ -1636,11 +1680,12 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="eh8-sX-sMz" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3424.8000000000002" y="3451.1244377811099"/>
+            <point key="canvasLocation" x="3407" y="2234"/>
         </scene>
     </scenes>
     <resources>
         <image name="Spotify_Icon" width="24" height="24"/>
+        <image name="add-button" width="30" height="30"/>
         <image name="back-icon" width="30" height="30"/>
         <image name="close-icon" width="30" height="30"/>
         <image name="heart-icon" width="29" height="29"/>

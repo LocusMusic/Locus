@@ -96,6 +96,8 @@
 		9892EEDE1EAB437C00AD44B7 /* CreateSpotViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9892EEDD1EAB437C00AD44B7 /* CreateSpotViewController.swift */; };
 		9892EEE01EAB43AF00AD44B7 /* Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9892EEDF1EAB43AF00AD44B7 /* Location.swift */; };
 		989CB85D1ED0BC590087D9D5 /* ParseAuthDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 989CB85C1ED0BC590087D9D5 /* ParseAuthDelegate.swift */; };
+		989CB85F1ED0F6C30087D9D5 /* Installation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 989CB85E1ED0F6C30087D9D5 /* Installation.swift */; };
+		989CB8621ED1006B0087D9D5 /* RecentlyVisitedSpot.swift in Sources */ = {isa = PBXBuildFile; fileRef = 989CB8611ED1006B0087D9D5 /* RecentlyVisitedSpot.swift */; };
 		98A0D2871EA27FEB0004966A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98A0D2861EA27FEB0004966A /* AppDelegate.swift */; };
 		98A0D28E1EA27FEB0004966A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 98A0D28D1EA27FEB0004966A /* Assets.xcassets */; };
 		98A0D2911EA27FEB0004966A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 98A0D28F1EA27FEB0004966A /* LaunchScreen.storyboard */; };
@@ -231,6 +233,8 @@
 		9892EEDD1EAB437C00AD44B7 /* CreateSpotViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateSpotViewController.swift; sourceTree = "<group>"; };
 		9892EEDF1EAB43AF00AD44B7 /* Location.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Location.swift; sourceTree = "<group>"; };
 		989CB85C1ED0BC590087D9D5 /* ParseAuthDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParseAuthDelegate.swift; sourceTree = "<group>"; };
+		989CB85E1ED0F6C30087D9D5 /* Installation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Installation.swift; sourceTree = "<group>"; };
+		989CB8611ED1006B0087D9D5 /* RecentlyVisitedSpot.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecentlyVisitedSpot.swift; sourceTree = "<group>"; };
 		98A0D2831EA27FEB0004966A /* Spottunes.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Spottunes.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		98A0D2861EA27FEB0004966A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		98A0D28D1EA27FEB0004966A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -589,6 +593,14 @@
 			name = "Introduction Scenes";
 			sourceTree = "<group>";
 		};
+		989CB8601ED0F7190087D9D5 /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+				989CB85E1ED0F6C30087D9D5 /* Installation.swift */,
+			);
+			name = Extension;
+			sourceTree = "<group>";
+		};
 		98A0D27A1EA27FEA0004966A = {
 			isa = PBXGroup;
 			children = (
@@ -779,6 +791,7 @@
 		98EFBE3A1EA2EE250050675D /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				989CB8601ED0F7190087D9D5 /* Extension */,
 				983DF0E11EC9377400356315 /* Playlists.swift */,
 				983DF0DF1EC9377400356315 /* Artists.swift */,
 				986F070D1EA87DBC003806CA /* User.swift */,
@@ -786,6 +799,7 @@
 				984C6D991EC2E89600824113 /* PlaylistPost.swift */,
 				9892EEDF1EAB43AF00AD44B7 /* Location.swift */,
 				981A6D381EB04C0F0045E2FD /* Spot.swift */,
+				989CB8611ED1006B0087D9D5 /* RecentlyVisitedSpot.swift */,
 				98E7F0BB1EC80827005D745B /* Profile.swift */,
 				981A6D4C1EB073EF0045E2FD /* Genre.swift */,
 				98EFBE3B1EA2EE310050675D /* Playlist.swift */,
@@ -978,6 +992,7 @@
 				981A6D4A1EB071BC0045E2FD /* SmartGenreCollectionViewCell.swift in Sources */,
 				9844ADAA1ECAEDE2000A3A44 /* PlaylistDetailViewController.swift in Sources */,
 				98A0D2871EA27FEB0004966A /* AppDelegate.swift in Sources */,
+				989CB8621ED1006B0087D9D5 /* RecentlyVisitedSpot.swift in Sources */,
 				98D494481EC6611E00B4AC63 /* ReusableTableSectionHeaderView.swift in Sources */,
 				9892EEDB1EAB42FA00AD44B7 /* FoursquareClient.swift in Sources */,
 				9891C4591EBABC5700F4B440 /* LocationSearchTableViewController.swift in Sources */,
@@ -990,6 +1005,7 @@
 				9891C4631EBABD5400F4B440 /* MapViewController.swift in Sources */,
 				988E41761EB992000083A08A /* Image.swift in Sources */,
 				98E5EBA81EAFBE0B00B0D3D6 /* GlobalTabBarController.swift in Sources */,
+				989CB85F1ED0F6C30087D9D5 /* Installation.swift in Sources */,
 				98EFBE261EA29F000050675D /* UIImageExtension.swift in Sources */,
 				98D494541EC6B10B00B4AC63 /* StreamingEmbedViewController.swift in Sources */,
 				98D4944D1EC66A2D00B4AC63 /* backupSpotpicker.swift in Sources */,

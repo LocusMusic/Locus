@@ -56,23 +56,38 @@ class InitViewController: UIViewController {
         SpotifyClient.updateSession { (session) in
             if let session = session{
                 self.view.bringSubview(toFront: self.placeholderContainerView)
-                
-                print(User.current())
-                
-//                User.fetchUserByUsername(username: session.canonicalUsername, completionHandler: { (user) in
-//                    if let user = user{
-//                        print("finsihed fetching user")
-//                        App.delegate?.currentUser = user
-//                        
-//                        //get the popular tune spot near the current location
-//                        TuneSpot.getNearbyPopularTuneSpot { (spots) in
-//                            if let spots = spots{
-//                                App.delegate?.popularTuneSpot = spots
-//                                self.view.bringSubview(toFront: self.homeContainerView)
-//                            }
-//                        }
-//                    }
-//                })
+                User.register(ParseAuthDelegate(), forAuthType: "spotify")
+                if let token = session.accessToken{
+                    let authData: [String: String] = ["access_token": token, "id" : session.canonicalUsername]
+                    User.logInWithAuthType(inBackground: "spotify", authData: authData).continue({ (task) -> AnyObject? in
+                        //user is logged in
+                        //from here you can use User.current() because it's logined
+                        
+                        //fetch recently visisted spot
+                        guard let currentUser = User.current() else{
+                            return nil
+                        }
+                        
+                        RecentlyVisitedSpot.fetchRecentlyVisitedSpot(forUser: currentUser, completionHandler: { (spots) in
+                            if let recentSpots = spots{
+                                App.postLocalNotification(withName: App.LocalNotification.Name.recentlyVisitedShouldUpdate)
+                                currentUser.recentlyVisitedSpot = recentSpots
+                            }
+                        })
+
+                        //get the popular tune spot near the current location
+                        TuneSpot.getNearbyPopularTuneSpot { (spots) in
+                            if let spots = spots{
+                                App.delegate?.popularTuneSpot = spots
+                                self.view.bringSubview(toFront: self.homeContainerView)
+                            }
+                        }
+                        
+                        return nil
+                    })
+                }else{
+                    print("token invalid")
+                }
             }else{
                 print("GO TO LOGIN PAGE")
                 self.statusBarShouldHidden = true
