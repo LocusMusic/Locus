@@ -11,36 +11,36 @@ Parse.Cloud.define("iosPushTest", function(request, response) {
 //   var pushQuery = new Parse.Query(Parse.Installation);
 //   pushQuery.equalTo("user", recipientUser);
   
-
-	var userQuery = new Parse.Query(Parse.User);
+  
     var pushQuery = new Parse.Query(Parse.Installation);
+	var userQuery = new Parse.Query(Parse.User);
 	userQuery.equalTo("username", "hbvMFdvjsMl9vNTN0BzGA63mh")
-    pushQuery.matchesQuery("user", userQuery);
+//     pushQuery.matchesQuery("user", userQuery);
 
 
-    userQuery.find({
-    success: function(users) {
-      response.success(users[0]);
-    },
-    error: function(error) {
-    response.success(error);
-      console.error("Error finding related comments " + error.code + ": " + error.message);
-    }
-  }); 
+//     userQuery.find({
+//     success: function(users) {
+//       response.success(users[0]);
+//     },
+//     error: function(error) {
+//     response.success(error);
+//       console.error("Error finding related users " + error.code + ": " + error.message);
+//     }
+//   }); 
    
 //      var pushQuery = new Parse.Query(Parse.Installation);
-//     pushQuery.equalTo('deviceType', 'ios'); // targeting iOS devices only                                                                                                                                          
+    pushQuery.equalTo('deviceType', 'ios'); // targeting iOS devices only                                                                                                                                          
 
    
-	//  Parse.Push.send({
-// 		where: pushQuery, // Set our Installation query                                                                                                                                                              
-// 		data: {
-// 		  alert: "Message: " + messageText
-// 		}
-// 	  }, { success: function() {
-// 		  console.log("#### PUSH OK");
-// 		 response.success('success');
-// 	  }, error: function(error) {
-// 		  console.log("#### PUSH ERROR" + error.message);
-// 	  }, useMasterKey: true});
+	  Parse.Push.send({
+		where: pushQuery, // Set our Installation query                                                                                                                                                              
+		data: {
+		  alert: "Message: " + messageText
+		}
+	  }, { success: function() {
+		  console.log("#### PUSH OK");
+		 response.success('success');
+	  }, error: function(error) {
+		  console.log("#### PUSH ERROR" + error.message);
+	  }, useMasterKey: true});
 });
