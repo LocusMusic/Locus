@@ -40,11 +40,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Spottunes/SpotifyClient.swift"
-            timestampString = "516998428.532731"
+            timestampString = "517001451.408956"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "210"
-            endingLineNumber = "210"
+            startingLineNumber = "222"
+            endingLineNumber = "222"
             landmarkName = "updateSession(completionHandler:)"
             landmarkType = "7">
          </BreakpointContent>

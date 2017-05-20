@@ -164,9 +164,24 @@ class User: PFUser {
             user[InstallationKey] = installation
         }
         
+        
+        
         user.signUpInBackground  { (succeed, error) in
             if succeed{
-                completionHandler(user)
+                if let installation = PFInstallation.current(){
+                    print("current installation is not nil")
+                    installation["user"] = user
+                    installation.saveInBackground(block: { (succeed, error) in
+                        print(error)
+                        if succeed{
+                            completionHandler(user)
+                        }else{
+                            completionHandler(nil)
+                        }
+                    })
+                }else{
+                    completionHandler(nil)
+                }
             }else{
                 completionHandler(nil)
             }

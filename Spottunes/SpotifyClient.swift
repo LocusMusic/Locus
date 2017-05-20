@@ -110,8 +110,20 @@ class SpotifyClient {
                                     print("has current user")
                                     if let installation = PFInstallation.current(){
                                         print("installation succeed")
-                                        currentUser["Installation"] = installation
-                                        currentUser.saveInBackground()
+//                                        currentUser["Installation"] = installation
+//                                        currentUser.saveInBackground()
+                                        
+                                        installation["user"] = currentUser
+                                        installation.saveInBackground(block: { (succeed, error) in
+                                            if succeed{
+                                                print("instllation user saved")
+                                            }else{
+                                                print("installation user failed")
+                                            }
+                                        })
+
+                                        
+                                        
                                     }else{
                                         print("no current installation")
                                     }
