@@ -6,10 +6,10 @@ Parse.Cloud.define("iosPushTest", function(request, response) {
   // Our "Message" class has a "text" key with the body of the message itself                                                                                                                                    
   var messageText = params.text;
 
-  var recipientUser = new Parse.User();
-  recipientUser.username = "a7AjS6npIV5ZrPlc3zPkdhKRM"
-  var pushQuery = new Parse.Query(Parse.Installation);
-  pushQuery.equalTo("user", recipientUser);
+//   var recipientUser = new Parse.User();
+//   recipientUser.username = "a7AjS6npIV5ZrPlc3zPkdhKRM"
+//   var pushQuery = new Parse.Query(Parse.Installation);
+//   pushQuery.equalTo("user", recipientUser);
   
 
 //   userQuery.find({
@@ -21,6 +21,10 @@ Parse.Cloud.define("iosPushTest", function(request, response) {
 //       console.error("Error finding related comments " + error.code + ": " + error.message);
 //     }
 //   }); 
+   
+     var pushQuery = new Parse.Query(Parse.Installation);
+    pushQuery.equalTo('deviceType', 'ios'); // targeting iOS devices only                                                                                                                                          
+
    
 	 Parse.Push.send({
 		where: pushQuery, // Set our Installation query                                                                                                                                                              
