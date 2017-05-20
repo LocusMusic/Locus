@@ -8,7 +8,7 @@ Parse.Cloud.define("iosPushTest", function(request, response) {
   
     var pushQuery = new Parse.Query(Parse.Installation);
 	var userQuery = new Parse.Query(Parse.User);
-	userQuery.equalTo("username", "FaQOWnAhfunO7G5qWvkcjRvzJ")
+	userQuery.equalTo("username", "FaQOWnAhfunO7G5qWvkcjRvzW")
     pushQuery.matchesQuery("user", userQuery);
 //     pushQuery.equalTo('deviceType', 'ios'); // targeting iOS devices only                                                                                                                                          
 
