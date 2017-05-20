@@ -95,6 +95,7 @@
 		9892EEDB1EAB42FA00AD44B7 /* FoursquareClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9892EEDA1EAB42FA00AD44B7 /* FoursquareClient.swift */; };
 		9892EEDE1EAB437C00AD44B7 /* CreateSpotViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9892EEDD1EAB437C00AD44B7 /* CreateSpotViewController.swift */; };
 		9892EEE01EAB43AF00AD44B7 /* Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9892EEDF1EAB43AF00AD44B7 /* Location.swift */; };
+		989CB85D1ED0BC590087D9D5 /* ParseAuthDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 989CB85C1ED0BC590087D9D5 /* ParseAuthDelegate.swift */; };
 		98A0D2871EA27FEB0004966A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98A0D2861EA27FEB0004966A /* AppDelegate.swift */; };
 		98A0D28E1EA27FEB0004966A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 98A0D28D1EA27FEB0004966A /* Assets.xcassets */; };
 		98A0D2911EA27FEB0004966A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 98A0D28F1EA27FEB0004966A /* LaunchScreen.storyboard */; };
@@ -229,6 +230,7 @@
 		9892EEDA1EAB42FA00AD44B7 /* FoursquareClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FoursquareClient.swift; sourceTree = "<group>"; };
 		9892EEDD1EAB437C00AD44B7 /* CreateSpotViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateSpotViewController.swift; sourceTree = "<group>"; };
 		9892EEDF1EAB43AF00AD44B7 /* Location.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Location.swift; sourceTree = "<group>"; };
+		989CB85C1ED0BC590087D9D5 /* ParseAuthDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParseAuthDelegate.swift; sourceTree = "<group>"; };
 		98A0D2831EA27FEB0004966A /* Spottunes.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Spottunes.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		98A0D2861EA27FEB0004966A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		98A0D28D1EA27FEB0004966A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -612,6 +614,7 @@
 				28974A931EC423CF0037704A /* LocationSearchView */,
 				983578421EAD116600E12751 /* GradientBackgroundAnimatedViewController.swift */,
 				98A0D2861EA27FEB0004966A /* AppDelegate.swift */,
+				989CB85C1ED0BC590087D9D5 /* ParseAuthDelegate.swift */,
 				98EFBE191EA29E350050675D /* App.swift */,
 				9846025E1ECB89BC00883FE1 /* SongCell */,
 				986F070B1EA86C04003806CA /* InitViewController.swift */,
@@ -1060,6 +1063,7 @@
 				28974A8A1EC422CC0037704A /* SongsSearchViewController.swift in Sources */,
 				988E41791EB99D700083A08A /* SelectionFromPlaylistViewController.swift in Sources */,
 				983DF0E61EC9377400356315 /* Playlists.swift in Sources */,
+				989CB85D1ED0BC590087D9D5 /* ParseAuthDelegate.swift in Sources */,
 				9892EED81EA9AA7F00AD44B7 /* URLRequest.swift in Sources */,
 				9891C4691EBADB9800F4B440 /* Helper.swift in Sources */,
 				98E7F0B81EC7FFE1005D745B /* SpotPlaylistTableViewCell.swift in Sources */,

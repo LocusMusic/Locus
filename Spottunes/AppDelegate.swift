@@ -103,7 +103,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func configureParse() {
         TuneSpot.registerSubclass()
         Playlist.registerSubclass()
-        User.registerSubclass()
     }
 
 }

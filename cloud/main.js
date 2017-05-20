@@ -6,10 +6,10 @@ Parse.Cloud.define("iosPushTest", function(request, response) {
   // Our "Message" class has a "text" key with the body of the message itself                                                                                                                                    
   var messageText = params.text;
 
-  var pushQuery = new Parse.Query(Parse.Installation);   
-  var userQuery = new Parse.Query("PUser");
-  userQuery.equalTo("spotifyId", "12125995664");
-  pushQuery.matchesQuery("PUser", userQuery);
+  var recipientUser = new Parse.User();
+  recipientUser.username = "a7AjS6npIV5ZrPlc3zPkdhKRM"
+  var pushQuery = new Parse.Query(Parse.Installation);
+  pushQuery.equalTo("user", recipientUser);
   
 
 //   userQuery.find({

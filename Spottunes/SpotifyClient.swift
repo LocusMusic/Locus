@@ -99,22 +99,45 @@ class SpotifyClient {
 
                     }else{
                         print("user not existed")
-                        //user not existed
-                        //fetch the user's profile for recording to parse db
-                        SpotifyClient.fetchUserProfile({ (dict) in
-                            if let dict = dict{
-                                User.register(dict: dict, completionHandler: { (user) in
-                                    if let user = user{
-                                        print(user)
-                                        print("registered succeed")
-                                        App.postLocalNotification(withName: App.LocalNotification.Name.onLoginSuccessful)
+                        
+                        
+                        User.register(ParseAuthDelegate(), forAuthType: "spotify")
+                        if let token = session.accessToken{
+                            let authData: [String: String] = ["access_token": token, "id" : session.canonicalUsername]
+                            User.logInWithAuthType(inBackground: "spotify", authData: authData).continue({ (task) -> AnyObject? in
+                                // the PFUser currentUser should not be nil at this point
+                                print(User.current())
+                                return nil
+                            })
+                        }
 
-                                    }else{
-                                        print("failed to registered")
-                                    }
-                                })
-                            }
-                        })
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+//                        //user not existed
+//                        //fetch the user's profile for recording to parse db
+//                        SpotifyClient.fetchUserProfile({ (dict) in
+//                            if let dict = dict{
+//                                User.register(dict: dict, completionHandler: { (user) in
+//                                    if let user = user{
+//                                        print(user)
+//                                        print("registered succeed")
+//                                        App.postLocalNotification(withName: App.LocalNotification.Name.onLoginSuccessful)
+//
+//                                    }else{
+//                                        print("failed to registered")
+//                                    }
+//                                })
+//                            }
+//                        })
                     }
                 })
                 

@@ -8,7 +8,7 @@
 
 import Parse
 
-fileprivate let className = "PUser"
+fileprivate let className = "User"
 fileprivate let SpotifyIdKey = "spotifyId"
 fileprivate let RecentlyVisitedSpotKey = "recentlyVisitedSpot"
 fileprivate let ProfileImageKey = "profileImage"
@@ -16,10 +16,15 @@ fileprivate let DisplayNameKey = "displayName"
 fileprivate let CurrentListeningPlaylistPostKey = "currentListeningPlaylistPost"
 fileprivate let CurrentActiveTrackIndexKey = "currentActiveTrackIndex"
 fileprivate let InstallationKey = "installation"
+//the value for UsernameKey is the same as the value for SpotifyIdKey
+fileprivate let UsernameKey = "username"
+fileprivate let PasswordKey = "password"
+//CredentialTypeKey, default 0, means spotify
+fileprivate let CredentialTypeKey = "credentialType"
 
 
-class User: PFObject {
-    
+
+class User: PFUser {
     
     var spotifyId : String? {
         return self[SpotifyIdKey] as? String
@@ -142,6 +147,12 @@ class User: PFObject {
         let user = User()
         let profile = Profile(dict: dict)
         user[SpotifyIdKey] = profile.id
+        user[UsernameKey] = profile.id
+        let uuid = UUID().uuidString
+        user[PasswordKey] = uuid
+        user[CredentialTypeKey] = 0
+
+        
         if let image = profile.image?.asset{
             user[ProfileImageKey] = image
         }
@@ -153,8 +164,7 @@ class User: PFObject {
             user[InstallationKey] = installation
         }
         
-        
-        user.saveInBackground { (succeed, error) in
+        user.signUpInBackground  { (succeed, error) in
             if succeed{
                 completionHandler(user)
             }else{
@@ -195,8 +205,3 @@ class User: PFObject {
     
 }
 
-extension User: PFSubclassing {
-    static func parseClassName() -> String {
-        return className
-    }
-}
