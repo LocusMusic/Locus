@@ -6,7 +6,7 @@
 //  Copyright © 2017 ___Spottunes___. All rights reserved.
 //
 
-import Foundation
+import Parse
 
 fileprivate let idKey = "id"
 fileprivate let clientID = "998109b54614480c81c056df333702a2"
@@ -106,7 +106,18 @@ class SpotifyClient {
                             let authData: [String: String] = ["access_token": token, "id" : session.canonicalUsername]
                             User.logInWithAuthType(inBackground: "spotify", authData: authData).continue({ (task) -> AnyObject? in
                                 // the PFUser currentUser should not be nil at this point
-                                print(User.current())
+                                if let currentUser = User.current(){
+                                    print("has current user")
+                                    if let installation = PFInstallation.current(){
+                                        print("installation succeed")
+                                        currentUser["Installation"] = installation
+                                        currentUser.saveInBackground()
+                                    }else{
+                                        print("no current installation")
+                                    }
+                                }else{
+                                    print("no current user")
+                                }
                                 return nil
                             })
                         }

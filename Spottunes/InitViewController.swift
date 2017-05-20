@@ -56,20 +56,23 @@ class InitViewController: UIViewController {
         SpotifyClient.updateSession { (session) in
             if let session = session{
                 self.view.bringSubview(toFront: self.placeholderContainerView)
-                User.fetchUserByUsername(username: session.canonicalUsername, completionHandler: { (user) in
-                    if let user = user{
-                        print("finsihed fetching user")
-                        App.delegate?.currentUser = user
-                        
-                        //get the popular tune spot near the current location
-                        TuneSpot.getNearbyPopularTuneSpot { (spots) in
-                            if let spots = spots{
-                                App.delegate?.popularTuneSpot = spots
-                                self.view.bringSubview(toFront: self.homeContainerView)
-                            }
-                        }
-                    }
-                })
+                
+                print(User.current())
+                
+//                User.fetchUserByUsername(username: session.canonicalUsername, completionHandler: { (user) in
+//                    if let user = user{
+//                        print("finsihed fetching user")
+//                        App.delegate?.currentUser = user
+//                        
+//                        //get the popular tune spot near the current location
+//                        TuneSpot.getNearbyPopularTuneSpot { (spots) in
+//                            if let spots = spots{
+//                                App.delegate?.popularTuneSpot = spots
+//                                self.view.bringSubview(toFront: self.homeContainerView)
+//                            }
+//                        }
+//                    }
+//                })
             }else{
                 print("GO TO LOGIN PAGE")
                 self.statusBarShouldHidden = true
