@@ -10,10 +10,10 @@ Parse.Cloud.define("iosPushTest", function(request, response) {
   var userQuery = new Parse.Query("User");
   userQuery.equalTo("spotifyId", "12125995664");
   
-   
+
   userQuery.find({
     success: function(users) {
-      response.success(users);
+      response.success(userQuery);
     },
     error: function(error) {
     response.success(error);
