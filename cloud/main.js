@@ -7,7 +7,7 @@ Parse.Cloud.define("iosPushTest", function(request, response) {
   var messageText = params.text;
 
   var pushQuery = new Parse.Query(Parse.Installation);   
-  var userQuery = new Parse.Query("User");
+  var userQuery = new Parse.Query("PUser");
   userQuery.equalTo("spotifyId", "12125995664");
   
 

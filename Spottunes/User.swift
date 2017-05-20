@@ -8,7 +8,7 @@
 
 import Parse
 
-fileprivate let className = "User"
+fileprivate let className = "PUser"
 fileprivate let SpotifyIdKey = "spotifyId"
 fileprivate let RecentlyVisitedSpotKey = "recentlyVisitedSpot"
 fileprivate let ProfileImageKey = "profileImage"
