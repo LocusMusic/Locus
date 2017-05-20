@@ -20,6 +20,7 @@ fileprivate let CurrentActiveTrackIndexKey = "currentActiveTrackIndex"
 
 class User: PFObject {
     
+    
     var spotifyId : String? {
         return self[SpotifyIdKey] as? String
     }
@@ -183,6 +184,8 @@ class User: PFObject {
             }
         }
     }
+
+    
     
 }
 

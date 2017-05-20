@@ -65,14 +65,43 @@ class PlaylistPost: PFObject {
     
     var likeUsers: [User]? {
         get {
-            return self[LikeUsersKey] as! [User]
+            return self[LikeUsersKey] as? [User]
         }
         set (newValue){
-            print("new users are ")
             self[LikeUsersKey] = newValue
-
         }
     }
+    
+    //get a list of listener list who contributed a playlist post in a given spot sorted by 
+    //the the number of likes they received
+    class func fetchListenersListBasedOnFavoredCount(forSpot spot: TuneSpot, completionHandler: @escaping ([(key: User, value: Int)]?) -> Void){
+        let query = PFQuery(className: ClassName)
+        query.whereKey(SpotKey, equalTo: spot)
+        //the userlistDict conatins the user as the key, and the favor count he or she receives
+        //as the value
+        var userlistDict = [User: Int]()
+        query.findObjectsInBackground { (objects, erorr) in
+            if let playlistPosts = objects as? [PlaylistPost]{
+                for post in playlistPosts{
+                    guard let user = post.user else{
+                        break
+                    }
+                    if let favorCount = userlistDict[user]{
+                        //already existed
+                        userlistDict[user] = favorCount + (post.likeUsers?.count ?? 0)
+                    }else{
+                        //havn't existed
+                         userlistDict[user] = (post.likeUsers?.count ?? 0)
+                    }
+                }
+                let sortedUserListDict = userlistDict.sorted { (pair_1: (user_1: User, favor_count_1: Int), pair_2: (user_2: User, favor_count_2: Int)) -> Bool in
+                    return pair_1.favor_count_1 > pair_2.favor_count_2
+                }
+                completionHandler(sortedUserListDict)
+            }
+        }
+    }
+    
     
     class func shareAllToSpot(playlistPosts: [PlaylistPost], spot: TuneSpot, completionHandler: @escaping PFBooleanResultBlock){
         //check whether the spot existed or not
@@ -106,26 +135,7 @@ class PlaylistPost: PFObject {
         }
     }
     
-//    func savePlaylistToSpot(spot: TuneSpot, completionHandler: @escaping PFBooleanResultBlock){
-//        user?.addRecentVisitSpot(spot: spot, completionHandler: { (succeed, error) in
-//            if succeed{
-//                print("successfully added recently visited")
-//                guard let user = self.user else{
-//                    return
-//                }
-//                guard let playlistId = self.playlistId else{
-//                    return
-//                }
-//                self[SpotKey] = spot
-//                self[UserKey] = user
-//                self[PlaylistIdKey] = playlistId
-//                self[TypeKey] = self.type
-//                self.saveInBackground(block: completionHandler)
-//            }else{
-//                completionHandler(false, nil)
-//            }
-//        })
-//    }
+
     
     class func fetchPlaylistPostInSpot(spot: TuneSpot, completionHandler: @escaping ([PlaylistPost]?) -> Void){
         let query = PFQuery(className: ClassName)

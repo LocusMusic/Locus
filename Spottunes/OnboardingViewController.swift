@@ -42,16 +42,16 @@ class OnboardingViewController: GradientBackgroundAnimatedViewController {
         
         
         
-//        let onboardShareView = OnboardingView.instanceFromNib()
-//        onboardShareView.backgroundImageView.image = App.Style.Onboard.Share.backgroundImage
-//        onboardShareView.actionBtn.setTitle(App.Style.Onboard.Share.actionBtnTitle, for: .normal)
+        let onboardShareView = OnboardingView.instanceFromNib()
+        onboardShareView.backgroundImageView.image = App.Style.Onboard.Share.backgroundImage
+        onboardShareView.actionBtn.setTitle(App.Style.Onboard.Share.actionBtnTitle, for: .normal)
         
         let onboardListenView = OnboardingView.instanceFromNib()
         onboardListenView.backgroundImageView.image = App.Style.Onboard.Listen.backgroundImage
         onboardListenView.actionBtn.setTitle(App.Style.Onboard.Listen.actionBtnTitle, for: .normal)
         
         scenes.append(onboardDiscoverView)
-//        scenes.append(onboardShareView)
+        scenes.append(onboardShareView)
         scenes.append(onboardListenView)
         
         for (index, promptView) in self.scenes.enumerated(){

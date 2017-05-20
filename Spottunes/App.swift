@@ -58,8 +58,8 @@ struct App{
         
         struct Onboard{
             struct Share{
-                static let backgroundImage = #imageLiteral(resourceName: "onboard-share")
-                static let actionBtnTitle = "Create Tunes Spot"
+                static let backgroundImage = #imageLiteral(resourceName: "onboard-share-screen")
+                static let actionBtnTitle = "Sounds Great"
             }
             struct Listen{
                 static let backgroundImage = #imageLiteral(resourceName: "onboard-listen")

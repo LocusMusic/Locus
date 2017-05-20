@@ -37,10 +37,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         
         //remote notification
-//        let userNotificationTypes: UIUserNotificationType = [.alert, .badge, .sound]
-//        let settings = UIUserNotificationSettings(types: userNotificationTypes, categories: nil)
-//        application.registerUserNotificationSettings(settings)
-//        application.registerForRemoteNotifications()
+        let userNotificationTypes: UIUserNotificationType = [.alert, .badge, .sound]
+        let settings = UIUserNotificationSettings(types: userNotificationTypes, categories: nil)
+        application.registerUserNotificationSettings(settings)
+        application.registerForRemoteNotifications()
 
         self.queue = App.retrivingQueueFromDisk()
         
@@ -56,6 +56,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         self.configureParse()
         SpotifyClient.authInit()
         return true
+    }
+    
+    func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
+        if let installation = PFInstallation.current(){
+            installation.setDeviceTokenFrom(deviceToken)
+            installation.channels = ["global"]
+            installation.saveInBackground()
+        }
+        
     }
 
     func applicationWillResignActive(_ application: UIApplication) {
@@ -82,6 +91,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         self.currentUser?.updateCurrentPlayingState()
     }
 
+    func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable : Any], fetchCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
+        print(userInfo)
+    }
+    
     
     //Called after returning from fetchRequestToken (user either enters credentials or cancels the operation)
     func application(_ app: UIApplication, open url: URL, options: [UIApplicationOpenURLOptionsKey : Any] = [:]) -> Bool {

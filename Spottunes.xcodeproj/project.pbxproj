@@ -855,7 +855,7 @@
 						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
 							com.apple.Push = {
-								enabled = 0;
+								enabled = 1;
 							};
 						};
 					};
@@ -1192,6 +1192,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = Spottunes/Spottunes.entitlements;
 				DEVELOPMENT_TEAM = 2ATYTS9SNC;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1221,6 +1222,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = Spottunes/Spottunes.entitlements;
 				DEVELOPMENT_TEAM = 2ATYTS9SNC;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",

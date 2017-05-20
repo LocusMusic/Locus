@@ -113,6 +113,8 @@ class ConnectedSpotViewController: UIViewController {
             }
         }
     }
+    
+    
 
     
     override func viewDidLoad() {
@@ -123,6 +125,10 @@ class ConnectedSpotViewController: UIViewController {
                 self.spotThumbImageView.loadImageWithURL(coverURL)
             }
             self.nameLabel.text = self.spot.name
+            PlaylistPost.fetchListenersListBasedOnFavoredCount(forSpot: spot, completionHandler: { (userFavorPair) in
+                print(userFavorPair)
+            })
+            
         }
     }
 

@@ -8,7 +8,6 @@
 
 import Foundation
 
-
 class Spot{
     var thumbnailURL: String?
     var name: String?
