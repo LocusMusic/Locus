@@ -165,7 +165,6 @@
 		9833CB051EB1F289009997E9 /* SongTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SongTableViewCell.swift; sourceTree = "<group>"; };
 		9833CB061EB1F289009997E9 /* SongTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SongTableViewCell.xib; sourceTree = "<group>"; };
 		983578421EAD116600E12751 /* GradientBackgroundAnimatedViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GradientBackgroundAnimatedViewController.swift; sourceTree = "<group>"; };
-		983DF09A1EC91A1100356315 /* Spottunes.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Spottunes.entitlements; sourceTree = "<group>"; };
 		983DF0DF1EC9377400356315 /* Artists.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Artists.swift; sourceTree = "<group>"; };
 		983DF0E01EC9377400356315 /* DictionaryExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DictionaryExtension.swift; sourceTree = "<group>"; };
 		983DF0E11EC9377400356315 /* Playlists.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Playlists.swift; sourceTree = "<group>"; };
@@ -174,6 +173,7 @@
 		983DF0EB1EC9997C00356315 /* ReusableViewAllFooterView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReusableViewAllFooterView.swift; sourceTree = "<group>"; };
 		983DF0ED1EC9999700356315 /* ReusableViewAllFooterView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ReusableViewAllFooterView.xib; sourceTree = "<group>"; };
 		983FEE521ECBC56D0022C6A6 /* FavorButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FavorButton.swift; sourceTree = "<group>"; };
+		9842DA5E1ED041A300E95581 /* Spottunes.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Spottunes.entitlements; sourceTree = "<group>"; };
 		9844ADA01ECABD4B000A3A44 /* ListenerSliderTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListenerSliderTableViewCell.swift; sourceTree = "<group>"; };
 		9844ADA11ECABD4B000A3A44 /* ListenerSliderTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ListenerSliderTableViewCell.xib; sourceTree = "<group>"; };
 		9844ADA71ECAED65000A3A44 /* Spot.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Spot.storyboard; sourceTree = "<group>"; };
@@ -608,7 +608,7 @@
 		98A0D2851EA27FEB0004966A /* Spottunes */ = {
 			isa = PBXGroup;
 			children = (
-				983DF09A1EC91A1100356315 /* Spottunes.entitlements */,
+				9842DA5E1ED041A300E95581 /* Spottunes.entitlements */,
 				28974A931EC423CF0037704A /* LocationSearchView */,
 				983578421EAD116600E12751 /* GradientBackgroundAnimatedViewController.swift */,
 				98A0D2861EA27FEB0004966A /* AppDelegate.swift */,
