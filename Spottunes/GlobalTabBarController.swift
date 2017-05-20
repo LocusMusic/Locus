@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Parse
 
 protocol CustomGlobalTabBarControllerDelegate : class {
     func addMusicTapped()
@@ -99,10 +100,15 @@ extension GlobalTabBarController: UITabBarControllerDelegate{
 
         
         if self.viewControllers?.index(of: viewController) == 2{
+            
+            PFCloud.callFunction(inBackground: "iosPushTest", withParameters: ["text" : "Testing"])
+            
             //bring up the picker view
             self.customDelegate?.addMusicTapped()
             return false
         }
+        
+        
         return true
     }
 }
