@@ -12,6 +12,12 @@ Parse.Cloud.define("iosPushTest", function(request, response) {
 //   pushQuery.equalTo("user", recipientUser);
   
 
+	var userQuery = new Parse.Query(Parse.User);
+    var pushQuery = new Parse.Query(Parse.Installation);
+	userQuery.equalTo("username", "a7AjS6npIV5ZrPlc3zPkdhKRM")
+    pushQuery.matchesQuery("user", userQuery);
+
+
 //   userQuery.find({
 //     success: function(users) {
 //       response.success(users[0]);
@@ -22,8 +28,8 @@ Parse.Cloud.define("iosPushTest", function(request, response) {
 //     }
 //   }); 
    
-     var pushQuery = new Parse.Query(Parse.Installation);
-    pushQuery.equalTo('deviceType', 'ios'); // targeting iOS devices only                                                                                                                                          
+//      var pushQuery = new Parse.Query(Parse.Installation);
+//     pushQuery.equalTo('deviceType', 'ios'); // targeting iOS devices only                                                                                                                                          
 
    
 	 Parse.Push.send({
