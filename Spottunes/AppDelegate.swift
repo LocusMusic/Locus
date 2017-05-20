@@ -46,11 +46,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         Parse.initialize(
             with: ParseClientConfiguration(block: { (configuration: ParseMutableClientConfiguration) -> Void in
-                
-                configuration.applicationId = "SpotTunes"
-                configuration.clientKey = "SpotTunesIsGucciJKLDFSDJLKJFLAJFKLDSHLJASKLD"
-                configuration.server = "https://spottunes.herokuapp.com/parse"
-                configuration.isLocalDatastoreEnabled = true
+                configuration.applicationId = "codepath-spottune-final"
+                configuration.clientKey = nil
+                configuration.server = "https://spottune.herokuapp.com/parse"
             })
         )
         self.configureParse()
@@ -59,12 +57,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
-        if let installation = PFInstallation.current(){
-            installation.setDeviceTokenFrom(deviceToken)
-            installation.channels = ["global"]
-            installation.saveInBackground()
-        }
-        
+        let installation = PFInstallation.current()
+        installation?.setDeviceTokenFrom(deviceToken)
+        installation?.channels = ["global"]
+        installation?.saveInBackground()
     }
 
     func applicationWillResignActive(_ application: UIApplication) {

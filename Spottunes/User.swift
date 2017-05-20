@@ -15,7 +15,7 @@ fileprivate let ProfileImageKey = "profileImage"
 fileprivate let DisplayNameKey = "displayName"
 fileprivate let CurrentListeningPlaylistPostKey = "currentListeningPlaylistPost"
 fileprivate let CurrentActiveTrackIndexKey = "currentActiveTrackIndex"
-
+fileprivate let InstallationKey = "installation"
 
 
 class User: PFObject {
@@ -148,6 +148,12 @@ class User: PFObject {
         if let displayNaem = profile.displayName{
             user[DisplayNameKey] = displayNaem
         }
+        
+        if let installation = PFInstallation.current(){
+            user[InstallationKey] = installation
+        }
+        
+        
         user.saveInBackground { (succeed, error) in
             if succeed{
                 completionHandler(user)

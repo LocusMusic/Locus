@@ -110,6 +110,7 @@ class QueueViewController: UIViewController {
         self.queue = App.delegate?.queue
         if let playQueue = self.queue, playQueue.count > 0{
             self.placeholderView.isHidden = true
+            self.tableView.isHidden = false
             //queue is not nil
             DispatchQueue.main.async {
                 if let currentTrack = playQueue.first{
@@ -131,6 +132,7 @@ class QueueViewController: UIViewController {
             }
         }else{
             self.placeholderView.isHidden = false
+            self.tableView.isHidden = true
         }
     }
     
