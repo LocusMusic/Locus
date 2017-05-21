@@ -57,7 +57,7 @@ fileprivate let IdKey = "id"
 fileprivate let HrefKey = "href"
 fileprivate let TrackKey = "track"
 fileprivate let ArtistsKey = "artists"
-
+fileprivate let GenresKey = "genres"
 
 class Album {
     
@@ -75,6 +75,10 @@ class Album {
     
     var name: String?{
         return self.dict[NameKey] as? String
+    }
+    
+    var genres: [String]?{
+        return self.dict[GenresKey] as? [String]
     }
     
     var artists: [Artist]?{

@@ -34,6 +34,9 @@ class User: PFUser {
         return self[DisplayNameKey] as? String
     }
     
+    override var hashValue: Int{
+        return (self[SpotifyIdKey] as! String).hashValue
+    }
     
     
     
@@ -82,6 +85,7 @@ class User: PFUser {
         }
     }
 
+    
     
     override func isEqual(_ object: Any?) -> Bool {
         if let user = object as? User{

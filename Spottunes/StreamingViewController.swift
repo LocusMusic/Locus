@@ -31,7 +31,6 @@ class StreamingViewController: UIViewController {
     
     var streamingEmbedPageVC: StreamingEmbedViewController?
     
-    
     override func viewDidLoad() {
         super.viewDidLoad()
 

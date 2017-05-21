@@ -16,9 +16,9 @@
             <autoresizingMask key="autoresizingMask"/>
             <subviews>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Popular Tunes Spots" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jl7-V7-0wE">
-                    <rect key="frame" x="16" y="15" width="152" height="22"/>
-                    <fontDescription key="fontDescription" name="Avenir-Heavy" family="Avenir" pointSize="16"/>
-                    <color key="textColor" red="0.1973162722" green="0.2002126625" blue="0.20890183330000001" alpha="0.79738334760273977" colorSpace="custom" customColorSpace="sRGB"/>
+                    <rect key="frame" x="16" y="13.5" width="161.5" height="23.5"/>
+                    <fontDescription key="fontDescription" name="Avenir-Heavy" family="Avenir" pointSize="17"/>
+                    <color key="textColor" red="0.19607843137254902" green="0.20000000000000001" blue="0.20784313725490194" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
             </subviews>

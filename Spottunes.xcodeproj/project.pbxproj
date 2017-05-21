@@ -98,6 +98,11 @@
 		989CB85D1ED0BC590087D9D5 /* ParseAuthDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 989CB85C1ED0BC590087D9D5 /* ParseAuthDelegate.swift */; };
 		989CB85F1ED0F6C30087D9D5 /* Installation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 989CB85E1ED0F6C30087D9D5 /* Installation.swift */; };
 		989CB8621ED1006B0087D9D5 /* RecentlyVisitedSpot.swift in Sources */ = {isa = PBXBuildFile; fileRef = 989CB8611ED1006B0087D9D5 /* RecentlyVisitedSpot.swift */; };
+		989CB8661ED12B6A0087D9D5 /* LocationTag.swift in Sources */ = {isa = PBXBuildFile; fileRef = 989CB8651ED12B6A0087D9D5 /* LocationTag.swift */; };
+		989CB8681ED12D500087D9D5 /* Ultility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 989CB8671ED12D500087D9D5 /* Ultility.swift */; };
+		989CB86A1ED14CCE0087D9D5 /* SpotViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 989CB8691ED14CCE0087D9D5 /* SpotViewController.swift */; };
+		989CB86C1ED1560B0087D9D5 /* SpotEmbedPagingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 989CB86B1ED1560A0087D9D5 /* SpotEmbedPagingViewController.swift */; };
+		989CB86E1ED156EA0087D9D5 /* TopPlaylistPostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 989CB86D1ED156EA0087D9D5 /* TopPlaylistPostViewController.swift */; };
 		98A0D2871EA27FEB0004966A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98A0D2861EA27FEB0004966A /* AppDelegate.swift */; };
 		98A0D28E1EA27FEB0004966A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 98A0D28D1EA27FEB0004966A /* Assets.xcassets */; };
 		98A0D2911EA27FEB0004966A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 98A0D28F1EA27FEB0004966A /* LaunchScreen.storyboard */; };
@@ -235,6 +240,11 @@
 		989CB85C1ED0BC590087D9D5 /* ParseAuthDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParseAuthDelegate.swift; sourceTree = "<group>"; };
 		989CB85E1ED0F6C30087D9D5 /* Installation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Installation.swift; sourceTree = "<group>"; };
 		989CB8611ED1006B0087D9D5 /* RecentlyVisitedSpot.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecentlyVisitedSpot.swift; sourceTree = "<group>"; };
+		989CB8651ED12B6A0087D9D5 /* LocationTag.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationTag.swift; sourceTree = "<group>"; };
+		989CB8671ED12D500087D9D5 /* Ultility.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Ultility.swift; sourceTree = "<group>"; };
+		989CB8691ED14CCE0087D9D5 /* SpotViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpotViewController.swift; sourceTree = "<group>"; };
+		989CB86B1ED1560A0087D9D5 /* SpotEmbedPagingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpotEmbedPagingViewController.swift; sourceTree = "<group>"; };
+		989CB86D1ED156EA0087D9D5 /* TopPlaylistPostViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TopPlaylistPostViewController.swift; sourceTree = "<group>"; };
 		98A0D2831EA27FEB0004966A /* Spottunes.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Spottunes.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		98A0D2861EA27FEB0004966A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		98A0D28D1EA27FEB0004966A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -355,13 +365,13 @@
 			name = RecentlyVisitedCollectionViewCell;
 			sourceTree = "<group>";
 		};
-		981A6D461EB0559C0045E2FD /* Reusableview */ = {
+		981A6D461EB0559C0045E2FD /* Reusableview For collectionView */ = {
 			isa = PBXGroup;
 			children = (
 				981A6D421EB054AF0045E2FD /* CollectionHeaderReusableView.swift */,
 				981A6D431EB054AF0045E2FD /* CollectionHeaderReusableView.xib */,
 			);
-			name = Reusableview;
+			name = "Reusableview For collectionView";
 			sourceTree = "<group>";
 		};
 		981A6D471EB06F380045E2FD /* Home */ = {
@@ -412,6 +422,9 @@
 			isa = PBXGroup;
 			children = (
 				9844ADA71ECAED65000A3A44 /* Spot.storyboard */,
+				989CB8691ED14CCE0087D9D5 /* SpotViewController.swift */,
+				989CB86B1ED1560A0087D9D5 /* SpotEmbedPagingViewController.swift */,
+				989CB86F1ED160390087D9D5 /* tabs */,
 			);
 			name = SpotStoryboard;
 			sourceTree = "<group>";
@@ -467,6 +480,7 @@
 		9852306C1EBFCAE300523D1D /* Listeners */ = {
 			isa = PBXGroup;
 			children = (
+				98DD952A1EB5102B007973D6 /* ListenerViewController.swift */,
 				988890871EC0E1E6008883E0 /* ListenerCollectionViewCell.swift */,
 				988890881EC0E1E6008883E0 /* ListenerCollectionViewCell.xib */,
 			);
@@ -485,10 +499,8 @@
 		98588CB91EB538390035C355 /* ListenerPage */ = {
 			isa = PBXGroup;
 			children = (
-				98DD952A1EB5102B007973D6 /* ListenerViewController.swift */,
 				9844ADA01ECABD4B000A3A44 /* ListenerSliderTableViewCell.swift */,
 				9844ADA11ECABD4B000A3A44 /* ListenerSliderTableViewCell.xib */,
-				9852306C1EBFCAE300523D1D /* Listeners */,
 			);
 			name = ListenerPage;
 			sourceTree = "<group>";
@@ -601,6 +613,15 @@
 			name = Extension;
 			sourceTree = "<group>";
 		};
+		989CB86F1ED160390087D9D5 /* tabs */ = {
+			isa = PBXGroup;
+			children = (
+				989CB86D1ED156EA0087D9D5 /* TopPlaylistPostViewController.swift */,
+				9852306C1EBFCAE300523D1D /* Listeners */,
+			);
+			name = tabs;
+			sourceTree = "<group>";
+		};
 		98A0D27A1EA27FEA0004966A = {
 			isa = PBXGroup;
 			children = (
@@ -628,6 +649,8 @@
 				98A0D2861EA27FEB0004966A /* AppDelegate.swift */,
 				989CB85C1ED0BC590087D9D5 /* ParseAuthDelegate.swift */,
 				98EFBE191EA29E350050675D /* App.swift */,
+				989CB8671ED12D500087D9D5 /* Ultility.swift */,
+				989CB8651ED12B6A0087D9D5 /* LocationTag.swift */,
 				9846025E1ECB89BC00883FE1 /* SongCell */,
 				986F070B1EA86C04003806CA /* InitViewController.swift */,
 				98EFBE131EA29DCC0050675D /* Main.storyboard */,
@@ -644,7 +667,7 @@
 				98EFBE3A1EA2EE250050675D /* Model */,
 				98EFBE351EA2D8990050675D /* Detail */,
 				988E417C1EB99DFE0083A08A /* PlayView */,
-				981A6D461EB0559C0045E2FD /* Reusableview */,
+				981A6D461EB0559C0045E2FD /* Reusableview For collectionView */,
 				9891C45B1EBABC7D00F4B440 /* MapView */,
 				98588CBF1EB55B340035C355 /* ProfilePage */,
 				98588CD01EB564980035C355 /* PlaylistCollectionCell */,
@@ -1039,6 +1062,7 @@
 				984C6D9A1EC2E89600824113 /* PlaylistPost.swift in Sources */,
 				98EFBE3C1EA2EE310050675D /* Playlist.swift in Sources */,
 				985230741EBFCD0600523D1D /* CoreNavigationViewController.swift in Sources */,
+				989CB8681ED12D500087D9D5 /* Ultility.swift in Sources */,
 				985425551EC5211C0027979A /* UITabBarExtension.swift in Sources */,
 				981A6D391EB04C0F0045E2FD /* Spot.swift in Sources */,
 				98F528D71EBA8BC3000D9BE3 /* Artist.swift in Sources */,
@@ -1050,6 +1074,8 @@
 				9844ADA21ECABD4B000A3A44 /* ListenerSliderTableViewCell.swift in Sources */,
 				9833CAFA1EB18B00009997E9 /* QueueViewController.swift in Sources */,
 				9891C46B1EBB128F00F4B440 /* UITabBarItemExtension.swift in Sources */,
+				989CB86E1ED156EA0087D9D5 /* TopPlaylistPostViewController.swift in Sources */,
+				989CB8661ED12B6A0087D9D5 /* LocationTag.swift in Sources */,
 				984C6D971EC2C66A00824113 /* SongsTableViewCell.swift in Sources */,
 				98EFBE3E1EA341F70050675D /* UIButtonExtension.swift in Sources */,
 				98588CBD1EB555AC0035C355 /* NavigationHeaderView.swift in Sources */,
@@ -1075,12 +1101,14 @@
 				986F070C1EA86C04003806CA /* InitViewController.swift in Sources */,
 				983DF0E41EC9377400356315 /* Artists.swift in Sources */,
 				98EFBE1A1EA29E350050675D /* StorybordIdentifier.swift in Sources */,
+				989CB86A1ED14CCE0087D9D5 /* SpotViewController.swift in Sources */,
 				983DF0EC1EC9997C00356315 /* ReusableViewAllFooterView.swift in Sources */,
 				28974A8A1EC422CC0037704A /* SongsSearchViewController.swift in Sources */,
 				988E41791EB99D700083A08A /* SelectionFromPlaylistViewController.swift in Sources */,
 				983DF0E61EC9377400356315 /* Playlists.swift in Sources */,
 				989CB85D1ED0BC590087D9D5 /* ParseAuthDelegate.swift in Sources */,
 				9892EED81EA9AA7F00AD44B7 /* URLRequest.swift in Sources */,
+				989CB86C1ED1560B0087D9D5 /* SpotEmbedPagingViewController.swift in Sources */,
 				9891C4691EBADB9800F4B440 /* Helper.swift in Sources */,
 				98E7F0B81EC7FFE1005D745B /* SpotPlaylistTableViewCell.swift in Sources */,
 				98588CC11EB55B4E0035C355 /* ProfileViewController.swift in Sources */,

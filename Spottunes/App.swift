@@ -73,7 +73,7 @@ struct App{
         }
         
         struct SliderMenue{
-            static let activeColor = UIColor(hexString: "#323335")
+            static let activeColor = App.backColor
             static let deactiveColor = App.grayColor
         }
         
@@ -143,7 +143,6 @@ struct App{
         static let playingViewController = "PlayingViewController"
         static let listenerViewController = "ListenerViewController"
         static let playlistDetailViewController = "PlaylistDetailViewController"
-
     }
     
     struct SearchStoryboardIden {
@@ -160,6 +159,16 @@ struct App{
         static let streamingViewController = "StreamingViewController"
     }
     
+    
+    struct SpotStoryboardIden{
+        static let spotViewController = "SpotViewController"
+        static let topPlaylistViewController = "TopPlaylistViewController"
+        static let listenerViewController = "ListenerViewController"
+    }
+    
+
+    
+    
     struct SegueIden {
         static let embedPageVCIden = "EmbedPageVCIden"
         static let addMusicEmbedSegueIden = "AddMusicEmbedSegueIden"
@@ -172,6 +181,7 @@ struct App{
         static let selectSpotSegue = "SelectSpotSegue"
         static let selectSongsSegue = "SelectSongsSegue"
         static let streamEmbedPageVCIden = "StreamEmbedPageVCIden"
+        static let spotEmbedSegueIden = "SpotEmbedSegueIden"
     }
     
     struct PostInfoKey{
@@ -233,6 +243,8 @@ struct App{
         }
         return nil
     }
+    
+    
 }
 
 enum CoverSize{

@@ -57,7 +57,7 @@ class PlaylistPost: PFObject {
     }
     
     var isFavored: Bool? {
-        guard let currentUser = App.delegate?.currentUser else {
+        guard let currentUser = User.current() else {
             return nil
         }
         return self.likeUsers?.contains(currentUser)
@@ -77,6 +77,9 @@ class PlaylistPost: PFObject {
     class func fetchListenersListBasedOnFavoredCount(forSpot spot: TuneSpot, completionHandler: @escaping ([(key: User, value: Int)]?) -> Void){
         let query = PFQuery(className: ClassName)
         query.whereKey(SpotKey, equalTo: spot)
+        query.includeKey(UserKey)
+        query.includeKey(SpotKey)
+        query.includeKey(LikeUsersKey)
         //the userlistDict conatins the user as the key, and the favor count he or she receives
         //as the value
         var userlistDict = [User: Int]()
@@ -91,12 +94,13 @@ class PlaylistPost: PFObject {
                         userlistDict[user] = favorCount + (post.likeUsers?.count ?? 0)
                     }else{
                         //havn't existed
-                         userlistDict[user] = (post.likeUsers?.count ?? 0)
+                        userlistDict[user] = (post.likeUsers?.count ?? 0)
                     }
                 }
                 let sortedUserListDict = userlistDict.sorted { (pair_1: (user_1: User, favor_count_1: Int), pair_2: (user_2: User, favor_count_2: Int)) -> Bool in
                     return pair_1.favor_count_1 > pair_2.favor_count_2
                 }
+                print(sortedUserListDict)
                 completionHandler(sortedUserListDict)
             }
         }
@@ -146,6 +150,7 @@ class PlaylistPost: PFObject {
         let query = PFQuery(className: ClassName)
         query.whereKey(SpotKey, equalTo: spot)
         query.includeKey(UserKey)
+        query.includeKey(LikeUsersKey)
         query.includeKey(SpotKey)
         query.findObjectsInBackground { (objects, error) in
             if let playlistPosts = objects as? [PlaylistPost]{
@@ -159,9 +164,7 @@ class PlaylistPost: PFObject {
         }
     }
     
-    func fetchPlaylist(completionHandler: @escaping (Playlist) -> Void){
-        
-    }
+   
     
     override init() {
         super.init()

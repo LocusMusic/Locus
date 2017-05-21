@@ -8,57 +8,77 @@
 
 import UIKit
 
-fileprivate let reuseIden = "ListenerCellIden"
-fileprivate let xibName = "ListenerTableViewCell"
+fileprivate let reuseIden = "ListenerCollectionViewCell"
+fileprivate let xibName = "ListenerCollectionViewCell"
+
+fileprivate struct CollectionViewUI{
+    static let UIEdgeSpace: CGFloat = 32.0
+    static let MinmumLineSpace: CGFloat = 16.0
+    static let MinmumInteritemSpace: CGFloat = 16.0
+}
 
 class ListenerViewController: UIViewController {
-//    
-//    @IBOutlet weak var navigationHeaderViewWrapper: UIView!{
-//        didSet{
-//            let navigationHeaderView = NavigationHeaderView.instanceFromNib(withTitle: "Listeners")
-//            navigationHeaderView.delegate = self
-//            self.navigationHeaderViewWrapper.addSubview(navigationHeaderView)
-//        }
-//    }
-//    
-//    override func viewDidLoad() {
-//        super.viewDidLoad()
-//    }
-//    
-//    
-//    @IBOutlet weak var tableView: UITableView!{
-//        didSet{
-//            self.tableView.delegate = self
-//            self.tableView.dataSource = self
-//            self.tableView.alwaysBounceVertical = true
-//            self.tableView.estimatedRowHeight = self.tableView.rowHeight
-//            self.tableView.rowHeight = UITableViewAutomaticDimension
-//            self.tableView.register(UINib(nibName: xibName, bundle: nil), forCellReuseIdentifier: reuseIden)
-//        }
-//    }
-//
-//    override func didReceiveMemoryWarning() {
-//        super.didReceiveMemoryWarning()
-//    }
-//}
-//
-//extension ListenerViewController: UITableViewDelegate, UITableViewDataSource{
-//    func numberOfSections(in tableView: UITableView) -> Int {
-//        return 1
-//    }
-//    
-//    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-//        return 1
-//    }
-//    
-//    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-//        let cell = tableView.dequeueReusableCell(withIdentifier: reuseIden, for: indexPath) as! ListenerTableViewCell
-//        return cell
-//    }
-}
-
-extension ListenerViewController: NavigationHeaderViewDelegate{
-    func backBtnTapped(header: NavigationHeaderView) {
-        self.navigationController?.popViewController(animated: true)
+    
+    var listenerLikeReceivedPairs: [(key: User, value: Int)]?
+    
+    var profileImageWidth: CGFloat = 0
+    
+    @IBOutlet weak var collectionView: UICollectionView!{
+        didSet{
+            self.collectionView.delegate = self
+            self.collectionView.dataSource = self
+            self.collectionView.alwaysBounceVertical = true
+            self.collectionView.contentInset = UIEdgeInsetsMake(0, 0, 44, 0)
+            
+            //register for recently visited spot cell and reuse
+            self.collectionView.register(UINib(nibName: xibName, bundle: nil), forCellWithReuseIdentifier: reuseIden)
+        }
+    }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        if self.listenerLikeReceivedPairs != nil{
+            DispatchQueue.main.async {
+                self.collectionView.reloadData()
+            }
+        }
     }
 }
+
+extension ListenerViewController: UICollectionViewDelegate, UICollectionViewDataSource{
+    func numberOfSections(in collectionView: UICollectionView) -> Int {
+        return 1
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return self.listenerLikeReceivedPairs?.count ?? 0
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIden, for: indexPath) as! ListenerCollectionViewCell
+        cell.listenerLikePair = self.listenerLikeReceivedPairs?[indexPath.row]
+        cell.updateImageLayerCorner(width: self.profileImageWidth)
+        return cell
+    }
+}
+
+extension ListenerViewController: UICollectionViewDelegateFlowLayout{
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        let length = (self.view.frame.size.width - 2 * CollectionViewUI.UIEdgeSpace - CollectionViewUI.MinmumInteritemSpace) / 2 ;
+        self.profileImageWidth = length
+        return CGSize(width: length, height: length + 60)
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+        return CollectionViewUI.MinmumLineSpace
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
+        return  UIEdgeInsetsMake( CollectionViewUI.UIEdgeSpace,  CollectionViewUI.UIEdgeSpace,  CollectionViewUI.UIEdgeSpace,  CollectionViewUI.UIEdgeSpace)
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
+        return CollectionViewUI.MinmumInteritemSpace
+    }
+}
+

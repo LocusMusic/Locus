@@ -26,7 +26,7 @@ class FavorButton: UIButton {
     //favor list post button
     func favorPlaylistPost(playlistPost: PlaylistPost){
         self.isEnabled = false
-        guard let currentUser = App.delegate?.currentUser else{
+        guard let currentUser = User.current() else{
             return
         }
         

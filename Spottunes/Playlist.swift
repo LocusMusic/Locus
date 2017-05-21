@@ -100,17 +100,19 @@ class Playlist: PFObject {
     }
     
     func getCoverImage(withSize size: CoverSize) -> Image?{
-//        print("\(name):\(self.images) ")
-//        let imagesCount = self.images?.count ?? 0
-//        guard imagesCount - 1 >= size.hashValue else{
-//            return nil
-//        }
-//        if let coverImage = self.images?[size.hashValue] {
-//            return coverImage
-//        }else{
-//        }
         return self.images?.first
     }
+    
+//    func getGenre(){
+//        if let tracks = self.tracks?.trackList{
+//            print("track is not inil")
+//            for track in tracks{
+//                print(track.album)
+//            }
+//        }else{
+//            print("track list is nil")
+//        }
+//    }
     
     
 }

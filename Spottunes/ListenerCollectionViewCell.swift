@@ -19,16 +19,18 @@ class ListenerCollectionViewCell: UICollectionViewCell {
     
     @IBOutlet weak var nameLabel: UILabel!
     
-    var listener: User?{
+    var listenerLikePair: (key: User, value: Int)?{
         didSet{
-            if let name = self.listener?.displayName{
+            if let name = self.listenerLikePair?.key.displayName{
                 self.nameLabel.text = name
             }
-//            if let image = self.listener?.images?.first{
-//                if let url = image.url{
-//                    self.profileImageView.loadImageWithURL(url)
-//                }
-//            }
+            self.listenerLikePair?.key.loadUserProfileImage(withCompletion: { (userImage, error) in
+                DispatchQueue.main.async {
+                    if let image = userImage{
+                        self.profileImageView.image = image
+                    }
+                }
+            })
         }
     }
     

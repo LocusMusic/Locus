@@ -15,6 +15,7 @@ fileprivate let LocationKey = "location"
 fileprivate let AddressKey = "address"
 fileprivate let CoverURLStringKey = "coverURLString"
 fileprivate let GenreKey = "genre"
+fileprivate let TagsKey = "tags"
 
 fileprivate let searchNearbyRadiusMiles: Double = 1
 
@@ -95,7 +96,12 @@ class TuneSpot : PFObject {
         self[LocationKey] = self.location
         self[AddressKey] = self.address
         self[CoverURLStringKey] = self.coverURLString ?? ""
+        self[TagsKey] = ["Beach": 4, "Chill": 2]
         self.saveInBackground(block: completionHandler)
+    }
+    
+    func getSpotCover() -> UIImage?{
+        return nil //Ultility.getSpotCoverFor(tag: .beach)
     }
     
     static func getNearbyPopularTuneSpot(completionHandler: @escaping ([TuneSpot]?) -> Void){
@@ -190,6 +196,8 @@ class TuneSpot : PFObject {
             })
         }
     }
+    
+    
 }
 
         

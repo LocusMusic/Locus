@@ -208,7 +208,7 @@ extension OverviewViewController: UICollectionViewDelegateFlowLayout{
 
 extension OverviewViewController: RecentlyVisitedCollectionViewCellDelegate, SpotThumbnailCollectionViewCellDelegate{
     func spotThumbnailImageViewImageTapped(spot: TuneSpot) {
-        if let spotVC = App.streammingStoryBoard.instantiateViewController(withIdentifier: App.StreammingStoryboradIden.connectedSpotViewController) as? ConnectedSpotViewController{
+        if let spotVC = App.spotStoryBoard.instantiateViewController(withIdentifier: App.SpotStoryboardIden.spotViewController) as? SpotViewController{
             spotVC.spot = spot
             self.navigationController?.pushViewController(spotVC, animated: true)
         }

@@ -9,12 +9,7 @@
 import UIKit
 
 class SpotPlaylistTableViewCell: UITableViewCell {
-    @IBOutlet weak var coverImageView: UIImageView!{
-        didSet{
-            self.coverImageView.layer.cornerRadius = 4.0
-            self.coverImageView.clipsToBounds = true
-        }
-    }
+    @IBOutlet weak var coverImageView: UIImageView!
     
     @IBOutlet weak var favorBtn: FavorButton!
     
@@ -26,13 +21,6 @@ class SpotPlaylistTableViewCell: UITableViewCell {
             self.palylistThumbnailWrapper.clipsToBounds = true
         }
     }
-//    @IBOutlet weak var profileImageView: UIImageView!{
-//        didSet{
-//            self.profileImageView.layer.cornerRadius = self.profileImageView.frame.size.width / 2
-//            self.profileImageView.clipsToBounds = true
-//        }
-//    }
-    
     
     @IBOutlet weak var playlistNameLabel: UILabel!
     

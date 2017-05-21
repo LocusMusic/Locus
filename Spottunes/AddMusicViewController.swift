@@ -29,7 +29,6 @@ class AddMusicViewController: UIViewController {
             self.navigationBar.updateNavigationBarAppearance()
             let titleFont = UIFont(name: "Avenir-Medium", size: 17.0)!
             self.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: App.grayColor, NSFontAttributeName: titleFont]
-            
         }
     }
     
@@ -47,7 +46,6 @@ class AddMusicViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        print(App.delegate?.currentUser)
        
     }
 

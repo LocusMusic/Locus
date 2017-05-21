@@ -55,6 +55,8 @@ class SelectionFromPlaylistViewController: UIViewController {
             }
         }
         
+        
+        
         self.loadingActivityIndicator.isHidden = false
         self.loadingActivityIndicator.startAnimating()
         sender.setTitle("", for: .normal)
@@ -73,7 +75,10 @@ class SelectionFromPlaylistViewController: UIViewController {
         if spot.isSpotExisted == nil || !spot.isSpotExisted!{
             //no need to create
             print("need to add cover url")
-            if  let coverImage = selectedPlaylists.first?.getCoverImage(withSize: .large) {
+            //pick a random image as the cover
+            let count = selectedPlaylists.count
+            let playlistIndex = Int(arc4random_uniform(UInt32(count)))
+            if  let coverImage = selectedPlaylists[playlistIndex].getCoverImage(withSize: .large) {
                 spot.coverURLString = coverImage.url?.absoluteString
             }
         }else{

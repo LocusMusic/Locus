@@ -43,7 +43,7 @@ class SelectSongsViewController: UIViewController {
         self.loadingActivityIndicator.isHidden = false
         self.loadingActivityIndicator.startAnimating()
         sender.setTitle("", for: .normal)
-        guard let currentUser = App.delegate?.currentUser else{
+        guard let currentUser = User.current() else{
             return
         }
         guard let spot = self.postInfo[App.PostInfoKey.spot] as? TuneSpot else{

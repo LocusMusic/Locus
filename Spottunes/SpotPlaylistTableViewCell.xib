@@ -6,6 +6,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12084"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -21,7 +22,7 @@
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4Nu-kJ-TPp">
                         <rect key="frame" x="16" y="8" width="48" height="48"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="images-2" translatesAutoresizingMaskIntoConstraints="NO" id="3CC-x2-U65">
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="3CC-x2-U65">
                                 <rect key="frame" x="0.0" y="0.0" width="48" height="48"/>
                             </imageView>
                             <view alpha="0.20000000298023224" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pNZ-BB-TOd" userLabel="Overlay View">
@@ -54,19 +55,19 @@
                         </constraints>
                     </view>
                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="nEy-vF-Vzj">
-                        <rect key="frame" x="72" y="8" width="5.5" height="49.5"/>
+                        <rect key="frame" x="76" y="8" width="288" height="49.5"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text=" " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0Un-Pc-gN3">
-                                <rect key="frame" x="0.0" y="0.0" width="5.5" height="26"/>
+                                <rect key="frame" x="0.0" y="0.0" width="288" height="26"/>
                                 <constraints>
                                     <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="26" id="YwB-Lz-M7y"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="19"/>
+                                <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="18"/>
                                 <color key="textColor" red="0.1960784314" green="0.20000000000000001" blue="0.20784313730000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" text=" " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6No-gh-0iF">
-                                <rect key="frame" x="0.0" y="30" width="5.5" height="19.5"/>
+                                <rect key="frame" x="0.0" y="30" width="288" height="19.5"/>
                                 <constraints>
                                     <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="19.5" id="H7Q-nU-gBn"/>
                                 </constraints>
@@ -77,7 +78,7 @@
                         </subviews>
                     </stackView>
                     <stackView opaque="NO" contentMode="scaleToFill" spacing="30" translatesAutoresizingMaskIntoConstraints="NO" id="5t7-Bd-bXn">
-                        <rect key="frame" x="72" y="65.5" width="34" height="24"/>
+                        <rect key="frame" x="76" y="65.5" width="34" height="24"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" spacing="2" translatesAutoresizingMaskIntoConstraints="NO" id="BA1-Am-5Af">
                                 <rect key="frame" x="0.0" y="0.0" width="34" height="24"/>
@@ -104,7 +105,7 @@
                         </subviews>
                     </stackView>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gCv-zC-jhS" userLabel="Sparator View">
-                        <rect key="frame" x="72" y="97.5" width="320" height="1"/>
+                        <rect key="frame" x="76" y="97.5" width="316" height="1"/>
                         <color key="backgroundColor" red="0.1960784314" green="0.20000000000000001" blue="0.20784313730000001" alpha="0.080000000000000002" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="1" id="q7H-R0-I85"/>
@@ -112,10 +113,11 @@
                     </view>
                 </subviews>
                 <constraints>
-                    <constraint firstItem="nEy-vF-Vzj" firstAttribute="leading" secondItem="4Nu-kJ-TPp" secondAttribute="trailing" constant="8" id="D0y-P0-ZMG"/>
+                    <constraint firstItem="nEy-vF-Vzj" firstAttribute="leading" secondItem="4Nu-kJ-TPp" secondAttribute="trailing" constant="12" id="D0y-P0-ZMG"/>
                     <constraint firstItem="5t7-Bd-bXn" firstAttribute="leading" secondItem="nEy-vF-Vzj" secondAttribute="leading" id="KtI-i8-Bwl"/>
                     <constraint firstItem="nEy-vF-Vzj" firstAttribute="top" secondItem="4Nu-kJ-TPp" secondAttribute="top" id="M5o-Q9-w9B"/>
                     <constraint firstItem="4Nu-kJ-TPp" firstAttribute="leading" secondItem="8Jd-jD-Lma" secondAttribute="leading" constant="16" id="MFm-JP-o3n"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="nEy-vF-Vzj" secondAttribute="trailing" constant="20" id="OtP-q3-wAr"/>
                     <constraint firstItem="4Nu-kJ-TPp" firstAttribute="top" secondItem="8Jd-jD-Lma" secondAttribute="top" constant="8" id="YdS-Ky-rhO"/>
                     <constraint firstItem="5t7-Bd-bXn" firstAttribute="top" secondItem="nEy-vF-Vzj" secondAttribute="bottom" constant="8" id="bs5-v0-4L7"/>
                     <constraint firstItem="gCv-zC-jhS" firstAttribute="top" secondItem="5t7-Bd-bXn" secondAttribute="bottom" constant="8" id="dhv-bl-D5h"/>
@@ -137,7 +139,6 @@
     </objects>
     <resources>
         <image name="heart-icon" width="29" height="29"/>
-        <image name="images-2" width="500" height="500"/>
         <image name="play-icon-white" width="20" height="20"/>
     </resources>
 </document>
