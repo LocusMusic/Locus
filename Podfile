@@ -1,5 +1,5 @@
 use_frameworks!
-target 'Spottunes' do
+target ‘Locus’ do
 	pod 'Parse'
     pod 'AFNetworking'
 end
