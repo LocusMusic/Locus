@@ -92,15 +92,29 @@ class ListenerViewController: UIViewController {
                             
                                 //send out a remote notification for someone that is playing yoru song
                                 
-                                guard let senderUserName = User.current()?.displayName else{
-                                    print("senderUserName is empty")
-                                    return
-                                }
+                                
                                 
                                 guard let receiverUsername = User.current()?.username else{
                                     print("receiverUsername is empty")
                                     return
                                 }
+                                
+                                
+                                var senderDisplayName: String? = ""
+
+                                if User.current()?.displayName != nil{
+                                    senderDisplayName = User.current()?.displayName
+                                }else{
+                                    senderDisplayName = User.current()?.spotifyId
+                                }
+                                
+                                guard let senderUserName = senderDisplayName else{
+                                    print("senderUserName is nil")
+                                    return
+                                }
+
+                                
+                                
                                 
                                 guard let playlistName = fetchedPlaylistPost.playlist?.name else{
                                     print("playlist name is empty")
