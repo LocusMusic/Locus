@@ -78,6 +78,7 @@ class InitViewController: UIViewController {
                         //get the popular tune spot near the current location
                         TuneSpot.getNearbyPopularTuneSpot { (spots) in
                             if let spots = spots{
+                                print(spots)
                                 App.delegate?.popularTuneSpot = spots
                                 self.view.bringSubview(toFront: self.homeContainerView)
                             }

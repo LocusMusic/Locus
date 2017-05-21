@@ -16,7 +16,7 @@ var devCertPath = path.resolve(__dirname, 'Certificates.p12');
 var pushConfig = {'ios': [
   {
    pfx: devCertPath, // P12 file only
-   bundleId: 'com.kesongxie.spottunes',  // change to match bundleId
+   bundleId: 'com.kesongxie.locus',  // change to match bundleId
    production: false // dev certificate
   }
  ]
