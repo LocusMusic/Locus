@@ -68,7 +68,6 @@ class TopPlaylistViewController: UIViewController {
         if let cell = gesture.view as? SpotPlaylistTableViewCell{
             if let playlistDetailVC = App.mainStoryBoard.instantiateViewController(withIdentifier: App.StoryboardIden.playlistDetailViewController) as? PlaylistDetailViewController{
                 playlistDetailVC.playlistPost = cell.playlistPost
-                print(playlistDetailVC)
                 self.navigationController?.pushViewController(playlistDetailVC, animated: true)
             }
         }
@@ -91,22 +90,6 @@ extension TopPlaylistViewController: UITableViewDelegate, UITableViewDataSource{
         cell.addGestureRecognizer(tapGesture)
         return cell
     }
-    
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        print("hello")
-    }
-    
-    
-//    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-//       print("what's goign on?")
-//        if let playlistDetailVC = App.mainStoryBoard.instantiateViewController(withIdentifier: App.StoryboardIden.playlistDetailViewController) as? PlaylistDetailViewController{
-//            playlistDetailVC.playlistPost = self.playlistPosts?[indexPath.row]
-//            print(playlistDetailVC)
-//            self.navigationController?.pushViewController(playlistDetailVC, animated: true)
-//        }else{
-//            print("failed to ")
-//        }
-//    }
 }
 
 

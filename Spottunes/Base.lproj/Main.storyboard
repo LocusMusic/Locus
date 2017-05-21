@@ -1367,7 +1367,7 @@
         <!--Select from Spotify-->
         <scene sceneID="ATy-45-0uw">
             <objects>
-                <viewController automaticallyAdjustsScrollViewInsets="NO" id="y8A-NR-Mni" customClass="SelectionFromPlaylistViewController" customModule="Spottunes" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="SelectionFromPlaylistViewController" automaticallyAdjustsScrollViewInsets="NO" id="y8A-NR-Mni" customClass="SelectionFromPlaylistViewController" customModule="Spottunes" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="mIi-6M-fEE"/>
                         <viewControllerLayoutGuide type="bottom" id="rB3-VS-E8l"/>

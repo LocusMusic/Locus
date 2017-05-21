@@ -181,37 +181,21 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="LfL-3M-znz">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="M8F-k6-htv">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="Ab6-ui-ykV">
-                                    <size key="itemSize" width="50" height="50"/>
-                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
-                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
-                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
-                                </collectionViewFlowLayout>
-                                <cells>
-                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="On8-cy-0vV">
-                                        <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                                            <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                        </view>
-                                    </collectionViewCell>
-                                </cells>
-                            </collectionView>
+                            </tableView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="LfL-3M-znz" firstAttribute="top" secondItem="Tc6-5j-EEy" secondAttribute="top" id="1tc-Fk-hYy"/>
-                            <constraint firstItem="rKH-hU-SOv" firstAttribute="top" secondItem="LfL-3M-znz" secondAttribute="bottom" id="IYi-i6-XZ3"/>
-                            <constraint firstAttribute="trailing" secondItem="LfL-3M-znz" secondAttribute="trailing" id="Q9X-I4-taS"/>
-                            <constraint firstItem="LfL-3M-znz" firstAttribute="leading" secondItem="Tc6-5j-EEy" secondAttribute="leading" id="cWP-4k-SPf"/>
+                            <constraint firstItem="M8F-k6-htv" firstAttribute="leading" secondItem="Tc6-5j-EEy" secondAttribute="leading" id="5yE-Mu-idC"/>
+                            <constraint firstItem="rKH-hU-SOv" firstAttribute="top" secondItem="M8F-k6-htv" secondAttribute="bottom" id="OjZ-A0-qyE"/>
+                            <constraint firstAttribute="trailing" secondItem="M8F-k6-htv" secondAttribute="trailing" id="mXI-Ns-1fI"/>
+                            <constraint firstItem="M8F-k6-htv" firstAttribute="top" secondItem="Tc6-5j-EEy" secondAttribute="top" id="u9N-nC-ZIj"/>
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="collectionView" destination="LfL-3M-znz" id="3u9-jw-k0q"/>
+                        <outlet property="tableView" destination="M8F-k6-htv" id="pER-o7-JLA"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Yq1-OA-hsN" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -233,11 +217,17 @@
                             <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gUJ-oI-tKa">
                                 <rect key="frame" x="0.0" y="20" width="375" height="44"/>
                                 <items>
-                                    <navigationItem title="Spot" id="jmq-Rc-usl">
+                                    <navigationItem id="jmq-Rc-usl">
                                         <barButtonItem key="leftBarButtonItem" image="back-icon" id="vil-cC-nyK">
                                             <color key="tintColor" red="0.1960784314" green="0.20000000000000001" blue="0.20784313730000001" alpha="0.80000000000000004" colorSpace="custom" customColorSpace="sRGB"/>
                                             <connections>
                                                 <action selector="backBtnTapped:" destination="dC3-69-QlU" id="E90-5q-ffN"/>
+                                            </connections>
+                                        </barButtonItem>
+                                        <barButtonItem key="rightBarButtonItem" title="Add Music  " style="plain" id="8bD-UB-513">
+                                            <color key="tintColor" red="0.1960784314" green="0.20000000000000001" blue="0.20784313730000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <connections>
+                                                <action selector="addMusicBtnTapped:" destination="dC3-69-QlU" id="x7l-1K-5aY"/>
                                             </connections>
                                         </barButtonItem>
                                     </navigationItem>

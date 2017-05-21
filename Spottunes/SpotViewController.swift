@@ -34,6 +34,20 @@ class SpotViewController: UIViewController {
     
     var spotEmbedVC: SpotEmbedPagingViewController?
     
+    @IBAction func addMusicBtnTapped(_ sender: UIBarButtonItem) {
+        if let selectionPlaylistVC = App.mainStoryBoard.instantiateViewController(withIdentifier: App.StoryboardIden.selectionFromPlaylistViewController) as? SelectionFromPlaylistViewController{
+            if let spot = self.spot{
+                let postInfo = [App.PostInfoKey.spot: spot]
+                let navigationVC = UINavigationController()
+                navigationVC.viewControllers = [selectionPlaylistVC]
+                navigationVC.navigationBar.updateNavigationBarAppearance()
+                selectionPlaylistVC.postInfo = postInfo
+                self.present(navigationVC, animated: true, completion: nil)
+            }
+        }
+    }
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         if spot != nil{
@@ -49,7 +63,6 @@ class SpotViewController: UIViewController {
                 self.spotEmbedVC?.listenerLikeReceivedPairs = listenerLikeReceivedPairs
             }
         }
-
     }
     
     @IBOutlet weak var coverWrapperView: UIView!{
@@ -73,6 +86,7 @@ class SpotViewController: UIViewController {
                     spotEmbedVC.customDelegate = self
                     self.spotEmbedVC = spotEmbedVC
                     self.spotEmbedVC?.parentScrollView = self.scrollView
+                    self.spotEmbedVC?.spot = spot
                 }
             default:
                 break

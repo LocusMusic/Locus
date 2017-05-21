@@ -37,13 +37,16 @@ class SpotEmbedPagingViewController: UIPageViewController {
     
     var playlistsPost: [PlaylistPost]?{
         didSet{
-            self.topPlaylistVC.playlistPosts = playlistsPost
+            self.topPlaylistVC.playlistPosts = self.playlistsPost
         }
     }
     
+    var spot: TuneSpot!
+    
     var listenerLikeReceivedPairs:  [(key: User, value: Int)]?{
         didSet{
-            self.listenerVC.listenerLikeReceivedPairs = listenerLikeReceivedPairs
+            self.listenerVC.listenerLikeReceivedPairs = self.listenerLikeReceivedPairs
+            self.listenerVC.spot = self.spot
         }
 
     }

@@ -72,7 +72,34 @@ class PlaylistPost: PFObject {
         }
     }
     
-    //get a list of listener list who contributed a playlist post in a given spot sorted by 
+    
+    
+    var trackList: [Track]?{
+        return self.playlist?.tracks?.trackList
+    }
+    
+    
+    func refetchPost(completionHandler: @escaping (PlaylistPost?) -> Void){
+        guard let objectId = self.objectId else{
+            return
+        }
+        let query = PFQuery(className: ClassName)
+        query.includeKey(SpotKey)
+        query.includeKey(UserKey)
+        query.includeKey(LikeUsersKey)
+        query.getObjectInBackground(withId: objectId) { (object, error) in
+            if let playlistPost = object as? PlaylistPost{
+                completionHandler(playlistPost)
+            }else{
+                completionHandler(nil)
+            }
+        }
+   
+    }
+    
+
+
+    //get a list of listener list who contributed a playlist post in a given spot sorted by
     //the the number of likes they received
     class func fetchListenersListBasedOnFavoredCount(forSpot spot: TuneSpot, completionHandler: @escaping ([(key: User, value: Int)]?) -> Void){
         let query = PFQuery(className: ClassName)
@@ -100,7 +127,6 @@ class PlaylistPost: PFObject {
                 let sortedUserListDict = userlistDict.sorted { (pair_1: (user_1: User, favor_count_1: Int), pair_2: (user_2: User, favor_count_2: Int)) -> Bool in
                     return pair_1.favor_count_1 > pair_2.favor_count_2
                 }
-                print(sortedUserListDict)
                 completionHandler(sortedUserListDict)
             }
         }

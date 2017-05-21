@@ -1,39 +1,34 @@
 // iOS push testing
-Parse.Cloud.define("iosPushTest", function(request, response) {
+Parse.Cloud.define("sendNotificaionAfterSongPlayedByOthers", function(request, response) {
   // request has 2 parameters: params passed by the client and the authorized user                                                                                                                               
   var params = request.params;
   var user = request.user;
-  // Our "Message" class has a "text" key with the body of the message itself                                                                                                                                    
-  var messageText = params.text;  
+  // Our "Message" class has a "text" key with the body of the message itself 
+  var senderUsername = params.senderUsername;                                                                                                                         
+  var receiverUsername = params.receiverUsername;  
+  var playlistPostId = params.playlistPostId; 
+  var spotName = params.spotName
   
+  var alertMessage = senderUsername + " is playing your playlist at " + spotName
     var pushQuery = new Parse.Query(Parse.Installation);
 	var userQuery = new Parse.Query(Parse.User);
-	userQuery.equalTo("username", "FaQOWnAhfunO7G5qWvkcjRvzW")
-    pushQuery.matchesQuery("user", userQuery);
-//     pushQuery.equalTo('deviceType', 'ios'); // targeting iOS devices only                                                                                                                                          
-
-
-//     userQuery.find({
-//     success: function(users) {
-//       response.success(users[0]);
-//     },
-//     error: function(error) {
-//     response.success(error);
-//       console.error("Error finding related users " + error.code + ": " + error.message);
-//     }
-//   }); 
-   
-//      var pushQuery = new Parse.Query(Parse.Installation);
-
+	userQuery.equalTo("username", receiverUsername)
+	pushQuery.matchesQuery("user", userQuery);
    
 	  Parse.Push.send({
 		where: pushQuery, // Set our Installation query                                                                                                                                                              
 		data: {
-		  alert: "Message: " + messageText
+		  alert: alertMessage,
+		  data: {
+		  		senderUsername: senderUsername,
+		  		playlistPostId: playlistPostId
+		  },
+		  badge: "Increment",
+      	  sound: 'default'
 		}
 	  }, { success: function() {
 		  console.log("#### PUSH OK");
-		 response.success('success');
+		  response.success('success');
 	  }, error: function(error) {
 		  console.log("#### PUSH ERROR" + error.message);
 	  }, useMasterKey: true});

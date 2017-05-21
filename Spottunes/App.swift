@@ -143,6 +143,7 @@ struct App{
         static let playingViewController = "PlayingViewController"
         static let listenerViewController = "ListenerViewController"
         static let playlistDetailViewController = "PlaylistDetailViewController"
+        static let selectionFromPlaylistViewController = "SelectionFromPlaylistViewController"
     }
     
     struct SearchStoryboardIden {

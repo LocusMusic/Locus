@@ -37,8 +37,6 @@ class SelectionFromPlaylistViewController: UIViewController {
         }
     }
     
-    
-    
     @IBAction func shareBtnTapped(_ sender: UIButton) {
         guard let playlists = self.playlists else{
             print("playlists is nil from share btn clicked")
@@ -54,8 +52,6 @@ class SelectionFromPlaylistViewController: UIViewController {
                 selectedPlaylists.append(playlists[i])
             }
         }
-        
-        
         
         self.loadingActivityIndicator.isHidden = false
         self.loadingActivityIndicator.startAnimating()
