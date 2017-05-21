@@ -8,8 +8,9 @@ Parse.Cloud.define("sendNotificaionAfterSongPlayedByOthers", function(request, r
   var receiverUsername = params.receiverUsername;  
   var playlistPostId = params.playlistPostId; 
   var spotName = params.spotName
+  var playlistName = params.playlistName
   
-  var alertMessage = senderUsername + " is playing your playlist at " + spotName
+  var alertMessage = senderUsername + " is playing playlist: " + playlistName +  " at " + spotName
     var pushQuery = new Parse.Query(Parse.Installation);
 	var userQuery = new Parse.Query(Parse.User);
 	userQuery.equalTo("username", receiverUsername)

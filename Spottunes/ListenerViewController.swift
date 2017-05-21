@@ -83,21 +83,15 @@ class ListenerViewController: UIViewController {
                     SpotifyClient.fetchPlaylistByUserIdAndPlaylistId(userId: userId, playlistId: playlistId) { (playlist) in
                         DispatchQueue.main.async {
                             if let playlist = playlist{
-                                playlistPost.playlist = playlist
-                                guard let trackList = playlistPost.trackList else{
+                                fetchedPlaylistPost.playlist = playlist
+                                guard let trackList = fetchedPlaylistPost.trackList else{
                                     return
                                 }
                                 App.playTracks(trackList: trackList, activeTrackIndex: activeTrackIndex)
                             
                                 //send out a remote notification for someone that is playing yoru song
                                 
-                                
-//                                var senderUsername = params.senderUsername;
-//                                var receiverUsername = params.receiverUsername;
-//                                var playlistPostId = params.playlistPostId; 
-//                                var spotName = params.spotName
-                                
-                                guard let senderUserName = User.current()?.username else{
+                                guard let senderUserName = User.current()?.displayName else{
                                     print("senderUserName is empty")
                                     return
                                 }
@@ -106,13 +100,18 @@ class ListenerViewController: UIViewController {
                                     print("receiverUsername is empty")
                                     return
                                 }
+                                
+                                guard let playlistName = fetchedPlaylistPost.playlist?.name else{
+                                    print("playlist name is empty")
+                                    return
+                                }
 
-                                guard let playlistPostId = playlistPost.objectId else{
+                                guard let playlistPostId = fetchedPlaylistPost.objectId else{
                                     print("playlistPostId is empty")
                                     return
                                 }
                                 
-                                guard let spotName = playlistPost.spot?.name else{
+                                guard let spotName = fetchedPlaylistPost.spot?.name else{
                                     print("spot name is empty")
                                     return
                                 }
@@ -127,9 +126,7 @@ class ListenerViewController: UIViewController {
                                 PFCloud.callFunction(inBackground: "sendNotificaionAfterSongPlayedByOthers", withParameters: param, block: { (response, error) in
                                     print(response)
                                 })
-                                
-                               
-                            
+                                                        
                             }
                         }
                     }
