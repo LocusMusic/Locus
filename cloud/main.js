@@ -18,6 +18,8 @@ Parse.Cloud.define("sendNotificaionAfterSongPlayedByOthers", function(request, r
 	userQuery.equalTo("username", receiverUsername)
 	pushQuery.matchesQuery("user", userQuery);
    
+   console.lot("The push query is the following: ")
+   console.log(pushQuery)
 	  Parse.Push.send({
 		where: pushQuery, // Set our Installation query                                                                                                                                                              
 		data: {
