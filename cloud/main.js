@@ -7,19 +7,19 @@ Parse.Cloud.define("sendNotificaionAfterSongPlayedByOthers", function(request, r
   var senderUsername = params.senderUsername;                                                                                                                         
   var receiverUsername = params.receiverUsername;  
   var playlistPostId = params.playlistPostId; 
-  var spotName = params.spotName
-  var playlistName = params.playlistName
+  var spotName = params.spotName;
+  var playlistName = params.playlistName;
   
-  var alertMessage = senderUsername + " is playing your playlist: " + playlistName +  " at " + spotName
+  var alertMessage = senderUsername + " is playing your playlist: " + playlistName +  " at " + spotName;
     var pushQuery = new Parse.Query(Parse.Installation);
 // 	pushQuery.equalTo('installationId', "xfodQfESWm");
 	
 	var userQuery = new Parse.Query(Parse.User);
-	userQuery.equalTo("username", receiverUsername)
+	userQuery.equalTo("username", receiverUsername);
 	pushQuery.matchesQuery("user", userQuery);
    
-   console.lot("The push query is the following: ")
-   console.log(pushQuery)
+   console.log("The push query is the following: ");
+   console.log(pushQuery);
 	  Parse.Push.send({
 		where: pushQuery, // Set our Installation query                                                                                                                                                              
 		data: {
