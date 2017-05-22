@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12117" systemVersion="16D32" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12120" systemVersion="16D32" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12084"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12088"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -13,7 +13,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="PlayView" customModule="Spottunes" customModuleProvider="target">
+        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="PlayView" customModule="Locus" customModuleProvider="target">
             <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
@@ -124,6 +124,14 @@
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4pk-Xk-e1n" userLabel="MinPlayerView">
                             <rect key="frame" x="0.0" y="0.0" width="375" height="48"/>
                             <subviews>
+                                <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Mef-4C-INq">
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="1"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="1" id="z1I-uV-mZQ"/>
+                                    </constraints>
+                                    <color key="progressTintColor" red="0.1960784314" green="0.20000000000000001" blue="0.20784313730000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    <color key="trackTintColor" red="0.1960784314" green="0.20000000000000001" blue="0.20784313730000001" alpha="0.080000000000000002" colorSpace="custom" customColorSpace="sRGB"/>
+                                </progressView>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="L9Q-yV-Lb7">
                                     <rect key="frame" x="16" y="9" width="30" height="30"/>
                                     <constraints>
@@ -171,11 +179,14 @@
                             <constraints>
                                 <constraint firstItem="L9Q-yV-Lb7" firstAttribute="leading" secondItem="4pk-Xk-e1n" secondAttribute="leading" constant="16" id="2y8-xb-LWo"/>
                                 <constraint firstItem="L9Q-yV-Lb7" firstAttribute="centerY" secondItem="4pk-Xk-e1n" secondAttribute="centerY" id="6AW-7f-m3C"/>
+                                <constraint firstItem="Mef-4C-INq" firstAttribute="leading" secondItem="4pk-Xk-e1n" secondAttribute="leading" id="Cfz-go-JMF"/>
                                 <constraint firstAttribute="trailing" secondItem="tOZ-UP-YIW" secondAttribute="trailing" constant="16" id="VJS-yD-rk6"/>
                                 <constraint firstAttribute="height" constant="48" id="f08-Iv-ruI"/>
+                                <constraint firstItem="Mef-4C-INq" firstAttribute="top" secondItem="4pk-Xk-e1n" secondAttribute="top" id="ni0-OY-YTc"/>
                                 <constraint firstItem="tOZ-UP-YIW" firstAttribute="centerY" secondItem="4pk-Xk-e1n" secondAttribute="centerY" id="oBJ-gv-7om"/>
                                 <constraint firstItem="EsL-Dp-2Ad" firstAttribute="centerY" secondItem="4pk-Xk-e1n" secondAttribute="centerY" id="tje-cg-rqO"/>
                                 <constraint firstItem="EsL-Dp-2Ad" firstAttribute="centerX" secondItem="4pk-Xk-e1n" secondAttribute="centerX" id="utv-ox-xJm"/>
+                                <constraint firstAttribute="trailing" secondItem="Mef-4C-INq" secondAttribute="trailing" id="xxw-WF-ZLb"/>
                             </constraints>
                         </view>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="coT-LG-2cp" userLabel="Sparator View">
@@ -217,6 +228,7 @@
                 <outlet property="minAuthorNameLabel" destination="5FV-qt-FH8" id="xSf-se-Fcc"/>
                 <outlet property="minPlayBtn" destination="tOZ-UP-YIW" id="EXh-kM-unZ"/>
                 <outlet property="minPlayerView" destination="4pk-Xk-e1n" id="vcv-bN-wsi"/>
+                <outlet property="minProgressView" destination="Mef-4C-INq" id="5iZ-Kg-Z6m"/>
                 <outlet property="minTrackNameLabel" destination="1a5-bg-wG5" id="H8C-mP-Sj2"/>
                 <outlet property="playBtn" destination="E2Z-tO-Z2f" id="2vw-KK-yot"/>
                 <outlet property="sliderControl" destination="9LS-Po-2SK" id="p2J-SB-Hlr"/>

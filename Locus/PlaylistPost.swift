@@ -6,7 +6,6 @@
 //  Copyright © 2017 ___Spottunes___. All rights reserved.
 //
 
-import Foundation
 import Parse
 
 fileprivate let ClassName = "PlaylistPost"

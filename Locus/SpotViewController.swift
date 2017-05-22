@@ -23,7 +23,13 @@ class SpotViewController: UIViewController {
     @IBAction func backBtnTapped(_ sender: UIBarButtonItem) {
         self.navigationController?.popViewController(animated: true)
     }
-    @IBOutlet weak var scrollView: UIScrollView!
+    @IBOutlet weak var scrollView: UIScrollView!{
+        didSet{
+            self.scrollView.alwaysBounceVertical = false
+            self.scrollView.isScrollEnabled = false
+            self.scrollView.showsVerticalScrollIndicator = false
+        }
+    }
     
     
     var spot: TuneSpot!
@@ -43,7 +49,6 @@ class SpotViewController: UIViewController {
                 navigationVC.view.backgroundColor = UIColor.white
                 navigationVC.viewControllers = [selectionPlaylistVC]
                 navigationVC.navigationBar.updateNavigationBarAppearance()
-                
                 let cancelBtn = UIBarButtonItem(image: #imageLiteral(resourceName: "close-icon"), style: .plain, target: self, action: #selector(cancelBtnTapped(_:)))
                 cancelBtn.tintColor = App.backColor
                 selectionPlaylistVC.navigationItem.leftBarButtonItem = cancelBtn
@@ -65,14 +70,6 @@ class SpotViewController: UIViewController {
                 self.spotCoverImageView.loadImageWithURL(coverURL)
             }
             self.spotNameLabel.text = self.spot.name
-            PlaylistPost.fetchPlaylistPostInSpot(spot: self.spot) { (playlistPosts) in
-                self.spotEmbedVC?.playlistsPost = playlistPosts
-            }
-            PlaylistPost.fetchListenersListBasedOnFavoredCount(forSpot: self.spot) { (listenerLikeReceivedPairs: [(key: User, value: Int)]?) in
-                self.spotEmbedVC?.listenerLikeReceivedPairs = listenerLikeReceivedPairs
-            }
-            NotificationCenter.default.addObserver(self, selector: #selector(finishedSharingPlaylists(_:)), name: App.LocalNotification.finishSharingPlaylist.name, object: nil)
-            
         }
     }
     
@@ -87,6 +84,7 @@ class SpotViewController: UIViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+    
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let iden = segue.identifier{
@@ -104,6 +102,8 @@ class SpotViewController: UIViewController {
         }
     }
     
+    
+    
     func setTopPostListBtnActive(){
         self.topPlaylistPostBtn.setTitleColor(App.Style.SliderMenue.activeColor, for: .normal)
         self.listenerBtn.setTitleColor(App.Style.SliderMenue.deactiveColor, for: .normal)
@@ -114,29 +114,6 @@ class SpotViewController: UIViewController {
         self.listenerBtn.setTitleColor(App.Style.SliderMenue.activeColor, for: .normal)
         self.topPlaylistPostBtn.setTitleColor(App.Style.SliderMenue.deactiveColor, for: .normal)
     }
-    
-    func finishedSharingPlaylists(_ notification: Notification){
-        if let spot = notification.userInfo?[App.LocalNotification.finishSharingPlaylist.spotKey] as? TuneSpot{
-            guard let currentSpotId = self.spot.objectId else{
-                return
-            }
-            guard let spotForPosting = spot.objectId else{
-                return
-            }
-            
-            if currentSpotId == spotForPosting{
-                print("the same")
-                PlaylistPost.fetchPlaylistPostInSpot(spot: self.spot) { (playlistPosts) in
-                    self.spotEmbedVC?.playlistsPost = playlistPosts
-                }
-            }else{
-                print("not the same")
-            }
-        }
-    }
-    
-    
-    
 }
 
 extension SpotViewController: SpotEmbedPagingViewControllerDelegate{
@@ -148,4 +125,5 @@ extension SpotViewController: SpotEmbedPagingViewControllerDelegate{
         }
     }
 }
+
 

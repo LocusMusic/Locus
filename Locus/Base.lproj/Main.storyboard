@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12117" systemVersion="16D32" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="28N-RU-fl1">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12120" systemVersion="16D32" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="28N-RU-fl1">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12084"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12088"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -13,7 +13,7 @@
         <!--Init View Controller-->
         <scene sceneID="VNb-zG-0fe">
             <objects>
-                <viewController id="28N-RU-fl1" customClass="InitViewController" customModule="Spottunes" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="28N-RU-fl1" customClass="InitViewController" customModule="Locus" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="VXp-Hj-02c"/>
                         <viewControllerLayoutGuide type="bottom" id="9RN-oe-RXp"/>
@@ -68,7 +68,7 @@
         <!--Placeholder View Controller-->
         <scene sceneID="BpG-SM-Pxe">
             <objects>
-                <viewController id="CgH-vE-EHr" customClass="PlaceholderViewController" customModule="Spottunes" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="CgH-vE-EHr" customClass="PlaceholderViewController" customModule="Locus" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="AgM-Yg-HtW"/>
                         <viewControllerLayoutGuide type="bottom" id="5Vq-pf-MMU"/>
@@ -111,7 +111,7 @@
         <!--Log In View Controller-->
         <scene sceneID="BLY-HU-2XE">
             <objects>
-                <viewController storyboardIdentifier="LogInViewController" id="F3b-6k-IZZ" customClass="LogInViewController" customModule="Spottunes" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="LogInViewController" id="F3b-6k-IZZ" customClass="LogInViewController" customModule="Locus" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="K3C-Ws-FvX"/>
                         <viewControllerLayoutGuide type="bottom" id="MYr-uo-qUi"/>
@@ -135,7 +135,7 @@
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hgp-Ab-YJM">
                                                 <rect key="frame" x="50" y="363.5" width="275" height="40"/>
                                                 <subviews>
-                                                    <view alpha="0.10000000149011612" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GFL-Os-JN1" customClass="RoundedView" customModule="Spottunes" customModuleProvider="target">
+                                                    <view alpha="0.10000000149011612" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GFL-Os-JN1" customClass="RoundedView" customModule="Locus" customModuleProvider="target">
                                                         <rect key="frame" x="0.0" y="0.0" width="275" height="40"/>
                                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                         <constraints>
@@ -218,7 +218,7 @@
         <!--Onboarding View Controller-->
         <scene sceneID="j96-X4-vYd">
             <objects>
-                <viewController id="shs-cH-kD0" customClass="OnboardingViewController" customModule="Spottunes" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="shs-cH-kD0" customClass="OnboardingViewController" customModule="Locus" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="uYX-Tv-PH1"/>
                         <viewControllerLayoutGuide type="bottom" id="d3Q-Dj-BRS"/>
@@ -256,7 +256,7 @@
         <!--Global Tab Bar Controller-->
         <scene sceneID="hB8-RT-qLB">
             <objects>
-                <tabBarController id="npl-uG-z3F" customClass="GlobalTabBarController" customModule="Spottunes" customModuleProvider="target" sceneMemberID="viewController">
+                <tabBarController id="npl-uG-z3F" customClass="GlobalTabBarController" customModule="Locus" customModuleProvider="target" sceneMemberID="viewController">
                     <tabBar key="tabBar" contentMode="scaleToFill" id="XbN-HP-b8n">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -265,7 +265,6 @@
                     <connections>
                         <segue destination="ZWg-ON-FVg" kind="relationship" relationship="viewControllers" id="guN-28-sXX"/>
                         <segue destination="cEe-Tb-zcE" kind="relationship" relationship="viewControllers" id="W6s-Xi-sHu"/>
-                        <segue destination="iTh-pH-yhY" kind="relationship" relationship="viewControllers" id="Vf4-xp-xbX"/>
                         <segue destination="ZIA-ZO-Zin" kind="relationship" relationship="viewControllers" id="Iht-uB-BjW"/>
                     </connections>
                 </tabBarController>
@@ -294,31 +293,10 @@
             </objects>
             <point key="canvasLocation" x="1002" y="3120"/>
         </scene>
-        <!--View Controller-->
-        <scene sceneID="lUG-N2-AW7">
-            <objects>
-                <viewController id="iTh-pH-yhY" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="Y3W-ZX-vkw"/>
-                        <viewControllerLayoutGuide type="bottom" id="hsy-RD-mV0"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="n2k-Oy-7fS">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    </view>
-                    <tabBarItem key="tabBarItem" title="" image="heart-icon" id="RL5-7F-eoI">
-                        <inset key="imageInsets" minX="0.0" minY="6" maxX="0.0" maxY="-6"/>
-                    </tabBarItem>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="uSw-G4-T7s" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1100" y="3878"/>
-        </scene>
         <!--Home View Controller-->
         <scene sceneID="zAU-eE-yVd">
             <objects>
-                <viewController automaticallyAdjustsScrollViewInsets="NO" id="CmQ-Ih-iD8" customClass="HomeViewController" customModule="Spottunes" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController automaticallyAdjustsScrollViewInsets="NO" id="CmQ-Ih-iD8" customClass="HomeViewController" customModule="Locus" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="3YM-OW-vuI"/>
                         <viewControllerLayoutGuide type="bottom" id="yUk-L1-7vV"/>
@@ -447,7 +425,7 @@
         <!--Global Wrapper View Controller-->
         <scene sceneID="mAN-ik-nFU">
             <objects>
-                <viewController id="OuR-7P-n6g" customClass="GlobalWrapperViewController" customModule="Spottunes" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="OuR-7P-n6g" customClass="GlobalWrapperViewController" customModule="Locus" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="2NM-TX-k4L"/>
                         <viewControllerLayoutGuide type="bottom" id="duB-Sd-HAt"/>
@@ -509,7 +487,7 @@
         <!--Profile View Controller-->
         <scene sceneID="SUw-J0-2Yl">
             <objects>
-                <viewController id="OtQ-UC-ufG" customClass="ProfileViewController" customModule="Spottunes" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="OtQ-UC-ufG" customClass="ProfileViewController" customModule="Locus" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="DdS-rZ-Hlk"/>
                         <viewControllerLayoutGuide type="bottom" id="RHY-1R-sSb"/>
@@ -583,7 +561,7 @@
         <!--Selection From Playlist View Controller-->
         <scene sceneID="tUp-yU-KG5">
             <objects>
-                <viewController id="V4f-9M-46g" customClass="SelectionFromPlaylistViewController" customModule="Spottunes" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="V4f-9M-46g" customClass="SelectionFromPlaylistViewController" customModule="Locus" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="dqP-mn-JhA"/>
                         <viewControllerLayoutGuide type="bottom" id="Gql-5M-vBt"/>
@@ -596,7 +574,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="PlaylistTableViewCell" rowHeight="278" id="zp3-B7-rwd" customClass="PlaylistTableViewCell" customModule="Spottunes" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="PlaylistTableViewCell" rowHeight="278" id="zp3-B7-rwd" customClass="PlaylistTableViewCell" customModule="Locus" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="375" height="278"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="zp3-B7-rwd" id="yyY-Tg-k8K">
@@ -664,7 +642,7 @@
         <!--Geisel Library-->
         <scene sceneID="M1H-TX-PY1">
             <objects>
-                <viewController id="7O5-1i-Qbd" customClass="SpotViewController" customModule="Spottunes" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="7O5-1i-Qbd" customClass="SpotViewController" customModule="Locus" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="B2f-Yn-uaB"/>
                         <viewControllerLayoutGuide type="bottom" id="qEi-v4-H1G"/>
@@ -923,7 +901,7 @@
         <!--Listener View Controller-->
         <scene sceneID="wiF-hL-Cip">
             <objects>
-                <viewController storyboardIdentifier="ListenerViewController" id="u3h-mg-Jqf" customClass="ListenerViewController" customModule="Spottunes" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ListenerViewController" id="u3h-mg-Jqf" customClass="ListenerViewController" customModule="Locus" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="kFL-GO-chL"/>
                         <viewControllerLayoutGuide type="bottom" id="Vvf-Vn-fZO"/>
@@ -967,7 +945,7 @@
         <!--Overview View Controller-->
         <scene sceneID="f7V-wb-MyJ">
             <objects>
-                <viewController storyboardIdentifier="OverviewViewController" id="eCM-iW-RbX" customClass="OverviewViewController" customModule="Spottunes" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="OverviewViewController" id="eCM-iW-RbX" customClass="OverviewViewController" customModule="Locus" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="w6Q-oL-XUS"/>
                         <viewControllerLayoutGuide type="bottom" id="dnX-po-5Fa"/>
@@ -1007,7 +985,7 @@
         <!--Home Embed Page View Controller-->
         <scene sceneID="aXU-oA-vcT">
             <objects>
-                <pageViewController autoresizesArchivedViewToFullSize="NO" transitionStyle="scroll" navigationOrientation="horizontal" spineLocation="none" id="SNT-D9-jHl" customClass="HomeEmbedPageViewController" customModule="Spottunes" customModuleProvider="target" sceneMemberID="viewController"/>
+                <pageViewController autoresizesArchivedViewToFullSize="NO" transitionStyle="scroll" navigationOrientation="horizontal" spineLocation="none" id="SNT-D9-jHl" customClass="HomeEmbedPageViewController" customModule="Locus" customModuleProvider="target" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="TH4-NN-geZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2716" y="2157"/>
@@ -1036,7 +1014,7 @@
         <!--Add Music View Controller-->
         <scene sceneID="4RK-yd-Jff">
             <objects>
-                <viewController automaticallyAdjustsScrollViewInsets="NO" id="lWI-qk-T1w" customClass="AddMusicViewController" customModule="Spottunes" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController automaticallyAdjustsScrollViewInsets="NO" id="lWI-qk-T1w" customClass="AddMusicViewController" customModule="Locus" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="FjP-xr-uq6"/>
                         <viewControllerLayoutGuide type="bottom" id="4dh-OX-lpd"/>
@@ -1121,7 +1099,7 @@
         <!--Add to -->
         <scene sceneID="Msz-mU-cxz">
             <objects>
-                <viewController automaticallyAdjustsScrollViewInsets="NO" id="22H-8Q-BR5" customClass="SpotPickerViewController" customModule="Spottunes" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController automaticallyAdjustsScrollViewInsets="NO" id="22H-8Q-BR5" customClass="SpotPickerViewController" customModule="Locus" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="tqY-zP-rtp"/>
                         <viewControllerLayoutGuide type="bottom" id="n3D-29-6Vv"/>
@@ -1223,7 +1201,7 @@
         <!--Listeners-->
         <scene sceneID="vca-sY-Cxe">
             <objects>
-                <viewController automaticallyAdjustsScrollViewInsets="NO" id="CrW-Qr-vRS" customClass="ListenersViewController" customModule="Spottunes" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController automaticallyAdjustsScrollViewInsets="NO" id="CrW-Qr-vRS" customClass="ListenersViewController" customModule="Locus" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="wj1-K2-zCE"/>
                         <viewControllerLayoutGuide type="bottom" id="YTU-Uu-NWJ"/>
@@ -1273,7 +1251,7 @@
         <!--Core Navigation View Controller-->
         <scene sceneID="XNj-bc-dMh">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="R2z-rQ-u4n" customClass="CoreNavigationViewController" customModule="Spottunes" customModuleProvider="target" sceneMemberID="viewController">
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="R2z-rQ-u4n" customClass="CoreNavigationViewController" customModule="Locus" customModuleProvider="target" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="PPs-vG-Hu4">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
@@ -1291,7 +1269,7 @@
         <!--Core Navigation View Controller-->
         <scene sceneID="I13-7X-0I9">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="I0k-J8-t05" customClass="CoreNavigationViewController" customModule="Spottunes" customModuleProvider="target" sceneMemberID="viewController">
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="I0k-J8-t05" customClass="CoreNavigationViewController" customModule="Locus" customModuleProvider="target" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="HJL-3D-J8E">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
@@ -1309,7 +1287,7 @@
         <!--Select from Spotify-->
         <scene sceneID="hBm-Hd-vPB">
             <objects>
-                <viewController automaticallyAdjustsScrollViewInsets="NO" id="b6r-w5-OF4" customClass="SelectionFromPlaylistViewController" customModule="Spottunes" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController automaticallyAdjustsScrollViewInsets="NO" id="b6r-w5-OF4" customClass="SelectionFromPlaylistViewController" customModule="Locus" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="1VX-af-pxh"/>
                         <viewControllerLayoutGuide type="bottom" id="IUr-6H-XQK"/>
@@ -1364,10 +1342,10 @@
             </objects>
             <point key="canvasLocation" x="1484" y="4890"/>
         </scene>
-        <!--Select from Spotify-->
+        <!--Select Spotify Playlists-->
         <scene sceneID="ATy-45-0uw">
             <objects>
-                <viewController storyboardIdentifier="SelectionFromPlaylistViewController" automaticallyAdjustsScrollViewInsets="NO" id="y8A-NR-Mni" customClass="SelectionFromPlaylistViewController" customModule="Spottunes" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="SelectionFromPlaylistViewController" automaticallyAdjustsScrollViewInsets="NO" id="y8A-NR-Mni" customClass="SelectionFromPlaylistViewController" customModule="Locus" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="mIi-6M-fEE"/>
                         <viewControllerLayoutGuide type="bottom" id="rB3-VS-E8l"/>
@@ -1436,7 +1414,7 @@
                             <constraint firstItem="RTx-dc-Szp" firstAttribute="centerY" secondItem="Fe3-mS-Fyr" secondAttribute="centerY" id="qzt-i7-7B9"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Select from Spotify" id="bHG-wV-fos">
+                    <navigationItem key="navigationItem" title="Select Spotify Playlists" id="bHG-wV-fos">
                         <barButtonItem key="leftBarButtonItem" image="back-icon" id="NqC-qs-80f">
                             <color key="tintColor" red="0.1960784314" green="0.20000000000000001" blue="0.20784313730000001" alpha="0.80000000000000004" colorSpace="custom" customColorSpace="sRGB"/>
                             <connections>
@@ -1465,7 +1443,7 @@
         <!--PlaylistDetailViewController-->
         <scene sceneID="ccd-2f-ceI">
             <objects>
-                <viewController storyboardIdentifier="PlaylistDetailViewController" id="0IL-OA-gjY" userLabel="PlaylistDetailViewController" customClass="PlaylistDetailViewController" customModule="Spottunes" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="PlaylistDetailViewController" id="0IL-OA-gjY" userLabel="PlaylistDetailViewController" customClass="PlaylistDetailViewController" customModule="Locus" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="2nT-xO-ie6"/>
                         <viewControllerLayoutGuide type="bottom" id="Ixp-Hs-FOG"/>
@@ -1678,7 +1656,6 @@
         <image name="add-button" width="30" height="30"/>
         <image name="back-icon" width="30" height="30"/>
         <image name="close-icon" width="30" height="30"/>
-        <image name="heart-icon" width="29" height="29"/>
         <image name="home-icon" width="29" height="29"/>
         <image name="images-2" width="500" height="500"/>
         <image name="music-symbol-big" width="300" height="329"/>

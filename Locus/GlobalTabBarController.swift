@@ -27,7 +27,15 @@ class GlobalTabBarController: UITabBarController {
             self.viewControllers?.insert(streammingVC, at: 1)
         }
         
+        //add notification tab
+        if let notificationVC = NotificationViewController.instantiateFromStoryboard(){
+            self.viewControllers?.insert(notificationVC, at: 3)
+        }
         
+
+        
+        
+               
         self.delegate = self
         self.tabBar.updateTabBarAppearance()
         UISearchBar.appearance().setImage(#imageLiteral(resourceName: "search-icon"), for: .search, state: .normal)

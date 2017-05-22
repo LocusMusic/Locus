@@ -104,23 +104,10 @@ class User: PFUser {
         }
     }
     
-    //update the user's current listening state and save to parse database
-//    func updateCurrentPlayingState(){
-//        print("updating current playing state")
-//        guard let activeTrackIndex = self.currentActiveTrackIndex else{
-//            print("active track index is nil")
-//            return
-//        }
-//        guard let currentListeningPlaylistPost = self.currentListeningPlaylistPost else{
-//            print("current listing playing list post is nil")
-//            return
-//        }
-//        self[CurrentActiveTrackIndexKey] = activeTrackIndex
-//        self[CurrentListeningPlaylistPostKey] = currentListeningPlaylistPost
-//        self[CurrentPlayingUpdatedTimeKey] = NSDate()
-//        self.saveInBackground()
-//    }
-
+    //set the current currentActiveTrackIndex to -1
+    func resetPlayingState(){
+        self.currentActiveTrackIndex = -1
+    }
     
    
     class func fetchUserByUsername(username: String, completionHandler: @escaping (User?) -> Void){

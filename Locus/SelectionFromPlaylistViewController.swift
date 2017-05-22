@@ -89,6 +89,7 @@ class SelectionFromPlaylistViewController: UIViewController {
         PlaylistPost.shareAllToSpot(playlistPosts: playlistPosts, spot: spot) { (succeed, error) in
             if succeed{
                 App.postLocalNotification(withName: App.LocalNotification.Name.recentlyVisitedShouldUpdate)
+                User.current()?.currentListeningPlaylistPost = playlistPosts.first
                 self.dismiss(animated: true, completion: {
                     //push a notfication for updating the playlist posts in the spot
                     let userInfo = [

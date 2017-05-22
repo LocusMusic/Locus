@@ -14,6 +14,7 @@ struct App{
     static let searchStoryboardName = "Search"
     static let streamingStoryboardName = "Streaming"
     static let spotStoryboardName = "Spot"
+    static let notificationStoryboardName = "Notification"
     static let grayColor = UIColor(hexString: "#8C8E94")
     static let backColor = UIColor(hexString: "#323335")
     static let themeColor = UIColor(red: 23 / 255.0, green: 131 / 255.0, blue: 198 / 255.0, alpha: 1)
@@ -24,20 +25,27 @@ struct App{
     static let searchStoryBoard = UIStoryboard(name: App.searchStoryboardName, bundle: nil)
     static let streammingStoryBoard = UIStoryboard(name: App.streamingStoryboardName, bundle: nil)
     static let spotStoryBoard = UIStoryboard(name: App.spotStoryboardName, bundle: nil)
+    static let notificationStoryboard = UIStoryboard(name: App.notificationStoryboardName, bundle: nil)
 
     static let screenWidth = UIScreen.main.bounds.size.width
     static let screenHeight = UIScreen.main.bounds.size.height
     static let userDefaults = UserDefaults()
     static let mediaMaxLenght: CGFloat = 600
-    
+
     struct Style{
+        struct Font{
+            static let regular =  UIFont(name: "Avenir-Book", size: 17.0)!
+            static let medium =  UIFont(name: "Avenir-Medium", size: 17.0)!
+            static let heavy =  UIFont(name: "Avenir-Heavy", size: 17.0)!
+        }
+        
         struct Color {
             static let heartInactiveColor = App.grayColor
             static let heartActiveColor = UIColor(hexString: "#B70C1F")
         }
         
         struct NavigationBar{
-            static let titleFont = UIFont(name: "Avenir-Heavy", size: 17.0)!
+            static let titleFont = Style.Font.heavy
             static let barTintColor = UIColor.white
             static let isTranslucent = false
             static let titleTextAttribute = [NSForegroundColorAttributeName: App.backColor]
@@ -171,6 +179,12 @@ struct App{
         static let topPlaylistViewController = "TopPlaylistViewController"
         static let listenerViewController = "ListenerViewController"
     }
+    
+    struct NotificationStoryboardIden{
+        static let notificationViewController = "NotificationViewController"
+    }
+    
+
     
     
     struct SegueIden {

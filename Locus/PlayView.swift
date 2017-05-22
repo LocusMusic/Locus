@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Parse
 import AVFoundation
 
 
@@ -79,6 +80,8 @@ class PlayView: UIView {
     
     @IBOutlet weak var endingTimeLabel: UILabel!
     
+    @IBOutlet weak var minProgressView: UIProgressView!
+    
     lazy var streamController: SPTAudioStreamingController = SPTAudioStreamingController.sharedInstance()
     
     
@@ -91,10 +94,13 @@ class PlayView: UIView {
         self.streamController.setIsPlaying(!self.currentPlayingState) { (error) in
             if let error = error{
                 print(error.localizedDescription)
+                User.current()?.currentActiveTrackIndex = self.activeTrackIndex
             }else{
+                if self.currentPlayingState{
+                    User.current()?.resetPlayingState()
+                }
                 self.currentPlayingState = !self.currentPlayingState
             }
-            
         }
     }
     
@@ -115,8 +121,10 @@ class PlayView: UIView {
            User.current()?.currentActiveTrackIndex = self.activeTrackIndex
         }
     }
-
     
+    //true when the user is playing music from spot
+    var playerPlaying = false
+
     @IBAction func prevBtnTapped(_ sender: UIButton) {
         sender.animateBounceView()
         print(self.activeTrackIndex)
@@ -168,7 +176,6 @@ class PlayView: UIView {
         playView.addGestureRecognizer(pan)
         playView.isUserInteractionEnabled = true
         playView.initPlayer()
-        //login
         return playView
     }
     
@@ -334,6 +341,7 @@ extension PlayView: SPTAudioStreamingPlaybackDelegate, SPTAudioStreamingDelegate
         self.currentTimeLabel.text = formatTimeInterval(timeInterval: position)
         let percentage = position / self.trackList[activeTrackIndex].duration
         self.sliderControl.value = Float(percentage)
+        self.minProgressView.progress = self.sliderControl.value
     }
     
     

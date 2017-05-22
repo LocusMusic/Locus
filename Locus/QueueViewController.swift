@@ -157,16 +157,9 @@ extension QueueViewController: UITableViewDelegate, UITableViewDataSource{
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-//        let userInfo: [String: Any] = [
-//                App.LocalNotification.PlayViewShouldShow.tracksKey: self.queue!,
-//                App.LocalNotification.PlayViewShouldShow.activeTrackIndex: indexPath.row
-//        ]
-//        App.postLocalNotification(withName: App.LocalNotification.PlayViewShouldShow.name, object: self, userInfo: userInfo)
-        
-        
-        
-        //present the playlist detail
-        
+        if let trackList = self.queue{
+            App.playTracks(trackList:trackList, activeTrackIndex: indexPath.row)
+        }
     }
 }
 

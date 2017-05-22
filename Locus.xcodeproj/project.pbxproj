@@ -44,6 +44,8 @@
 		9844ADA31ECABD4B000A3A44 /* ListenerSliderTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9844ADA11ECABD4B000A3A44 /* ListenerSliderTableViewCell.xib */; };
 		9844ADA81ECAED65000A3A44 /* Spot.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9844ADA71ECAED65000A3A44 /* Spot.storyboard */; };
 		9844ADAA1ECAEDE2000A3A44 /* PlaylistDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9844ADA91ECAEDE2000A3A44 /* PlaylistDetailViewController.swift */; };
+		984B2D221ED34E15003E1E98 /* Notification.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 984B2D211ED34E15003E1E98 /* Notification.storyboard */; };
+		984B2D251ED34E53003E1E98 /* NotificationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 984B2D241ED34E53003E1E98 /* NotificationViewController.swift */; };
 		984B343B1EB41449001B53A3 /* HomeEmbedPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 984B343A1EB41449001B53A3 /* HomeEmbedPageViewController.swift */; };
 		984C6D8B1EC28CC000824113 /* Backup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 984C6D8A1EC28CC000824113 /* Backup.swift */; };
 		984C6D8F1EC2A76100824113 /* SelectSpotTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 984C6D8D1EC2A76100824113 /* SelectSpotTableViewCell.swift */; };
@@ -53,6 +55,7 @@
 		984C6D971EC2C66A00824113 /* SongsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 984C6D951EC2C66A00824113 /* SongsTableViewCell.swift */; };
 		984C6D981EC2C66A00824113 /* SongsTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 984C6D961EC2C66A00824113 /* SongsTableViewCell.xib */; };
 		984C6D9A1EC2E89600824113 /* PlaylistPost.swift in Sources */ = {isa = PBXBuildFile; fileRef = 984C6D991EC2E89600824113 /* PlaylistPost.swift */; };
+		984DBEC61ED358DA00637E82 /* PushNotification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 984DBEC51ED358DA00637E82 /* PushNotification.swift */; };
 		985230741EBFCD0600523D1D /* CoreNavigationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 985230731EBFCD0600523D1D /* CoreNavigationViewController.swift */; };
 		985425501EC517280027979A /* PopularSpotCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9854254E1EC517280027979A /* PopularSpotCollectionViewCell.swift */; };
 		985425511EC517280027979A /* PopularSpotCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9854254F1EC517280027979A /* PopularSpotCollectionViewCell.xib */; };
@@ -192,6 +195,8 @@
 		9844ADA71ECAED65000A3A44 /* Spot.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Spot.storyboard; sourceTree = "<group>"; };
 		9844ADA91ECAEDE2000A3A44 /* PlaylistDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = PlaylistDetailViewController.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		984B05E21EBB91670098869B /* GlobalWrapperViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = GlobalWrapperViewController.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
+		984B2D211ED34E15003E1E98 /* Notification.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Notification.storyboard; sourceTree = "<group>"; };
+		984B2D241ED34E53003E1E98 /* NotificationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationViewController.swift; sourceTree = "<group>"; };
 		984B343A1EB41449001B53A3 /* HomeEmbedPageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = HomeEmbedPageViewController.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		984C6D8A1EC28CC000824113 /* Backup.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = Backup.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		984C6D8D1EC2A76100824113 /* SelectSpotTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = SelectSpotTableViewCell.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
@@ -201,6 +206,7 @@
 		984C6D951EC2C66A00824113 /* SongsTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = SongsTableViewCell.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		984C6D961EC2C66A00824113 /* SongsTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SongsTableViewCell.xib; sourceTree = "<group>"; };
 		984C6D991EC2E89600824113 /* PlaylistPost.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = PlaylistPost.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
+		984DBEC51ED358DA00637E82 /* PushNotification.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PushNotification.swift; sourceTree = "<group>"; };
 		985230731EBFCD0600523D1D /* CoreNavigationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = CoreNavigationViewController.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		9854254E1EC517280027979A /* PopularSpotCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = PopularSpotCollectionViewCell.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		9854254F1EC517280027979A /* PopularSpotCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PopularSpotCollectionViewCell.xib; sourceTree = "<group>"; };
@@ -457,6 +463,15 @@
 			name = SongCell;
 			sourceTree = "<group>";
 		};
+		984B2D231ED34E1C003E1E98 /* Notification Storyboard */ = {
+			isa = PBXGroup;
+			children = (
+				984B2D211ED34E15003E1E98 /* Notification.storyboard */,
+				984B2D241ED34E53003E1E98 /* NotificationViewController.swift */,
+			);
+			name = "Notification Storyboard";
+			sourceTree = "<group>";
+		};
 		984C6D8C1EC2A73A00824113 /* select location */ = {
 			isa = PBXGroup;
 			children = (
@@ -679,6 +694,7 @@
 				983578421EAD116600E12751 /* GradientBackgroundAnimatedViewController.swift */,
 				98A0D2861EA27FEB0004966A /* AppDelegate.swift */,
 				989CB85C1ED0BC590087D9D5 /* ParseAuthDelegate.swift */,
+				984B2D231ED34E1C003E1E98 /* Notification Storyboard */,
 				98EFBE191EA29E350050675D /* App.swift */,
 				989CB8671ED12D500087D9D5 /* Ultility.swift */,
 				989CB8651ED12B6A0087D9D5 /* LocationTag.swift */,
@@ -845,6 +861,7 @@
 			isa = PBXGroup;
 			children = (
 				989CB8601ED0F7190087D9D5 /* Extension */,
+				984DBEC51ED358DA00637E82 /* PushNotification.swift */,
 				983DF0E11EC9377400356315 /* Playlists.swift */,
 				983DF0DF1EC9377400356315 /* Artists.swift */,
 				986F070D1EA87DBC003806CA /* User.swift */,
@@ -978,6 +995,7 @@
 				98E5EBA31EAE641100B0D3D6 /* RecommendedSpotView.xib in Resources */,
 				28974A8C1EC422CC0037704A /* Search.storyboard in Resources */,
 				98A0D28E1EA27FEB0004966A /* Assets.xcassets in Resources */,
+				984B2D221ED34E15003E1E98 /* Notification.storyboard in Resources */,
 				98588CD41EB6A82A0035C355 /* PlayView.xib in Resources */,
 				989CB8771ED1931E0087D9D5 /* ListenerTableViewCell.xib in Resources */,
 				98588CCF1EB5647D0035C355 /* PlaylistCollectionViewCell.xib in Resources */,
@@ -1066,6 +1084,7 @@
 				989CB85F1ED0F6C30087D9D5 /* Installation.swift in Sources */,
 				98EFBE261EA29F000050675D /* UIImageExtension.swift in Sources */,
 				98D494541EC6B10B00B4AC63 /* StreamingEmbedViewController.swift in Sources */,
+				984DBEC61ED358DA00637E82 /* PushNotification.swift in Sources */,
 				98D4944D1EC66A2D00B4AC63 /* backupSpotpicker.swift in Sources */,
 				28974A881EC422CC0037704A /* SearchEmbedViewController.swift in Sources */,
 				28974A901EC422CC0037704A /* PlaylistsSearchViewController.swift in Sources */,
@@ -1149,6 +1168,7 @@
 				98E7F0B81EC7FFE1005D745B /* SpotPlaylistTableViewCell.swift in Sources */,
 				98588CC11EB55B4E0035C355 /* ProfileViewController.swift in Sources */,
 				984C6D8B1EC28CC000824113 /* Backup.swift in Sources */,
+				984B2D251ED34E53003E1E98 /* NotificationViewController.swift in Sources */,
 				981A6D4D1EB073EF0045E2FD /* Genre.swift in Sources */,
 				98E5EBA51EAE642E00B0D3D6 /* RecommendedSpotView.swift in Sources */,
 				98D494521EC6AE9E00B4AC63 /* StreamingViewController.swift in Sources */,

@@ -34,21 +34,15 @@ class SpotEmbedPagingViewController: UIPageViewController {
             self.topPlaylistVC.parentScrollView = parentScrollView
         }
     }
-    
-    var playlistsPost: [PlaylistPost]?{
+      
+    var spot: TuneSpot!{
         didSet{
-            self.topPlaylistVC.playlistPosts = self.playlistsPost
+            self.topPlaylistVC.spot = spot
+            self.listenerVC.spot = spot
         }
     }
     
-    var spot: TuneSpot!
-    
-    var listenerLikeReceivedPairs:  [(key: User, value: Int)]?{
-        didSet{
-            self.listenerVC.listenerLikeReceivedPairs = self.listenerLikeReceivedPairs
-            self.listenerVC.spot = self.spot
-        }
-    }
+  
     
     weak var customDelegate: SpotEmbedPagingViewControllerDelegate?
     

@@ -67,6 +67,7 @@ class InitViewController: UIViewController {
                         guard let currentUser = User.current() else{
                             return nil
                         }
+                        currentUser.resetPlayingState()
                         
                         RecentlyVisitedSpot.fetchRecentlyVisitedSpot(forUser: currentUser, completionHandler: { (spots) in
                             if let recentSpots = spots{
@@ -78,7 +79,6 @@ class InitViewController: UIViewController {
                         //get the popular tune spot near the current location
                         TuneSpot.getNearbyPopularTuneSpot { (spots) in
                             if let spots = spots{
-                                print(spots)
                                 App.delegate?.popularTuneSpot = spots
                                 self.view.bringSubview(toFront: self.homeContainerView)
                             }

@@ -25,7 +25,13 @@ class ListenerTableViewCell: UITableViewCell {
     
     @IBOutlet weak var onlineIndicatorView: UIImageView!
     
+    
+    @IBOutlet weak var playingStatusStackView: UIStackView!
+    
     var spot: TuneSpot!
+    
+    @IBOutlet weak var listenStatusLabel: UILabel!
+    
     
     var listenerLikePair: (key: User, value: Int)?{
         didSet{
@@ -62,17 +68,24 @@ class ListenerTableViewCell: UITableViewCell {
                 guard let userCurrentListeningSpotObjectId = userCurrentListeningSpot.objectId else{
                     return
                 }
-
+                
                 
                 if spotObjectId == userCurrentListeningSpotObjectId{
-                    self.onlineIndicatorView.isHidden = false
-                }else{
-                    self.onlineIndicatorView.isHidden = true
+                    if self.isListening(){
+                        self.onlineIndicatorView.isHidden = false
+                    }else{
+                        self.onlineIndicatorView.isHidden = true
+                    }
                 }
                 
                 SpotifyClient.fetchPlaylistByUserIdAndPlaylistId(userId: userId, playlistId: playlistId) { (playlist) in
                     DispatchQueue.main.async {
                         self.currentPlaylistLabel.text = (playlist?.name ?? "")
+                        if self.isListening(){
+                            self.setListenStatus(status: .listening)
+                        }else{
+                            self.setListenStatus(status: .listened)
+                        }
                     }
                 }
             })
@@ -90,6 +103,23 @@ class ListenerTableViewCell: UITableViewCell {
         super.setSelected(selected, animated: animated)
 
         // Configure the view for the selected state
+    }
+    
+    
+    private enum ListenStatus: String{
+        case listening = "Listening: "
+        case listened = "Listened to: "
+    }
+
+    private func setListenStatus(status: ListenStatus){
+        self.listenStatusLabel.text = status.rawValue
+    }
+    
+    func isListening() -> Bool{
+        if let currentActiveIndex = self.listenerLikePair?.key.currentActiveTrackIndex, currentActiveIndex != -1 {
+            return true
+        }
+        return false
     }
     
 }

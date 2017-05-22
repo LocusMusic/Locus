@@ -18,7 +18,7 @@ class TopPlaylistViewController: UIViewController {
             self.tableView.delegate = self
             self.tableView.dataSource = self
             self.tableView.allowsSelection = false
-            self.tableView.alwaysBounceVertical = false
+            self.tableView.refreshControl = self.refreshControl
             self.tableView.estimatedRowHeight = 60
             self.tableView.rowHeight = UITableViewAutomaticDimension
             self.tableView.contentInset = UIEdgeInsetsMake(0, 0, 64, 0)
@@ -29,19 +29,26 @@ class TopPlaylistViewController: UIViewController {
     var playlistPosts: [PlaylistPost]?{
         didSet{
             DispatchQueue.main.async {
+                self.refreshControl.endRefreshing()
                 self.tableView?.reloadData()
             }
         }
     }
     
+    var spot: TuneSpot!
+    
     var parentScrollView: UIScrollView?
     
+    lazy var refreshControl: UIRefreshControl = {
+        let refreshControl =  UIRefreshControl()
+        refreshControl.addTarget(self, action: #selector(refreshDragged(_:)), for: .valueChanged)
+        return refreshControl
+    }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        if playlistPosts != nil{
-            self.tableView?.reloadData()
-        }
+        NotificationCenter.default.addObserver(self, selector: #selector(finishedSharingPlaylists(_:)), name: App.LocalNotification.finishSharingPlaylist.name, object: nil)
+        self.refreshData()
     }
 
     override func didReceiveMemoryWarning() {
@@ -49,9 +56,42 @@ class TopPlaylistViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
+
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        self.parentScrollView?.contentOffset.y = scrollView.contentOffset.y
+        print(scrollView.contentOffset)
     }
+    
+    func refreshDragged(_ refreshControl: UIRefreshControl){
+        self.refreshData()
+    }
+    
+    func finishedSharingPlaylists(_ notification: Notification){
+        if let tuneSpot = notification.userInfo?[App.LocalNotification.finishSharingPlaylist.spotKey] as? TuneSpot{
+            guard let currentSpotId = self.spot.objectId else{
+                return
+            }
+            guard let spotForPosting = tuneSpot.objectId else{
+                return
+            }
+            
+            if currentSpotId == spotForPosting{
+                self.refreshData()
+            }
+        }
+    }
+    
+    private func refreshData(){
+        guard let tuneSpot = self.spot else{
+            return
+        }
+        PlaylistPost.fetchPlaylistPostInSpot(spot: tuneSpot) { (playlistPosts) in
+            self.playlistPosts = playlistPosts
+        }
+    }
+
+    
+    
+    
     
 
     /*
@@ -90,6 +130,7 @@ extension TopPlaylistViewController: UITableViewDelegate, UITableViewDataSource{
         cell.addGestureRecognizer(tapGesture)
         return cell
     }
+    
 }
 
 

@@ -22,6 +22,7 @@ class ListenerViewController: UIViewController {
             self.tableView.allowsSelection = false
             self.tableView.alwaysBounceVertical = false
             self.tableView.estimatedRowHeight = 60
+            self.tableView.refreshControl = self.refreshControl
             self.tableView.rowHeight = UITableViewAutomaticDimension
             self.tableView.contentInset = UIEdgeInsetsMake(0, 0, 64, 0)
             self.tableView.register(UINib(nibName: cellNibName, bundle: nil), forCellReuseIdentifier: reuseIden)
@@ -30,7 +31,14 @@ class ListenerViewController: UIViewController {
     
     var spot: TuneSpot!
     
-    var listenerLikeReceivedPairs: [(key: User, value: Int)]?
+    var listenerLikeReceivedPairs: [(key: User, value: Int)]?{
+        didSet{
+            DispatchQueue.main.async {
+                self.refreshControl.endRefreshing()
+                self.tableView?.reloadData()
+            }
+        }
+    }
 
     var parentScrollView: UIScrollView?
     
@@ -46,11 +54,23 @@ class ListenerViewController: UIViewController {
     }
 
     
+    lazy var refreshControl: UIRefreshControl = {
+        let refreshControl =  UIRefreshControl()
+        refreshControl.addTarget(self, action: #selector(refreshDragged(_:)), for: .valueChanged)
+        return refreshControl
+    }()
+
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        if self.listenerLikeReceivedPairs != nil{
-            self.tableView?.reloadData()
-        }
+        self.refreshData()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.refreshData()
+
+        
     }
     
     override func didReceiveMemoryWarning() {
@@ -61,6 +81,18 @@ class ListenerViewController: UIViewController {
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         self.parentScrollView?.contentOffset.y = scrollView.contentOffset.y
     }
+    
+    func refreshData(){
+        PlaylistPost.fetchListenersListBasedOnFavoredCount(forSpot: self.spot) { (listenerLikeReceivedPairs: [(key: User, value: Int)]?) in
+            self.listenerLikeReceivedPairs = listenerLikeReceivedPairs
+        }
+    }
+    
+    func refreshDragged(_ refreshControl: UIRefreshControl){
+        self.refreshData()
+    }
+
+    
     
     
     /*
@@ -75,6 +107,11 @@ class ListenerViewController: UIViewController {
     
     func cellTapped(_ gesture: UITapGestureRecognizer){
         if let cell = gesture.view as? ListenerTableViewCell{
+            guard cell.isListening() else{
+                print("not listening")
+                return
+            }
+            
             //play user's music and send out a remote notification
             guard let playlistPost = cell.listenerLikePair?.key.currentListeningPlaylistPost else{
                 return

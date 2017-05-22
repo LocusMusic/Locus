@@ -47,7 +47,6 @@ class SpotThumbnailCollectionViewCell: UICollectionViewCell {
     }
     
     func spotThumnailTapped(_ gesture: UITapGestureRecognizer){
-        print("spot thumbnail tapped")
         self.delegate?.spotThumbnailImageViewImageTapped(spot: self.spot)
     }
     
