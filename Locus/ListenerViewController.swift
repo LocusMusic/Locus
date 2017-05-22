@@ -94,7 +94,7 @@ class ListenerViewController: UIViewController {
                                 
                                 
                                 
-                                guard let receiverUsername = User.current()?.username else{
+                                guard let receiverUsername = fetchedPlaylistPost.user?.username else{
                                     print("receiverUsername is empty")
                                     return
                                 }

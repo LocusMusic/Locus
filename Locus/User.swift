@@ -15,6 +15,7 @@ fileprivate let ProfileImageKey = "profileImage"
 fileprivate let DisplayNameKey = "displayName"
 fileprivate let CurrentListeningPlaylistPostKey = "currentListeningPlaylistPost"
 fileprivate let CurrentActiveTrackIndexKey = "currentActiveTrackIndex"
+fileprivate let CurrentPlayingUpdatedTimeKey = "currentPlayingUpdatedTime"
 fileprivate let InstallationKey = "installation"
 //the value for UsernameKey is the same as the value for SpotifyIdKey
 fileprivate let UsernameKey = "username"
@@ -119,6 +120,7 @@ class User: PFUser {
         }
         self[CurrentActiveTrackIndexKey] = activeTrackIndex
         self[CurrentListeningPlaylistPostKey] = currentListeningPlaylistPost
+        self[CurrentPlayingUpdatedTimeKey] = NSDate()
         self.saveInBackground()
     }
 
