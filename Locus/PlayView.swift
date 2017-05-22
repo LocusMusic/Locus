@@ -135,27 +135,29 @@ class PlayView: UIView {
     
     
     func updateTracksState(){
-        self.thumbnailImageView.image = nil
-        if let image = trackList[activeTrackIndex] .getCoverImage(withSize: .large) {
-            if let url = image.url{
-                self.thumbnailImageView.loadImageWithURL(url)
+        DispatchQueue.main.async {
+            self.thumbnailImageView.image = nil
+            if let image = self.trackList[self.activeTrackIndex] .getCoverImage(withSize: .large) {
+                if let url = image.url{
+                    self.thumbnailImageView.loadImageWithURL(url)
+                }
             }
-        }
-        if let authorName = self.trackList[self.activeTrackIndex].artists?.first?.name{
-            self.authorNameLabel.text = authorName
-            self.minAuthorNameLabel.text = authorName
-        }
-        if let trackName = trackList[activeTrackIndex].name{
-            self.trackNameLabel.text = trackName
-            self.minTrackNameLabel.text = trackName
-        }
-        self.endingTimeLabel.text =  formatTimeInterval(timeInterval: self.trackList[activeTrackIndex].duration)
-        self.playActiveTrack()
-        let audioSession = AVAudioSession.sharedInstance()
-        do{
-            try audioSession.setCategory(AVAudioSessionCategoryPlayback)
-        }catch{
-            print("can't play in the background")
+            if let authorName = self.trackList[self.activeTrackIndex].artists?.first?.name{
+                self.authorNameLabel.text = authorName
+                self.minAuthorNameLabel.text = authorName
+            }
+            if let trackName = self.trackList[self.activeTrackIndex].name{
+                self.trackNameLabel.text = trackName
+                self.minTrackNameLabel.text = trackName
+            }
+            self.endingTimeLabel.text =  formatTimeInterval(timeInterval: self.trackList[self.activeTrackIndex].duration)
+            self.playActiveTrack()
+            let audioSession = AVAudioSession.sharedInstance()
+            do{
+                try audioSession.setCategory(AVAudioSessionCategoryPlayback)
+            }catch{
+                print("can't play in the background")
+            }
         }
     }
 
@@ -270,14 +272,16 @@ class PlayView: UIView {
         }
         
         //save the current user listening track to the database
-       User.current()?.updateCurrentPlayingState()
+        guard let currentUser = User.current() else{
+            return
+        }
         
+        currentUser.currentActiveTrackIndex = self.activeTrackIndex
         self.streamController.playSpotifyURI(activeTrackURI, startingWith: 0, startingWithPosition: 0, callback: { (error) in
             if let error = error {
                 print(error.localizedDescription)
             }else{
                 self.currentPlayingState = true
-
             }
         })
     }

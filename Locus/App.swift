@@ -117,6 +117,11 @@ struct App{
             static let queueShouldUpdate = Notification.Name("queueShouldUpdate")
         }
         
+        struct finishSharingPlaylist{
+            static let name = Notification.Name("FinishSharingPlaylist")
+            static let spotKey = "spot"
+        }
+        
         struct PlayViewShouldShow{
             static let name = Notification.Name("playViewShouldShow")
             static let tracksKey = "tracks" //tracks key for the user info dictionary
@@ -166,8 +171,6 @@ struct App{
         static let topPlaylistViewController = "TopPlaylistViewController"
         static let listenerViewController = "ListenerViewController"
     }
-    
-
     
     
     struct SegueIden {

@@ -34,19 +34,28 @@ class SpotViewController: UIViewController {
     
     var spotEmbedVC: SpotEmbedPagingViewController?
     
+    //add music to spot button tapped
     @IBAction func addMusicBtnTapped(_ sender: UIBarButtonItem) {
         if let selectionPlaylistVC = App.mainStoryBoard.instantiateViewController(withIdentifier: App.StoryboardIden.selectionFromPlaylistViewController) as? SelectionFromPlaylistViewController{
             if let spot = self.spot{
                 let postInfo = [App.PostInfoKey.spot: spot]
                 let navigationVC = UINavigationController()
+                navigationVC.view.backgroundColor = UIColor.white
                 navigationVC.viewControllers = [selectionPlaylistVC]
                 navigationVC.navigationBar.updateNavigationBarAppearance()
+                
+                let cancelBtn = UIBarButtonItem(image: #imageLiteral(resourceName: "close-icon"), style: .plain, target: self, action: #selector(cancelBtnTapped(_:)))
+                cancelBtn.tintColor = App.backColor
+                selectionPlaylistVC.navigationItem.leftBarButtonItem = cancelBtn
                 selectionPlaylistVC.postInfo = postInfo
                 self.present(navigationVC, animated: true, completion: nil)
             }
         }
     }
     
+    func cancelBtnTapped(_ sender: UIBarButtonItem){
+        self.dismiss(animated: true, completion: nil)
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -62,6 +71,8 @@ class SpotViewController: UIViewController {
             PlaylistPost.fetchListenersListBasedOnFavoredCount(forSpot: self.spot) { (listenerLikeReceivedPairs: [(key: User, value: Int)]?) in
                 self.spotEmbedVC?.listenerLikeReceivedPairs = listenerLikeReceivedPairs
             }
+            NotificationCenter.default.addObserver(self, selector: #selector(finishedSharingPlaylists(_:)), name: App.LocalNotification.finishSharingPlaylist.name, object: nil)
+            
         }
     }
     
@@ -71,7 +82,6 @@ class SpotViewController: UIViewController {
             self.coverWrapperView.clipsToBounds = true
         }
     }
-    
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -104,6 +114,28 @@ class SpotViewController: UIViewController {
         self.listenerBtn.setTitleColor(App.Style.SliderMenue.activeColor, for: .normal)
         self.topPlaylistPostBtn.setTitleColor(App.Style.SliderMenue.deactiveColor, for: .normal)
     }
+    
+    func finishedSharingPlaylists(_ notification: Notification){
+        if let spot = notification.userInfo?[App.LocalNotification.finishSharingPlaylist.spotKey] as? TuneSpot{
+            guard let currentSpotId = self.spot.objectId else{
+                return
+            }
+            guard let spotForPosting = spot.objectId else{
+                return
+            }
+            
+            if currentSpotId == spotForPosting{
+                print("the same")
+                PlaylistPost.fetchPlaylistPostInSpot(spot: self.spot) { (playlistPosts) in
+                    self.spotEmbedVC?.playlistsPost = playlistPosts
+                }
+            }else{
+                print("not the same")
+            }
+        }
+    }
+    
+    
     
 }
 

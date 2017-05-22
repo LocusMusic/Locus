@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12117" systemVersion="16D32" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="dC3-69-QlU">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12120" systemVersion="16D32" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="dC3-69-QlU">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12084"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12088"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -131,7 +131,7 @@
         <!--Spot Embed Paging View Controller-->
         <scene sceneID="6vE-pX-nbf">
             <objects>
-                <pageViewController storyboardIdentifier="SpotEmbedPagingViewController" autoresizesArchivedViewToFullSize="NO" transitionStyle="scroll" navigationOrientation="horizontal" spineLocation="none" id="G8J-zr-hCL" customClass="SpotEmbedPagingViewController" customModule="Spottunes" customModuleProvider="target" sceneMemberID="viewController"/>
+                <pageViewController storyboardIdentifier="SpotEmbedPagingViewController" autoresizesArchivedViewToFullSize="NO" transitionStyle="scroll" navigationOrientation="horizontal" spineLocation="none" id="G8J-zr-hCL" customClass="SpotEmbedPagingViewController" customModule="Locus" customModuleProvider="target" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="KsT-Ml-KTg" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1714" y="2630"/>
@@ -139,7 +139,7 @@
         <!--Top Playlist View Controller-->
         <scene sceneID="CvV-N0-TPz">
             <objects>
-                <viewController storyboardIdentifier="TopPlaylistViewController" id="gaC-29-Fd8" customClass="TopPlaylistViewController" customModule="Spottunes" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="TopPlaylistViewController" id="gaC-29-Fd8" customClass="TopPlaylistViewController" customModule="Locus" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="vV9-PM-Aol"/>
                         <viewControllerLayoutGuide type="bottom" id="epf-cG-zZR"/>
@@ -172,7 +172,7 @@
         <!--Listener View Controller-->
         <scene sceneID="tDN-2a-nab">
             <objects>
-                <viewController storyboardIdentifier="ListenerViewController" id="e86-Em-e9u" customClass="ListenerViewController" customModule="Spottunes" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ListenerViewController" id="e86-Em-e9u" customClass="ListenerViewController" customModule="Locus" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="6DP-w7-D3i"/>
                         <viewControllerLayoutGuide type="bottom" id="rKH-hU-SOv"/>
@@ -205,7 +205,7 @@
         <!--Spot View Controller-->
         <scene sceneID="tXH-nF-wCT">
             <objects>
-                <viewController storyboardIdentifier="SpotViewController" id="dC3-69-QlU" customClass="SpotViewController" customModule="Spottunes" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="SpotViewController" id="dC3-69-QlU" customClass="SpotViewController" customModule="Locus" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="6KL-W1-a8k"/>
                         <viewControllerLayoutGuide type="bottom" id="LD5-sa-Xxz"/>
@@ -253,7 +253,7 @@
                                                                 <rect key="frame" x="0.0" y="0.0" width="100" height="100"/>
                                                                 <color key="backgroundColor" red="0.1960784314" green="0.20000000000000001" blue="0.20784313730000001" alpha="0.90000000000000002" colorSpace="custom" customColorSpace="sRGB"/>
                                                             </view>
-                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bGZ-gt-m5p">
+                                                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bGZ-gt-m5p">
                                                                 <rect key="frame" x="40" y="39" width="20" height="22"/>
                                                                 <state key="normal" image="play-icon-white"/>
                                                             </button>

@@ -9,6 +9,11 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>Bolts-Swift.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>Bolts.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -19,7 +24,17 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>ParseLiveQuery.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>Pods-Locus.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>SocketRocket.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
@@ -32,12 +47,27 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>86651E24686FCE67CBFD16E67D650AA0</key>
+		<key>5D0B47FE554AFEF0A9F436C039316820</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>BE32375417EAEEF5C05251BA0B1D0B23</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
 		<key>CF671F7E57B92905F1CC91D036D6B4A7</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>D19B48CA399A7DEF6381AD8475D635B3</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>F053DB13709692C219C054B7DC60C854</key>
 		<dict>
 			<key>primary</key>
 			<true/>

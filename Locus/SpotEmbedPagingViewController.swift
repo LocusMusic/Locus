@@ -48,10 +48,7 @@ class SpotEmbedPagingViewController: UIPageViewController {
             self.listenerVC.listenerLikeReceivedPairs = self.listenerLikeReceivedPairs
             self.listenerVC.spot = self.spot
         }
-
     }
-    
-    
     
     weak var customDelegate: SpotEmbedPagingViewControllerDelegate?
     

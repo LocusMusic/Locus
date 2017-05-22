@@ -8,6 +8,7 @@
 
 import UIKit
 import Parse
+import ParseLiveQuery
 
 fileprivate let reuseIden = "ListenerTableViewCell"
 fileprivate let cellNibName = "ListenerTableViewCell"
@@ -33,6 +34,17 @@ class ListenerViewController: UIViewController {
 
     var parentScrollView: UIScrollView?
     
+    
+    
+    //live query
+    var liveQueryClient: Client = ParseLiveQuery.Client()
+    var liveQuerySubcription: Subscription<User>?
+    
+    var myQuery: PFQuery<User> {
+        return (User.query()?
+            .whereKey("username", equalTo: "yMnPS8VHdiufkQjckzUzPOtK7"))! as! PFQuery<User>
+    }
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -114,8 +126,6 @@ class ListenerViewController: UIViewController {
                                 }
 
                                 
-                                
-                                
                                 guard let playlistName = fetchedPlaylistPost.playlist?.name else{
                                     print("playlist name is empty")
                                     return
@@ -139,6 +149,44 @@ class ListenerViewController: UIViewController {
                                     "spotName": spotName,
                                     "playlistName": playlistName
                                 ]
+                                
+                                
+                                print(receiverUsername)
+                                
+                                self.liveQuerySubcription = self.liveQueryClient.subscribe(self.myQuery).handle(Event.updated, { (_, user) in
+                                    //use the new user's current playing list info to update the 
+                                    // current login user current playing list info
+                                    guard let currentTrackIndex = user.currentActiveTrackIndex else{
+                                        return
+                                    }
+                                    
+                                    let _ = playlistPost.refetchPost(completionHandler: { (refetchedPlaylist) in
+                                        guard let spotifyId = refetchedPlaylist?.user?.spotifyId else{
+                                            print("Spotify id is nil")
+                                            return
+                                        }
+                                        
+                                        guard let playlistId = refetchedPlaylist?.playlistId else{
+                                            print("playlist id is nil")
+                                            return
+                                        }
+                                        
+                                        
+                                        SpotifyClient.fetchPlaylistByUserIdAndPlaylistId(userId: spotifyId, playlistId: playlistId, completionHandler: { (playlists) in
+                                            guard let playlists = playlists else{
+                                                return
+                                            }
+                                            guard let trackList = playlists.tracks?.trackList else{
+                                                return
+                                            }
+                                            App.playTracks(trackList: trackList, activeTrackIndex: currentTrackIndex)
+                                        })
+                                        
+                                    })
+                                })
+                                
+                                
+                                
                                 PFCloud.callFunction(inBackground: "sendNotificaionAfterSongPlayedByOthers", withParameters: param, block: { (response, error) in
                                     print(response)
                                 })

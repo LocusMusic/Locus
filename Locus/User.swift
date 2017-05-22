@@ -65,9 +65,8 @@ class User: PFUser {
             return self[CurrentListeningPlaylistPostKey] as? PlaylistPost
         }
         set{
-            if let post = newValue{
-                self[CurrentListeningPlaylistPostKey] = post
-            }
+            self[CurrentListeningPlaylistPostKey] = newValue
+            self.saveInBackground()
         }
     }
     
@@ -79,10 +78,8 @@ class User: PFUser {
             return self[CurrentActiveTrackIndexKey] as? Int
         }
         set{
-            if let index = newValue{
-                self[CurrentActiveTrackIndexKey] = index
-            }
-
+            self[CurrentActiveTrackIndexKey] = newValue
+            self.saveInBackground()
         }
     }
 
@@ -108,21 +105,21 @@ class User: PFUser {
     }
     
     //update the user's current listening state and save to parse database
-    func updateCurrentPlayingState(){
-        print("updating current playing state")
-        guard let activeTrackIndex = self.currentActiveTrackIndex else{
-            print("active track index is nil")
-            return
-        }
-        guard let currentListeningPlaylistPost = self.currentListeningPlaylistPost else{
-            print("current listing playing list post is nil")
-            return
-        }
-        self[CurrentActiveTrackIndexKey] = activeTrackIndex
-        self[CurrentListeningPlaylistPostKey] = currentListeningPlaylistPost
-        self[CurrentPlayingUpdatedTimeKey] = NSDate()
-        self.saveInBackground()
-    }
+//    func updateCurrentPlayingState(){
+//        print("updating current playing state")
+//        guard let activeTrackIndex = self.currentActiveTrackIndex else{
+//            print("active track index is nil")
+//            return
+//        }
+//        guard let currentListeningPlaylistPost = self.currentListeningPlaylistPost else{
+//            print("current listing playing list post is nil")
+//            return
+//        }
+//        self[CurrentActiveTrackIndexKey] = activeTrackIndex
+//        self[CurrentListeningPlaylistPostKey] = currentListeningPlaylistPost
+//        self[CurrentPlayingUpdatedTimeKey] = NSDate()
+//        self.saveInBackground()
+//    }
 
     
    
