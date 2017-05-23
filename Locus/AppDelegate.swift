@@ -8,6 +8,7 @@
 
 import UIKit
 import Parse
+import ParseLiveQuery
 import CoreLocation
 
 @UIApplicationMain
@@ -34,6 +35,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
     }
     
+    //live query
+    var liveQueryClient: Client!
+    var liveQuerySubcription: Subscription<User>?
+
+    
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         
         //remote notification
@@ -51,6 +57,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 configuration.server = "https://locusmusic.herokuapp.com/parse"
             })
         )
+        self.liveQueryClient = ParseLiveQuery.Client()
         self.configureParse()
         SpotifyClient.authInit()
         return true

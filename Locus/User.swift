@@ -7,6 +7,7 @@
 //
 
 import Parse
+import ParseLiveQuery
 
 fileprivate let className = "_User"
 fileprivate let SpotifyIdKey = "spotifyId"
@@ -109,6 +110,24 @@ class User: PFUser {
         self.currentActiveTrackIndex = -1
     }
     
+    func subscribeTo(_ listener: User){
+        guard let listenerUsername = listener.username else{
+            return
+        }
+        //the query the current user will subscribe to
+        let userQuery = (User.query()?
+            .whereKey(UsernameKey, equalTo: listenerUsername))! as! PFQuery<User>
+        
+        App.delegate?.liveQuerySubcription = App.delegate?.liveQueryClient.subscribe(userQuery).handle(Event.updated, { (_, user) in
+            //use the new user's current playing list info to update the
+            // current login user current playing list info
+            guard let currentTrackIndex = user.currentActiveTrackIndex else{
+                return
+            }
+            print(currentTrackIndex)
+        })
+    }
+    
    
     class func fetchUserByUsername(username: String, completionHandler: @escaping (User?) -> Void){
         let query = PFQuery(className: className)
@@ -193,7 +212,6 @@ class User: PFUser {
             }
         }
     }
-
     
     
 }
