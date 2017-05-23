@@ -67,14 +67,14 @@ class HomeViewController: UIViewController {
     }
     
     
-    override func viewDidLayoutSubviews()
-    {
+    override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         self.adjustSearchBarAppearance()
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
+        self.searchBar.delegate = self
     }
     
     override func didReceiveMemoryWarning() {
@@ -119,19 +119,30 @@ class HomeViewController: UIViewController {
 
 extension HomeViewController: UISearchBarDelegate{
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        print("Am I here - Search Clicked - HomeViewController")
         searchBar.showsCancelButton = false
         searchBar.resignFirstResponder()
     }
     
     func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
-        searchBar.showsCancelButton = true
+        print("Am I here - Begin Editing - HomeViewController")
+        if let searchVC = App.searchStoryBoard.instantiateViewController(withIdentifier: App.SearchStoryboardIden.searchViewController) as? SearchViewController {
+            self.searchBar.delegate = searchVC
+            self.present(searchVC, animated: false, completion: {
+                print("Done presenting")
+                searchVC.searchBar.becomeFirstResponder()
+                searchVC.searchBar.showsCancelButton = true
+            })
+        }
     }
     
     func searchBarTextDidEndEditing(_ searchBar: UISearchBar) {
+        print("Am I here - Did End Editing - HomeViewController")
         searchBar.showsCancelButton = false
     }
     
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+        print("Am I here - Cancel Button C - HomeViewController")
         searchBar.resignFirstResponder()
     }
     

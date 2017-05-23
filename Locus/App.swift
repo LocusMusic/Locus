@@ -160,6 +160,7 @@ struct App{
     }
     
     struct SearchStoryboardIden {
+        static let searchViewController = "SearchViewController"
         static let songsSearchViewController = "SongsSearchViewController"
         static let artistsSearchViewController = "ArtistsSearchViewController"
         static let spotsSearchViewController = "SpotsSearchViewController"
