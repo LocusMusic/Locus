@@ -56,6 +56,10 @@
 		984C6D981EC2C66A00824113 /* SongsTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 984C6D961EC2C66A00824113 /* SongsTableViewCell.xib */; };
 		984C6D9A1EC2E89600824113 /* PlaylistPost.swift in Sources */ = {isa = PBXBuildFile; fileRef = 984C6D991EC2E89600824113 /* PlaylistPost.swift */; };
 		984DBEC61ED358DA00637E82 /* PushNotification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 984DBEC51ED358DA00637E82 /* PushNotification.swift */; };
+		984DBEC91ED4C2C900637E82 /* NotificationTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 984DBEC71ED4C2C900637E82 /* NotificationTableViewCell.swift */; };
+		984DBECA1ED4C2C900637E82 /* NotificationTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 984DBEC81ED4C2C900637E82 /* NotificationTableViewCell.xib */; };
+		984DBECC1ED4CA5E00637E82 /* NotificationCenterNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 984DBECB1ED4CA5E00637E82 /* NotificationCenterNavigationController.swift */; };
+		984DBECE1ED4CFF000637E82 /* UILabelExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 984DBECD1ED4CFF000637E82 /* UILabelExtension.swift */; };
 		985230741EBFCD0600523D1D /* CoreNavigationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 985230731EBFCD0600523D1D /* CoreNavigationViewController.swift */; };
 		985425501EC517280027979A /* PopularSpotCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9854254E1EC517280027979A /* PopularSpotCollectionViewCell.swift */; };
 		985425511EC517280027979A /* PopularSpotCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9854254F1EC517280027979A /* PopularSpotCollectionViewCell.xib */; };
@@ -207,6 +211,10 @@
 		984C6D961EC2C66A00824113 /* SongsTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SongsTableViewCell.xib; sourceTree = "<group>"; };
 		984C6D991EC2E89600824113 /* PlaylistPost.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = PlaylistPost.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		984DBEC51ED358DA00637E82 /* PushNotification.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PushNotification.swift; sourceTree = "<group>"; };
+		984DBEC71ED4C2C900637E82 /* NotificationTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationTableViewCell.swift; sourceTree = "<group>"; };
+		984DBEC81ED4C2C900637E82 /* NotificationTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NotificationTableViewCell.xib; sourceTree = "<group>"; };
+		984DBECB1ED4CA5E00637E82 /* NotificationCenterNavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationCenterNavigationController.swift; sourceTree = "<group>"; };
+		984DBECD1ED4CFF000637E82 /* UILabelExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UILabelExtension.swift; sourceTree = "<group>"; };
 		985230731EBFCD0600523D1D /* CoreNavigationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = CoreNavigationViewController.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		9854254E1EC517280027979A /* PopularSpotCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = PopularSpotCollectionViewCell.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		9854254F1EC517280027979A /* PopularSpotCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PopularSpotCollectionViewCell.xib; sourceTree = "<group>"; };
@@ -467,7 +475,10 @@
 			isa = PBXGroup;
 			children = (
 				984B2D211ED34E15003E1E98 /* Notification.storyboard */,
+				984DBECB1ED4CA5E00637E82 /* NotificationCenterNavigationController.swift */,
 				984B2D241ED34E53003E1E98 /* NotificationViewController.swift */,
+				984DBEC71ED4C2C900637E82 /* NotificationTableViewCell.swift */,
+				984DBEC81ED4C2C900637E82 /* NotificationTableViewCell.xib */,
 			);
 			name = "Notification Storyboard";
 			sourceTree = "<group>";
@@ -833,6 +844,7 @@
 				988890851EC052AE008883E0 /* UINavigationBarExtension.swift */,
 				985425541EC5211C0027979A /* UITabBarExtension.swift */,
 				98EFBE3D1EA341F70050675D /* UIButtonExtension.swift */,
+				984DBECD1ED4CFF000637E82 /* UILabelExtension.swift */,
 				98EFBE221EA29F000050675D /* UIColorExtension.swift */,
 				98EFBE231EA29F000050675D /* RoundedView.swift */,
 				98EFBE241EA29F000050675D /* RoundedButton.swift */,
@@ -988,6 +1000,7 @@
 				98EFBE151EA29DCC0050675D /* Main.storyboard in Resources */,
 				98E5EB9E1EAD886F00B0D3D6 /* OnboardingView.xib in Resources */,
 				98D4944B1EC6613800B4AC63 /* ReusableTableSectionHeaderView.xib in Resources */,
+				984DBECA1ED4C2C900637E82 /* NotificationTableViewCell.xib in Resources */,
 				9892765A1EBC3160009C1DD0 /* PlaylistTableViewCell.xib in Resources */,
 				98A0D2911EA27FEB0004966A /* LaunchScreen.storyboard in Resources */,
 				98E7F0B91EC7FFE1005D745B /* SpotPlaylistTableViewCell.xib in Resources */,
@@ -1092,6 +1105,7 @@
 				98EFBE1D1EA29E350050675D /* App.swift in Sources */,
 				9833CB041EB1B457009997E9 /* UITableViewExtension.swift in Sources */,
 				98DD952B1EB5102B007973D6 /* ListenerViewController-backup.swift in Sources */,
+				984DBECE1ED4CFF000637E82 /* UILabelExtension.swift in Sources */,
 				988E41741EB8708D0083A08A /* UIImageViewExtension.swift in Sources */,
 				985425501EC517280027979A /* PopularSpotCollectionViewCell.swift in Sources */,
 				9891C4651EBABD5400F4B440 /* MKMapViewExtension.swift in Sources */,
@@ -1133,6 +1147,7 @@
 				98588CBD1EB555AC0035C355 /* NavigationHeaderView.swift in Sources */,
 				9892EEE01EAB43AF00AD44B7 /* Location.swift in Sources */,
 				981A6D3E1EB04D270045E2FD /* SpotThumbnailCollectionViewCell.swift in Sources */,
+				984DBEC91ED4C2C900637E82 /* NotificationTableViewCell.swift in Sources */,
 				983DF0E71EC9377400356315 /* StringExtension.swift in Sources */,
 				984C6D941EC2B81D00824113 /* SelectSongsViewController.swift in Sources */,
 				98E5EBAB1EAFCE8300B0D3D6 /* HomeViewController.swift in Sources */,
@@ -1154,6 +1169,7 @@
 				98EFBE371EA2E2450050675D /* ListTableViewCell.swift in Sources */,
 				985425531EC520930027979A /* PlaceholderViewController.swift in Sources */,
 				986F070C1EA86C04003806CA /* InitViewController.swift in Sources */,
+				984DBECC1ED4CA5E00637E82 /* NotificationCenterNavigationController.swift in Sources */,
 				983DF0E41EC9377400356315 /* Artists.swift in Sources */,
 				98EFBE1A1EA29E350050675D /* StorybordIdentifier.swift in Sources */,
 				989CB86A1ED14CCE0087D9D5 /* SpotViewController.swift in Sources */,

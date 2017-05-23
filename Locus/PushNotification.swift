@@ -83,6 +83,10 @@ class PushNotification: PFObject {
         }
     }
     
+    override init() {
+        super.init()
+    }
+    
     init(receiver: User, detailDescription: String, targetId: String, type: NotificationType, readStatus: Int = 0) {
         super.init()
         guard let currentUser = User.current() else{
@@ -182,17 +186,41 @@ class PushNotification: PFObject {
         //the query the current user will subscribe to
         let pushNotificationQuery = PushNotification.query()?.whereKey(ReceiverIdKey, equalTo: currentUserId) as! PFQuery<PushNotification>
         
-        print("subscribing \(currentUserId)")
-        
         App.delegate?.notificationSubcription = App.delegate?.liveQueryClient.subscribe(pushNotificationQuery).handle(Event.created, { (_, notification) in
             print(notification)
         })
-        
-        
     }
     
+    class func fetchUnread(completionHandler: @escaping ([PushNotification]?) -> Void){
+        guard let currentUserId = User.current()?.objectId else{
+            return
+        }
+        let query = PFQuery(className: ClassName)
+        query.includeKey(SenderKey)
+        query.whereKey(ReceiverIdKey, equalTo: currentUserId)
+        query.whereKey(ReadStatusKey, equalTo: 0)
+        query.findObjectsInBackground { (notifications , error) in
+            if let notifications = notifications as? [PushNotification]{
+                completionHandler(notifications)
+            }else{
+                completionHandler(nil)
+            }
+        }
+    }
     
-
+    class func updateAllUnreadToRead(){
+        PushNotification.fetchUnread { (pushNotifications) in
+            guard let pushNotifications = pushNotifications else{
+                return
+            }
+            
+            let updatedNotifications = pushNotifications.map({ (notification) -> PushNotification in
+                notification[ReadStatusKey] = 1
+                return notification
+            })
+            PFObject.saveAll(inBackground: updatedNotifications)
+        }
+    }
     
 }
 

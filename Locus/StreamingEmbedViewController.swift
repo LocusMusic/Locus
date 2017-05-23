@@ -16,10 +16,10 @@ class StreamingEmbedViewController: UIPageViewController {
 
     lazy var childControllers: [UIViewController] = {
         let queueVC = App.streammingStoryBoard.instantiateViewController(withIdentifier: App.StreammingStoryboradIden.queueViewController)
+//        
+//        let spotVC = App.streammingStoryBoard.instantiateViewController(withIdentifier: App.StreammingStoryboradIden.connectedSpotViewController)
         
-        let spotVC = App.streammingStoryBoard.instantiateViewController(withIdentifier: App.StreammingStoryboradIden.connectedSpotViewController)
-        
-        return [queueVC, spotVC]
+        return [queueVC]
     }()
     
     weak var customDelegate: StreamingEmbedViewControllerDelegate?
@@ -75,15 +75,15 @@ extension StreamingEmbedViewController: UIPageViewControllerDelegate, UIPageView
         return  currentIndex == nextIndex ? nil : self.childControllers[nextIndex]
     }
     
-    
-    func pageViewController(_ pageViewController: UIPageViewController, didFinishAnimating finished: Bool, previousViewControllers: [UIViewController], transitionCompleted completed: Bool) {
-        if completed{
-            if let selectedVC = self.viewControllers?.first{
-                if let inedex = self.childControllers.index(of: selectedVC){
-                    self.customDelegate?.willTransitionToPage(viewController: self.childControllers[inedex], pageIndex: inedex)
-                }
-            }
-        }
-    }
+//    
+//    func pageViewController(_ pageViewController: UIPageViewController, didFinishAnimating finished: Bool, previousViewControllers: [UIViewController], transitionCompleted completed: Bool) {
+//        if completed{
+//            if let selectedVC = self.viewControllers?.first{
+//                if let inedex = self.childControllers.index(of: selectedVC){
+//                    self.customDelegate?.willTransitionToPage(viewController: self.childControllers[inedex], pageIndex: inedex)
+//                }
+//            }
+//        }
+//    }
 
 }

@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import UserNotifications
 import Parse
 
 protocol CustomGlobalTabBarControllerDelegate : class {
@@ -21,6 +22,8 @@ class GlobalTabBarController: UITabBarController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        NotificationCenter.default.addObserver(self, selector: #selector(didReceivePushNotification(_:)), name: App.LocalNotification.NotificationReceived.name, object: nil)
+
         
         //add streamming tab
         if let streammingVC = StreamingViewController.instantiateFromStoryboard(){
@@ -28,14 +31,10 @@ class GlobalTabBarController: UITabBarController {
         }
         
         //add notification tab
-        if let notificationVC = NotificationViewController.instantiateFromStoryboard(){
-            self.viewControllers?.insert(notificationVC, at: 3)
+        if let notificationNVC = NotificationCenterNavigationController.instantiateFromStoryboard(){
+            self.viewControllers?.insert(notificationNVC, at: 3)
         }
         
-
-        
-        
-               
         self.delegate = self
         self.tabBar.updateTabBarAppearance()
         UISearchBar.appearance().setImage(#imageLiteral(resourceName: "search-icon"), for: .search, state: .normal)
@@ -80,7 +79,28 @@ class GlobalTabBarController: UITabBarController {
         // Dispose of any resources that can be recreated.
     }
     
-
+    func didReceivePushNotification(_ notification: Notification){
+        DispatchQueue.main.async {
+            if let aps = notification.userInfo?[App.LocalNotification.NotificationReceived.notificationApsKey] as? NotificationAps{
+                guard let badgeCount = aps.badge else{
+                    return
+                }
+                self.tabBar.items?[3].badgeValue = String(badgeCount)
+            }
+        }
+    }
+    
+    
+    func resetNotificationBadge(){
+        UIApplication.shared.applicationIconBadgeNumber = 0
+        UNUserNotificationCenter.current().removeAllDeliveredNotifications()
+        self.tabBar.items?[3].badgeValue = nil
+        if let currentInstallation = PFInstallation.current() {
+            currentInstallation.badge = 0
+            currentInstallation.saveInBackground()
+        }
+        PushNotification.updateAllUnreadToRead()
+    }
 }
 
 
@@ -101,18 +121,20 @@ extension GlobalTabBarController: PlayViewDelegate{
 
 extension GlobalTabBarController: UITabBarControllerDelegate{
     func tabBarController(_ tabBarController: UITabBarController, shouldSelect viewController: UIViewController) -> Bool {
-        if self.viewControllers?.index(of: viewController) == 0{
-             //home
-            App.setStatusBarStyle(style: .default)
-        }
-        
-        if self.viewControllers?.index(of: viewController) == 2{
-            //bring up the picker view
-            self.customDelegate?.addMusicTapped()
+        guard let index = self.viewControllers?.index(of: viewController) else{
             return false
         }
-        
-        
+        switch index{
+        case 0:
+            App.setStatusBarStyle(style: .default)
+        case 2:
+            self.customDelegate?.addMusicTapped()
+            return false
+        case 3:
+            self.resetNotificationBadge()
+        default:
+            break
+        }
         return true
     }
 }

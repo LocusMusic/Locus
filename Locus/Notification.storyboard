@@ -9,10 +9,10 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Notification View Controller-->
+        <!--Notification-->
         <scene sceneID="kI2-6Z-v3F">
             <objects>
-                <viewController storyboardIdentifier="NotificationViewController" id="7x2-h7-U9p" customClass="NotificationViewController" customModule="Locus" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="NotificationViewController" automaticallyAdjustsScrollViewInsets="NO" id="7x2-h7-U9p" customClass="NotificationViewController" customModule="Locus" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Ku5-jB-uLU"/>
                         <viewControllerLayoutGuide type="bottom" id="tJw-1D-4bA"/>
@@ -20,12 +20,46 @@
                     <view key="view" contentMode="scaleToFill" id="6Bo-mt-pzu">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="cm6-sG-nsq">
+                                <rect key="frame" x="0.0" y="64" width="375" height="603"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </tableView>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="cm6-sG-nsq" firstAttribute="leading" secondItem="6Bo-mt-pzu" secondAttribute="leading" id="5Nj-Wu-xRf"/>
+                            <constraint firstItem="cm6-sG-nsq" firstAttribute="top" secondItem="Ku5-jB-uLU" secondAttribute="bottom" id="apZ-8p-blA"/>
+                            <constraint firstItem="tJw-1D-4bA" firstAttribute="top" secondItem="cm6-sG-nsq" secondAttribute="bottom" id="bLl-5U-7mh"/>
+                            <constraint firstAttribute="trailing" secondItem="cm6-sG-nsq" secondAttribute="trailing" id="qh3-8R-chL"/>
+                        </constraints>
                     </view>
+                    <navigationItem key="navigationItem" title="Notification" id="ld7-aY-StZ"/>
+                    <connections>
+                        <outlet property="tableView" destination="cm6-sG-nsq" id="CgZ-tW-YMU"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="eEa-4Q-xxS" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-208" y="-138"/>
+            <point key="canvasLocation" x="730.39999999999998" y="-138.0809595202399"/>
+        </scene>
+        <!--Notification Center Navigation Controller-->
+        <scene sceneID="HMn-FF-bN1">
+            <objects>
+                <navigationController storyboardIdentifier="NotificationCenterNavigationController" automaticallyAdjustsScrollViewInsets="NO" id="X6e-d0-wyQ" customClass="NotificationCenterNavigationController" customModule="Locus" customModuleProvider="target" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="imY-cG-bXP">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="7x2-h7-U9p" kind="relationship" relationship="rootViewController" id="h8w-2M-HJ6"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="HbQ-ON-nRX" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-208.80000000000001" y="-138.0809595202399"/>
         </scene>
     </scenes>
 </document>

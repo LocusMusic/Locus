@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12117" systemVersion="16D32" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12120" systemVersion="16D32" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12084"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12088"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -13,7 +13,7 @@
         <!--Streaming View Controller-->
         <scene sceneID="9tc-Jr-jZl">
             <objects>
-                <viewController storyboardIdentifier="StreamingViewController" automaticallyAdjustsScrollViewInsets="NO" id="DM2-lw-luE" customClass="StreamingViewController" customModule="Spottunes" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="StreamingViewController" automaticallyAdjustsScrollViewInsets="NO" id="DM2-lw-luE" customClass="StreamingViewController" customModule="Locus" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="M5v-kD-wdA"/>
                         <viewControllerLayoutGuide type="bottom" id="vOi-AR-OgV"/>
@@ -38,7 +38,7 @@
                                                                 <rect key="frame" x="0.0" y="0.0" width="355" height="30"/>
                                                                 <subviews>
                                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3zt-aO-HAJ">
-                                                                        <rect key="frame" x="14" y="-6" width="54" height="36"/>
+                                                                        <rect key="frame" x="14" y="-3" width="54" height="36"/>
                                                                         <fontDescription key="fontDescription" name="Avenir-Heavy" family="Avenir" pointSize="17"/>
                                                                         <state key="normal" title="Queue">
                                                                             <color key="titleColor" red="0.1960784314" green="0.20000000000000001" blue="0.20784313730000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -47,23 +47,11 @@
                                                                             <action selector="queueBtnTapped:" destination="DM2-lw-luE" eventType="touchUpInside" id="4Om-Gm-sBL"/>
                                                                         </connections>
                                                                     </button>
-                                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1gT-zF-d6i">
-                                                                        <rect key="frame" x="86" y="-6" width="38" height="36"/>
-                                                                        <fontDescription key="fontDescription" name="Avenir-Heavy" family="Avenir" pointSize="17"/>
-                                                                        <state key="normal" title="Spot">
-                                                                            <color key="titleColor" red="0.5490196078431373" green="0.55686274509803924" blue="0.58039215686274503" alpha="0.80000000000000004" colorSpace="custom" customColorSpace="sRGB"/>
-                                                                        </state>
-                                                                        <connections>
-                                                                            <action selector="spotBtnTapped:" destination="DM2-lw-luE" eventType="touchUpInside" id="Boa-hf-dAw"/>
-                                                                        </connections>
-                                                                    </button>
                                                                 </subviews>
                                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                                 <constraints>
-                                                                    <constraint firstItem="3zt-aO-HAJ" firstAttribute="baseline" secondItem="1gT-zF-d6i" secondAttribute="baseline" id="9ly-jZ-iFJ"/>
                                                                     <constraint firstItem="3zt-aO-HAJ" firstAttribute="leading" secondItem="JiK-df-XDu" secondAttribute="leading" constant="14" id="MFk-Pf-aN4"/>
-                                                                    <constraint firstAttribute="bottom" secondItem="1gT-zF-d6i" secondAttribute="bottom" id="qtb-TL-5dF"/>
-                                                                    <constraint firstItem="1gT-zF-d6i" firstAttribute="leading" secondItem="3zt-aO-HAJ" secondAttribute="trailing" constant="18" id="wFd-Uk-eom"/>
+                                                                    <constraint firstItem="3zt-aO-HAJ" firstAttribute="centerY" secondItem="JiK-df-XDu" secondAttribute="centerY" id="OpN-QM-lHr"/>
                                                                 </constraints>
                                                             </view>
                                                         </subviews>
@@ -125,7 +113,6 @@
                     <navigationItem key="navigationItem" id="5ae-7o-LZu"/>
                     <connections>
                         <outlet property="queueBtn" destination="3zt-aO-HAJ" id="Umu-QK-WYv"/>
-                        <outlet property="spotBtn" destination="1gT-zF-d6i" id="aSK-SC-DTl"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="HqR-E4-LTS" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -135,7 +122,7 @@
         <!--Streaming Embed View Controller-->
         <scene sceneID="EkP-lk-eqs">
             <objects>
-                <pageViewController autoresizesArchivedViewToFullSize="NO" transitionStyle="scroll" navigationOrientation="horizontal" spineLocation="none" id="Ill-Ic-9zZ" customClass="StreamingEmbedViewController" customModule="Spottunes" customModuleProvider="target" sceneMemberID="viewController"/>
+                <pageViewController autoresizesArchivedViewToFullSize="NO" transitionStyle="scroll" navigationOrientation="horizontal" spineLocation="none" id="Ill-Ic-9zZ" customClass="StreamingEmbedViewController" customModule="Locus" customModuleProvider="target" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="yrc-ip-2oF" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2735" y="3374"/>
@@ -143,7 +130,7 @@
         <!--Connected Spot View Controller-->
         <scene sceneID="sQq-MB-72w">
             <objects>
-                <viewController storyboardIdentifier="ConnectedSpotViewController" id="1Ir-FK-LKc" customClass="ConnectedSpotViewController" customModule="Spottunes" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ConnectedSpotViewController" id="1Ir-FK-LKc" customClass="ConnectedSpotViewController" customModule="Locus" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="tz8-xT-3cT"/>
                         <viewControllerLayoutGuide type="bottom" id="A3B-NH-c5k"/>
@@ -275,7 +262,7 @@
         <!--QueueViewController-->
         <scene sceneID="4sS-zk-0Iz">
             <objects>
-                <viewController storyboardIdentifier="QueueViewController" id="yp5-KZ-8sv" userLabel="QueueViewController" customClass="QueueViewController" customModule="Spottunes" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="QueueViewController" id="yp5-KZ-8sv" userLabel="QueueViewController" customClass="QueueViewController" customModule="Locus" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="7Rb-PF-qFV"/>
                         <viewControllerLayoutGuide type="bottom" id="jKQ-n4-rDk"/>

@@ -130,6 +130,11 @@ struct App{
             static let spotKey = "spot"
         }
         
+        struct NotificationReceived{
+            static let name = Notification.Name("ParseNotificationReceived")
+            static let notificationApsKey = "aps" //the value should be a PushNotification
+        }
+        
         struct PlayViewShouldShow{
             static let name = Notification.Name("playViewShouldShow")
             static let tracksKey = "tracks" //tracks key for the user info dictionary
@@ -183,10 +188,9 @@ struct App{
     
     struct NotificationStoryboardIden{
         static let notificationViewController = "NotificationViewController"
-    }
-    
+        static let notificationCenterNavigationController = "NotificationCenterNavigationController"
 
-    
+    }
     
     struct SegueIden {
         static let embedPageVCIden = "EmbedPageVCIden"
@@ -262,8 +266,6 @@ struct App{
         }
         return nil
     }
-    
-    
 }
 
 enum CoverSize{
@@ -271,5 +273,22 @@ enum CoverSize{
     case medium
     case small
 }
+
+struct NotificationAps{
+    var alert: String?{
+        return self.dict["alert"] as? String
+    }
+    var badge: Int?{
+        return self.dict["badge"] as? Int
+    }
+    var sound: String?{
+        return self.dict["sound"] as? String
+    }
+    let dict: [String: Any]
+    init(dict: [String: Any]) {
+        self.dict = dict
+    }
+}
+
 
 

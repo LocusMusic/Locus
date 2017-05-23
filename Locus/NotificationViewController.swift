@@ -9,34 +9,81 @@
 import UIKit
 import Parse
 
-class NotificationViewController: UIViewController {
 
+fileprivate let reuseIden = "NotificationTableViewCell"
+fileprivate let cellNibName = "NotificationTableViewCell"
+
+
+class NotificationViewController: UIViewController {
+    
+    @IBOutlet weak var tableView: UITableView!{
+        didSet {
+            self.tableView.delegate = self
+            self.tableView.dataSource = self
+            self.tableView.alwaysBounceVertical = true
+            self.tableView.estimatedRowHeight = 60
+            self.tableView.refreshControl = self.refreshControl
+            self.tableView.rowHeight = UITableViewAutomaticDimension
+            self.tableView.contentInset = UIEdgeInsetsMake(0, 0, 64, 0)
+            self.tableView.register(UINib(nibName: cellNibName, bundle: nil), forCellReuseIdentifier: reuseIden)
+        }
+    }
+    
+    lazy var refreshControl: UIRefreshControl = {
+        let refreshControl =  UIRefreshControl()
+        refreshControl.addTarget(self, action: #selector(refreshDragged(_:)), for: .valueChanged)
+        return refreshControl
+    }()
+    
+    var unread: [PushNotification]?{
+        didSet{
+            DispatchQueue.main.async {
+                if let unreadNotification = self.unread, unreadNotification.count > 0{
+                    self.shouldShowNewSession = true
+                    self.refreshControl.endRefreshing()
+                    self.tableView.reloadData()
+                }
+            }
+        }
+    }
+    
+    var read: [PushNotification]?
+    
+    var shouldShowNewSession: Bool = false
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        NotificationCenter.default.addObserver(self, selector: #selector(didReceivePushNotification(_:)), name: App.LocalNotification.NotificationReceived.name, object: nil)
+        PushNotification.fetchUnread { (notifications) in
+            if let notifications = notifications{
+                self.unread = notifications
+            }
+        }
 
-        // Do any additional setup after loading the view.
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
-    
-    class func instantiateFromStoryboard() -> NotificationViewController?{
-        if let notificationVC = App.notificationStoryboard.instantiateViewController(withIdentifier: App.NotificationStoryboardIden.notificationViewController) as? NotificationViewController{
-            notificationVC.tabBarItem = UITabBarItem(title: nil, image: #imageLiteral(resourceName: "heart-icon"), selectedImage: nil)
-            notificationVC.tabBarItem.imageInsets = UIEdgeInsetsMake(6, 0, -6, 0)
-            
-            notificationVC.tabBarItem.badgeColor = App.Style.Color.heartActiveColor
-            notificationVC.tabBarItem.badgeValue = "1"
-            notificationVC.tabBarItem.setBadgeTextAttributes([NSFontAttributeName: App.Style.Font.regular], for: .normal)
-            
-            return notificationVC
-        }
-        return nil
+
+ 
+    func didReceivePushNotification(_ notification: Notification){
+        self.refreshNotification()
     }
+    
+    func refreshNotification(){
+        PushNotification.fetchUnread { (notifications) in
+            if let notifications = notifications{
+                self.unread = notifications
+            }
+        }
+    }
+    
+    func refreshDragged(_ refreshControl: UIRefreshControl){
+        self.refreshNotification()
+    }
+
     
 
     /*
@@ -50,3 +97,35 @@ class NotificationViewController: UIViewController {
     */
 
 }
+
+
+extension NotificationViewController: UITableViewDelegate, UITableViewDataSource {
+    
+    func numberOfSections(in tableView: UITableView) -> Int {
+        //show new notification session when there is new unread
+        return self.shouldShowNewSession ? 2 : 1
+    }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        if self.shouldShowNewSession{
+            if section == 0{
+                //display the unread
+                return self.unread?.count ?? 0
+            }
+        }
+        return self.read?.count ?? 0
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: reuseIden, for: indexPath) as! NotificationTableViewCell
+        if self.shouldShowNewSession && indexPath.section == 0{
+            cell.notification = self.unread?[indexPath.row]
+        }else{
+            cell.notification = self.read?[indexPath.row]
+        }
+        return cell
+    }
+    
+}
+
+

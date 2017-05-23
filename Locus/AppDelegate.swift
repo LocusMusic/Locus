@@ -78,7 +78,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable : Any], fetchCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
         print("yeah! received notification")
-        print(userInfo)
+        if let info = userInfo as? [String: Any]{
+            guard let apsDict =  info["aps"] as? [String: Any] else{
+                return
+            }
+            let aps = NotificationAps(dict: apsDict)
+            let notificationInfo: [String: Any] = [
+                App.LocalNotification.NotificationReceived.notificationApsKey: aps
+            ]
+            print(apsDict)
+            
+            App.postLocalNotification(withName: App.LocalNotification.NotificationReceived.name, object: self, userInfo: notificationInfo)
+
+        }
         completionHandler(.newData)
     }
 
