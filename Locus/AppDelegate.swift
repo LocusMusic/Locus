@@ -37,7 +37,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     //live query
     var liveQueryClient: Client!
-    var liveQuerySubcription: Subscription<User>?
+    var listenerSubcription: Subscription<User>?
+    var notificationSubcription: Subscription<PushNotification>?
 
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
@@ -58,6 +59,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             })
         )
         self.liveQueryClient = ParseLiveQuery.Client()
+        //subscribe to push notification
+       PushNotification.subscribeTo()
+        
+        
         self.configureParse()
         SpotifyClient.authInit()
         return true

@@ -7,21 +7,19 @@
 //
 
 import Parse
+import ParseLiveQuery
 
-
-import Parse
-
-fileprivate let ClassName = "Notification"
+fileprivate let ClassName = "PushNotification"
 fileprivate let SenderKey = "sender"
-fileprivate let ReceiverKey = "receiver"
+fileprivate let ReceiverIdKey = "receiverId"
 fileprivate let TypeKey = "type" //reserve for later use, 0 for syncing music by other people
 fileprivate let TargetIdKey = "targetId"
 fileprivate let ReadStatusKey = "readStatus"
 fileprivate let DetailDescriptionKey = "detailDescription"
 
 enum NotificationType: Int{
-    case sync = 0
-    case playlistPostLike
+    case subscribe = 0 //user subscribe to other listener's music
+    case playlistPostLike //user favor a playlist post
 }
 
 
@@ -37,12 +35,12 @@ class PushNotification: PFObject {
     }
     
     
-    var receiver: User?{
+    var receiverId: String?{
         get{
-            return self[ReceiverKey] as? User
+            return self[ReceiverIdKey] as? String
         }
         set{
-            self[ReceiverKey] = newValue
+            self[ReceiverIdKey] = newValue
         }
     }
     
@@ -85,19 +83,27 @@ class PushNotification: PFObject {
         }
     }
     
-    init(sender: User, receiver: User, detailDescription: String, targetId: String, type: NotificationType, readStatus: Int = 0) {
+    init(receiver: User, detailDescription: String, targetId: String, type: NotificationType, readStatus: Int = 0) {
         super.init()
-        self.sender = sender
-        self.receiver = receiver
+        guard let currentUser = User.current() else{
+            return
+        }
+        self.sender = currentUser
+        self.receiverId = receiver.objectId
         self.detailDescription = detailDescription
         self.targetId = targetId
         self.type = type.rawValue
         self.readStatus = readStatus
     }
     
-    class func saveNotification(sender: User, receiver: User, detailDescription: String, targetId: String, type: NotificationType){
-        let notification = PushNotification(sender: sender, receiver: receiver, detailDescription: detailDescription, targetId: targetId, type: type, readStatus: 0)
+    class func addParseNotification(receiver: User, detailDescription: String, targetId: String, type: NotificationType){
+        let notification = PushNotification(receiver: receiver, detailDescription: detailDescription, targetId: targetId, type: type, readStatus: 0)
         notification.saveInBackground()
+    }
+    
+    class func addParseSubscriberNotification(receiver: User, detailDescription: String, targetId: String){
+        let type: NotificationType = .subscribe
+        PushNotification.addParseNotification(receiver: receiver, detailDescription: detailDescription, targetId: targetId, type: type)
     }
     
     
@@ -110,17 +116,16 @@ class PushNotification: PFObject {
         
         //get the subscriber display name
         var subscriberDisplayName: String! = subscriber.displayName
-        if subscriberDisplayName == nil{
-            //use spotify id in case the display name is nil, for the case
-            //thet the user registered via Spotify
-            subscriberDisplayName = subscriber.spotifyId
-        }
         
         //get the subscriber username in Parse
         let subscriberUsername = subscriber.username!
         
+        guard let receiver = playlistPost.user else{
+            return
+        }
+        
         //get the listener's username
-        guard let receiverUsername = playlistPost.user?.username else{
+        guard let receiverUsername = receiver.username else{
             print("receiver username is nil")
             return
         }
@@ -154,10 +159,40 @@ class PushNotification: PFObject {
         ]
         
         
+        let detailDescription = subscriberDisplayName + " is playing your playlist: " + playlistName +  " at " + spotName;
+
+        
+        PushNotification.addParseSubscriberNotification(receiver: receiver, detailDescription: detailDescription, targetId: playlistPostId)
+        
         PFCloud.callFunction(inBackground: "sendNotificaionAfterSongPlayedByOthers", withParameters: param, block: { (response, error) in
             print(response)
         })
     }
+    
+    //subscribe to push notification, whenever the user recevied a push
+    class func subscribeTo(){
+        guard let currentUser = User.current() else{
+            return
+        }
+        
+        guard let currentUserId = currentUser.objectId else{
+            return
+        }
+        
+        //the query the current user will subscribe to
+        let pushNotificationQuery = PushNotification.query()?.whereKey(ReceiverIdKey, equalTo: currentUserId) as! PFQuery<PushNotification>
+        
+        print("subscribing \(currentUserId)")
+        
+        App.delegate?.notificationSubcription = App.delegate?.liveQueryClient.subscribe(pushNotificationQuery).handle(Event.created, { (_, notification) in
+            print(notification)
+        })
+        
+        
+    }
+    
+    
+
     
 }
 

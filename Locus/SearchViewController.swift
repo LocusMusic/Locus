@@ -106,12 +106,9 @@ extension SearchViewController: UISearchBarDelegate {
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         
         TuneSpot.searchNearbyTuneSpot(query: searchText) { (tuneSpots) in
-            print("Finished")
             if let spots = tuneSpots {
-                print("Here")
                 self.data = spots
             } else {
-                print("Nil Here")
                 self.data = nil
             }
         }

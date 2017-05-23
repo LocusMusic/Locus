@@ -1,24 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12120" systemVersion="16E195" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12120" systemVersion="16D32" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12088"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="SearchTableViewCell" rowHeight="112" id="Q8A-oN-0sC" userLabel="SearchTableViewCell" customClass="SearchTableViewCell" customModule="Spottunes" customModuleProvider="target">
+        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="SearchTableViewCell" rowHeight="112" id="Q8A-oN-0sC" userLabel="SearchTableViewCell" customClass="SearchTableViewCell" customModule="Locus" customModuleProvider="target">
             <rect key="frame" x="0.0" y="0.0" width="378" height="112"/>
             <autoresizingMask key="autoresizingMask"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Q8A-oN-0sC" id="7Cf-2c-XhR">
                 <rect key="frame" x="0.0" y="0.0" width="378" height="111.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="0CU-Nq-KmU">
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="0CU-Nq-KmU">
                         <rect key="frame" x="16" y="8" width="48" height="48"/>
                         <color key="backgroundColor" red="0.1960784314" green="0.20000000000000001" blue="0.20784313730000001" alpha="0.40000000000000002" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
@@ -26,25 +27,17 @@
                             <constraint firstAttribute="width" constant="48" id="I5R-Gh-4pQ"/>
                         </constraints>
                     </imageView>
-                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zGc-Si-rtb">
-                        <rect key="frame" x="338" y="21.5" width="20" height="20"/>
-                        <constraints>
-                            <constraint firstAttribute="height" constant="20" id="jtu-dp-gFy"/>
-                            <constraint firstAttribute="width" constant="20" id="zjx-kT-Hte"/>
-                        </constraints>
-                        <state key="normal" image="dot-icon"/>
-                    </button>
                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="HcE-ja-Alr">
-                        <rect key="frame" x="72" y="8" width="85.5" height="46.5"/>
+                        <rect key="frame" x="72" y="8" width="278" height="46.5"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Song Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="O33-K8-sHK">
-                                <rect key="frame" x="0.0" y="0.0" width="85.5" height="22"/>
+                                <rect key="frame" x="0.0" y="0.0" width="278" height="22"/>
                                 <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="16"/>
                                 <color key="textColor" red="0.1960784314" green="0.20000000000000001" blue="0.20784313730000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Airtist Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2yy-KX-fyx">
-                                <rect key="frame" x="0.0" y="26" width="85.5" height="20.5"/>
+                                <rect key="frame" x="0.0" y="26" width="278" height="20.5"/>
                                 <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="15"/>
                                 <color key="textColor" red="0.1960784314" green="0.20000000000000001" blue="0.20784313730000001" alpha="0.80000000000000004" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
@@ -61,15 +54,13 @@
                 </subviews>
                 <constraints>
                     <constraint firstItem="GMs-zp-PaI" firstAttribute="top" secondItem="HcE-ja-Alr" secondAttribute="bottom" constant="12" id="MSF-Ul-fue"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="HcE-ja-Alr" secondAttribute="trailing" constant="20" id="P2n-BP-xFd"/>
                     <constraint firstItem="0CU-Nq-KmU" firstAttribute="leading" secondItem="7Cf-2c-XhR" secondAttribute="leading" constant="16" id="PmA-FM-G9q"/>
                     <constraint firstAttribute="trailing" secondItem="GMs-zp-PaI" secondAttribute="trailing" constant="16" id="Sdo-yA-Jf6"/>
                     <constraint firstItem="HcE-ja-Alr" firstAttribute="top" secondItem="0CU-Nq-KmU" secondAttribute="top" id="Xfa-Eg-KsM"/>
-                    <constraint firstItem="zGc-Si-rtb" firstAttribute="centerY" secondItem="HcE-ja-Alr" secondAttribute="centerY" id="fNv-BA-Ivk"/>
                     <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="GMs-zp-PaI" secondAttribute="bottom" constant="8" id="fvZ-EY-NWh"/>
-                    <constraint firstItem="zGc-Si-rtb" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="HcE-ja-Alr" secondAttribute="trailing" constant="16" id="kAI-zF-egY"/>
                     <constraint firstItem="HcE-ja-Alr" firstAttribute="leading" secondItem="0CU-Nq-KmU" secondAttribute="trailing" constant="8" id="kYb-64-Woc"/>
                     <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="0CU-Nq-KmU" secondAttribute="bottom" id="nMX-Rp-wYI"/>
-                    <constraint firstAttribute="trailing" secondItem="zGc-Si-rtb" secondAttribute="trailing" constant="20" id="pAo-4k-QXu"/>
                     <constraint firstItem="GMs-zp-PaI" firstAttribute="leading" secondItem="HcE-ja-Alr" secondAttribute="leading" id="qUh-g1-5x1"/>
                     <constraint firstItem="0CU-Nq-KmU" firstAttribute="top" secondItem="7Cf-2c-XhR" secondAttribute="top" constant="8" id="sAx-f7-r7I"/>
                 </constraints>
@@ -82,7 +73,4 @@
             <point key="canvasLocation" x="50" y="27"/>
         </tableViewCell>
     </objects>
-    <resources>
-        <image name="dot-icon" width="60" height="60"/>
-    </resources>
 </document>
