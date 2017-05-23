@@ -115,16 +115,82 @@ class User: PFUser {
             return
         }
         //the query the current user will subscribe to
-        let userQuery = (User.query()?
-            .whereKey(UsernameKey, equalTo: listenerUsername))! as! PFQuery<User>
+        let userQuery = User.query()?
+            .whereKey(UsernameKey, equalTo: listenerUsername).includeKey(CurrentListeningPlaylistPostKey) as! PFQuery<User>
         
         App.delegate?.liveQuerySubcription = App.delegate?.liveQueryClient.subscribe(userQuery).handle(Event.updated, { (_, user) in
+            
+            print(user)
+            print("user updated track index ")
             //use the new user's current playing list info to update the
             // current login user current playing list info
             guard let currentTrackIndex = user.currentActiveTrackIndex else{
+                print("current track index is nil")
                 return
             }
-            print(currentTrackIndex)
+            
+            
+            if let currentPostColumn = user[CurrentListeningPlaylistPostKey] as? [String: Any]{
+                if let postObjectId = currentPostColumn["objectId"] as? String{
+                    let query = PFQuery(className: "PlaylistPost")
+                    query.includeKey("user")
+                    query.getObjectInBackground(withId: postObjectId, block: { (fetchedPlaylistPost, error) in
+                        if let fetchedPlaylistPost = fetchedPlaylistPost as? PlaylistPost{
+                            guard let userId = fetchedPlaylistPost.user?.spotifyId else{
+                                print("user id is nil after fetching")
+                                return
+                            }
+                            guard let playlistId = fetchedPlaylistPost.playlistId else{
+                                print("playlist id is nil after fetching")
+                                return
+                            }
+                            
+                            SpotifyClient.fetchPlaylistByUserIdAndPlaylistId(userId: userId, playlistId: playlistId) { (playlist) in
+                                DispatchQueue.main.async {
+                                    if let playlist = playlist{
+                                        fetchedPlaylistPost.playlist = playlist
+        
+                                        guard let trackList = fetchedPlaylistPost.trackList else{
+                                            return
+                                        }
+        
+                                        //play the current track that the listener is listening to
+                                        App.playTracks(trackList: trackList, activeTrackIndex: currentTrackIndex)
+                                    }
+                                }
+                            }                            
+                        }
+                    })
+                }
+                
+            }else{
+                print("the object id is nil")
+            }
+            
+//            currentPlaylistPost.refetchPost(completionHandler: { (fetchedPlaylistPost) in
+//                if let fetchedPlaylistPost = fetchedPlaylistPost{
+//                    guard let userId = fetchedPlaylistPost.user?.spotifyId else{
+//                        return
+//                    }
+//                    guard let playlistId = fetchedPlaylistPost.playlistId else{
+//                        return
+//                    }
+//                    SpotifyClient.fetchPlaylistByUserIdAndPlaylistId(userId: userId, playlistId: playlistId) { (playlist) in
+//                        DispatchQueue.main.async {
+//                            if let playlist = playlist{
+//                                fetchedPlaylistPost.playlist = playlist
+//                                
+//                                guard let trackList = fetchedPlaylistPost.trackList else{
+//                                    return
+//                                }
+//                                
+//                                //play the current track that the listener is listening to
+//                                App.playTracks(trackList: trackList, activeTrackIndex: currentTrackIndex)
+//                            }
+//                        }
+//                    }
+//                }
+//            })
         })
     }
     
