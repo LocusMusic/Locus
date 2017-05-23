@@ -3,14 +3,14 @@ Parse.Cloud.define("sendNotificaionAfterSongPlayedByOthers", function(request, r
   // request has 2 parameters: params passed by the client and the authorized user                                                                                                                               
   var params = request.params;
   var user = request.user;
-  // Our "Message" class has a "text" key with the body of the message itself 
-  var senderUsername = params.senderUsername;                                                                                                                         
+
+  var subscriberDisplayName = params.subscriberDisplayName;                                                                                                                         
   var receiverUsername = params.receiverUsername;  
   var playlistPostId = params.playlistPostId; 
   var spotName = params.spotName;
   var playlistName = params.playlistName;
   
-  var alertMessage = senderUsername + " is playing your playlist: " + playlistName +  " at " + spotName;
+  var alertMessage = subscriberDisplayName + " is playing your playlist: " + playlistName +  " at " + spotName;
     var pushQuery = new Parse.Query(Parse.Installation);
 
 	var userQuery = new Parse.Query(Parse.User);

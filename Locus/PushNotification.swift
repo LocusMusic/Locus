@@ -99,6 +99,66 @@ class PushNotification: PFObject {
         let notification = PushNotification(sender: sender, receiver: receiver, detailDescription: detailDescription, targetId: targetId, type: type, readStatus: 0)
         notification.saveInBackground()
     }
+    
+    
+    //make sure playlistPost has all the data we want
+    class func sendRemoteNotificationAfterSyncing(playlistPost: PlaylistPost){
+        guard let subscriber = User.current() else{
+            print("current user is nil")
+            return
+        }
+        
+        //get the subscriber display name
+        var subscriberDisplayName: String! = subscriber.displayName
+        if subscriberDisplayName == nil{
+            //use spotify id in case the display name is nil, for the case
+            //thet the user registered via Spotify
+            subscriberDisplayName = subscriber.spotifyId
+        }
+        
+        //get the subscriber username in Parse
+        let subscriberUsername = subscriber.username!
+        
+        //get the listener's username
+        guard let receiverUsername = playlistPost.user?.username else{
+            print("receiver username is nil")
+            return
+        }
+        
+        //get the playlist name
+        guard let playlistName = playlistPost.playlist?.name else{
+            print("playlist name is empty")
+            return
+        }
+        
+        //get the playlist post id
+        guard let playlistPostId = playlistPost.objectId else{
+            print("playlistPostId is empty")
+            return
+        }
+        
+        //get the spot where this subscription happened
+        guard let spotName = playlistPost.spot?.name else{
+            print("spot name is empty")
+            return
+        }
+        
+        
+        let param: [String: Any] = [
+            "subscriberDisplayName": subscriberDisplayName,
+            "subscriberUsername": subscriberUsername,
+            "receiverUsername": receiverUsername,
+            "playlistPostId": playlistPostId,
+            "playlistName": playlistName,
+            "spotName": spotName
+        ]
+        
+        
+        PFCloud.callFunction(inBackground: "sendNotificaionAfterSongPlayedByOthers", withParameters: param, block: { (response, error) in
+            print(response)
+        })
+    }
+    
 }
 
 
