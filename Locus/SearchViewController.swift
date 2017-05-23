@@ -91,6 +91,7 @@ extension SearchViewController: UISearchBarDelegate {
     
     func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
         searchBar.showsCancelButton = true
+        self.adjustSearchBarAppearance()
     }
     
     func searchBarTextDidEndEditing(_ searchBar: UISearchBar) {
@@ -99,9 +100,7 @@ extension SearchViewController: UISearchBarDelegate {
     
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
         searchBar.resignFirstResponder()
-        self.dismiss(animated: false) {
-            print("done dismissing")
-        }
+        self.navigationController?.popViewController(animated: false)
     }
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
@@ -141,10 +140,7 @@ extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
         //TODO: SAFE UNWRAPPING 
         if let spotVC = App.spotStoryBoard.instantiateViewController(withIdentifier: App.SpotStoryboardIden.spotViewController) as? SpotViewController {
             spotVC.spot = self.data?[indexPath.row]
-            self.searchBar.resignFirstResponder()
-            self.dismiss(animated: true, completion: {
-                
-            })
+            self.navigationController?.pushViewController(spotVC, animated: true)
         }
     }
     

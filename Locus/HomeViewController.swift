@@ -59,7 +59,6 @@ class HomeViewController: UIViewController {
     var homeEmbedPageVC: HomeEmbedPageViewController?
     
     var searchBarTextField: UITextField!
-
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -74,11 +73,14 @@ class HomeViewController: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         self.searchBar.delegate = self
+        self.searchBar.showsCancelButton = false
+        if self.searchBar.isFirstResponder {
+            self.searchBar.resignFirstResponder()
+        }
     }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
     
     
@@ -119,7 +121,7 @@ class HomeViewController: UIViewController {
 extension HomeViewController: UISearchBarDelegate{
     func searchBarShouldBeginEditing(_ searchBar: UISearchBar) -> Bool {
         if let searchVC = App.searchStoryBoard.instantiateViewController(withIdentifier: App.SearchStoryboardIden.searchViewController) as? SearchViewController {
-            self.present(searchVC, animated: false, completion: nil)
+            self.navigationController?.pushViewController(searchVC, animated: false)
         }
         return false
     }

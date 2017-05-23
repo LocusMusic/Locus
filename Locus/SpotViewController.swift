@@ -21,7 +21,6 @@ class SpotViewController: UIViewController {
     
     
     @IBAction func backBtnTapped(_ sender: UIBarButtonItem) {
-        dismiss(animated: true, completion: nil)
         self.navigationController?.popViewController(animated: true)
     }
     
