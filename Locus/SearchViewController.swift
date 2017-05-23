@@ -13,6 +13,11 @@ fileprivate let nibbName = "SearchTableViewCell"
 
 class SearchViewController: UIViewController {
     
+    lazy var childControllers: [UIViewController] = {
+        let overViewVC = App.mainStoryBoard.instantiateViewController(withIdentifier: App.StoryboardIden.overviewViewController)
+        return [overViewVC]
+    }()
+    
     @IBOutlet weak var searchBar: UISearchBar!{
         didSet{
             self.searchBar.delegate = self
@@ -131,7 +136,6 @@ extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        print(self.data?.count)
         return self.data?.count ?? 0
     }
     
@@ -143,12 +147,13 @@ extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        print("TODO")
-        //        let userInfo: [String: Any] = [
-        //            App.LocalNotification.PlayViewShouldShow.tracksKey: self.trackList!,
-        //            App.LocalNotification.PlayViewShouldShow.activeTrackIndex: indexPath.row
-        //        ]
-        //        App.postLocalNotification(withName: App.LocalNotification.PlayViewShouldShow.name, object: self, userInfo: userInfo)
+        //TODO: SAFE UNWRAPPING 
+        if let spotVC = App.spotStoryBoard.instantiateViewController(withIdentifier: App.SpotStoryboardIden.spotViewController) as? SpotViewController {
+            spotVC.spot = self.data?[indexPath.row]
+            self.present(spotVC, animated: true) {
+                print("done")
+            }
+        }
     }
     
 }

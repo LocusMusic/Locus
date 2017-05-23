@@ -23,14 +23,10 @@ class HomeEmbedPageViewController: UIPageViewController{
     
     weak var customDelegate: HomeEmbedPageViewControllerDelegate?
     
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.dataSource = self
         self.delegate = self
-        
-        
-        
         
         //add notification
         NotificationCenter.default.addObserver(self, selector: #selector(self.overviewPageShouldBecomeActive(_:)), name: App.LocalNotification.Name.homeOverviewShouldBecomeActive, object: nil)
@@ -66,6 +62,7 @@ class HomeEmbedPageViewController: UIPageViewController{
 }
 
 extension HomeEmbedPageViewController: UIPageViewControllerDelegate, UIPageViewControllerDataSource{
+    
     func pageViewController(_ pageViewController: UIPageViewController, viewControllerBefore viewController: UIViewController) -> UIViewController? {
         guard let currentIndex = self.childControllers.index(of: viewController) else{
             return nil
