@@ -119,7 +119,6 @@ class User: PFUser {
             .whereKey(UsernameKey, equalTo: listenerUsername).includeKey(CurrentListeningPlaylistPostKey) as! PFQuery<User>
         
         App.delegate?.liveQuerySubcription = App.delegate?.liveQueryClient.subscribe(userQuery).handle(Event.updated, { (_, user) in
-            
             print(user)
             print("user updated track index ")
             //use the new user's current playing list info to update the
@@ -158,7 +157,7 @@ class User: PFUser {
                                         App.playTracks(trackList: trackList, activeTrackIndex: currentTrackIndex)
                                     }
                                 }
-                            }                            
+                            }
                         }
                     })
                 }
