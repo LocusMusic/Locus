@@ -69,6 +69,8 @@ class SearchViewController: UIViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
+        self.searchBar.becomeFirstResponder()
+        self.searchBar.showsCancelButton = true
     }
     
     override func didReceiveMemoryWarning() {
@@ -107,9 +109,7 @@ extension SearchViewController: UISearchBarDelegate {
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
         searchBar.resignFirstResponder()
         print("Am I here Search Bar Cancel Button - SearchViewController")
-        self.dismiss(animated: false) {
-            print("done dismissing")
-        }
+        self.navigationController?.popViewController(animated: false)
     }
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
@@ -150,9 +150,7 @@ extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
         //TODO: SAFE UNWRAPPING 
         if let spotVC = App.spotStoryBoard.instantiateViewController(withIdentifier: App.SpotStoryboardIden.spotViewController) as? SpotViewController {
             spotVC.spot = self.data?[indexPath.row]
-            self.present(spotVC, animated: true) {
-                print("done")
-            }
+            self.navigationController?.pushViewController(spotVC, animated: true)
         }
     }
     

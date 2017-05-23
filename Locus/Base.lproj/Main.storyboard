@@ -1049,7 +1049,7 @@
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="muK-5C-47C">
                                         <rect key="frame" x="0.0" y="0.0" width="375" height="34"/>
                                         <fontDescription key="fontDescription" name="Avenir-Heavy" family="Avenir" pointSize="16"/>
-                                        <state key="normal" title="Search Near by">
+                                        <state key="normal" title="Nearby Spots">
                                             <color key="titleColor" red="0.1960784314" green="0.20000000000000001" blue="0.20784313730000001" alpha="0.80000000000000004" colorSpace="custom" customColorSpace="sRGB"/>
                                         </state>
                                         <connections>
@@ -1066,7 +1066,7 @@
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JdU-aR-woO">
                                         <rect key="frame" x="0.0" y="55" width="375" height="34"/>
                                         <fontDescription key="fontDescription" name="Avenir-Heavy" family="Avenir" pointSize="16"/>
-                                        <state key="normal" title="My Favoriate">
+                                        <state key="normal" title="Favorites">
                                             <color key="titleColor" red="0.1960784314" green="0.20000000000000001" blue="0.20784313730000001" alpha="0.80000000000000004" colorSpace="custom" customColorSpace="sRGB"/>
                                         </state>
                                     </button>
