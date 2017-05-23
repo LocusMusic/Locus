@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12120" systemVersion="16E195" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="cKg-uC-jem">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12120" systemVersion="16E195" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="386-l2-VbA">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -11,9 +11,51 @@
     </dependencies>
     <scenes>
         <!--Search View Controller-->
+        <scene sceneID="Jzv-tG-Yrp">
+            <objects>
+                <viewController storyboardIdentifier="SearchViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="386-l2-VbA" customClass="SearchViewController" customModule="Locus" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="73v-pB-GrH"/>
+                        <viewControllerLayoutGuide type="bottom" id="4d7-Ch-Acb"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="hdH-Qa-n1Y">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <searchBar contentMode="redraw" searchBarStyle="minimal" text="" translatesAutoresizingMaskIntoConstraints="NO" id="gOV-Az-EFS">
+                                <rect key="frame" x="16" y="28" width="343" height="44"/>
+                                <color key="barTintColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </searchBar>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="70" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="fVa-5T-MfL">
+                                <rect key="frame" x="0.0" y="100" width="375" height="567"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="4d7-Ch-Acb" firstAttribute="top" secondItem="fVa-5T-MfL" secondAttribute="bottom" id="0XO-dt-kQi"/>
+                            <constraint firstItem="fVa-5T-MfL" firstAttribute="top" secondItem="gOV-Az-EFS" secondAttribute="bottom" constant="28" id="4sw-GV-dZO"/>
+                            <constraint firstItem="fVa-5T-MfL" firstAttribute="leading" secondItem="hdH-Qa-n1Y" secondAttribute="leadingMargin" constant="-16" id="GVk-ND-ghU"/>
+                            <constraint firstAttribute="leadingMargin" secondItem="gOV-Az-EFS" secondAttribute="leading" id="HeV-tU-xhx"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="gOV-Az-EFS" secondAttribute="trailing" id="Wqj-w7-miL"/>
+                            <constraint firstItem="gOV-Az-EFS" firstAttribute="top" secondItem="73v-pB-GrH" secondAttribute="bottom" constant="8" id="wsp-UN-Wcp"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="fVa-5T-MfL" secondAttribute="trailing" constant="-16" id="xJc-es-vNZ"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="searchBar" destination="gOV-Az-EFS" id="8nV-4u-jhr"/>
+                        <outlet property="tableView" destination="fVa-5T-MfL" id="zOH-aT-dAI"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="pkY-Ty-DJb" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-850.39999999999998" y="-690.40479760119945"/>
+        </scene>
+        <!--View Controller-->
         <scene sceneID="7h7-is-eFg">
             <objects>
-                <viewController automaticallyAdjustsScrollViewInsets="NO" id="cKg-uC-jem" customClass="SearchViewController" customModule="Spottunes" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController automaticallyAdjustsScrollViewInsets="NO" id="cKg-uC-jem" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="9Jz-vx-evz"/>
                         <viewControllerLayoutGuide type="bottom" id="0G4-tx-Qfp"/>
@@ -168,7 +210,7 @@
         <!--Search Embed View Controller-->
         <scene sceneID="Q4n-Gw-luN">
             <objects>
-                <pageViewController autoresizesArchivedViewToFullSize="NO" transitionStyle="scroll" navigationOrientation="horizontal" spineLocation="none" id="YpR-yC-tiI" customClass="SearchEmbedViewController" customModule="Spottunes" customModuleProvider="target" sceneMemberID="viewController"/>
+                <pageViewController autoresizesArchivedViewToFullSize="NO" transitionStyle="scroll" navigationOrientation="horizontal" spineLocation="none" id="YpR-yC-tiI" customClass="SearchEmbedViewController" customModule="Locus" customModuleProvider="target" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="UR7-xU-2AY" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="410" y="117"/>
@@ -176,7 +218,7 @@
         <!--Search Results View Controller-->
         <scene sceneID="aR7-jj-jwQ">
             <objects>
-                <viewController id="Dor-PC-s2c" customClass="SearchResultsViewController" customModule="Spottunes" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="Dor-PC-s2c" customClass="SearchResultsViewController" customModule="Locus" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="mg4-lu-IRH"/>
                         <viewControllerLayoutGuide type="bottom" id="JXp-6N-EH9"/>
@@ -201,7 +243,7 @@
         <!--Songs Search View Controller-->
         <scene sceneID="G6Z-Q5-Qdv">
             <objects>
-                <viewController storyboardIdentifier="SongsSearchViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="4uE-SJ-rte" customClass="SongsSearchViewController" customModule="Spottunes" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="SongsSearchViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="4uE-SJ-rte" customClass="SongsSearchViewController" customModule="Locus" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="jUf-Aw-C4W"/>
                         <viewControllerLayoutGuide type="bottom" id="Zq2-RM-Rwg"/>
@@ -234,7 +276,7 @@
         <!--Artists Search View Controller-->
         <scene sceneID="snT-Sr-bQL">
             <objects>
-                <viewController storyboardIdentifier="ArtistsSearchViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="MYd-RK-fi9" customClass="ArtistsSearchViewController" customModule="Spottunes" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ArtistsSearchViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="MYd-RK-fi9" customClass="ArtistsSearchViewController" customModule="Locus" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="CLa-aR-SWC"/>
                         <viewControllerLayoutGuide type="bottom" id="FYT-RJ-4Pk"/>
@@ -267,7 +309,7 @@
         <!--Spots Search View Controller-->
         <scene sceneID="wYu-8D-c2M">
             <objects>
-                <viewController storyboardIdentifier="SpotsSearchViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="mVZ-em-30S" customClass="SpotsSearchViewController" customModule="Spottunes" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="SpotsSearchViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="mVZ-em-30S" customClass="SpotsSearchViewController" customModule="Locus" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="c90-OA-gmC"/>
                         <viewControllerLayoutGuide type="bottom" id="ew1-3s-Jtp"/>
@@ -297,7 +339,7 @@
         <!--Playlists Search View Controller-->
         <scene sceneID="naE-Lj-MZ7">
             <objects>
-                <viewController storyboardIdentifier="PlaylistsSearchViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="b0v-0c-VPJ" customClass="PlaylistsSearchViewController" customModule="Spottunes" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="PlaylistsSearchViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="b0v-0c-VPJ" customClass="PlaylistsSearchViewController" customModule="Locus" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="IXG-xw-hh0"/>
                         <viewControllerLayoutGuide type="bottom" id="7Yj-H9-AWq"/>
