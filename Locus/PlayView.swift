@@ -94,10 +94,11 @@ class PlayView: UIView {
         self.streamController.setIsPlaying(!self.currentPlayingState) { (error) in
             if let error = error{
                 print(error.localizedDescription)
-                User.current()?.currentActiveTrackIndex = self.activeTrackIndex
             }else{
                 if self.currentPlayingState{
                     User.current()?.resetPlayingState()
+                }else{
+                    User.current()?.currentActiveTrackIndex = self.activeTrackIndex
                 }
                 self.currentPlayingState = !self.currentPlayingState
             }

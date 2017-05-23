@@ -4,7 +4,8 @@ Parse.Cloud.define("sendNotificaionAfterSongPlayedByOthers", function(request, r
   var params = request.params;
   var user = request.user;
 
-  var subscriberDisplayName = params.subscriberDisplayName;                                                                                                                         
+  var subscriberDisplayName = params.subscriberDisplayName;  
+  var subscriberUsername = params.subscriberUsername;                                                                                                                       
   var receiverUsername = params.receiverUsername;  
   var playlistPostId = params.playlistPostId; 
   var spotName = params.spotName;
@@ -24,7 +25,7 @@ Parse.Cloud.define("sendNotificaionAfterSongPlayedByOthers", function(request, r
 		data: {
 		  alert: alertMessage,
 		  data: {
-		  		senderUsername: senderUsername,
+		  		subscriberUsername: subscriberUsername,
 		  		playlistPostId: playlistPostId
 		  },
 		  badge: "Increment",
