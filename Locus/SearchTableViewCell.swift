@@ -18,57 +18,21 @@ class SearchTableViewCell: UITableViewCell {
     }
     
     @IBOutlet weak var titleLabel: UILabel!
-    
     @IBOutlet weak var subtitleLabel: UILabel!
     
-    var data: Any! {
+    var data: TuneSpot? {
         didSet {
-            if let song = self.data as? Track {
-                
-                if let name = song.name{
-                    self.titleLabel.text = name
-                }
-                
-                if let authorName = song.artists?.first?.name {
-                    self.subtitleLabel.text = authorName
-                }
-                
-                if let coverImage = song.getCoverImage(withSize: .small) {
-                    if let coverURL = coverImage.url {
-                        self.thumbnailImageView.loadImageWithURL(coverURL)
-                    }
-                }
-                
-            } else if let artist = self.data as? Artist {
-                
-                if let name = artist.name {
-                    self.titleLabel.text = name
-                }
-                
-                self.subtitleLabel.text = "\(artist.followers) Followers"
-                
-                if let artistImage = artist.getArtistImage(withSize: .small) {
-                    if let imageURL = artistImage.url {
-                        self.thumbnailImageView.loadImageWithURL(imageURL)
-                    }
-                }
-                
-            } else if let playlist = self.data as? Playlist {
-                
-                if let name = playlist.name {
-                    self.titleLabel.text = name
-                }
-                
-                self.subtitleLabel.text = "\(playlist.trackCount!) Tracks"
-                
-                if let playlistImage = playlist.getCoverImage(withSize: .small) {
-                    if let imageURL = playlistImage.url {
-                        self.thumbnailImageView.loadImageWithURL(imageURL)
-                    }
-                }
+            if let name = self.data?.name{
+                self.titleLabel.text = name
+            }
+            
+            if let address = self.data?.address{
+                self.subtitleLabel.text = address
+            }
 
-            } else if let spots = self.data as? TuneSpot {
-                print(spots)
+            self.thumbnailImageView?.image = #imageLiteral(resourceName: "location-icon")
+            if let coverURL = self.data?.coverURL{
+                self.thumbnailImageView.loadImageWithURL(coverURL)
             }
         }
     }
@@ -76,7 +40,6 @@ class SearchTableViewCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
     }
     
     override func setSelected(_ selected: Bool, animated: Bool) {

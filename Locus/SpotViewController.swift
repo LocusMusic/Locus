@@ -21,8 +21,10 @@ class SpotViewController: UIViewController {
     
     
     @IBAction func backBtnTapped(_ sender: UIBarButtonItem) {
+        dismiss(animated: true, completion: nil)
         self.navigationController?.popViewController(animated: true)
     }
+    
     @IBOutlet weak var scrollView: UIScrollView!{
         didSet{
             self.scrollView.alwaysBounceVertical = false
@@ -30,7 +32,6 @@ class SpotViewController: UIViewController {
             self.scrollView.showsVerticalScrollIndicator = false
         }
     }
-    
     
     var spot: TuneSpot!
     

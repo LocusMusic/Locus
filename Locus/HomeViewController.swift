@@ -19,7 +19,7 @@ enum PageType{
 class HomeViewController: UIViewController {
 
      @IBOutlet weak var searchBar: UISearchBar!{
-        didSet{
+        didSet {
             self.searchBar.delegate = self
             self.searchBar.tintColor = UIColor(hexString: "#323335")
             for subView in self.searchBar.subviews  {
@@ -32,7 +32,6 @@ class HomeViewController: UIViewController {
         }
     }
 
-    
     @IBOutlet weak var homeHeaderView: UIView!
 
     @IBOutlet weak var overviewBtn: UIButton!

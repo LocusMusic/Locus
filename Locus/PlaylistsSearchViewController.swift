@@ -68,7 +68,7 @@ extension PlaylistsSearchViewController: UITableViewDelegate, UITableViewDataSou
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: reuseIden, for: indexPath) as! SearchTableViewCell
-        cell.data = self.data?.playlists?[indexPath.row]
+//        cell.data = self.data?.playlists?[indexPath.row]
         return cell
     }
     

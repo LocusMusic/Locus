@@ -69,7 +69,7 @@ extension SongsSearchViewController: UITableViewDelegate, UITableViewDataSource 
         let cell = tableView.dequeueReusableCell(withIdentifier: reuseIden, for: indexPath) as! SearchTableViewCell
         if let tracklist = self.data?.trackList {
             if tracklist.count > 0 {
-                cell.data = self.data?.trackList?[indexPath.row]
+//                cell.data = self.data?.trackList?[indexPath.row]
             }
         }
         return cell
