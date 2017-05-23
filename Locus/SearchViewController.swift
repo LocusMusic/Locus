@@ -27,9 +27,28 @@ class SearchViewController: UIViewController {
         }
     }
     
-    @IBOutlet weak var tableView: UITableView!
-    
-    var data: [Spot]?
+    @IBOutlet weak var tableView: UITableView! {
+        didSet {
+            self.tableView.delegate = self
+            self.tableView.dataSource = self
+            self.tableView.alwaysBounceVertical = true
+            self.tableView.estimatedRowHeight = 60
+            self.tableView.rowHeight = UITableViewAutomaticDimension
+            self.tableView.contentInset = UIEdgeInsetsMake(0, 0, 64, 0)
+            self.tableView.register(UINib(nibName: nibbName, bundle: nil), forCellReuseIdentifier: reuseIden)
+        }
+    }
+
+    var data : [TuneSpot]? {
+        didSet {
+            DispatchQueue.main.async {
+                if let table = self.tableView {
+                    print("RELOADING DATA")
+                    table.reloadData()
+                }
+            }
+        }
+    }
     
     var searchBarTextField: UITextField!
     
@@ -88,6 +107,20 @@ extension SearchViewController: UISearchBarDelegate {
         }
     }
     
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        
+        TuneSpot.searchNearbyTuneSpot(query: searchText) { (tuneSpots) in
+            print("Finished")
+            if let spots = tuneSpots {
+                print("Here")
+                self.data = spots
+            } else {
+                print("Nil Here")
+                self.data = nil
+            }
+        }
+    }
+    
 }
 
 
@@ -98,12 +131,14 @@ extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 0//self.data?.playlists?.count ?? 0
+        print(self.data?.count)
+        return self.data?.count ?? 0
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: reuseIden, for: indexPath) as! SearchTableViewCell
-        //cell.data = self.data?.playlists?[indexPath.row]
+        print("Setting data")
+        cell.data = self.data?[indexPath.row]
         return cell
     }
     

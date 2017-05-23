@@ -67,7 +67,7 @@ extension ArtistsSearchViewController: UITableViewDelegate, UITableViewDataSourc
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: reuseIden, for: indexPath) as! SearchTableViewCell
-        cell.data = self.data?.artistList?[indexPath.row]
+//        cell.data = self.data?.artistList?[indexPath.row]
         return cell
     }
     
