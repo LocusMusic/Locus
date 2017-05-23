@@ -37,8 +37,6 @@ class LogInViewController: GradientBackgroundAnimatedViewController {
     }
     
     weak var delegate: LogInViewControllerDelegate?
-   
-    
     
     @IBAction func loginTapped(_ sender: UIButton) {
         //login with spotify
@@ -54,8 +52,6 @@ class LogInViewController: GradientBackgroundAnimatedViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         NotificationCenter.default.addObserver(self, selector: #selector(LogInViewController.onLoginSuccessful), name: App.LocalNotification.Name.onLoginSuccessful, object: nil)
-        
-        
     }
     
     override func didReceiveMemoryWarning() {
@@ -67,8 +63,6 @@ class LogInViewController: GradientBackgroundAnimatedViewController {
     override var prefersStatusBarHidden: Bool{
         return true
     }
-
-    
     
     func startActivityIndicatorLoading(){
         self.loadingActivityIndicator.isHidden = false
@@ -76,7 +70,6 @@ class LogInViewController: GradientBackgroundAnimatedViewController {
         self.loginBtn.setTitle("", for: .normal)
         self.loginBtn.setImage(nil, for: .normal)
     }
-    
     
     func stopActivityIndicatorLoading(){
         self.loadingActivityIndicator.stopAnimating()
@@ -86,6 +79,7 @@ class LogInViewController: GradientBackgroundAnimatedViewController {
     }
     
     func onLoginSuccessful(){
+        print("onLoginSuccessful!!")
         self.delegate?.finishedLogin()
     }
     

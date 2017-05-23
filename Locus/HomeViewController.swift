@@ -11,14 +11,14 @@ import UIKit
 fileprivate let collectionViewReuseIden = "HomePagingCell"
 fileprivate let playingEmbedSegueIden="PlayingEmbedSegueIden"
 
-enum PageType{
+enum PageType {
     case overview
     case playing
 }
 
 class HomeViewController: UIViewController {
 
-     @IBOutlet weak var searchBar: UISearchBar!{
+     @IBOutlet weak var searchBar: UISearchBar! {
         didSet {
             self.searchBar.delegate = self
             self.searchBar.tintColor = UIColor(hexString: "#323335")
@@ -55,7 +55,6 @@ class HomeViewController: UIViewController {
     //tab model
     var pages: [PageType] = [.overview, .playing]
     
-    
     var homeEmbedPageVC: HomeEmbedPageViewController?
     
     var searchBarTextField: UITextField!
@@ -63,7 +62,6 @@ class HomeViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
     }
-    
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
@@ -82,7 +80,6 @@ class HomeViewController: UIViewController {
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
-    
     
     func adjustSearchBarAppearance(){
         self.searchBarTextField.tintColor = App.grayColor

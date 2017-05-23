@@ -8,7 +8,13 @@
 
 import UIKit
 
+protocol OnboardingViewControllerDelegate: class {
+    func homeInit()
+}
+
 class OnboardingViewController: GradientBackgroundAnimatedViewController {
+    
+    weak var onboardingDelegate: OnboardingViewControllerDelegate?
     
     @IBOutlet weak var scrollView: UIScrollView!{
         didSet{
@@ -19,8 +25,9 @@ class OnboardingViewController: GradientBackgroundAnimatedViewController {
     
     @IBOutlet weak var pagingControl: UIPageControl!
     
-    lazy var scenes = [OnboardingView]()
+    weak var initViewControllerDelegate: InitViewControllerDelegate?
     
+    lazy var scenes = [OnboardingView]()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -28,27 +35,17 @@ class OnboardingViewController: GradientBackgroundAnimatedViewController {
         let onboardDiscoverView = OnboardingView.instanceFromNib()
         onboardDiscoverView.backgroundImageView.image = App.Style.Onboard.Discover.backgroundImage
         onboardDiscoverView.actionBtn.setTitle(App.Style.Onboard.Discover.actionBtnTitle, for: .normal)
-        
-        
-//        let recommendedSpotView = RecommendedSpotView.instanceFromNib()
-//        onboardDiscoverView.scrollView.contentSize = CGSize(width: App.screenWidth, height: App.screenHeight * 2)
-//
-
-//        recommendedSpotView.frame.origin = CGPoint(x: 0, y: App.screenHeight)
-//        recommendedSpotView.backgroundColor = UIColor.white
-//        print(recommendedSpotView.frame)
-//        onboardDiscoverView.scrollView.addSubview(recommendedSpotView)
-//        
-        
-        
+        onboardDiscoverView.customDelegate = self
         
         let onboardShareView = OnboardingView.instanceFromNib()
         onboardShareView.backgroundImageView.image = App.Style.Onboard.Share.backgroundImage
         onboardShareView.actionBtn.setTitle(App.Style.Onboard.Share.actionBtnTitle, for: .normal)
+        onboardShareView.customDelegate = self
         
         let onboardListenView = OnboardingView.instanceFromNib()
         onboardListenView.backgroundImageView.image = App.Style.Onboard.Listen.backgroundImage
         onboardListenView.actionBtn.setTitle(App.Style.Onboard.Listen.actionBtnTitle, for: .normal)
+        onboardListenView.customDelegate = self
         
         scenes.append(onboardDiscoverView)
         scenes.append(onboardShareView)
@@ -60,18 +57,45 @@ class OnboardingViewController: GradientBackgroundAnimatedViewController {
         }
         self.pagingControl.numberOfPages = self.scenes.count
         self.scrollView.contentSize = CGSize(width: App.screenWidth * CGFloat(self.scenes.count), height: App.screenHeight)
-        
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
 }
 
-extension OnboardingViewController: UIScrollViewDelegate{
+extension OnboardingViewController: UIScrollViewDelegate {
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         let index = Int(round(scrollView.contentOffset.x / App.screenWidth))
         self.pagingControl.currentPage = index
+    }
+}
+
+extension OnboardingViewController: OnboardingViewDelegate {
+    
+    func onActionBtnTapped(_ sender: UIButton) {
+        if sender.titleLabel?.text == App.Style.Onboard.Discover.actionBtnTitle {
+            print("Discover")
+            UIView.animate(withDuration: 0.3, delay: 0, options: .curveEaseInOut, animations: {
+                self.scrollView.contentOffset.x = self.scrollView.contentOffset.x + App.screenWidth
+            })
+        } else if sender.titleLabel?.text == App.Style.Onboard.Share.actionBtnTitle {
+            print("Share")
+            UIView.animate(withDuration: 0.3, delay: 0, options: .curveEaseInOut, animations: {
+                self.scrollView.contentOffset.x = self.scrollView.contentOffset.x + App.screenWidth
+            })
+        } else {
+            if let key = UserDefaults.standard.object(forKey: App.UserDefaultKey.firstTimeUser){
+                print(key)
+            } else {
+                print("Setting key to false")
+                UserDefaults.standard.set(false, forKey: App.UserDefaultKey.firstTimeUser)
+            }
+
+            dismiss(animated: true, completion: {
+                print("Dismissed onboarding view controller")
+                self.onboardingDelegate?.homeInit()
+            })
+        }
     }
 }
