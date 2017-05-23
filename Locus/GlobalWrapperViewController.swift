@@ -37,8 +37,6 @@ class GlobalWrapperViewController: UIViewController {
         super.viewDidLoad()
     }
 
-    
-    
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         self.addMusicConatainerView.frame = CGRect(x: 0, y: App.screenHeight, width: App.screenWidth, height: App.screenHeight)
@@ -143,6 +141,9 @@ extension GlobalWrapperViewController: CustomGlobalTabBarControllerDelegate{
 extension GlobalWrapperViewController: InitViewControllerDelegate{
     func homeInit() {
 //        self.tunesDetailVC?.initPlayer()
+    }
+    func onboardInit() {
+        
     }
 }
 

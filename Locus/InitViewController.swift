@@ -15,12 +15,10 @@ protocol InitViewControllerDelegate: class {
 
 class InitViewController: UIViewController {
     
-    
     //container view
     @IBOutlet weak var loginContainerView: UIView!
     @IBOutlet weak var homeContainerView: UIView!
     @IBOutlet weak var placeholderContainerView: UIView!
-    
     
     //embed view controller
     var loginViewController: LogInViewController?{
@@ -57,11 +55,11 @@ class InitViewController: UIViewController {
             if let session = session{
                 self.view.bringSubview(toFront: self.placeholderContainerView)
                 User.register(ParseAuthDelegate(), forAuthType: "spotify")
-                if let token = session.accessToken{
+                if let token = session.accessToken {
                     let authData: [String: String] = ["access_token": token, "id" : session.canonicalUsername]
                     User.logInWithAuthType(inBackground: "spotify", authData: authData).continue({ (task) -> AnyObject? in
                         //user is logged in
-                        //from here you can use User.current() because it's logined
+                        //can use User.current() here bc it's logged in
                         
                         //fetch recently visisted spot
                         guard let currentUser = User.current() else{
@@ -89,7 +87,7 @@ class InitViewController: UIViewController {
                 }else{
                     print("token invalid")
                 }
-            }else{
+            } else {
                 print("GO TO LOGIN PAGE")
                 self.statusBarShouldHidden = true
                 self.view.bringSubview(toFront: self.loginContainerView)
@@ -110,7 +108,6 @@ class InitViewController: UIViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let iden = segue.identifier{
@@ -139,11 +136,34 @@ class InitViewController: UIViewController {
 }
 
 extension InitViewController: LogInViewControllerDelegate {
+    
+    //Called after logging in with spotify
     func finishedLogin() {
-        //bring home to the front
+        //Bring either home or onboarding to the front
         self.statusBarShouldHidden = false
         self.statusBarStyle = .default
+        if let key = UserDefaults.standard.object(forKey: App.UserDefaultKey.firstTimeUser){
+            print(key)
+            self.delegate?.homeInit()
+            self.view.bringSubview(toFront: self.homeContainerView)
+        } else {
+            print("DOESNT EXIST")
+            if let onboardingVC = App.mainStoryBoard.instantiateViewController(withIdentifier: App.StoryboardIden.onboardViewController) as? OnboardingViewController {
+                onboardingVC.onboardingDelegate = self
+//                self.navigationController?.pushViewController(onboardingVC, animated: true)
+                present(onboardingVC, animated: true, completion: {
+                    print("Finished Presenting")
+                })
+            }
+        }
+    }
+}
+
+extension InitViewController: OnboardingViewControllerDelegate {
+    func homeInit() {
+        print("Called homeInit")
         self.delegate?.homeInit()
         self.view.bringSubview(toFront: self.homeContainerView)
     }
 }
+

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12120" systemVersion="16D32" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="28N-RU-fl1">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12120" systemVersion="16E195" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="28N-RU-fl1">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -218,7 +218,7 @@
         <!--Onboarding View Controller-->
         <scene sceneID="j96-X4-vYd">
             <objects>
-                <viewController id="shs-cH-kD0" customClass="OnboardingViewController" customModule="Locus" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="OnboardingViewController" id="shs-cH-kD0" customClass="OnboardingViewController" customModule="Locus" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="uYX-Tv-PH1"/>
                         <viewControllerLayoutGuide type="bottom" id="d3Q-Dj-BRS"/>
@@ -296,7 +296,7 @@
         <!--Home View Controller-->
         <scene sceneID="zAU-eE-yVd">
             <objects>
-                <viewController automaticallyAdjustsScrollViewInsets="NO" id="CmQ-Ih-iD8" customClass="HomeViewController" customModule="Locus" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="HomeViewController" automaticallyAdjustsScrollViewInsets="NO" useStoryboardIdentifierAsRestorationIdentifier="YES" id="CmQ-Ih-iD8" customClass="HomeViewController" customModule="Locus" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="3YM-OW-vuI"/>
                         <viewControllerLayoutGuide type="bottom" id="yUk-L1-7vV"/>

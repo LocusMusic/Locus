@@ -80,7 +80,7 @@ struct App{
             }
         }
         
-        struct SliderMenue{
+        struct SliderMenue {
             static let activeColor = App.backColor
             static let deactiveColor = App.grayColor
         }
@@ -104,6 +104,7 @@ struct App{
     
     struct UserDefaultKey{
         static let queue = "queue"
+        static let firstTimeUser = "FirstTimeUser"
     }
     
     struct LocalNotification{
@@ -146,7 +147,7 @@ struct App{
             static let spotKey = "spot" //tracks key for the user info dictionary
         }
         
-        struct StatusBarStyleUpdate{
+        struct StatusBarStyleUpdate {
             static let name = Notification.Name("StatusBarStyleUpdate")
             static let styleKey = "style" //tracks key for the user info dictionary
         }
@@ -157,6 +158,8 @@ struct App{
     }
     
     struct StoryboardIden {
+        static let onboardViewController = "OnboardingViewController"
+        static let homeViewController = "HomeViewController"
         static let overviewViewController = "OverviewViewController"
         static let playingViewController = "PlayingViewController"
         static let listenerViewController = "ListenerViewController"
@@ -171,7 +174,6 @@ struct App{
         static let spotsSearchViewController = "SpotsSearchViewController"
         static let playlistsSearchViewController = "PlaylistsSearchViewController"
     }
-    
     
     struct StreammingStoryboradIden{
         static let connectedSpotViewController = "ConnectedSpotViewController"
@@ -189,7 +191,6 @@ struct App{
     struct NotificationStoryboardIden{
         static let notificationViewController = "NotificationViewController"
         static let notificationCenterNavigationController = "NotificationCenterNavigationController"
-
     }
     
     struct SegueIden {
@@ -207,7 +208,7 @@ struct App{
         static let spotEmbedSegueIden = "SpotEmbedSegueIden"
     }
     
-    struct PostInfoKey{
+    struct PostInfoKey {
         static let spot = "spot"
         static let user = "user"
         static let playlist = "playlistId"

@@ -98,7 +98,6 @@
 		9892765A1EBC3160009C1DD0 /* PlaylistTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 989276581EBC3160009C1DD0 /* PlaylistTableViewCell.xib */; };
 		9892EED81EA9AA7F00AD44B7 /* URLRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9892EED71EA9AA7F00AD44B7 /* URLRequest.swift */; };
 		9892EEDB1EAB42FA00AD44B7 /* FoursquareClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9892EEDA1EAB42FA00AD44B7 /* FoursquareClient.swift */; };
-		9892EEDE1EAB437C00AD44B7 /* CreateSpotViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9892EEDD1EAB437C00AD44B7 /* CreateSpotViewController.swift */; };
 		9892EEE01EAB43AF00AD44B7 /* Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9892EEDF1EAB43AF00AD44B7 /* Location.swift */; };
 		989CB85D1ED0BC590087D9D5 /* ParseAuthDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 989CB85C1ED0BC590087D9D5 /* ParseAuthDelegate.swift */; };
 		989CB85F1ED0F6C30087D9D5 /* Installation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 989CB85E1ED0F6C30087D9D5 /* Installation.swift */; };
@@ -253,7 +252,6 @@
 		989276581EBC3160009C1DD0 /* PlaylistTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PlaylistTableViewCell.xib; sourceTree = "<group>"; };
 		9892EED71EA9AA7F00AD44B7 /* URLRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = URLRequest.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		9892EEDA1EAB42FA00AD44B7 /* FoursquareClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = FoursquareClient.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
-		9892EEDD1EAB437C00AD44B7 /* CreateSpotViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = CreateSpotViewController.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		9892EEDF1EAB43AF00AD44B7 /* Location.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = Location.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		989CB85C1ED0BC590087D9D5 /* ParseAuthDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = ParseAuthDelegate.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		989CB85E1ED0F6C30087D9D5 /* Installation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = Installation.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
@@ -638,7 +636,6 @@
 				98E5EBA11EAE63E300B0D3D6 /* OnboardingView */,
 				98E5EBA61EAE647700B0D3D6 /* RecommendedSpotView */,
 				98E5EB9B1EAD85AB00B0D3D6 /* OnboardingViewController.swift */,
-				9892EEDD1EAB437C00AD44B7 /* CreateSpotViewController.swift */,
 			);
 			name = "Introduction Scenes";
 			sourceTree = "<group>";
@@ -1101,7 +1098,6 @@
 				98D4944D1EC66A2D00B4AC63 /* backupSpotpicker.swift in Sources */,
 				28974A881EC422CC0037704A /* SearchEmbedViewController.swift in Sources */,
 				28974A901EC422CC0037704A /* PlaylistsSearchViewController.swift in Sources */,
-				9892EEDE1EAB437C00AD44B7 /* CreateSpotViewController.swift in Sources */,
 				98EFBE1D1EA29E350050675D /* App.swift in Sources */,
 				9833CB041EB1B457009997E9 /* UITableViewExtension.swift in Sources */,
 				98DD952B1EB5102B007973D6 /* ListenerViewController-backup.swift in Sources */,
