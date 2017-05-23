@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12120" systemVersion="16E195" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="6dy-8U-3Ef">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12120" systemVersion="16D32" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="6dy-8U-3Ef">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -22,30 +22,47 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <searchBar contentMode="redraw" searchBarStyle="minimal" text="" translatesAutoresizingMaskIntoConstraints="NO" id="gOV-Az-EFS">
-                                <rect key="frame" x="16" y="72" width="343" height="44"/>
-                                <color key="barTintColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <textInputTraits key="textInputTraits"/>
-                            </searchBar>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="70" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="fVa-5T-MfL">
-                                <rect key="frame" x="0.0" y="144" width="375" height="523"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="KJn-ab-zPD">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="74"/>
+                                <subviews>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="cDg-CR-ua1">
+                                        <rect key="frame" x="10" y="30" width="355" height="44"/>
+                                        <subviews>
+                                            <searchBar contentMode="redraw" searchBarStyle="minimal" translatesAutoresizingMaskIntoConstraints="NO" id="o9f-5R-02W">
+                                                <rect key="frame" x="0.0" y="0.0" width="355" height="44"/>
+                                                <color key="barTintColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <textInputTraits key="textInputTraits"/>
+                                            </searchBar>
+                                        </subviews>
+                                    </stackView>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="cDg-CR-ua1" secondAttribute="trailing" constant="10" id="KcI-ah-dgG"/>
+                                    <constraint firstItem="cDg-CR-ua1" firstAttribute="top" secondItem="KJn-ab-zPD" secondAttribute="top" constant="30" id="i4x-X1-2eo"/>
+                                    <constraint firstAttribute="bottom" secondItem="cDg-CR-ua1" secondAttribute="bottom" id="zCC-xU-i7x"/>
+                                    <constraint firstItem="cDg-CR-ua1" firstAttribute="leading" secondItem="KJn-ab-zPD" secondAttribute="leading" constant="10" id="zwp-nf-YZM"/>
+                                </constraints>
+                            </view>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="70" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="fVa-5T-MfL">
+                                <rect key="frame" x="0.0" y="74" width="375" height="593"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </tableView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="4d7-Ch-Acb" firstAttribute="top" secondItem="fVa-5T-MfL" secondAttribute="bottom" id="0XO-dt-kQi"/>
-                            <constraint firstItem="fVa-5T-MfL" firstAttribute="top" secondItem="gOV-Az-EFS" secondAttribute="bottom" constant="28" id="4sw-GV-dZO"/>
-                            <constraint firstItem="fVa-5T-MfL" firstAttribute="leading" secondItem="hdH-Qa-n1Y" secondAttribute="leadingMargin" constant="-16" id="GVk-ND-ghU"/>
-                            <constraint firstAttribute="leadingMargin" secondItem="gOV-Az-EFS" secondAttribute="leading" id="HeV-tU-xhx"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="gOV-Az-EFS" secondAttribute="trailing" id="Wqj-w7-miL"/>
-                            <constraint firstItem="gOV-Az-EFS" firstAttribute="top" secondItem="73v-pB-GrH" secondAttribute="bottom" constant="8" id="wsp-UN-Wcp"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="fVa-5T-MfL" secondAttribute="trailing" constant="-16" id="xJc-es-vNZ"/>
+                            <constraint firstAttribute="trailing" secondItem="fVa-5T-MfL" secondAttribute="trailing" id="IAR-Ua-Qq5"/>
+                            <constraint firstItem="4d7-Ch-Acb" firstAttribute="top" secondItem="fVa-5T-MfL" secondAttribute="bottom" id="Jx3-rt-awg"/>
+                            <constraint firstItem="KJn-ab-zPD" firstAttribute="leading" secondItem="hdH-Qa-n1Y" secondAttribute="leading" id="ap3-qu-aUd"/>
+                            <constraint firstItem="KJn-ab-zPD" firstAttribute="top" secondItem="hdH-Qa-n1Y" secondAttribute="top" id="cZt-JM-OBN"/>
+                            <constraint firstItem="fVa-5T-MfL" firstAttribute="leading" secondItem="hdH-Qa-n1Y" secondAttribute="leading" id="jJS-gA-uKr"/>
+                            <constraint firstAttribute="trailing" secondItem="KJn-ab-zPD" secondAttribute="trailing" id="nC2-vc-WkU"/>
+                            <constraint firstItem="fVa-5T-MfL" firstAttribute="top" secondItem="KJn-ab-zPD" secondAttribute="bottom" id="pcv-mP-g6n"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="L2E-Ac-taT"/>
                     <connections>
-                        <outlet property="searchBar" destination="gOV-Az-EFS" id="8nV-4u-jhr"/>
+                        <outlet property="searchBar" destination="o9f-5R-02W" id="zJQ-3G-b7F"/>
                         <outlet property="tableView" destination="fVa-5T-MfL" id="zOH-aT-dAI"/>
                     </connections>
                 </viewController>
@@ -373,7 +390,7 @@
         <!--Navigation Controller-->
         <scene sceneID="9P7-Xb-CJw">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="6dy-8U-3Ef" sceneMemberID="viewController">
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" navigationBarHidden="YES" id="6dy-8U-3Ef" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="gXr-gt-B5F">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>

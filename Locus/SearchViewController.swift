@@ -13,10 +13,6 @@ fileprivate let nibbName = "SearchTableViewCell"
 
 class SearchViewController: UIViewController {
     
-    lazy var childControllers: [UIViewController] = {
-        let overViewVC = App.mainStoryBoard.instantiateViewController(withIdentifier: App.StoryboardIden.overviewViewController)
-        return [overViewVC]
-    }()
     
     @IBOutlet weak var searchBar: UISearchBar!{
         didSet{
@@ -47,10 +43,7 @@ class SearchViewController: UIViewController {
     var data : [TuneSpot]? {
         didSet {
             DispatchQueue.main.async {
-                if let table = self.tableView {
-                    print("RELOADING DATA")
-                    table.reloadData()
-                }
+                self.tableView?.reloadData()
             }
         }
     }
@@ -59,7 +52,6 @@ class SearchViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        print("SEARCHVIEW DID LOAD")
     }
     
     override func viewDidLayoutSubviews() {
@@ -67,9 +59,12 @@ class SearchViewController: UIViewController {
         self.adjustSearchBarAppearance()
     }
     
+
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
+        self.searchBar.becomeFirstResponder()
     }
+
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -81,6 +76,7 @@ class SearchViewController: UIViewController {
         self.searchBarTextField.layer.cornerRadius = self.searchBarTextField.frame.size.height / 2
         self.searchBarTextField.clipsToBounds = true
         self.searchBarTextField.font = font
+        self.searchBarTextField.layoutIfNeeded()
     }
     
 }
@@ -90,23 +86,19 @@ extension SearchViewController: UISearchBarDelegate {
     
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         searchBar.showsCancelButton = false
-        print("Am I here Search Button Clicked - SearchViewController")
         searchBar.resignFirstResponder()
     }
     
     func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
-        print("Am I here Begin Editing - SearchViewController")
         searchBar.showsCancelButton = true
     }
     
     func searchBarTextDidEndEditing(_ searchBar: UISearchBar) {
-        print("Am I here End Editing - SearchViewController")
         searchBar.showsCancelButton = false
     }
     
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
         searchBar.resignFirstResponder()
-        print("Am I here Search Bar Cancel Button - SearchViewController")
         self.dismiss(animated: false) {
             print("done dismissing")
         }
@@ -141,7 +133,6 @@ extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: reuseIden, for: indexPath) as! SearchTableViewCell
-        print("Setting data")
         cell.data = self.data?[indexPath.row]
         return cell
     }
@@ -150,9 +141,10 @@ extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
         //TODO: SAFE UNWRAPPING 
         if let spotVC = App.spotStoryBoard.instantiateViewController(withIdentifier: App.SpotStoryboardIden.spotViewController) as? SpotViewController {
             spotVC.spot = self.data?[indexPath.row]
-            self.present(spotVC, animated: true) {
-                print("done")
-            }
+            self.searchBar.resignFirstResponder()
+            self.dismiss(animated: true, completion: {
+                
+            })
         }
     }
     

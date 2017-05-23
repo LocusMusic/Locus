@@ -117,34 +117,12 @@ class HomeViewController: UIViewController {
 
 
 extension HomeViewController: UISearchBarDelegate{
-    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
-        print("Am I here - Search Clicked - HomeViewController")
-        searchBar.showsCancelButton = false
-        searchBar.resignFirstResponder()
-    }
-    
-    func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
-        print("Am I here - Begin Editing - HomeViewController")
+    func searchBarShouldBeginEditing(_ searchBar: UISearchBar) -> Bool {
         if let searchVC = App.searchStoryBoard.instantiateViewController(withIdentifier: App.SearchStoryboardIden.searchViewController) as? SearchViewController {
-            self.searchBar.delegate = searchVC
-            self.present(searchVC, animated: false, completion: {
-                print("Done presenting")
-                searchVC.searchBar.becomeFirstResponder()
-                searchVC.searchBar.showsCancelButton = true
-            })
+            self.present(searchVC, animated: false, completion: nil)
         }
+        return false
     }
-    
-    func searchBarTextDidEndEditing(_ searchBar: UISearchBar) {
-        print("Am I here - Did End Editing - HomeViewController")
-        searchBar.showsCancelButton = false
-    }
-    
-    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
-        print("Am I here - Cancel Button C - HomeViewController")
-        searchBar.resignFirstResponder()
-    }
-    
 }
 
 
