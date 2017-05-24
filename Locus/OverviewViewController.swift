@@ -212,7 +212,6 @@ extension OverviewViewController: RecentlyVisitedCollectionViewCellDelegate, Spo
             spotVC.spot = spot
             self.navigationController?.pushViewController(spotVC, animated: true)
         }
-        
     }
 }
 

@@ -139,31 +139,42 @@ extension InitViewController: LogInViewControllerDelegate {
     
     //Called after logging in with spotify
     func finishedLogin() {
-        //Bring either home or onboarding to the front
         self.statusBarShouldHidden = false
         self.statusBarStyle = .default
-        if let key = UserDefaults.standard.object(forKey: App.UserDefaultKey.firstTimeUser){
+        //Transition to home screen (not a first time user)
+        if let key = UserDefaults.standard.object(forKey: App.UserDefaultKey.firstTimeUser) {
             print(key)
-            self.delegate?.homeInit()
-            self.view.bringSubview(toFront: self.homeContainerView)
-        } else {
-            print("DOESNT EXIST")
+            TuneSpot.getNearbyPopularTuneSpot { (spots) in
+                if let spots = spots{
+                    App.delegate?.popularTuneSpot = spots
+                    self.delegate?.homeInit()
+                    self.view.bringSubview(toFront: self.homeContainerView)
+                }
+            }
+        }
+        else { //Transition to onboarding screen (first time user)
+            print("FIRST TIME USER --> GO TO ONBOARDING")
             if let onboardingVC = App.mainStoryBoard.instantiateViewController(withIdentifier: App.StoryboardIden.onboardViewController) as? OnboardingViewController {
                 onboardingVC.onboardingDelegate = self
-//                self.navigationController?.pushViewController(onboardingVC, animated: true)
                 present(onboardingVC, animated: true, completion: {
-                    print("Finished Presenting")
+                    print("Finished Presenting ONBOARDING VIEW")
                 })
             }
         }
     }
+    
 }
 
 extension InitViewController: OnboardingViewControllerDelegate {
     func homeInit() {
         print("Called homeInit")
-        self.delegate?.homeInit()
-        self.view.bringSubview(toFront: self.homeContainerView)
+        TuneSpot.getNearbyPopularTuneSpot { (spots) in
+            if let spots = spots{
+                App.delegate?.popularTuneSpot = spots
+                self.delegate?.homeInit()
+                self.view.bringSubview(toFront: self.homeContainerView)
+            }
+        }
     }
 }
 
