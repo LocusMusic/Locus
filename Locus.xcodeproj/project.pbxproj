@@ -388,13 +388,13 @@
 			name = RecentlyVisitedCollectionViewCell;
 			sourceTree = "<group>";
 		};
-		981A6D461EB0559C0045E2FD /* Reusableview For collectionView */ = {
+		981A6D461EB0559C0045E2FD /* Reusableview For CollectionView */ = {
 			isa = PBXGroup;
 			children = (
 				981A6D421EB054AF0045E2FD /* CollectionHeaderReusableView.swift */,
 				981A6D431EB054AF0045E2FD /* CollectionHeaderReusableView.xib */,
 			);
-			name = "Reusableview For collectionView";
+			name = "Reusableview For CollectionView";
 			sourceTree = "<group>";
 		};
 		981A6D471EB06F380045E2FD /* Home */ = {
@@ -415,13 +415,13 @@
 			name = SmartGenre;
 			sourceTree = "<group>";
 		};
-		983DF0E91EC9991E00356315 /* ReusableViewForTable */ = {
+		983DF0E91EC9991E00356315 /* ReusableViewHeader For TableView */ = {
 			isa = PBXGroup;
 			children = (
 				983DF0EA1EC9993E00356315 /* ReusableTableSectionFooterView */,
 				98D494491EC6612100B4AC63 /* ReusableTableSectionHeaderView */,
 			);
-			name = ReusableViewForTable;
+			name = "ReusableViewHeader For TableView";
 			sourceTree = "<group>";
 		};
 		983DF0EA1EC9993E00356315 /* ReusableTableSectionFooterView */ = {
@@ -713,7 +713,8 @@
 				9844ADA41ECAECDF000A3A44 /* SpotStoryboard */,
 				98D4944E1EC6ADA300B4AC63 /* StreamingTab */,
 				985425521EC520930027979A /* PlaceholderViewController.swift */,
-				983DF0E91EC9991E00356315 /* ReusableViewForTable */,
+				983DF0E91EC9991E00356315 /* ReusableViewHeader For TableView */,
+				981A6D461EB0559C0045E2FD /* Reusableview For CollectionView */,
 				98588CB91EB538390035C355 /* ListenerPage */,
 				984B05E21EBB91670098869B /* GlobalWrapperViewController.swift */,
 				9891C46E1EBB17A300F4B440 /* AddMusicToSpot */,
@@ -722,7 +723,6 @@
 				98EFBE3A1EA2EE250050675D /* Model */,
 				98EFBE351EA2D8990050675D /* Detail */,
 				988E417C1EB99DFE0083A08A /* PlayView */,
-				981A6D461EB0559C0045E2FD /* Reusableview For collectionView */,
 				9891C45B1EBABC7D00F4B440 /* MapView */,
 				98588CBF1EB55B340035C355 /* ProfilePage */,
 				98588CD01EB564980035C355 /* PlaylistCollectionCell */,

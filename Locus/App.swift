@@ -124,6 +124,7 @@ struct App{
             static let popularSpotShouldUpdate = Notification.Name("popularSpotShouldUpdate")
             static let recentlyVisitedShouldUpdate = Notification.Name("recentlyVisitedShouldUpdate")
             static let queueShouldUpdate = Notification.Name("queueShouldUpdate")
+            static let playerViewShouldStop = Notification.Name("playerViewShouldStop")
         }
         
         struct finishSharingPlaylist{
@@ -225,15 +226,19 @@ struct App{
     }
     
     static func playTracks(trackList: [Track], activeTrackIndex: Int){
-        let userInfo: [String: Any] = [
-            App.LocalNotification.PlayViewShouldShow.tracksKey: trackList,
-            App.LocalNotification.PlayViewShouldShow.activeTrackIndex: activeTrackIndex
-        ]
+        print("the active traack index is \(activeTrackIndex)")
+        if activeTrackIndex >= 0{
+            let userInfo: [String: Any] = [
+                App.LocalNotification.PlayViewShouldShow.tracksKey: trackList,
+                App.LocalNotification.PlayViewShouldShow.activeTrackIndex: activeTrackIndex
+            ]
+            
+            App.delegate?.queue =  Array(trackList[activeTrackIndex ... trackList.count - 1])
+            App.savingQueueToDisk()
+            App.postLocalNotification(withName: App.LocalNotification.Name.queueShouldUpdate)
+            App.postLocalNotification(withName: App.LocalNotification.PlayViewShouldShow.name, object: self, userInfo: userInfo)
+        }
         
-        App.delegate?.queue =  Array(trackList[activeTrackIndex ... trackList.count - 1])
-        App.savingQueueToDisk()
-        App.postLocalNotification(withName: App.LocalNotification.Name.queueShouldUpdate)
-        App.postLocalNotification(withName: App.LocalNotification.PlayViewShouldShow.name, object: self, userInfo: userInfo)
     }
     
     

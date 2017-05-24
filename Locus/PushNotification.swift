@@ -22,6 +22,11 @@ enum NotificationType: Int{
     case playlistPostLike //user favor a playlist post
 }
 
+enum ReadStatus{
+    case read
+    case unread
+}
+
 
 class PushNotification: PFObject {
     
@@ -191,14 +196,20 @@ class PushNotification: PFObject {
         })
     }
     
-    class func fetchUnread(completionHandler: @escaping ([PushNotification]?) -> Void){
+    class func fetch(readStatus: ReadStatus, completionHandler: @escaping ([PushNotification]?) -> Void){
         guard let currentUserId = User.current()?.objectId else{
             return
         }
         let query = PFQuery(className: ClassName)
         query.includeKey(SenderKey)
         query.whereKey(ReceiverIdKey, equalTo: currentUserId)
-        query.whereKey(ReadStatusKey, equalTo: 0)
+        
+        if readStatus == .read{
+            query.whereKey(ReadStatusKey, equalTo: 1)
+        }else{
+            query.whereKey(ReadStatusKey, equalTo: 0)
+        }
+        
         query.findObjectsInBackground { (notifications , error) in
             if let notifications = notifications as? [PushNotification]{
                 completionHandler(notifications)
@@ -208,8 +219,8 @@ class PushNotification: PFObject {
         }
     }
     
-    class func updateAllUnreadToRead(){
-        PushNotification.fetchUnread { (pushNotifications) in
+    class func updateAllUnreadToRead( completionHandler: @escaping PFBooleanResultBlock){
+        PushNotification.fetch(readStatus: .unread) { (pushNotifications) in
             guard let pushNotifications = pushNotifications else{
                 return
             }
@@ -218,9 +229,10 @@ class PushNotification: PFObject {
                 notification[ReadStatusKey] = 1
                 return notification
             })
-            PFObject.saveAll(inBackground: updatedNotifications)
+            PFObject.saveAll(inBackground: updatedNotifications, block: completionHandler)
         }
     }
+   
     
 }
 
