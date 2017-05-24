@@ -125,6 +125,9 @@ struct App{
             static let recentlyVisitedShouldUpdate = Notification.Name("recentlyVisitedShouldUpdate")
             static let queueShouldUpdate = Notification.Name("queueShouldUpdate")
             static let playerViewShouldStop = Notification.Name("playerViewShouldStop")
+            static let listenerListShouldBecomeActive = Notification.Name("listenerListShouldBecomeActive")
+            static let topPlaylistListShouldBecomeActive = Notification.Name("topPlaylistListShouldBecomeActive")
+
         }
         
         struct finishSharingPlaylist{

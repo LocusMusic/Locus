@@ -447,6 +447,7 @@
 				9844ADA71ECAED65000A3A44 /* Spot.storyboard */,
 				989CB8691ED14CCE0087D9D5 /* SpotViewController.swift */,
 				989CB86B1ED1560A0087D9D5 /* SpotEmbedPagingViewController.swift */,
+				9844ADA91ECAEDE2000A3A44 /* PlaylistDetailViewController.swift */,
 				989CB86F1ED160390087D9D5 /* tabs */,
 			);
 			name = SpotStoryboard;
@@ -455,7 +456,6 @@
 		9844ADAB1ECAEDF7000A3A44 /* PlaylistDetail */ = {
 			isa = PBXGroup;
 			children = (
-				9844ADA91ECAEDE2000A3A44 /* PlaylistDetailViewController.swift */,
 			);
 			name = PlaylistDetail;
 			sourceTree = "<group>";

@@ -306,6 +306,7 @@
                                                                                         </state>
                                                                                         <connections>
                                                                                             <action selector="queueBtnTapped:" destination="FTE-9c-4Ds" eventType="touchUpInside" id="nwT-la-nVB"/>
+                                                                                            <action selector="topPlaylistBtnTapped:" destination="dC3-69-QlU" eventType="touchDown" id="JT2-Xx-0ua"/>
                                                                                         </connections>
                                                                                     </button>
                                                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kh0-9d-FiA">
@@ -315,6 +316,7 @@
                                                                                             <color key="titleColor" red="0.54901960780000003" green="0.5568627451" blue="0.58039215690000001" alpha="0.80000000000000004" colorSpace="custom" customColorSpace="sRGB"/>
                                                                                         </state>
                                                                                         <connections>
+                                                                                            <action selector="listenerBtnTapped:" destination="dC3-69-QlU" eventType="touchDown" id="FVe-lA-jWr"/>
                                                                                             <action selector="spotBtnTapped:" destination="FTE-9c-4Ds" eventType="touchUpInside" id="oHg-ew-elk"/>
                                                                                         </connections>
                                                                                     </button>

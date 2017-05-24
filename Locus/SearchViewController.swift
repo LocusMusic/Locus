@@ -52,6 +52,13 @@ class SearchViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        TuneSpot.getNearByTuneSpots { (tuneSpots) in
+            if let spots = tuneSpots {
+                self.data = spots
+            } else {
+                self.data = nil
+            }
+        }
     }
     
     override func viewDidLayoutSubviews() {

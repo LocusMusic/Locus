@@ -51,7 +51,22 @@ class SpotEmbedPagingViewController: UIPageViewController {
         self.dataSource = self
         self.delegate = self
         self.setTopPlaylistPageActive()
+        NotificationCenter.default.addObserver(self, selector: #selector(self.topPlaylistListShouldBecomeActive(_:)), name: App.LocalNotification.Name.topPlaylistListShouldBecomeActive, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(self.listenerListShouldBecomeActive(_:)), name: App.LocalNotification.Name.listenerListShouldBecomeActive, object: nil)
+
+        
+        
     }
+    
+    func topPlaylistListShouldBecomeActive(_ notification: Notification){
+        self.setTopPlaylistPageActive()
+    }
+    
+    func listenerListShouldBecomeActive(_ notification: Notification){
+        self.setListenerPageActive()
+    }
+    
+
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()

@@ -34,6 +34,20 @@ class SpotViewController: UIViewController {
     
     var spot: TuneSpot!
     
+    @IBAction func topPlaylistBtnTapped(_ sender: UIButton) {
+        self.setTopPostListBtnActive()
+        sender.animateBounceView()
+        App.postLocalNotification(withName: App.LocalNotification.Name.topPlaylistListShouldBecomeActive)
+    }
+    
+    
+    @IBAction func listenerBtnTapped(_ sender: UIButton) {
+        self.setListenerBtnActive()
+        sender.animateBounceView()
+        App.postLocalNotification(withName: App.LocalNotification.Name.listenerListShouldBecomeActive)
+
+    }
+    
     @IBOutlet weak var topPlaylistPostBtn: UIButton!
     
     @IBOutlet weak var listenerBtn: UIButton!
