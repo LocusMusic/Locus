@@ -22,6 +22,7 @@ class ReusableTableSectionHeaderView: UIView {
     
     class func instanceFromNib(withTitle title: String) -> ReusableTableSectionHeaderView {
         let view = UINib(nibName: xibName, bundle: nil).instantiate(withOwner: nil, options: nil)[0] as! ReusableTableSectionHeaderView
+        view.headerLabel.text = ""
         view.headerLabel.text = title
         return view
     }

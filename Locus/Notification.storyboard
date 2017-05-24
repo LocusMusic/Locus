@@ -22,16 +22,26 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="cm6-sG-nsq">
-                                <rect key="frame" x="0.0" y="64" width="375" height="603"/>
+                                <rect key="frame" x="0.0" y="65" width="375" height="602"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </tableView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Lul-oj-8ml" userLabel="Sparator View">
+                                <rect key="frame" x="0.0" y="64" width="375" height="1"/>
+                                <color key="backgroundColor" red="0.1960784314" green="0.20000000000000001" blue="0.20784313730000001" alpha="0.080000000000000002" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="1" id="4bi-iy-LdT"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="cm6-sG-nsq" firstAttribute="leading" secondItem="6Bo-mt-pzu" secondAttribute="leading" id="5Nj-Wu-xRf"/>
-                            <constraint firstItem="cm6-sG-nsq" firstAttribute="top" secondItem="Ku5-jB-uLU" secondAttribute="bottom" id="apZ-8p-blA"/>
+                            <constraint firstItem="Lul-oj-8ml" firstAttribute="leading" secondItem="6Bo-mt-pzu" secondAttribute="leading" id="7SP-o9-xH6"/>
+                            <constraint firstItem="Lul-oj-8ml" firstAttribute="top" secondItem="Ku5-jB-uLU" secondAttribute="bottom" id="Hfn-ap-egT"/>
                             <constraint firstItem="tJw-1D-4bA" firstAttribute="top" secondItem="cm6-sG-nsq" secondAttribute="bottom" id="bLl-5U-7mh"/>
                             <constraint firstAttribute="trailing" secondItem="cm6-sG-nsq" secondAttribute="trailing" id="qh3-8R-chL"/>
+                            <constraint firstItem="cm6-sG-nsq" firstAttribute="top" secondItem="Lul-oj-8ml" secondAttribute="bottom" id="w7g-kD-zc8"/>
+                            <constraint firstAttribute="trailing" secondItem="Lul-oj-8ml" secondAttribute="trailing" id="xRj-cV-mhp"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Notification" id="ld7-aY-StZ"/>

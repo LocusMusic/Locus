@@ -47,15 +47,17 @@ class GlobalTabBarController: UITabBarController {
     }
     
     func playViewShouldShow(_ notification: Notification){
-        guard let trackList = notification.userInfo?[App.LocalNotification.PlayViewShouldShow.tracksKey] as? [Track] else{
-            print("track list failed")
-            return
-        }
-
         guard let activeTrackIndex = notification.userInfo?[App.LocalNotification.PlayViewShouldShow.activeTrackIndex] as? Int else{
             print("active track index failed")
             return
         }
+        
+        guard let trackList = notification.userInfo?[App.LocalNotification.PlayViewShouldShow.tracksKey] as? [Track] else{
+            print("track list failed")
+            return
+        }
+        
+
         
         self.playView.trackList = trackList
         self.playView.activeTrackIndex = activeTrackIndex
@@ -99,7 +101,6 @@ class GlobalTabBarController: UITabBarController {
             currentInstallation.badge = 0
             currentInstallation.saveInBackground()
         }
-        PushNotification.updateAllUnreadToRead()
     }
 }
 

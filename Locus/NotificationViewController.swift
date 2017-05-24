@@ -13,6 +13,9 @@ import Parse
 fileprivate let reuseIden = "NotificationTableViewCell"
 fileprivate let cellNibName = "NotificationTableViewCell"
 
+fileprivate let unreadNotificationHeaderTitle = "NEW"
+fileprivate let readNotificationHeaderTitle = "HISTORY"
+fileprivate let sectionHeaderHeight: CGFloat = 60.0
 
 class NotificationViewController: UIViewController {
     
@@ -35,17 +38,7 @@ class NotificationViewController: UIViewController {
         return refreshControl
     }()
     
-    var unread: [PushNotification]?{
-        didSet{
-            DispatchQueue.main.async {
-                if let unreadNotification = self.unread, unreadNotification.count > 0{
-                    self.shouldShowNewSession = true
-                    self.refreshControl.endRefreshing()
-                    self.tableView.reloadData()
-                }
-            }
-        }
-    }
+    var unread: [PushNotification]?
     
     var read: [PushNotification]?
     
@@ -53,13 +46,7 @@ class NotificationViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        NotificationCenter.default.addObserver(self, selector: #selector(didReceivePushNotification(_:)), name: App.LocalNotification.NotificationReceived.name, object: nil)
-        PushNotification.fetchUnread { (notifications) in
-            if let notifications = notifications{
-                self.unread = notifications
-            }
-        }
-
+        self.refreshNotification()
     }
 
     override func didReceiveMemoryWarning() {
@@ -67,24 +54,58 @@ class NotificationViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
 
- 
-    func didReceivePushNotification(_ notification: Notification){
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
         self.refreshNotification()
     }
     
+    
+    var finishedFecthingUnread = false
+    var finishedFetchingRead = false
+    
+    
+   
     func refreshNotification(){
-        PushNotification.fetchUnread { (notifications) in
-            if let notifications = notifications{
-                self.unread = notifications
+        self.finishedFecthingUnread  = false
+        self.finishedFetchingRead  = false
+        PushNotification.fetch(readStatus: .unread) { (notifications) in
+            self.finishedFecthingUnread = true
+            self.unread = notifications
+            if let unreadNotification = self.unread, unreadNotification.count > 0{
+                self.shouldShowNewSession = true
+                self.updateUnreadToRead()
+            }else{
+                print("unread count is nil")
             }
+        }
+        
+        PushNotification.fetch(readStatus: .read) { (notifications) in
+            self.finishedFetchingRead = true
+            self.read = notifications
+            self.updateUnreadToRead()
         }
     }
     
     func refreshDragged(_ refreshControl: UIRefreshControl){
         self.refreshNotification()
     }
-
     
+    
+    func updateUnreadToRead(){
+        if self.finishedFecthingUnread && self.finishedFetchingRead{
+            self.refreshControl.endRefreshing()
+            self.tableView.reloadData()
+            PushNotification.updateAllUnreadToRead(completionHandler: { (succeed, error) in
+                if succeed{
+                    print("changing should shoud new session to false")
+                    self.shouldShowNewSession = false
+                }
+            })
+
+        }
+    }
+
+
 
     /*
     // MARK: - Navigation
@@ -103,6 +124,7 @@ extension NotificationViewController: UITableViewDelegate, UITableViewDataSource
     
     func numberOfSections(in tableView: UITableView) -> Int {
         //show new notification session when there is new unread
+        print("shoud show new session \(self.shouldShowNewSession)")
         return self.shouldShowNewSession ? 2 : 1
     }
     
@@ -125,7 +147,19 @@ extension NotificationViewController: UITableViewDelegate, UITableViewDataSource
         }
         return cell
     }
+        
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        if self.shouldShowNewSession{
+            if section == 0{
+                return ReusableTableSectionHeaderView.instanceFromNib(withTitle: unreadNotificationHeaderTitle)
+            }
+        }
+        return ReusableTableSectionHeaderView.instanceFromNib(withTitle: readNotificationHeaderTitle)
+    }
     
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return sectionHeaderHeight
+    }
 }
 
 

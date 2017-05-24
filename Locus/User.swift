@@ -110,9 +110,6 @@ class User: PFUser {
         self.currentActiveTrackIndex = -1
     }
     
-    
-    
-    
     func subscribeTo(_ listener: User){
         guard let listenerUsername = listener.username else{
             return
@@ -154,9 +151,15 @@ class User: PFUser {
                                         guard let trackList = fetchedPlaylistPost.trackList else{
                                             return
                                         }
-        
+                                        
                                         //play the current track that the listener is listening to
-                                        App.playTracks(trackList: trackList, activeTrackIndex: currentTrackIndex)
+                                        if currentTrackIndex >= 0 {
+                                            App.playTracks(trackList: trackList, activeTrackIndex: currentTrackIndex)
+                                        }else{
+                                            //unsubscribe
+                                            App.delegate?.listenerSubcription = nil
+                                            print("just unsubscribe")
+                                        }
                                     }
                                 }
                             }
@@ -167,31 +170,6 @@ class User: PFUser {
             }else{
                 print("the object id is nil")
             }
-            
-//            currentPlaylistPost.refetchPost(completionHandler: { (fetchedPlaylistPost) in
-//                if let fetchedPlaylistPost = fetchedPlaylistPost{
-//                    guard let userId = fetchedPlaylistPost.user?.spotifyId else{
-//                        return
-//                    }
-//                    guard let playlistId = fetchedPlaylistPost.playlistId else{
-//                        return
-//                    }
-//                    SpotifyClient.fetchPlaylistByUserIdAndPlaylistId(userId: userId, playlistId: playlistId) { (playlist) in
-//                        DispatchQueue.main.async {
-//                            if let playlist = playlist{
-//                                fetchedPlaylistPost.playlist = playlist
-//                                
-//                                guard let trackList = fetchedPlaylistPost.trackList else{
-//                                    return
-//                                }
-//                                
-//                                //play the current track that the listener is listening to
-//                                App.playTracks(trackList: trackList, activeTrackIndex: currentTrackIndex)
-//                            }
-//                        }
-//                    }
-//                }
-//            })
         })
     }
     

@@ -90,19 +90,7 @@ class PlayView: UIView {
     }
 
     @IBAction func playToggle(_ sender: UIButton) {
-        sender.animateBounceView()
-        self.streamController.setIsPlaying(!self.currentPlayingState) { (error) in
-            if let error = error{
-                print(error.localizedDescription)
-            }else{
-                if self.currentPlayingState{
-                    User.current()?.resetPlayingState()
-                }else{
-                    User.current()?.currentActiveTrackIndex = self.activeTrackIndex
-                }
-                self.currentPlayingState = !self.currentPlayingState
-            }
-        }
+        self.switchPlayingState()
     }
     
     @IBAction func nextBtnTapped(_ sender: UIButton) {
@@ -119,7 +107,7 @@ class PlayView: UIView {
     var trackList: [Track]!
     var activeTrackIndex: Int!{
         didSet{
-           User.current()?.currentActiveTrackIndex = self.activeTrackIndex
+            User.current()?.currentActiveTrackIndex = self.activeTrackIndex
         }
     }
     
@@ -145,6 +133,10 @@ class PlayView: UIView {
     
     func updateTracksState(){
         DispatchQueue.main.async {
+            guard self.activeTrackIndex >= 0 else{
+                return
+            }
+            
             self.thumbnailImageView.image = nil
             if let image = self.trackList[self.activeTrackIndex] .getCoverImage(withSize: .large) {
                 if let url = image.url{
@@ -309,6 +301,24 @@ class PlayView: UIView {
         App.playTracks(trackList: self.trackList, activeTrackIndex: self.activeTrackIndex)
     }
     
+    
+    //switch playing state either from playing to stop, or vice versa
+    func switchPlayingState(){
+        self.playBtn.animateBounceView()
+        self.streamController.setIsPlaying(!self.currentPlayingState) { (error) in
+            if let error = error{
+                print(error.localizedDescription)
+            }else{
+                if self.currentPlayingState{
+                    User.current()?.resetPlayingState()
+                }else{
+                    User.current()?.currentActiveTrackIndex = self.activeTrackIndex
+                }
+                self.currentPlayingState = !self.currentPlayingState
+            }
+        }
+    }
+
 
 }
 
@@ -339,6 +349,17 @@ extension PlayView: SPTAudioStreamingPlaybackDelegate, SPTAudioStreamingDelegate
     }
     
     func audioStreaming(_ audioStreaming: SPTAudioStreamingController!, didChangePosition position: TimeInterval) {
+        guard let activeTrackIndex = self.activeTrackIndex else{
+            return
+        }
+        guard activeTrackIndex >= 0 else{
+            return
+        }
+        
+        guard activeTrackIndex < (self.trackList?.count ?? 0) else{
+            return
+        }
+       
         self.currentTimeLabel.text = formatTimeInterval(timeInterval: position)
         let percentage = position / self.trackList[activeTrackIndex].duration
         self.sliderControl.value = Float(percentage)

@@ -23,22 +23,22 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bih-KD-LyE">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="81"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="71"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="Qet-p4-kYN">
-                                        <rect key="frame" x="10" y="40" width="355" height="41"/>
+                                        <rect key="frame" x="0.0" y="30" width="375" height="41"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="MtS-ca-oBc">
-                                                <rect key="frame" x="0.0" y="0.0" width="355" height="30"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="375" height="30"/>
                                                 <subviews>
                                                     <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" alwaysBounceHorizontal="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YJn-pH-nay">
-                                                        <rect key="frame" x="-10" y="0.0" width="355" height="30"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="365" height="30"/>
                                                         <subviews>
                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="JiK-df-XDu">
-                                                                <rect key="frame" x="0.0" y="0.0" width="355" height="30"/>
+                                                                <rect key="frame" x="0.0" y="0.0" width="375" height="30"/>
                                                                 <subviews>
                                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3zt-aO-HAJ">
-                                                                        <rect key="frame" x="14" y="-3" width="54" height="36"/>
+                                                                        <rect key="frame" x="20" y="-3" width="54" height="36"/>
                                                                         <fontDescription key="fontDescription" name="Avenir-Heavy" family="Avenir" pointSize="17"/>
                                                                         <state key="normal" title="Queue">
                                                                             <color key="titleColor" red="0.1960784314" green="0.20000000000000001" blue="0.20784313730000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -50,7 +50,7 @@
                                                                 </subviews>
                                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                                 <constraints>
-                                                                    <constraint firstItem="3zt-aO-HAJ" firstAttribute="leading" secondItem="JiK-df-XDu" secondAttribute="leading" constant="14" id="MFk-Pf-aN4"/>
+                                                                    <constraint firstItem="3zt-aO-HAJ" firstAttribute="leading" secondItem="JiK-df-XDu" secondAttribute="leading" constant="20" id="MFk-Pf-aN4"/>
                                                                     <constraint firstItem="3zt-aO-HAJ" firstAttribute="centerY" secondItem="JiK-df-XDu" secondAttribute="centerY" id="OpN-QM-lHr"/>
                                                                 </constraints>
                                                             </view>
@@ -65,7 +65,7 @@
                                                 </subviews>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 <constraints>
-                                                    <constraint firstItem="YJn-pH-nay" firstAttribute="leading" secondItem="MtS-ca-oBc" secondAttribute="leading" constant="-10" id="4VU-yh-wTR"/>
+                                                    <constraint firstItem="YJn-pH-nay" firstAttribute="leading" secondItem="MtS-ca-oBc" secondAttribute="leading" id="4VU-yh-wTR"/>
                                                     <constraint firstItem="YJn-pH-nay" firstAttribute="top" secondItem="MtS-ca-oBc" secondAttribute="top" id="Dq0-AK-Pjc"/>
                                                     <constraint firstAttribute="bottom" secondItem="YJn-pH-nay" secondAttribute="bottom" id="MJp-iI-vfe"/>
                                                     <constraint firstItem="JiK-df-XDu" firstAttribute="height" secondItem="MtS-ca-oBc" secondAttribute="height" id="T4x-g3-eBC"/>
@@ -75,7 +75,7 @@
                                                 </constraints>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ppo-Le-bJ6" userLabel="Sparator View">
-                                                <rect key="frame" x="0.0" y="40" width="355" height="1"/>
+                                                <rect key="frame" x="0.0" y="40" width="375" height="1"/>
                                                 <color key="backgroundColor" red="0.1960784314" green="0.20000000000000001" blue="0.20784313730000001" alpha="0.089999999999999997" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="1" id="tt9-gr-ULh"/>
@@ -87,13 +87,13 @@
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="bottom" secondItem="Qet-p4-kYN" secondAttribute="bottom" id="RaB-vR-gQP"/>
-                                    <constraint firstItem="Qet-p4-kYN" firstAttribute="leading" secondItem="bih-KD-LyE" secondAttribute="leading" constant="10" id="St1-63-17g"/>
-                                    <constraint firstAttribute="trailing" secondItem="Qet-p4-kYN" secondAttribute="trailing" constant="10" id="T2X-h8-RsU"/>
-                                    <constraint firstItem="Qet-p4-kYN" firstAttribute="top" secondItem="bih-KD-LyE" secondAttribute="top" constant="40" id="TMR-eA-a8T"/>
+                                    <constraint firstItem="Qet-p4-kYN" firstAttribute="leading" secondItem="bih-KD-LyE" secondAttribute="leading" id="St1-63-17g"/>
+                                    <constraint firstAttribute="trailing" secondItem="Qet-p4-kYN" secondAttribute="trailing" id="T2X-h8-RsU"/>
+                                    <constraint firstItem="Qet-p4-kYN" firstAttribute="top" secondItem="bih-KD-LyE" secondAttribute="top" constant="30" id="TMR-eA-a8T"/>
                                 </constraints>
                             </view>
                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ot9-B4-SB8">
-                                <rect key="frame" x="0.0" y="81" width="375" height="586"/>
+                                <rect key="frame" x="0.0" y="71" width="375" height="596"/>
                                 <connections>
                                     <segue destination="Ill-Ic-9zZ" kind="embed" identifier="StreamEmbedPageVCIden" id="dBx-1q-dmO"/>
                                 </connections>
@@ -344,12 +344,12 @@
                                             </constraints>
                                         </view>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Up Next" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Iuh-je-yK9">
-                                            <rect key="frame" x="16" y="124" width="63.5" height="20.5"/>
+                                            <rect key="frame" x="16" y="124" width="67.5" height="20.5"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="20" id="6gG-Ad-SCx"/>
                                             </constraints>
-                                            <fontDescription key="fontDescription" name="Avenir-Heavy" family="Avenir" pointSize="16"/>
-                                            <color key="textColor" red="0.1960784314" green="0.20000000000000001" blue="0.20784313730000001" alpha="0.80000000000000004" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <fontDescription key="fontDescription" name="Avenir-Heavy" family="Avenir" pointSize="17"/>
+                                            <color key="textColor" red="0.1960784314" green="0.20000000000000001" blue="0.20784313730000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="EXI-vl-Kmy" userLabel="Sparator View">
