@@ -157,6 +157,21 @@ extension PlaylistDetailViewController: UITableViewDelegate, UITableViewDataSour
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if let trackList = self.trackList{
+            
+            guard let currentUser = User.current() else{
+                print("no current user")
+                return
+            }
+            
+            //If a user listens to a playlist at a spot, user has visited that spot.            
+            if let spot = self.playlistPost.spot{
+                currentUser.addRecentVisitSpot(spot: spot, completionHandler: { (succeed, error) in
+                    if succeed{
+                        //recently visit should update
+                        App.postLocalNotification(withName: App.LocalNotification.Name.recentlyVisitedShouldUpdate)
+                    }
+                })
+            }
             App.playTracks(trackList:trackList, activeTrackIndex: indexPath.row)
         }
     }
