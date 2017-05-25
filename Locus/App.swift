@@ -15,8 +15,9 @@ struct App{
     static let streamingStoryboardName = "Streaming"
     static let spotStoryboardName = "Spot"
     static let notificationStoryboardName = "Notification"
+    static let profileStoryboardName = "Profile"
     static let grayColor = UIColor(hexString: "#8C8E94")
-    static let backColor = UIColor(hexString: "#323335")
+    static let backColor = UIColor(hexString: "#000000")
     static let themeColor = UIColor(red: 23 / 255.0, green: 131 / 255.0, blue: 198 / 255.0, alpha: 1)
     static let bannerAspectRatio: CGFloat = 3.0
     static let delegate = (UIApplication.shared.delegate as? AppDelegate)
@@ -26,6 +27,7 @@ struct App{
     static let streammingStoryBoard = UIStoryboard(name: App.streamingStoryboardName, bundle: nil)
     static let spotStoryBoard = UIStoryboard(name: App.spotStoryboardName, bundle: nil)
     static let notificationStoryboard = UIStoryboard(name: App.notificationStoryboardName, bundle: nil)
+    static let profileStoryboard = UIStoryboard(name: App.profileStoryboardName, bundle: nil)
 
     static let screenWidth = UIScreen.main.bounds.size.width
     static let screenHeight = UIScreen.main.bounds.size.height
@@ -196,6 +198,12 @@ struct App{
         static let notificationViewController = "NotificationViewController"
         static let notificationCenterNavigationController = "NotificationCenterNavigationController"
     }
+    
+    struct ProfileStoryboardIden{
+        static let ProifleNavigationViewController = "ProifleNavigationViewController"
+        static let profileViewController = "ProfileViewController"
+    }
+    
     
     struct SegueIden {
         static let embedPageVCIden = "EmbedPageVCIden"

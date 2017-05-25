@@ -37,8 +37,6 @@
 		983DF0E61EC9377400356315 /* Playlists.swift in Sources */ = {isa = PBXBuildFile; fileRef = 983DF0E11EC9377400356315 /* Playlists.swift */; };
 		983DF0E71EC9377400356315 /* StringExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 983DF0E21EC9377400356315 /* StringExtension.swift */; };
 		983DF0E81EC9377400356315 /* SearchTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 983DF0E31EC9377400356315 /* SearchTableViewCell.xib */; };
-		983DF0EC1EC9997C00356315 /* ReusableViewAllFooterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 983DF0EB1EC9997C00356315 /* ReusableViewAllFooterView.swift */; };
-		983DF0EE1EC9999700356315 /* ReusableViewAllFooterView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 983DF0ED1EC9999700356315 /* ReusableViewAllFooterView.xib */; };
 		983FEE531ECBC56D0022C6A6 /* FavorButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 983FEE521ECBC56D0022C6A6 /* FavorButton.swift */; };
 		9844ADA21ECABD4B000A3A44 /* ListenerSliderTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9844ADA01ECABD4B000A3A44 /* ListenerSliderTableViewCell.swift */; };
 		9844ADA31ECABD4B000A3A44 /* ListenerSliderTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9844ADA11ECABD4B000A3A44 /* ListenerSliderTableViewCell.xib */; };
@@ -89,7 +87,6 @@
 		9891C4641EBABD5400F4B440 /* MapViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9891C4611EBABD5400F4B440 /* MapViewController.xib */; };
 		9891C4651EBABD5400F4B440 /* MKMapViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9891C4621EBABD5400F4B440 /* MKMapViewExtension.swift */; };
 		9891C4691EBADB9800F4B440 /* Helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9891C4681EBADB9800F4B440 /* Helper.swift */; };
-		9891C46B1EBB128F00F4B440 /* UITabBarItemExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9891C46A1EBB128F00F4B440 /* UITabBarItemExtension.swift */; };
 		9891C4721EBB1D5D00F4B440 /* AddMusicViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9891C4711EBB1D5D00F4B440 /* AddMusicViewController.swift */; };
 		989276591EBC3160009C1DD0 /* PlaylistTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 989276571EBC3160009C1DD0 /* PlaylistTableViewCell.swift */; };
 		9892765A1EBC3160009C1DD0 /* PlaylistTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 989276581EBC3160009C1DD0 /* PlaylistTableViewCell.xib */; };
@@ -112,7 +109,9 @@
 		98A0D2911EA27FEB0004966A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 98A0D28F1EA27FEB0004966A /* LaunchScreen.storyboard */; };
 		98ACCB4D1ED2105B0025131D /* GlobalWrapperViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 984B05E21EBB91670098869B /* GlobalWrapperViewController.swift */; };
 		98C8CCFB1ED20D2400574621 /* TuneSpot.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98C8CCFA1ED20D2400574621 /* TuneSpot.swift */; };
-		98C9D43B1ED6B77F00DCDB2A /* profile.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 98C9D43A1ED6B77F00DCDB2A /* profile.storyboard */; };
+		98C9D43B1ED6B77F00DCDB2A /* Profile.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 98C9D43A1ED6B77F00DCDB2A /* Profile.storyboard */; };
+		98C9D4401ED6BAA200DCDB2A /* ProifleNavigationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98C9D43F1ED6BAA200DCDB2A /* ProifleNavigationViewController.swift */; };
+		98C9D4441ED6D57C00DCDB2A /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98C9D4431ED6D57C00DCDB2A /* ProfileViewController.swift */; };
 		98D494481EC6611E00B4AC63 /* ReusableTableSectionHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98D494471EC6611E00B4AC63 /* ReusableTableSectionHeaderView.swift */; };
 		98D4944B1EC6613800B4AC63 /* ReusableTableSectionHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 98D4944A1EC6613800B4AC63 /* ReusableTableSectionHeaderView.xib */; };
 		98D4944D1EC66A2D00B4AC63 /* backupSpotpicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98D4944C1EC66A2D00B4AC63 /* backupSpotpicker.swift */; };
@@ -188,8 +187,6 @@
 		983DF0E11EC9377400356315 /* Playlists.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = Playlists.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		983DF0E21EC9377400356315 /* StringExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = StringExtension.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		983DF0E31EC9377400356315 /* SearchTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SearchTableViewCell.xib; sourceTree = "<group>"; };
-		983DF0EB1EC9997C00356315 /* ReusableViewAllFooterView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = ReusableViewAllFooterView.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
-		983DF0ED1EC9999700356315 /* ReusableViewAllFooterView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ReusableViewAllFooterView.xib; sourceTree = "<group>"; };
 		983FEE521ECBC56D0022C6A6 /* FavorButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = FavorButton.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		9844ADA01ECABD4B000A3A44 /* ListenerSliderTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = ListenerSliderTableViewCell.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		9844ADA11ECABD4B000A3A44 /* ListenerSliderTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ListenerSliderTableViewCell.xib; sourceTree = "<group>"; };
@@ -241,7 +238,6 @@
 		9891C4611EBABD5400F4B440 /* MapViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MapViewController.xib; sourceTree = "<group>"; };
 		9891C4621EBABD5400F4B440 /* MKMapViewExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = MKMapViewExtension.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		9891C4681EBADB9800F4B440 /* Helper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = Helper.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
-		9891C46A1EBB128F00F4B440 /* UITabBarItemExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = UITabBarItemExtension.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		9891C4711EBB1D5D00F4B440 /* AddMusicViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = AddMusicViewController.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		989276571EBC3160009C1DD0 /* PlaylistTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = PlaylistTableViewCell.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		989276581EBC3160009C1DD0 /* PlaylistTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PlaylistTableViewCell.xib; sourceTree = "<group>"; };
@@ -267,7 +263,9 @@
 		98ACCB551ED211E50025131D /* Locus-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Locus-Bridging-Header.h"; sourceTree = "<group>"; };
 		98C8CCF91ED20C3D00574621 /* Locus.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Locus.entitlements; sourceTree = "<group>"; };
 		98C8CCFA1ED20D2400574621 /* TuneSpot.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TuneSpot.swift; sourceTree = "<group>"; };
-		98C9D43A1ED6B77F00DCDB2A /* profile.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = profile.storyboard; sourceTree = "<group>"; };
+		98C9D43A1ED6B77F00DCDB2A /* Profile.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Profile.storyboard; sourceTree = "<group>"; };
+		98C9D43F1ED6BAA200DCDB2A /* ProifleNavigationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProifleNavigationViewController.swift; sourceTree = "<group>"; };
+		98C9D4431ED6D57C00DCDB2A /* ProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		98D494471EC6611E00B4AC63 /* ReusableTableSectionHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = ReusableTableSectionHeaderView.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		98D4944A1EC6613800B4AC63 /* ReusableTableSectionHeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ReusableTableSectionHeaderView.xib; sourceTree = "<group>"; };
 		98D4944C1EC66A2D00B4AC63 /* backupSpotpicker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = backupSpotpicker.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
@@ -414,19 +412,9 @@
 		983DF0E91EC9991E00356315 /* ReusableViewHeader For TableView */ = {
 			isa = PBXGroup;
 			children = (
-				983DF0EA1EC9993E00356315 /* ReusableTableSectionFooterView */,
 				98D494491EC6612100B4AC63 /* ReusableTableSectionHeaderView */,
 			);
 			name = "ReusableViewHeader For TableView";
-			sourceTree = "<group>";
-		};
-		983DF0EA1EC9993E00356315 /* ReusableTableSectionFooterView */ = {
-			isa = PBXGroup;
-			children = (
-				983DF0EB1EC9997C00356315 /* ReusableViewAllFooterView.swift */,
-				983DF0ED1EC9999700356315 /* ReusableViewAllFooterView.xib */,
-			);
-			name = ReusableTableSectionFooterView;
 			sourceTree = "<group>";
 		};
 		983FEE541ECBC5800022C6A6 /* UIKitSubClass */ = {
@@ -733,7 +721,9 @@
 		98C9D43C1ED6B78300DCDB2A /* Profile Storyboard */ = {
 			isa = PBXGroup;
 			children = (
-				98C9D43A1ED6B77F00DCDB2A /* profile.storyboard */,
+				98C9D4431ED6D57C00DCDB2A /* ProfileViewController.swift */,
+				98C9D43F1ED6BAA200DCDB2A /* ProifleNavigationViewController.swift */,
+				98C9D43A1ED6B77F00DCDB2A /* Profile.storyboard */,
 			);
 			name = "Profile Storyboard";
 			sourceTree = "<group>";
@@ -827,7 +817,6 @@
 				983DF0E21EC9377400356315 /* StringExtension.swift */,
 				9891C4621EBABD5400F4B440 /* MKMapViewExtension.swift */,
 				98EFBE201EA29F000050675D /* UIViewExtension.swift */,
-				9891C46A1EBB128F00F4B440 /* UITabBarItemExtension.swift */,
 				9833CB031EB1B457009997E9 /* UITableViewExtension.swift */,
 				9892EED71EA9AA7F00AD44B7 /* URLRequest.swift */,
 				98EFBE211EA29F000050675D /* UIImageExtension.swift */,
@@ -996,7 +985,7 @@
 				98E7F0B91EC7FFE1005D745B /* SpotPlaylistTableViewCell.xib in Resources */,
 				981A6D4B1EB071BC0045E2FD /* SmartGenreCollectionViewCell.xib in Resources */,
 				98E5EBA31EAE641100B0D3D6 /* RecommendedSpotView.xib in Resources */,
-				98C9D43B1ED6B77F00DCDB2A /* profile.storyboard in Resources */,
+				98C9D43B1ED6B77F00DCDB2A /* Profile.storyboard in Resources */,
 				28974A8C1EC422CC0037704A /* Search.storyboard in Resources */,
 				98A0D28E1EA27FEB0004966A /* Assets.xcassets in Resources */,
 				984B2D221ED34E15003E1E98 /* Notification.storyboard in Resources */,
@@ -1007,7 +996,6 @@
 				9844ADA31ECABD4B000A3A44 /* ListenerSliderTableViewCell.xib in Resources */,
 				98588CBB1EB555950035C355 /* NavigationHeaderView.xib in Resources */,
 				9891C45A1EBABC5700F4B440 /* LocationSearchTableViewController.xib in Resources */,
-				983DF0EE1EC9999700356315 /* ReusableViewAllFooterView.xib in Resources */,
 				981A6D311EB021B80045E2FD /* RecentlyVisitedCollectionViewCell.xib in Resources */,
 				983DF0E81EC9377400356315 /* SearchTableViewCell.xib in Resources */,
 			);
@@ -1127,8 +1115,8 @@
 				98EFBE281EA29F000050675D /* RoundedView.swift in Sources */,
 				98E7F0BC1EC80827005D745B /* Profile.swift in Sources */,
 				9844ADA21ECABD4B000A3A44 /* ListenerSliderTableViewCell.swift in Sources */,
+				98C9D4401ED6BAA200DCDB2A /* ProifleNavigationViewController.swift in Sources */,
 				9833CAFA1EB18B00009997E9 /* QueueViewController.swift in Sources */,
-				9891C46B1EBB128F00F4B440 /* UITabBarItemExtension.swift in Sources */,
 				989CB86E1ED156EA0087D9D5 /* TopPlaylistPostViewController.swift in Sources */,
 				989CB8661ED12B6A0087D9D5 /* LocationTag.swift in Sources */,
 				984C6D971EC2C66A00824113 /* SongsTableViewCell.swift in Sources */,
@@ -1139,6 +1127,7 @@
 				984DBEC91ED4C2C900637E82 /* NotificationTableViewCell.swift in Sources */,
 				983DF0E71EC9377400356315 /* StringExtension.swift in Sources */,
 				984C6D941EC2B81D00824113 /* SelectSongsViewController.swift in Sources */,
+				98C9D4441ED6D57C00DCDB2A /* ProfileViewController.swift in Sources */,
 				98E5EBAB1EAFCE8300B0D3D6 /* HomeViewController.swift in Sources */,
 				989276591EBC3160009C1DD0 /* PlaylistTableViewCell.swift in Sources */,
 				98EFBE341EA2D8930050675D /* TunesDetailsViewController.swift in Sources */,
@@ -1162,7 +1151,6 @@
 				983DF0E41EC9377400356315 /* Artists.swift in Sources */,
 				98EFBE1A1EA29E350050675D /* StorybordIdentifier.swift in Sources */,
 				989CB86A1ED14CCE0087D9D5 /* SpotViewController.swift in Sources */,
-				983DF0EC1EC9997C00356315 /* ReusableViewAllFooterView.swift in Sources */,
 				28974A8A1EC422CC0037704A /* SongsSearchViewController.swift in Sources */,
 				988E41791EB99D700083A08A /* SelectionFromPlaylistViewController.swift in Sources */,
 				983DF0E61EC9377400356315 /* Playlists.swift in Sources */,
