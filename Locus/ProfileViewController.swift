@@ -35,7 +35,19 @@ class ProfileViewController: UIViewController {
     @IBOutlet weak var tableHeaderView: UIView!
     
     @IBOutlet weak var coverImageView: UIImageView!
+    
+    
+    @IBOutlet weak var visitedCountLabel: UILabel!
+    
+    @IBOutlet weak var postsCountLabel: UILabel!
+    
+    @IBOutlet weak var fullnameLabel: UILabel!{
+        didSet{
+            self.fullnameLabel?.text = User.current()?.displayName
+        }
+    }
 
+    
     //header constraint
     @IBOutlet weak var headerHeightConstraint: NSLayoutConstraint!
     @IBOutlet weak var headerViewTopConstraint: NSLayoutConstraint!
@@ -99,10 +111,24 @@ class ProfileViewController: UIViewController {
         
         self.shouldShowRecentlyVisistedSection = (User.current()?.recentlyVisitedSpot?.spots.count ??  0) > 0
         
+        self.visitedCountLabel.text = String(User.current()?.recentlyVisitedSpot?.spots.count ?? 0)
+        self.visitedCountLabel.alpha = 1.0
+
         //fetch playlist posts
         PlaylistPost.fetchCurrentUserPlaylistPosts { (playlistPosts) in
             self.playlistPosts = playlistPosts
+            DispatchQueue.main.async {
+                self.postsCountLabel.text = String(self.playlistPosts?.count ?? 0)
+                self.postsCountLabel.alpha = 1.0
+            }
         }
+        
+        //Load the profile image
+        User.current()?.loadUserProfileImage(withCompletion: { (image, error) in
+            DispatchQueue.main.async {
+                self.coverImageView.image = image
+            }
+        })
     }
     
     
@@ -163,7 +189,6 @@ class ProfileViewController: UIViewController {
                     self.headerViewTopConstraint.constant = 0
                     self.headerHeightConstraint.constant = -scrollView.contentOffset.y
                 }else{
-                    print(adjustOffset)
                     self.headerViewTopConstraint.constant = -adjustOffset * 0.6 //create a parallax effect for the header
                     var shouldSetStatusBarStyleDefault = false
                     let diff = adjustOffset  - (UIScreen.main.bounds.size.height / 2 - self.navigationBarView.frame.size.height)

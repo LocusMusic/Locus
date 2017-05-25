@@ -36,7 +36,7 @@ struct App{
 
     struct Style{
         struct TableSessionHeader{
-            static let recentlyVisitSpotHeaderTitle = "Recently Visited"
+            static let recentlyVisitSpotHeaderTitle = "Recently Visited Spots"
             static let playlistPostHeaderTitle = "Playlist Posts"
             static let height: CGFloat = 60.0
         }

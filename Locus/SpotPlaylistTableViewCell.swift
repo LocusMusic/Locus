@@ -30,9 +30,11 @@ class SpotPlaylistTableViewCell: UITableViewCell {
     
     @IBOutlet weak var userLabel: UILabel!
     
+    @IBOutlet weak var placeHolderView: UIView!
     
     var playlistPost: PlaylistPost!{
         didSet{
+            self.placeHolderView.isHidden = false
             guard let userId = playlistPost.user?.spotifyId else{
                 return
             }
@@ -40,6 +42,7 @@ class SpotPlaylistTableViewCell: UITableViewCell {
                 return
             }
             self.coverImageView.image = nil
+            self.playlistNameLabel?.text = ""
             if let playlist = self.playlistPost.playlist{
                 //no need to re-fetch
                 self.updateUIWithPlaylist(playlist: playlist)
@@ -81,6 +84,7 @@ class SpotPlaylistTableViewCell: UITableViewCell {
             }
         }
         self.playlistNameLabel.text = playlist.name
+        self.placeHolderView.isHidden = true
     }
     
     override func awakeFromNib() {

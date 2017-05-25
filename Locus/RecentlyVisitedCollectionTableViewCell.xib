@@ -36,6 +36,9 @@
                     <constraint firstItem="lwZ-pO-xxM" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="zHh-q8-mD5"/>
                 </constraints>
             </tableViewCellContentView>
+            <connections>
+                <outlet property="collectionView" destination="lwZ-pO-xxM" id="8DX-l0-fa4"/>
+            </connections>
             <point key="canvasLocation" x="56" y="81"/>
         </tableViewCell>
     </objects>

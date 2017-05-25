@@ -33,6 +33,9 @@ class RecentlyVisitedCollectionTableViewCell: UITableViewCell {
             self.collectionView.delegate = self
             self.collectionView.dataSource = self
             self.collectionView.alwaysBounceHorizontal = true
+            let flowLayout = self.collectionView.collectionViewLayout as? UICollectionViewFlowLayout
+            flowLayout?.scrollDirection = .horizontal
+            self.collectionView.showsHorizontalScrollIndicator = false
             self.collectionView.contentInset = UIEdgeInsets(top: 0, left: 16, bottom: 0, right: 16)
             self.collectionView.register( UINib(nibName: SpotThumbnailCollectionViewCellNibName, bundle: nil), forCellWithReuseIdentifier: SpotThumbnailCollectionViewCellReuseIden)
         }
