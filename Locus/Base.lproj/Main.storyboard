@@ -487,6 +487,7 @@
         <!--Profile View Controller-->
         <scene sceneID="SUw-J0-2Yl">
             <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="bf9-WC-Jxk" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <viewController id="OtQ-UC-ufG" customClass="ProfileViewController" customModule="Locus" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="DdS-rZ-Hlk"/>
@@ -532,7 +533,6 @@
                         <outlet property="navigationHeaderViewWrapper" destination="Jj5-Oc-n5K" id="d5c-JW-xsl"/>
                     </connections>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="bf9-WC-Jxk" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-3225" y="4680"/>
         </scene>
@@ -1251,6 +1251,7 @@
         <!--View Controller-->
         <scene sceneID="HKe-8d-rR9">
             <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="lRA-4A-Y3R" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <viewController id="ERg-Iv-c8e" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="znH-bW-qyG"/>
@@ -1271,7 +1272,6 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="lRA-4A-Y3R" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-1168.8" y="5758.4707646176912"/>
         </scene>

@@ -53,11 +53,11 @@ class StreamingViewController: UIViewController {
     }
     
     func setSpotBtnActive(){
-        self.spotBtn.setTitleColor(App.Style.SliderMenue.activeColor, for: .normal)
+//        self.spotBtn.setTitleColor(App.Style.SliderMenue.activeColor, for: .normal)
         self.queueBtn.setTitleColor(App.Style.SliderMenue.deactiveColor, for: .normal)
     }
     func setQueueViewBtnActive(){
-        self.spotBtn.setTitleColor(App.Style.SliderMenue.deactiveColor, for: .normal)
+//        self.spotBtn.setTitleColor(App.Style.SliderMenue.deactiveColor, for: .normal)
         self.queueBtn.setTitleColor(App.Style.SliderMenue.activeColor, for: .normal)
     }
     

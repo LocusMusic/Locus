@@ -159,7 +159,7 @@ class ListenerViewController: UIViewController {
                                 //play the current track that the listener is listening to
                                 App.playTracks(trackList: trackList, activeTrackIndex: activeTrackIndex)
                                 PushNotification.sendRemoteNotificationAfterSyncing(playlistPost: fetchedPlaylistPost)
-                                User.current()?.subscribeTo(listener)
+                             //   User.current()?.subscribeTo(listener)
                             }
                         }
                     }
