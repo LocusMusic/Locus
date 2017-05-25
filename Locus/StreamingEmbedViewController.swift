@@ -16,8 +16,8 @@ class StreamingEmbedViewController: UIPageViewController {
 
     lazy var childControllers: [UIViewController] = {
         let queueVC = App.streammingStoryBoard.instantiateViewController(withIdentifier: App.StreammingStoryboradIden.queueViewController)
-//        
-//        let spotVC = App.streammingStoryBoard.instantiateViewController(withIdentifier: App.StreammingStoryboradIden.connectedSpotViewController)
+
+        //        let spotVC = App.streammingStoryBoard.instantiateViewController(withIdentifier: App.StreammingStoryboradIden.connectedSpotViewController)
         
         return [queueVC]
     }()
@@ -35,7 +35,6 @@ class StreamingEmbedViewController: UIPageViewController {
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
     
     func setSpotPageActive(){
@@ -45,7 +44,7 @@ class StreamingEmbedViewController: UIPageViewController {
     }
     
     func setQueuePageActive(){
-        let queueVC = self.childControllers[1]
+        let queueVC = self.childControllers[0]
         self.setViewControllers([queueVC], direction: .forward, animated: true, completion: nil)
     }
     

@@ -13,8 +13,8 @@ import Parse
 fileprivate let reuseIden = "NotificationTableViewCell"
 fileprivate let cellNibName = "NotificationTableViewCell"
 
-fileprivate let unreadNotificationHeaderTitle = "NEW"
-fileprivate let readNotificationHeaderTitle = "HISTORY"
+fileprivate let unreadNotificationHeaderTitle = "New"
+fileprivate let readNotificationHeaderTitle = "History"
 fileprivate let sectionHeaderHeight: CGFloat = 60.0
 
 class NotificationViewController: UIViewController {
@@ -63,8 +63,6 @@ class NotificationViewController: UIViewController {
     var finishedFecthingUnread = false
     var finishedFetchingRead = false
     
-    
-   
     func refreshNotification(){
         self.finishedFecthingUnread  = false
         self.finishedFetchingRead  = false
@@ -78,7 +76,6 @@ class NotificationViewController: UIViewController {
                 print("unread count is nil")
             }
         }
-        
         PushNotification.fetch(readStatus: .read) { (notifications) in
             self.finishedFetchingRead = true
             self.read = notifications
@@ -104,8 +101,6 @@ class NotificationViewController: UIViewController {
 
         }
     }
-
-
 
     /*
     // MARK: - Navigation

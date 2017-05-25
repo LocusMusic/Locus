@@ -14,8 +14,8 @@ fileprivate let recentlyVisitedSpotNibName = "RecentlyVisitedCollectionViewCell"
 fileprivate let popularSpotReuseIden = "PopularSpotCollectionViewCellIden"
 fileprivate let popularSpotNibName = "PopularSpotCollectionViewCell"
 
-fileprivate let popularTuneSpotTitle = "Popular Tunes Spots"
-fileprivate let recentlyVisitedSpotTitle = "Recently Visited"
+fileprivate let popularTuneSpotTitle = "Popular Spots Nearby"
+fileprivate let recentlyVisitedSpotTitle = "Recently Visited Spots"
 
 
 fileprivate let spotThumbnailReuseIden = "SpotThumbnailReuseIden"
