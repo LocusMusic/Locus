@@ -10,6 +10,7 @@ import UIKit
 import Parse
 import AVFoundation
 
+
 fileprivate let xibName = "PlayView"
 
 enum PlayViewUIState{
@@ -52,6 +53,7 @@ class PlayView: UIView {
         }
     }
     
+    
     var currentPlayingState = false{
         didSet{
             if currentPlayingState{
@@ -84,10 +86,12 @@ class PlayView: UIView {
     
     
     @IBAction func favorBtnTapped(_ sender: UIButton) {
-        //Commented out - For heart button
+        //Commented out imageBtnActivateWithColor - For heart button
         //sender.imageBtnActivateWithColor(color: App.Style.Color.heartActiveColor)
         self.delegate?.playViewBecomeMaximized(playView: self)
         let destinationCenterY = 0.5 * App.screenHeight
+        self.minimizedCenter = self.center
+        self.originalCenter = self.center
         UIView.animate(withDuration: 0.3, delay: 0, usingSpringWithDamping: 0.8, initialSpringVelocity: 6, options: .curveEaseInOut, animations: {
             self.center.y = destinationCenterY
             self.minPlayerView.alpha = 0
