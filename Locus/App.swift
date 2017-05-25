@@ -35,6 +35,12 @@ struct App{
     static let mediaMaxLenght: CGFloat = 600
 
     struct Style{
+        struct TableSessionHeader{
+            static let recentlyVisitSpotHeaderTitle = "Recently Visited"
+            static let playlistPostHeaderTitle = "Playlist Posts"
+            static let height: CGFloat = 60.0
+        }
+        
         struct Font{
             static let regular =  UIFont(name: "Avenir-Book", size: 17.0)!
             static let medium =  UIFont(name: "Avenir-Medium", size: 17.0)!
@@ -101,6 +107,10 @@ struct App{
         
         struct TableView{
             static let contentInset = UIEdgeInsetsMake(8, 0, 0, 0)
+        }
+        
+        struct RecentlyVisistCollectionSession{
+            static let height: CGFloat = 148
         }
     }
     

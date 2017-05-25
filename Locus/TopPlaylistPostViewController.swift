@@ -8,9 +8,6 @@
 
 import UIKit
 
-fileprivate let reuseIden = "SpotPlaylistTableViewCell"
-fileprivate let cellNibName = "SpotPlaylistTableViewCell"
-
 class TopPlaylistViewController: UIViewController {
     
     @IBOutlet weak var tableView: UITableView!{
@@ -22,7 +19,7 @@ class TopPlaylistViewController: UIViewController {
             self.tableView.estimatedRowHeight = 60
             self.tableView.rowHeight = UITableViewAutomaticDimension
             self.tableView.contentInset = UIEdgeInsetsMake(0, 0, 64, 0)
-            self.tableView.register(UINib(nibName: cellNibName, bundle: nil), forCellReuseIdentifier: reuseIden)
+            self.tableView.register(UINib(nibName: SpotPlaylistTableViewCellNibName, bundle: nil), forCellReuseIdentifier: SpotPlaylistTableViewCellReuseIden)
         }
     }
     
@@ -124,7 +121,7 @@ extension TopPlaylistViewController: UITableViewDelegate, UITableViewDataSource{
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: reuseIden, for: indexPath) as! SpotPlaylistTableViewCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: SpotPlaylistTableViewCellReuseIden, for: indexPath) as! SpotPlaylistTableViewCell
         cell.playlistPost = self.playlistPosts?[indexPath.row]
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(cellTapped(_:)))
         cell.addGestureRecognizer(tapGesture)

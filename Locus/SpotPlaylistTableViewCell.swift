@@ -8,6 +8,10 @@
 
 import UIKit
 
+let SpotPlaylistTableViewCellReuseIden = "SpotPlaylistTableViewCell"
+let SpotPlaylistTableViewCellNibName = "SpotPlaylistTableViewCell"
+
+
 class SpotPlaylistTableViewCell: UITableViewCell {
     @IBOutlet weak var coverImageView: UIImageView!
     

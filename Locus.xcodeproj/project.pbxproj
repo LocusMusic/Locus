@@ -112,6 +112,8 @@
 		98C9D43B1ED6B77F00DCDB2A /* Profile.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 98C9D43A1ED6B77F00DCDB2A /* Profile.storyboard */; };
 		98C9D4401ED6BAA200DCDB2A /* ProifleNavigationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98C9D43F1ED6BAA200DCDB2A /* ProifleNavigationViewController.swift */; };
 		98C9D4441ED6D57C00DCDB2A /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98C9D4431ED6D57C00DCDB2A /* ProfileViewController.swift */; };
+		98C9D4471ED74DD600DCDB2A /* RecentlyVisitedCollectionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98C9D4451ED74DD600DCDB2A /* RecentlyVisitedCollectionTableViewCell.swift */; };
+		98C9D4481ED74DD600DCDB2A /* RecentlyVisitedCollectionTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 98C9D4461ED74DD600DCDB2A /* RecentlyVisitedCollectionTableViewCell.xib */; };
 		98D494481EC6611E00B4AC63 /* ReusableTableSectionHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98D494471EC6611E00B4AC63 /* ReusableTableSectionHeaderView.swift */; };
 		98D4944B1EC6613800B4AC63 /* ReusableTableSectionHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 98D4944A1EC6613800B4AC63 /* ReusableTableSectionHeaderView.xib */; };
 		98D4944D1EC66A2D00B4AC63 /* backupSpotpicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98D4944C1EC66A2D00B4AC63 /* backupSpotpicker.swift */; };
@@ -266,6 +268,8 @@
 		98C9D43A1ED6B77F00DCDB2A /* Profile.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Profile.storyboard; sourceTree = "<group>"; };
 		98C9D43F1ED6BAA200DCDB2A /* ProifleNavigationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProifleNavigationViewController.swift; sourceTree = "<group>"; };
 		98C9D4431ED6D57C00DCDB2A /* ProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
+		98C9D4451ED74DD600DCDB2A /* RecentlyVisitedCollectionTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecentlyVisitedCollectionTableViewCell.swift; sourceTree = "<group>"; };
+		98C9D4461ED74DD600DCDB2A /* RecentlyVisitedCollectionTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RecentlyVisitedCollectionTableViewCell.xib; sourceTree = "<group>"; };
 		98D494471EC6611E00B4AC63 /* ReusableTableSectionHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = ReusableTableSectionHeaderView.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		98D4944A1EC6613800B4AC63 /* ReusableTableSectionHeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ReusableTableSectionHeaderView.xib; sourceTree = "<group>"; };
 		98D4944C1EC66A2D00B4AC63 /* backupSpotpicker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = backupSpotpicker.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
@@ -723,6 +727,8 @@
 			children = (
 				98C9D4431ED6D57C00DCDB2A /* ProfileViewController.swift */,
 				98C9D43F1ED6BAA200DCDB2A /* ProifleNavigationViewController.swift */,
+				98C9D4451ED74DD600DCDB2A /* RecentlyVisitedCollectionTableViewCell.swift */,
+				98C9D4461ED74DD600DCDB2A /* RecentlyVisitedCollectionTableViewCell.xib */,
 				98C9D43A1ED6B77F00DCDB2A /* Profile.storyboard */,
 			);
 			name = "Profile Storyboard";
@@ -987,6 +993,7 @@
 				98E5EBA31EAE641100B0D3D6 /* RecommendedSpotView.xib in Resources */,
 				98C9D43B1ED6B77F00DCDB2A /* Profile.storyboard in Resources */,
 				28974A8C1EC422CC0037704A /* Search.storyboard in Resources */,
+				98C9D4481ED74DD600DCDB2A /* RecentlyVisitedCollectionTableViewCell.xib in Resources */,
 				98A0D28E1EA27FEB0004966A /* Assets.xcassets in Resources */,
 				984B2D221ED34E15003E1E98 /* Notification.storyboard in Resources */,
 				98588CD41EB6A82A0035C355 /* PlayView.xib in Resources */,
@@ -1067,6 +1074,7 @@
 				984C6D921EC2A79100824113 /* SpotPickerViewController.swift in Sources */,
 				9833CB071EB1F289009997E9 /* SongTableViewCell.swift in Sources */,
 				98D494561EC6B57000B4AC63 /* ConnectedSpotViewController.swift in Sources */,
+				98C9D4471ED74DD600DCDB2A /* RecentlyVisitedCollectionTableViewCell.swift in Sources */,
 				98EFBE121EA292070050675D /* LogInViewController.swift in Sources */,
 				983FEE531ECBC56D0022C6A6 /* FavorButton.swift in Sources */,
 				9891C4631EBABD5400F4B440 /* MapViewController.swift in Sources */,

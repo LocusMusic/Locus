@@ -1,20 +1,33 @@
 //
-//  RecommendationCollectionViewCell.swift
+//  RecentlyVisitedCollectionTableViewCell.swift
 //  Locus
 //
-//  Created by Xie kesong on 4/25/17.
-//  Copyright © 2017 ___Spottunes___. All rights reserved.
+//  Created by Xie kesong on 5/25/17.
+//  Copyright © 2017 ___Locus___. All rights reserved.
 //
 
 import UIKit
 
+let RecentlyVisitedCollectionTableViewCellReuseIden = "RecentlyVisitedCollectionTableViewCell"
+let RecentlyVisitedCollectionTableViewCellNibName = "RecentlyVisitedCollectionTableViewCell"
 
-protocol RecentlyVisitedCollectionViewCellDelegate: class  {
+
+protocol RecentlyVisitedCollectionTableViewCellDelegate: class  {
     func spotThumbnailImageViewImageTapped(spot: TuneSpot)
 }
 
-class RecentlyVisitedCollectionViewCell: UICollectionViewCell {
+class RecentlyVisitedCollectionTableViewCell: UITableViewCell {
 
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        // Initialization code
+    }
+
+    override func setSelected(_ selected: Bool, animated: Bool) {
+        super.setSelected(selected, animated: animated)
+        // Configure the view for the selected state
+    }
+    
     @IBOutlet weak var collectionView: UICollectionView!{
         didSet{
             self.collectionView.delegate = self
@@ -26,23 +39,16 @@ class RecentlyVisitedCollectionViewCell: UICollectionViewCell {
     }
     
     weak var delegate: RecentlyVisitedCollectionViewCellDelegate?
-
+    
     
     var spots: [TuneSpot]?{
         didSet{
-            self.collectionView.reloadData()
+            self.collectionView?.reloadData()
         }
     }
-    
-    
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        // Initialization code
-    }
-
 }
 
-extension RecentlyVisitedCollectionViewCell: UICollectionViewDelegate, UICollectionViewDataSource{
+extension RecentlyVisitedCollectionTableViewCell: UICollectionViewDelegate, UICollectionViewDataSource{
     func numberOfSections(in collectionView: UICollectionView) -> Int {
         return 1
     }
@@ -59,7 +65,7 @@ extension RecentlyVisitedCollectionViewCell: UICollectionViewDelegate, UICollect
     }
 }
 
-extension RecentlyVisitedCollectionViewCell:UICollectionViewDelegateFlowLayout{
+extension RecentlyVisitedCollectionTableViewCell:UICollectionViewDelegateFlowLayout{
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let legnth = self.collectionView.frame.size.height
         return CGSize(width: legnth - 48, height: legnth)
@@ -74,7 +80,7 @@ extension RecentlyVisitedCollectionViewCell:UICollectionViewDelegateFlowLayout{
     }
 }
 
-extension RecentlyVisitedCollectionViewCell: SpotThumbnailCollectionViewCellDelegate{
+extension RecentlyVisitedCollectionTableViewCell: SpotThumbnailCollectionViewCellDelegate{
     func spotThumbnailImageViewImageTapped(spot: TuneSpot) {
         self.delegate?.spotThumbnailImageViewImageTapped(spot: spot)
     }

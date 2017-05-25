@@ -18,10 +18,6 @@ fileprivate let popularTuneSpotTitle = "Popular Spots Nearby"
 fileprivate let recentlyVisitedSpotTitle = "Recently Visited Spots"
 
 
-fileprivate let spotThumbnailReuseIden = "SpotThumbnailReuseIden"
-fileprivate let spotThumbnailNibName = "SpotThumbnailCollectionViewCell"
-
-
 fileprivate struct CollectionViewUI{
     static let UIEdgeSpace: CGFloat = 16.0
     static let MinmumLineSpace: CGFloat = 16.0
@@ -42,10 +38,7 @@ class OverviewViewController: UIViewController {
             //register for recently visited spot cell and reuse
             self.collectionView.register(UINib(nibName: recentlyVisitedSpotNibName, bundle: nil), forCellWithReuseIdentifier: recentlyVisitedSpotReuseIden)
             
-            //register for smart genre cell and reuse
-//            self.collectionView.register(UINib(nibName: popularSpotNibName, bundle: nil), forCellWithReuseIdentifier: popularSpotReuseIden)
-            
-            self.collectionView.register(UINib(nibName: spotThumbnailNibName, bundle: nil), forCellWithReuseIdentifier: spotThumbnailReuseIden)
+            self.collectionView.register(UINib(nibName: SpotThumbnailCollectionViewCellNibName, bundle: nil), forCellWithReuseIdentifier: SpotThumbnailCollectionViewCellReuseIden)
 
 
             //reuse header
@@ -139,7 +132,7 @@ extension OverviewViewController: UICollectionViewDelegate, UICollectionViewData
                 return cell
             }
         }
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: spotThumbnailReuseIden, for: indexPath) as! SpotThumbnailCollectionViewCell
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: SpotThumbnailCollectionViewCellReuseIden, for: indexPath) as! SpotThumbnailCollectionViewCell
         cell.delegate = self
         cell.spot = App.delegate?.popularTuneSpot?[indexPath.row]
         return cell
@@ -170,7 +163,7 @@ extension OverviewViewController: UICollectionViewDelegateFlowLayout{
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         if self.shouldShowRecentlyVisistedSection{
             if indexPath.section == 0{
-                return CGSize(width:App.screenWidth, height: 148)
+                return CGSize(width:App.screenWidth, height: App.Style.RecentlyVisistCollectionSession.height)
             }
         }
         let length = (self.view.frame.size.width - 2 * CollectionViewUI.UIEdgeSpace - CollectionViewUI.MinmumInteritemSpace) / 2 ;

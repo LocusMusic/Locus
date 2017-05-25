@@ -26,6 +26,10 @@ class ProfileViewController: UIViewController {
             self.tableView.contentOffset.y = -self.tableView.contentInset.top
             self.tableView.backgroundColor = UIColor.clear
             self.tableView.indicatorStyle = .white
+            
+            self.tableView.register(UINib(nibName: RecentlyVisitedCollectionTableViewCellNibName, bundle: nil), forCellReuseIdentifier: RecentlyVisitedCollectionTableViewCellReuseIden)
+
+            self.tableView.register(UINib(nibName: SpotPlaylistTableViewCellNibName, bundle: nil), forCellReuseIdentifier: SpotPlaylistTableViewCellReuseIden)
         }
     }
     @IBOutlet weak var tableHeaderView: UIView!
@@ -68,6 +72,19 @@ class ProfileViewController: UIViewController {
         sender.animateBounceView(withDuration: 1.0, delay: 0, usingSpringWithDamping: 0.4, initialSpringVelocity: 0.5)
     }
     
+    var shouldShowRecentlyVisistedSection = false{
+        didSet{
+            self.tableView?.reloadData()
+        }
+    }
+    
+    var playlistPosts: [PlaylistPost]?{
+        didSet{
+            DispatchQueue.main.async {
+                self.tableView?.reloadData()
+            }
+        }
+    }
     
     
     //status bar control
@@ -78,6 +95,14 @@ class ProfileViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         App.setStatusBarStyle(style: .lightContent)
+        NotificationCenter.default.addObserver(self, selector: #selector(recentlyVisitedShouldUpdate(_:)), name: App.LocalNotification.Name.recentlyVisitedShouldUpdate, object: nil)
+        
+        self.shouldShowRecentlyVisistedSection = (User.current()?.recentlyVisitedSpot?.spots.count ??  0) > 0
+        
+        //fetch playlist posts
+        PlaylistPost.fetchCurrentUserPlaylistPosts { (playlistPosts) in
+            self.playlistPosts = playlistPosts
+        }
     }
     
     
@@ -86,9 +111,15 @@ class ProfileViewController: UIViewController {
     }
     
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.headerHeightConstraint.constant = UIScreen.main.bounds.size.height / 2.0
+        self.adjustNavigationApperance()
+    }
+    
+    
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        self.headerHeightConstraint.constant = UIScreen.main.bounds.size.height / 2.0
         self.headerOriginHeight = self.headerHeightConstraint.constant
         self.tableView.setAndLayoutTableHeaderView(header: self.tableHeaderView)
         self.isViewAppeared = true
@@ -110,6 +141,16 @@ class ProfileViewController: UIViewController {
     override var preferredStatusBarUpdateAnimation: UIStatusBarAnimation{
         return .fade
     }
+    
+    
+    func recentlyVisitedShouldUpdate(_ notification: Notification){
+        DispatchQueue.main.async {
+            self.shouldShowRecentlyVisistedSection = true
+            self.tableView?.reloadData()
+        }
+    }
+    
+
     
 
     
@@ -154,20 +195,89 @@ class ProfileViewController: UIViewController {
         }
     }
     
+    
+    func adjustNavigationApperance(){
+        let adjustOffset = self.tableView.contentOffset.y + headerOriginHeight
+        self.headerViewTopConstraint.constant = -adjustOffset * 0.6 //create a parallax effect for the header
+        var shouldSetStatusBarStyleDefault = false
+        let diff = adjustOffset  - (UIScreen.main.bounds.size.height / 2 - self.navigationBarView.frame.size.height)
+        if diff > 0{
+            self.navigationBarView.alpha = min(1, diff * 0.04)
+            if self.navigationBarView.alpha > 0.2{
+                self.statusBarStyle = .default
+                shouldSetStatusBarStyleDefault = true
+            }
+        }else{
+            self.navigationBarView.alpha = 0
+        }
+        
+        let headerRect = self.tableHeaderView.convert(self.tableHeaderView.frame, from: nil)
+        //adjust the scroll bar style
+        if (-headerRect.origin.y) >= adjustOffset{
+            self.tableView.indicatorStyle = .white
+        }else{
+            self.tableView.indicatorStyle = .black
+        }
+        
+        //adjust the status bar style
+        if !shouldSetStatusBarStyleDefault{
+            self.statusBarStyle = .lightContent
+        }
+        App.setStatusBarStyle(style: self.statusBarStyle)
+    }
+    
 }
 
 extension ProfileViewController: UITableViewDelegate, UITableViewDataSource{
     func numberOfSections(in tableView: UITableView) -> Int {
-        return 1
+        return self.shouldShowRecentlyVisistedSection ? 2 : 1
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 20
+        if self.shouldShowRecentlyVisistedSection{
+            if section == 0{
+                //return the number of recently visited spot
+                return 1
+            }
+        }
+        return self.playlistPosts?.count ?? 0
     }
     
+    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
+        if self.shouldShowRecentlyVisistedSection{
+            if indexPath.section == 0{
+                //return the number of recently visited spot
+                let cell = tableView.dequeueReusableCell(withIdentifier: RecentlyVisitedCollectionTableViewCellReuseIden, for: indexPath) as!RecentlyVisitedCollectionTableViewCell
+                cell.spots = User.current()?.recentlyVisitedSpot?.spots
+                return cell
+            }
+        }
+        let cell = tableView.dequeueReusableCell(withIdentifier: SpotPlaylistTableViewCellReuseIden, for: indexPath) as! SpotPlaylistTableViewCell
+        cell.playlistPost = self.playlistPosts?[indexPath.row]
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        if self.shouldShowRecentlyVisistedSection{
+            if indexPath.section == 0{
+                return App.Style.RecentlyVisistCollectionSession.height
+            }
+        }
+        return UITableViewAutomaticDimension
+    }
+    
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        if self.shouldShowRecentlyVisistedSection{
+            if section == 0{
+                return ReusableTableSectionHeaderView.instanceFromNib(withTitle: App.Style.TableSessionHeader.recentlyVisitSpotHeaderTitle)
+            }
+        }
+        return ReusableTableSectionHeaderView.instanceFromNib(withTitle: App.Style.TableSessionHeader.playlistPostHeaderTitle)
+    }
+    
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return App.Style.TableSessionHeader.height
     }
 }
 

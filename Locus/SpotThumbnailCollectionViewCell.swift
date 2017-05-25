@@ -8,6 +8,9 @@
 
 import UIKit
 
+let SpotThumbnailCollectionViewCellReuseIden = "SpotThumbnailCollectionViewCell"
+let SpotThumbnailCollectionViewCellNibName = "SpotThumbnailCollectionViewCell"
+
 protocol SpotThumbnailCollectionViewCellDelegate: class {
     func spotThumbnailImageViewImageTapped(spot: TuneSpot)
 }
