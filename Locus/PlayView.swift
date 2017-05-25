@@ -53,6 +53,11 @@ class PlayView: UIView {
         }
     }
     
+    @IBOutlet weak var upArrowBtn: UIButton! {
+        didSet {
+            self.upArrowBtn.imageBtnActivateWithColor(color: App.backColor, usingImage: #imageLiteral(resourceName: "up-arrow-icon"), withBounceAnimation: true)
+        }
+    }
     
     var currentPlayingState = false{
         didSet{

@@ -234,6 +234,7 @@
                 <outlet property="sliderControl" destination="9LS-Po-2SK" id="p2J-SB-Hlr"/>
                 <outlet property="thumbnailImageView" destination="f9a-fp-Vod" id="8TE-yv-CMV"/>
                 <outlet property="trackNameLabel" destination="QZN-Oc-eIz" id="z1g-gB-dqk"/>
+                <outlet property="upArrowBtn" destination="L9Q-yV-Lb7" id="wvo-7b-cuT"/>
             </connections>
         </view>
     </objects>
