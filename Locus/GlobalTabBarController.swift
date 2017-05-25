@@ -35,6 +35,15 @@ class GlobalTabBarController: UITabBarController {
             self.viewControllers?.insert(notificationNVC, at: 3)
         }
         
+        //add the profile tab
+        //add streamming tab
+        if let profileNVC = ProifleNavigationViewController.instantiateFromStoryboard(){
+            self.viewControllers?.insert(profileNVC, at: 4)
+        }else{
+            print("no")
+        }
+        
+        
         self.delegate = self
         self.tabBar.updateTabBarAppearance()
         UISearchBar.appearance().setImage(#imageLiteral(resourceName: "search-icon"), for: .search, state: .normal)

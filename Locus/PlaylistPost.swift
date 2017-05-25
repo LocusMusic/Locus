@@ -93,7 +93,24 @@ class PlaylistPost: PFObject {
                 completionHandler(nil)
             }
         }
-   
+    }
+    
+    class func fetchCurrentUserPlaylistPosts(completionHandler: @escaping ([PlaylistPost]?) -> Void){
+        guard let currentUser = User.current() else{
+            return
+        }
+        let query = PFQuery(className: ClassName)
+        query.whereKey(UserKey, equalTo: currentUser)
+        query.includeKey(UserKey)
+        query.includeKey(SpotKey)
+        query.includeKey(LikeUsersKey)
+        query.findObjectsInBackground { (posts, error) in
+            if let playlistPosts = posts as? [PlaylistPost]{
+                completionHandler(playlistPosts)
+            }else{
+                completionHandler(nil)
+            }
+        }
     }
     
 
