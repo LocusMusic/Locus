@@ -6,6 +6,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12088"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -25,6 +26,33 @@
                                 <rect key="frame" x="0.0" y="65" width="375" height="602"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </tableView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="DiN-Eu-Bwc">
+                                <rect key="frame" x="0.0" y="20" width="375" height="647"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Notifications you receive pop up here" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GdG-3L-8qj">
+                                        <rect key="frame" x="40" y="384" width="295" height="22"/>
+                                        <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="16"/>
+                                        <color key="textColor" red="0.1960784314" green="0.20000000000000001" blue="0.20784313730000001" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <imageView userInteractionEnabled="NO" alpha="0.69999999999999996" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="HeartIconBig" translatesAutoresizingMaskIntoConstraints="NO" id="VFD-50-1n0">
+                                        <rect key="frame" x="80" y="136" width="215" height="215"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="215" id="p7r-hq-6ao"/>
+                                            <constraint firstAttribute="height" constant="215" id="s3J-Qx-Gq8"/>
+                                        </constraints>
+                                    </imageView>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstItem="VFD-50-1n0" firstAttribute="leading" secondItem="DiN-Eu-Bwc" secondAttribute="leading" constant="80" id="0Ym-0U-5ml"/>
+                                    <constraint firstAttribute="trailing" secondItem="GdG-3L-8qj" secondAttribute="trailing" constant="40" id="Ohe-9c-OWQ"/>
+                                    <constraint firstItem="GdG-3L-8qj" firstAttribute="leading" secondItem="DiN-Eu-Bwc" secondAttribute="leading" constant="40" id="cC4-2v-ScV"/>
+                                    <constraint firstItem="GdG-3L-8qj" firstAttribute="top" secondItem="VFD-50-1n0" secondAttribute="bottom" constant="33" id="cWB-KT-mYr"/>
+                                    <constraint firstItem="VFD-50-1n0" firstAttribute="top" secondItem="DiN-Eu-Bwc" secondAttribute="top" constant="136" id="h4g-Dv-v5A"/>
+                                    <constraint firstAttribute="trailing" secondItem="VFD-50-1n0" secondAttribute="trailing" constant="80" id="l4t-Ke-tS5"/>
+                                </constraints>
+                            </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Lul-oj-8ml" userLabel="Sparator View">
                                 <rect key="frame" x="0.0" y="64" width="375" height="1"/>
                                 <color key="backgroundColor" red="0.1960784314" green="0.20000000000000001" blue="0.20784313730000001" alpha="0.080000000000000002" colorSpace="custom" customColorSpace="sRGB"/>
@@ -35,10 +63,14 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="DiN-Eu-Bwc" firstAttribute="top" secondItem="Ku5-jB-uLU" secondAttribute="bottom" constant="-44" id="3C5-ER-1kv"/>
+                            <constraint firstItem="tJw-1D-4bA" firstAttribute="top" secondItem="DiN-Eu-Bwc" secondAttribute="bottom" id="4u5-mE-bGt"/>
                             <constraint firstItem="cm6-sG-nsq" firstAttribute="leading" secondItem="6Bo-mt-pzu" secondAttribute="leading" id="5Nj-Wu-xRf"/>
                             <constraint firstItem="Lul-oj-8ml" firstAttribute="leading" secondItem="6Bo-mt-pzu" secondAttribute="leading" id="7SP-o9-xH6"/>
                             <constraint firstItem="Lul-oj-8ml" firstAttribute="top" secondItem="Ku5-jB-uLU" secondAttribute="bottom" id="Hfn-ap-egT"/>
+                            <constraint firstItem="DiN-Eu-Bwc" firstAttribute="leading" secondItem="6Bo-mt-pzu" secondAttribute="leadingMargin" constant="-16" id="LWK-Bp-Onu"/>
                             <constraint firstItem="tJw-1D-4bA" firstAttribute="top" secondItem="cm6-sG-nsq" secondAttribute="bottom" id="bLl-5U-7mh"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="DiN-Eu-Bwc" secondAttribute="trailing" constant="-16" id="eXu-tb-LXA"/>
                             <constraint firstAttribute="trailing" secondItem="cm6-sG-nsq" secondAttribute="trailing" id="qh3-8R-chL"/>
                             <constraint firstItem="cm6-sG-nsq" firstAttribute="top" secondItem="Lul-oj-8ml" secondAttribute="bottom" id="w7g-kD-zc8"/>
                             <constraint firstAttribute="trailing" secondItem="Lul-oj-8ml" secondAttribute="trailing" id="xRj-cV-mhp"/>
@@ -46,6 +78,8 @@
                     </view>
                     <navigationItem key="navigationItem" title="Notifications" id="ld7-aY-StZ"/>
                     <connections>
+                        <outlet property="notificationIconImageView" destination="VFD-50-1n0" id="Oa4-CP-5F0"/>
+                        <outlet property="placeholderView" destination="DiN-Eu-Bwc" id="LhG-gA-UrZ"/>
                         <outlet property="tableView" destination="cm6-sG-nsq" id="CgZ-tW-YMU"/>
                     </connections>
                 </viewController>
@@ -72,4 +106,7 @@
             <point key="canvasLocation" x="-208.80000000000001" y="-138.0809595202399"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="HeartIconBig" width="180" height="180"/>
+    </resources>
 </document>

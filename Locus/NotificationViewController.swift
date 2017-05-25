@@ -32,6 +32,15 @@ class NotificationViewController: UIViewController {
         }
     }
     
+    @IBOutlet weak var placeholderView: UIView!
+    
+    @IBOutlet weak var notificationIconImageView: UIImageView! {
+        didSet {
+            self.notificationIconImageView.image = self.notificationIconImageView.image!.withRenderingMode(.alwaysTemplate)
+            self.notificationIconImageView.tintColor = App.grayColor
+        }
+    }
+    
     lazy var refreshControl: UIRefreshControl = {
         let refreshControl =  UIRefreshControl()
         refreshControl.addTarget(self, action: #selector(refreshDragged(_:)), for: .valueChanged)
@@ -92,9 +101,9 @@ class NotificationViewController: UIViewController {
         self.refreshNotification()
     }
     
-    
     func updateUnreadToRead(){
-        if self.finishedFecthingUnread && self.finishedFetchingRead{
+        if self.finishedFecthingUnread && self.finishedFetchingRead {
+            self.placeholderView.isHidden = ((self.read?.count ?? 0) + (self.unread?.count ?? 0) > 0)
             self.refreshControl.endRefreshing()
             self.tableView.reloadData()
             PushNotification.updateAllUnreadToRead(completionHandler: { (succeed, error) in
@@ -103,7 +112,6 @@ class NotificationViewController: UIViewController {
                     self.shouldShowNewSession = false
                 }
             })
-
         }
     }
 
