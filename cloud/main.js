@@ -43,5 +43,10 @@ Parse.Cloud.define("sendNotificaionAfterSongPlayedByOthers", function(request, r
 //get the server date time
 Parse.Cloud.define("getServerTime", function(request, response) {
     var dateToday = new Date();
-    response.success(dateToday.toDateString());
+    response.success(dateToday);
 });
+
+Parse.Cloud.afterSave("_User", function(request) {
+	console.log(request)
+});
+

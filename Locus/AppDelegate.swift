@@ -60,8 +60,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         )
         self.liveQueryClient = ParseLiveQuery.Client()
         //subscribe to push notification
-       PushNotification.subscribeTo()
+        PushNotification.subscribeTo()
         
+        
+        PFCloud.callFunction(inBackground: "getServerTime", withParameters: nil) { (response, error) in
+            print(response)
+        }
         
         self.configureParse()
         SpotifyClient.authInit()
