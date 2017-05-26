@@ -41,7 +41,7 @@ class RecentlyVisitedCollectionTableViewCell: UITableViewCell {
         }
     }
     
-    weak var delegate: RecentlyVisitedCollectionViewCellDelegate?
+    weak var delegate: RecentlyVisitedCollectionTableViewCellDelegate?
     
     
     var spots: [TuneSpot]?{
@@ -66,6 +66,10 @@ extension RecentlyVisitedCollectionTableViewCell: UICollectionViewDelegate, UICo
         cell.spot = self.spots?[indexPath.row]
         return cell
     }
+    
+    
+    
+    
 }
 
 extension RecentlyVisitedCollectionTableViewCell:UICollectionViewDelegateFlowLayout{

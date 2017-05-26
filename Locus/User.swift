@@ -79,7 +79,11 @@ class User: PFUser {
             return self[CurrentActiveTrackIndexKey] as? Int
         }
         set{
+            print("setting the active track index with \(self.currentActiveTrackIndex)")
             self[CurrentPlayingUpdatedTimeKey] = Date()
+            print(Date())
+            let date = Date()
+            
             self[CurrentActiveTrackIndexKey] = newValue
             self.saveInBackground()
         }

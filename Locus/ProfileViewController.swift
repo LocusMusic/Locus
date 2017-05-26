@@ -274,12 +274,14 @@ extension ProfileViewController: UITableViewDelegate, UITableViewDataSource{
             if indexPath.section == 0{
                 //return the number of recently visited spot
                 let cell = tableView.dequeueReusableCell(withIdentifier: RecentlyVisitedCollectionTableViewCellReuseIden, for: indexPath) as!RecentlyVisitedCollectionTableViewCell
+                cell.delegate = self
                 cell.spots = User.current()?.recentlyVisitedSpot?.spots
                 return cell
             }
         }
         let cell = tableView.dequeueReusableCell(withIdentifier: SpotPlaylistTableViewCellReuseIden, for: indexPath) as! SpotPlaylistTableViewCell
         cell.playlistPost = self.playlistPosts?[indexPath.row]
+        
         return cell
     }
     
@@ -303,6 +305,18 @@ extension ProfileViewController: UITableViewDelegate, UITableViewDataSource{
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         return App.Style.TableSessionHeader.height
+    }
+}
+
+
+
+
+extension ProfileViewController: RecentlyVisitedCollectionTableViewCellDelegate{
+    func spotThumbnailImageViewImageTapped(spot: TuneSpot) {
+        if let spotVC = App.spotStoryBoard.instantiateViewController(withIdentifier: App.SpotStoryboardIden.spotViewController) as? SpotViewController{
+            spotVC.spot = spot
+            self.navigationController?.pushViewController(spotVC, animated: true)
+        }
     }
 }
 

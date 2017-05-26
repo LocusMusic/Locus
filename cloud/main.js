@@ -1,4 +1,4 @@
-// iOS push testing
+// send push notification after song playing by other users
 Parse.Cloud.define("sendNotificaionAfterSongPlayedByOthers", function(request, response) {
   // request has 2 parameters: params passed by the client and the authorized user                                                                                                                               
   var params = request.params;
@@ -37,4 +37,11 @@ Parse.Cloud.define("sendNotificaionAfterSongPlayedByOthers", function(request, r
 	  }, error: function(error) {
 		  console.log("#### PUSH ERROR" + error.message);
 	  }, useMasterKey: true});
+});
+
+
+//get the server date time
+Parse.Cloud.define("getServerTime", function(request, response) {
+    var dateToday = new Date();
+    response.success(dateToday.toDateString());
 });

@@ -76,6 +76,11 @@ class SpotViewController: UIViewController {
         self.dismiss(animated: true, completion: nil)
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        App.setStatusBarStyle(style: .default)
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         if spot != nil{
