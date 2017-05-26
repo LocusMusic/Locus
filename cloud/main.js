@@ -46,7 +46,7 @@ Parse.Cloud.define("getServerTime", function(request, response) {
     response.success(dateToday);
 });
 
-Parse.Cloud.afterSave("_User", function(request) {
-	console.log(request)
+Parse.Cloud.beforeSave("_User", function(request) {
+	request.object.set("currentPlayingUpdatedTime") = new Date()
 });
 
