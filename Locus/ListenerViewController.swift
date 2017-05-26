@@ -119,8 +119,6 @@ class ListenerViewController: UIViewController {
                 return
             }
             
-            print(listener)
-            
             //get the current track index
             guard let activeTrackIndex = listener.currentActiveTrackIndex else{
                 print("active track index is nil")
