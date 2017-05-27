@@ -197,6 +197,9 @@ class User: PFUser {
     
     class func register(profile: Profile, accessToken: String, completionHandler: @escaping  (User?) -> Void) {
         
+        print("signing up ")
+        print(profile.dict)
+        print("end displya sign up name")
         User.register(ParseAuthDelegate(), forAuthType: authType)
         let authData: [String: String] = ["access_token": accessToken, "id" : profile.id]
         User.logInWithAuthType(inBackground: authType, authData: authData).continue({ (task) -> AnyObject? in
@@ -213,6 +216,7 @@ class User: PFUser {
                         currentUser[ProfileImageKey] = image
                     }
                     if let displayNaem = profile.displayName{
+                        print(displayNaem)
                         currentUser[DisplayNameKey] = displayNaem
                     }
                     currentUser.saveInBackground(block: { (succeed, error) in

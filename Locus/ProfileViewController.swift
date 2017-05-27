@@ -109,11 +109,22 @@ class ProfileViewController: UIViewController {
         App.setStatusBarStyle(style: .lightContent)
         NotificationCenter.default.addObserver(self, selector: #selector(recentlyVisitedShouldUpdate(_:)), name: App.LocalNotification.Name.recentlyVisitedShouldUpdate, object: nil)
         
+        
+        self.updateUI()
+        //Load the profile image
+        User.current()?.loadUserProfileImage(withCompletion: { (image, error) in
+            DispatchQueue.main.async {
+                self.coverImageView.image = image
+            }
+        })
+    }
+    
+    func updateUI(){
         self.shouldShowRecentlyVisistedSection = (User.current()?.recentlyVisitedSpot?.spots.count ??  0) > 0
         
         self.visitedCountLabel.text = String(User.current()?.recentlyVisitedSpot?.spots.count ?? 0)
         self.visitedCountLabel.alpha = 1.0
-
+        
         //fetch playlist posts
         PlaylistPost.fetchCurrentUserPlaylistPosts { (playlistPosts) in
             self.playlistPosts = playlistPosts
@@ -122,13 +133,6 @@ class ProfileViewController: UIViewController {
                 self.postsCountLabel.alpha = 1.0
             }
         }
-        
-        //Load the profile image
-        User.current()?.loadUserProfileImage(withCompletion: { (image, error) in
-            DispatchQueue.main.async {
-                self.coverImageView.image = image
-            }
-        })
     }
     
     
@@ -149,6 +153,7 @@ class ProfileViewController: UIViewController {
         self.headerOriginHeight = self.headerHeightConstraint.constant
         self.tableView.setAndLayoutTableHeaderView(header: self.tableHeaderView)
         self.isViewAppeared = true
+        self.updateUI()
     }
     
     

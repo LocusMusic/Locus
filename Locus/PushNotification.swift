@@ -16,6 +16,7 @@ fileprivate let TypeKey = "type" //reserve for later use, 0 for syncing music by
 fileprivate let TargetIdKey = "targetId"
 fileprivate let ReadStatusKey = "readStatus"
 fileprivate let DetailDescriptionKey = "detailDescription"
+fileprivate let CreatedAtKey = "_created_at"
 
 enum NotificationType: Int{
     case subscribe = 0 //user subscribe to other listener's music
@@ -203,6 +204,7 @@ class PushNotification: PFObject {
         let query = PFQuery(className: ClassName)
         query.includeKey(SenderKey)
         query.whereKey(ReceiverIdKey, equalTo: currentUserId)
+        query.order(byDescending: CreatedAtKey)
         
         if readStatus == .read{
             query.whereKey(ReadStatusKey, equalTo: 1)

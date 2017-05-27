@@ -45,7 +45,6 @@
 		984B2D221ED34E15003E1E98 /* Notification.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 984B2D211ED34E15003E1E98 /* Notification.storyboard */; };
 		984B2D251ED34E53003E1E98 /* NotificationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 984B2D241ED34E53003E1E98 /* NotificationViewController.swift */; };
 		984B343B1EB41449001B53A3 /* HomeEmbedPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 984B343A1EB41449001B53A3 /* HomeEmbedPageViewController.swift */; };
-		984C6D8B1EC28CC000824113 /* Backup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 984C6D8A1EC28CC000824113 /* Backup.swift */; };
 		984C6D8F1EC2A76100824113 /* SelectSpotTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 984C6D8D1EC2A76100824113 /* SelectSpotTableViewCell.swift */; };
 		984C6D901EC2A76100824113 /* SelectSpotTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 984C6D8E1EC2A76100824113 /* SelectSpotTableViewCell.xib */; };
 		984C6D921EC2A79100824113 /* SpotPickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 984C6D911EC2A79100824113 /* SpotPickerViewController.swift */; };
@@ -116,7 +115,6 @@
 		98C9D4481ED74DD600DCDB2A /* RecentlyVisitedCollectionTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 98C9D4461ED74DD600DCDB2A /* RecentlyVisitedCollectionTableViewCell.xib */; };
 		98D494481EC6611E00B4AC63 /* ReusableTableSectionHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98D494471EC6611E00B4AC63 /* ReusableTableSectionHeaderView.swift */; };
 		98D4944B1EC6613800B4AC63 /* ReusableTableSectionHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 98D4944A1EC6613800B4AC63 /* ReusableTableSectionHeaderView.xib */; };
-		98D4944D1EC66A2D00B4AC63 /* backupSpotpicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98D4944C1EC66A2D00B4AC63 /* backupSpotpicker.swift */; };
 		98D494501EC6ADDA00B4AC63 /* Streaming.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 98D4944F1EC6ADDA00B4AC63 /* Streaming.storyboard */; };
 		98D494521EC6AE9E00B4AC63 /* StreamingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98D494511EC6AE9E00B4AC63 /* StreamingViewController.swift */; };
 		98D494541EC6B10B00B4AC63 /* StreamingEmbedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98D494531EC6B10B00B4AC63 /* StreamingEmbedViewController.swift */; };
@@ -198,7 +196,6 @@
 		984B2D211ED34E15003E1E98 /* Notification.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Notification.storyboard; sourceTree = "<group>"; };
 		984B2D241ED34E53003E1E98 /* NotificationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationViewController.swift; sourceTree = "<group>"; };
 		984B343A1EB41449001B53A3 /* HomeEmbedPageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = HomeEmbedPageViewController.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
-		984C6D8A1EC28CC000824113 /* Backup.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = Backup.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		984C6D8D1EC2A76100824113 /* SelectSpotTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = SelectSpotTableViewCell.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		984C6D8E1EC2A76100824113 /* SelectSpotTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SelectSpotTableViewCell.xib; sourceTree = "<group>"; };
 		984C6D911EC2A79100824113 /* SpotPickerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = SpotPickerViewController.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
@@ -272,7 +269,6 @@
 		98C9D4461ED74DD600DCDB2A /* RecentlyVisitedCollectionTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RecentlyVisitedCollectionTableViewCell.xib; sourceTree = "<group>"; };
 		98D494471EC6611E00B4AC63 /* ReusableTableSectionHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = ReusableTableSectionHeaderView.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		98D4944A1EC6613800B4AC63 /* ReusableTableSectionHeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ReusableTableSectionHeaderView.xib; sourceTree = "<group>"; };
-		98D4944C1EC66A2D00B4AC63 /* backupSpotpicker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = backupSpotpicker.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		98D4944F1EC6ADDA00B4AC63 /* Streaming.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Streaming.storyboard; sourceTree = "<group>"; };
 		98D494511EC6AE9E00B4AC63 /* StreamingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = StreamingViewController.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		98D494531EC6B10B00B4AC63 /* StreamingEmbedViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = StreamingEmbedViewController.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
@@ -474,7 +470,6 @@
 			children = (
 				984C6D911EC2A79100824113 /* SpotPickerViewController.swift */,
 				984C6D8D1EC2A76100824113 /* SelectSpotTableViewCell.swift */,
-				98D4944C1EC66A2D00B4AC63 /* backupSpotpicker.swift */,
 				984C6D8E1EC2A76100824113 /* SelectSpotTableViewCell.xib */,
 			);
 			name = "select location";
@@ -594,7 +589,6 @@
 				9891C4711EBB1D5D00F4B440 /* AddMusicViewController.swift */,
 				984C6D8C1EC2A73A00824113 /* select location */,
 				988E41771EB99D460083A08A /* Select from Playlist */,
-				984C6D8A1EC28CC000824113 /* Backup.swift */,
 			);
 			name = AddMusicToSpot;
 			sourceTree = "<group>";
@@ -1084,7 +1078,6 @@
 				98EFBE261EA29F000050675D /* UIImageExtension.swift in Sources */,
 				98D494541EC6B10B00B4AC63 /* StreamingEmbedViewController.swift in Sources */,
 				984DBEC61ED358DA00637E82 /* PushNotification.swift in Sources */,
-				98D4944D1EC66A2D00B4AC63 /* backupSpotpicker.swift in Sources */,
 				28974A881EC422CC0037704A /* SearchEmbedViewController.swift in Sources */,
 				28974A901EC422CC0037704A /* PlaylistsSearchViewController.swift in Sources */,
 				98EFBE1D1EA29E350050675D /* App.swift in Sources */,
@@ -1167,7 +1160,6 @@
 				989CB86C1ED1560B0087D9D5 /* SpotEmbedPagingViewController.swift in Sources */,
 				9891C4691EBADB9800F4B440 /* Helper.swift in Sources */,
 				98E7F0B81EC7FFE1005D745B /* SpotPlaylistTableViewCell.swift in Sources */,
-				984C6D8B1EC28CC000824113 /* Backup.swift in Sources */,
 				984B2D251ED34E53003E1E98 /* NotificationViewController.swift in Sources */,
 				981A6D4D1EB073EF0045E2FD /* Genre.swift in Sources */,
 				98E5EBA51EAE642E00B0D3D6 /* RecommendedSpotView.swift in Sources */,
