@@ -156,6 +156,7 @@ struct App{
             static let name = Notification.Name("playViewShouldShow")
             static let tracksKey = "tracks" //tracks key for the user info dictionary
             static let activeTrackIndex = "trackIndex" // active track key for ther user info dictionary
+            static let startFromKey = "startFrom"
         }
         
         struct UpdatePlaylistPickerAfterSpotSelected{
@@ -246,14 +247,21 @@ struct App{
         App.postLocalNotification(withName: App.LocalNotification.StatusBarStyleUpdate.name, object: self, userInfo: info)
     }
     
-    static func playTracks(trackList: [Track], activeTrackIndex: Int){
-        print("the active traack index is \(activeTrackIndex)")
+    
+    //startFrom: play from a given position of the active track
+    static func playTracks(trackList: [Track], activeTrackIndex: Int, startFrom: TimeInterval? = nil){
+        print("the active track index is \(activeTrackIndex)")
+        print("start from time interval \(startFrom)")
         if activeTrackIndex >= 0{
-            let userInfo: [String: Any] = [
+            var userInfo: [String: Any] = [
                 App.LocalNotification.PlayViewShouldShow.tracksKey: trackList,
-                App.LocalNotification.PlayViewShouldShow.activeTrackIndex: activeTrackIndex
+                App.LocalNotification.PlayViewShouldShow.activeTrackIndex: activeTrackIndex,
             ]
             
+            
+            if let startFrom = startFrom{
+               userInfo[App.LocalNotification.PlayViewShouldShow.startFromKey] = startFrom
+            }
             App.delegate?.queue =  Array(trackList[activeTrackIndex ... trackList.count - 1])
             App.savingQueueToDisk()
             App.postLocalNotification(withName: App.LocalNotification.Name.queueShouldUpdate)

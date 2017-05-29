@@ -32,23 +32,27 @@ class OnboardingViewController: GradientBackgroundAnimatedViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let onboardDiscoverView = OnboardingView.instanceFromNib()
-        onboardDiscoverView.backgroundImageView.image = App.Style.Onboard.Discover.backgroundImage
-        onboardDiscoverView.actionBtn.setTitle(App.Style.Onboard.Discover.actionBtnTitle, for: .normal)
-        onboardDiscoverView.customDelegate = self
         
         let onboardShareView = OnboardingView.instanceFromNib()
         onboardShareView.backgroundImageView.image = App.Style.Onboard.Share.backgroundImage
         onboardShareView.actionBtn.setTitle(App.Style.Onboard.Share.actionBtnTitle, for: .normal)
         onboardShareView.customDelegate = self
         
+        
+        
+        let onboardDiscoverView = OnboardingView.instanceFromNib()
+        onboardDiscoverView.backgroundImageView.image = App.Style.Onboard.Discover.backgroundImage
+        onboardDiscoverView.actionBtn.setTitle(App.Style.Onboard.Discover.actionBtnTitle, for: .normal)
+        onboardDiscoverView.customDelegate = self
+
+        
         let onboardListenView = OnboardingView.instanceFromNib()
         onboardListenView.backgroundImageView.image = App.Style.Onboard.Listen.backgroundImage
         onboardListenView.actionBtn.setTitle(App.Style.Onboard.Listen.actionBtnTitle, for: .normal)
         onboardListenView.customDelegate = self
         
-        scenes.append(onboardDiscoverView)
         scenes.append(onboardShareView)
+        scenes.append(onboardDiscoverView)
         scenes.append(onboardListenView)
         
         for (index, promptView) in self.scenes.enumerated(){

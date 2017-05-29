@@ -27,7 +27,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     //the queue the user is currently had
     var queue: [Track]?
     
-    
     var popularTuneSpot: [TuneSpot]?{
         didSet{
             //post notification for updates
@@ -39,7 +38,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var liveQueryClient: Client!
     var listenerSubcription: Subscription<User>?
     var notificationSubcription: Subscription<PushNotification>?
-
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         
@@ -61,11 +59,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         self.liveQueryClient = ParseLiveQuery.Client()
         //subscribe to push notification
         PushNotification.subscribeTo()
-        
-        
-        PFCloud.callFunction(inBackground: "getServerTime", withParameters: nil) { (response, error) in
-            print(response)
-        }
         
         self.configureParse()
         SpotifyClient.authInit()

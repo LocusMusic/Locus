@@ -66,8 +66,12 @@ class GlobalTabBarController: UITabBarController {
             return
         }
         
-
         
+        if let startFrom = notification.userInfo?[App.LocalNotification.PlayViewShouldShow.startFromKey] as? TimeInterval{
+            self.playView.startFrom = startFrom
+        }
+        
+            
         self.playView.trackList = trackList
         self.playView.activeTrackIndex = activeTrackIndex
         self.playView.updateTracksState()

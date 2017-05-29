@@ -80,12 +80,20 @@ class User: PFUser {
         }
         set{
             print("setting the active track index with \(newValue)")
-            self[CurrentPlayingUpdatedTimeKey] = Date()
+            self.currentPlayingUpdatedTime = Date().getCurrentLocalTime()
             self[CurrentActiveTrackIndexKey] = newValue
             self.saveInBackground()
         }
     }
 
+    var currentPlayingUpdatedTime: Date?{
+        get{
+            return self[CurrentPlayingUpdatedTimeKey] as? Date
+        }
+        set{
+            self[CurrentPlayingUpdatedTimeKey] = newValue
+        }
+    }
     
     
     override func isEqual(_ object: Any?) -> Bool {

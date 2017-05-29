@@ -132,6 +132,8 @@ class PlayView: UIView {
     
     //true when the user is playing music from spot
     var playerPlaying = false
+    
+    var startFrom: TimeInterval?
 
     @IBAction func prevBtnTapped(_ sender: UIButton) {
         sender.animateBounceView()
@@ -146,7 +148,7 @@ class PlayView: UIView {
         }
         
         self.activeTrackIndex = currentActiveIndex - 1
-        App.playTracks(trackList: self.trackList, activeTrackIndex: self.activeTrackIndex)
+        App.playTracks(trackList: self.trackList, activeTrackIndex: self.activeTrackIndex, startFrom: 0)
     }
     
     
@@ -194,7 +196,6 @@ class PlayView: UIView {
     
     
     func playViewPanning(_ gesture: UIPanGestureRecognizer) {
-        print("PlayViewPlanning Called!!")
         switch self.state{
             case .minimized:
                 let translation = gesture.translation(in: nil)
@@ -294,9 +295,11 @@ class PlayView: UIView {
         guard let currentUser = User.current() else{
             return
         }
+        let startPosition = self.startFrom ?? 0
         
         currentUser.currentActiveTrackIndex = self.activeTrackIndex
-        self.streamController.playSpotifyURI(activeTrackURI, startingWith: 0, startingWithPosition: 0, callback: { (error) in
+        self.streamController.playSpotifyURI(activeTrackURI, startingWith: 0, startingWithPosition: startPosition, callback: { (error) in
+            self.startFrom = nil
             if let error = error {
                 print(error.localizedDescription)
             }else{
@@ -317,7 +320,7 @@ class PlayView: UIView {
             return
         }
         self.activeTrackIndex = currentActiveIndex + 1
-        App.playTracks(trackList: self.trackList, activeTrackIndex: self.activeTrackIndex)
+        App.playTracks(trackList: self.trackList, activeTrackIndex: self.activeTrackIndex, startFrom: 0)
     }
     
     

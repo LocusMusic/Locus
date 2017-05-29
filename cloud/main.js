@@ -38,16 +38,3 @@ Parse.Cloud.define("sendNotificaionAfterSongPlayedByOthers", function(request, r
 		  console.log("#### PUSH ERROR" + error.message);
 	  }, useMasterKey: true});
 });
-
-
-//get the server date time
-Parse.Cloud.define("getServerTime", function(request, response) {
-    var dateToday = new Date();
-    response.success(dateToday);
-});
-
-// Parse.Cloud.beforeSave("_User", function(request) {
-// 	console.log(new Date())
-//   request.object.set("currentPlayingUpdatedTime", new Date());
-// });
-

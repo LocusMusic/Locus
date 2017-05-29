@@ -16,6 +16,7 @@
 		28974A8F1EC422CC0037704A /* SpotsSearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28974A861EC422CC0037704A /* SpotsSearchViewController.swift */; };
 		28974A901EC422CC0037704A /* PlaylistsSearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28974A871EC422CC0037704A /* PlaylistsSearchViewController.swift */; };
 		7A4CF60BAF12A50A9C836991 /* Pods_Locus.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C5A35C681814C640EE9D42AC /* Pods_Locus.framework */; };
+		980AACC21ED925A9007BDFB5 /* DateExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 980AACC11ED925A9007BDFB5 /* DateExtension.swift */; };
 		981A6D301EB021B80045E2FD /* RecentlyVisitedCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 981A6D2E1EB021B80045E2FD /* RecentlyVisitedCollectionViewCell.swift */; };
 		981A6D311EB021B80045E2FD /* RecentlyVisitedCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 981A6D2F1EB021B80045E2FD /* RecentlyVisitedCollectionViewCell.xib */; };
 		981A6D361EB048260045E2FD /* OverviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 981A6D351EB048260045E2FD /* OverviewViewController.swift */; };
@@ -166,6 +167,7 @@
 		5B08A0F4A5AF9E5EF3E410AD /* Pods-Locus.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Locus.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Locus/Pods-Locus.debug.xcconfig"; sourceTree = "<group>"; };
 		766A9720120B2CA291FD022A /* Pods-Locus.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Locus.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Locus/Pods-Locus.debug.xcconfig"; sourceTree = "<group>"; };
 		9600EB3E0DDFD87F47C0ACF7 /* Pods-Locus.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Locus.release.xcconfig"; path = "Pods/Target Support Files/Pods-Locus/Pods-Locus.release.xcconfig"; sourceTree = "<group>"; };
+		980AACC11ED925A9007BDFB5 /* DateExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DateExtension.swift; sourceTree = "<group>"; };
 		981A6D2E1EB021B80045E2FD /* RecentlyVisitedCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = RecentlyVisitedCollectionViewCell.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		981A6D2F1EB021B80045E2FD /* RecentlyVisitedCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RecentlyVisitedCollectionViewCell.xib; sourceTree = "<group>"; };
 		981A6D351EB048260045E2FD /* OverviewViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = OverviewViewController.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
@@ -819,6 +821,7 @@
 				98EFBE201EA29F000050675D /* UIViewExtension.swift */,
 				9833CB031EB1B457009997E9 /* UITableViewExtension.swift */,
 				9892EED71EA9AA7F00AD44B7 /* URLRequest.swift */,
+				980AACC11ED925A9007BDFB5 /* DateExtension.swift */,
 				98EFBE211EA29F000050675D /* UIImageExtension.swift */,
 				988E41731EB8708D0083A08A /* UIImageViewExtension.swift */,
 				988890851EC052AE008883E0 /* UINavigationBarExtension.swift */,
@@ -1106,6 +1109,7 @@
 				98E5EB9C1EAD85AB00B0D3D6 /* OnboardingViewController.swift in Sources */,
 				984C6D9A1EC2E89600824113 /* PlaylistPost.swift in Sources */,
 				98EFBE3C1EA2EE310050675D /* Playlist.swift in Sources */,
+				980AACC21ED925A9007BDFB5 /* DateExtension.swift in Sources */,
 				985230741EBFCD0600523D1D /* CoreNavigationViewController.swift in Sources */,
 				989CB8681ED12D500087D9D5 /* Ultility.swift in Sources */,
 				985425551EC5211C0027979A /* UITabBarExtension.swift in Sources */,

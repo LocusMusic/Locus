@@ -131,8 +131,6 @@ class ListenerViewController: UIViewController {
                 return
             }
             
-            
-            
             //fetch the entire playlist post object incase the platlistPost has no data about
             //its columns yet
             //play the playlist from the listener
@@ -145,6 +143,16 @@ class ListenerViewController: UIViewController {
                     guard let playlistId = fetchedPlaylistPost.playlistId else{
                         return
                     }
+                    guard let currentPlayingUpdatedTime = fetchedPlaylistPost.user?.currentPlayingUpdatedTime else{
+                        print("current playing updated time is nil")
+                        return
+                        
+                    }
+                    
+                    let startFromTimeInterval = Date().getCurrentLocalTime().timeIntervalSince(currentPlayingUpdatedTime)
+                    print(startFromTimeInterval)
+                    
+                    
                     SpotifyClient.fetchPlaylistByUserIdAndPlaylistId(userId: userId, playlistId: playlistId) { (playlist) in
                         DispatchQueue.main.async {
                             if let playlist = playlist{
@@ -154,10 +162,11 @@ class ListenerViewController: UIViewController {
                                     return
                                 }
                                 
+                                
                                 //play the current track that the listener is listening to
-                                App.playTracks(trackList: trackList, activeTrackIndex: activeTrackIndex)
+                                App.playTracks(trackList: trackList, activeTrackIndex: activeTrackIndex, startFrom : startFromTimeInterval)
                                 PushNotification.sendRemoteNotificationAfterSyncing(playlistPost: fetchedPlaylistPost)
-                             //   User.current()?.subscribeTo(listener)
+                                User.current()?.subscribeTo(listener)
                             }
                         }
                     }
