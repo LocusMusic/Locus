@@ -172,7 +172,6 @@ class PlayView: UIView {
                 self.trackNameLabel.text = trackName
                 self.minTrackNameLabel.text = trackName
             }
-            self.endingTimeLabel.text =  formatTimeInterval(timeInterval: self.trackList[self.activeTrackIndex].duration)
             self.playActiveTrack()
             let audioSession = AVAudioSession.sharedInstance()
             do{
@@ -287,6 +286,8 @@ class PlayView: UIView {
     }
     
     func playActiveTrack(){
+        self.currentTimeLabel.text = formatTimeInterval(timeInterval: 0)
+        self.setTrackProgress(position: 0)
         guard let activeTrackURI = self.trackList[activeTrackIndex].uri else{
             return
         }
@@ -299,6 +300,7 @@ class PlayView: UIView {
         
         currentUser.currentActiveTrackIndex = self.activeTrackIndex
         self.streamController.playSpotifyURI(activeTrackURI, startingWith: 0, startingWithPosition: startPosition, callback: { (error) in
+            self.endingTimeLabel.text =  formatTimeInterval(timeInterval: self.trackList[self.activeTrackIndex].duration)
             self.startFrom = nil
             if let error = error {
                 print(error.localizedDescription)
@@ -339,6 +341,14 @@ class PlayView: UIView {
                 self.currentPlayingState = !self.currentPlayingState
             }
         }
+    }
+    
+    //set the track progress and corresponding track progress element UI
+    func setTrackProgress(position: TimeInterval){
+        self.currentTimeLabel.text = formatTimeInterval(timeInterval: position)
+        let percentage = position / self.trackList[activeTrackIndex].duration
+        self.sliderControl.value = Float(percentage)
+        self.minProgressView.progress = self.sliderControl.value
     }
 
 
@@ -381,12 +391,9 @@ extension PlayView: SPTAudioStreamingPlaybackDelegate, SPTAudioStreamingDelegate
         guard activeTrackIndex < (self.trackList?.count ?? 0) else{
             return
         }
-       
-        self.currentTimeLabel.text = formatTimeInterval(timeInterval: position)
-        let percentage = position / self.trackList[activeTrackIndex].duration
-        self.sliderControl.value = Float(percentage)
-        self.minProgressView.progress = self.sliderControl.value
+        self.setTrackProgress(position: position)
     }
+    
     
     
     func audioStreaming(_ audioStreaming: SPTAudioStreamingController!, didStopPlayingTrack trackUri: String!) {
